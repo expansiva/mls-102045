@@ -1,0 +1,43 @@
+{
+  "savedAt": "2026-06-11T13:42:20.415Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 49,
+  "planning": {
+    "planId": "plan-index-critic:workflowIndex:1",
+    "dependsOn": [
+      "plan-workflow-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "approved": true,
+          "errors": [],
+          "warnings": []
+        },
+        "questions": [],
+        "trace": [
+          "Verificação de executionMode: todos os valores são válidos (entityLifecycle ou automation).",
+          "Verificação de createsTask: nenhum workflow cria tarefas para equipe, todos corretamente false.",
+          "Verificação de actors: todos os actorIds existem no plano final (adminImobiliaria, corretor).",
+          "Verificação de persistenceRefs e metricRefs: todas as tabelas métricas referenciadas estão em metricTableIds e aparecem em ambos os arrays quando alimentadas pelo workflow.",
+          "Verificação de usecaseRefs: todos os usecaseIds existem no contexto mínimo.",
+          "Verificação de relatedEntities, relatedCapabilities e rulesApplied: todos os identificadores existem no plano final.",
+          "Verificação de workflows desnecessários: todos os workflows mapeiam para ciclo de vida de entidade, automação de IA ou consolidação de métricas (automação agendada), atendendo aos critérios de multi-step state, integration ou scheduled automation.",
+          "Nenhum erro ou warning identificado."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 50,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

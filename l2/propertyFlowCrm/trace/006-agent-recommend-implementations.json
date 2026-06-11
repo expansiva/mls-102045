@@ -1,0 +1,243 @@
+{
+  "savedAt": "2026-06-11T13:23:46.687Z",
+  "agentName": "agentRecommendImplementations",
+  "stepId": 6,
+  "planning": {
+    "planId": "req-recommend-implementations",
+    "dependsOn": [
+      "req-discover-scope"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitImplementationRecommendations",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "recommendations": [
+            {
+              "recommendationId": "imovelMdm",
+              "artifactType": "mdm",
+              "title": "MDM de Imóvel",
+              "description": "Modelo mestre para imóveis com endereço, tipo, preço, status, características e fotos mock, incluindo campos para descrição gerada por IA.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Entidade central para CRUD, busca e geração de descrições.",
+              "requiresClientDecision": false,
+              "dependencies": []
+            },
+            {
+              "recommendationId": "leadClienteMdm",
+              "artifactType": "mdm",
+              "title": "MDM de Lead/Cliente",
+              "description": "Modelo mestre para lead/cliente com contato, origem, notas, status do funil e qualificação quente/morno/frio.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Necessário para Kanban de leads, qualificação e métricas.",
+              "requiresClientDecision": false,
+              "dependencies": []
+            },
+            {
+              "recommendationId": "visitaAgendamentoMdm",
+              "artifactType": "mdm",
+              "title": "MDM de Visita/Agendamento",
+              "description": "Modelo mestre para visitas com data/hora, imóvel, lead e corretor responsáveis.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Base do agendador e histórico de visitas.",
+              "requiresClientDecision": false,
+              "dependencies": []
+            },
+            {
+              "recommendationId": "negocioPropostaMdm",
+              "artifactType": "mdm",
+              "title": "MDM de Negócio/Proposta",
+              "description": "Modelo mestre para propostas com status, valor, imóvel e lead associado.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Suporta rastreador de negócios e pipeline de fechamentos.",
+              "requiresClientDecision": false,
+              "dependencies": []
+            },
+            {
+              "recommendationId": "corretorMdm",
+              "artifactType": "mdm",
+              "title": "MDM de Corretor",
+              "description": "Cadastro mestre de corretores com vínculo a imóveis, leads e visitas.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Permite atribuição e gestão por papel.",
+              "requiresClientDecision": false,
+              "dependencies": []
+            },
+            {
+              "recommendationId": "propertyUsecaseEntity",
+              "artifactType": "usecaseEntity",
+              "title": "Entidades de caso de uso para gestão imobiliária",
+              "description": "Mapear entidades e estados para CRUD, Kanban, agendamentos e propostas, garantindo escritas e atualizações de status/métricas.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Há escritas, atualizações de status e impactos em métricas nos fluxos principais.",
+              "requiresClientDecision": false,
+              "dependencies": [
+                "imovelMdm",
+                "leadClienteMdm",
+                "visitaAgendamentoMdm",
+                "negocioPropostaMdm",
+                "corretorMdm"
+              ]
+            },
+            {
+              "recommendationId": "propertyMetricsTable",
+              "artifactType": "metricTable",
+              "title": "Tabelas de métricas do dashboard",
+              "description": "Definir tabelas/views para imóveis ativos, leads do mês e pipeline de fechamentos.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Dashboard básico foi aceito e requer cálculo consistente dos KPIs.",
+              "requiresClientDecision": false,
+              "dependencies": [
+                "imovelMdm",
+                "leadClienteMdm",
+                "negocioPropostaMdm"
+              ]
+            },
+            {
+              "recommendationId": "adminImobiliariaDashboard",
+              "artifactType": "metricDashboard",
+              "title": "Dashboard executivo do admin",
+              "description": "Dashboard para admin com KPIs de imóveis ativos, leads do mês e pipeline de fechamentos.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Tela de dashboard é requisito central do MVP.",
+              "requiresClientDecision": false,
+              "dependencies": [
+                "propertyMetricsTable"
+              ]
+            },
+            {
+              "recommendationId": "pipelineLeadWorkflow",
+              "artifactType": "workflow",
+              "title": "Workflow do Kanban de leads",
+              "description": "Estados e transições: Novo, Contato, Visita agendada, Proposta enviada, Fechado.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Garantir consistência nas mudanças de etapa do funil.",
+              "requiresClientDecision": false,
+              "dependencies": [
+                "leadClienteMdm"
+              ]
+            },
+            {
+              "recommendationId": "agendarVisitaWorkflow",
+              "artifactType": "workflow",
+              "title": "Workflow de agendamento de visitas",
+              "description": "Fluxo para criação, atualização e cancelamento de visitas com validações de data/hora.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Agendador é fluxo crítico do corretor.",
+              "requiresClientDecision": false,
+              "dependencies": [
+                "visitaAgendamentoMdm",
+                "imovelMdm",
+                "leadClienteMdm"
+              ]
+            },
+            {
+              "recommendationId": "evoluirNegocioWorkflow",
+              "artifactType": "workflow",
+              "title": "Workflow de evolução de propostas",
+              "description": "Transições de status de proposta até fechamento, com registro de valor.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Rastreador de negócios exige estados claros para métricas.",
+              "requiresClientDecision": false,
+              "dependencies": [
+                "negocioPropostaMdm"
+              ]
+            },
+            {
+              "recommendationId": "llmProviderPlugin",
+              "artifactType": "plugin",
+              "title": "Plugin de LLM",
+              "description": "Integração com provedor de IA para geração de descrição de imóvel e qualificação de leads.",
+              "priority": "soon",
+              "defaultPriority": "soon",
+              "reason": "Funcionalidades de IA são desejadas, mas podem entrar após o MVP core.",
+              "requiresClientDecision": true,
+              "dependencies": []
+            },
+            {
+              "recommendationId": "descricaoImovelAgent",
+              "artifactType": "agent",
+              "title": "Agente IA para descrição de imóvel",
+              "description": "Agente que transforma bullets/características em descrição completa para o imóvel.",
+              "priority": "soon",
+              "defaultPriority": "soon",
+              "reason": "Automatiza textos e melhora produtividade.",
+              "requiresClientDecision": false,
+              "dependencies": [
+                "llmProviderPlugin",
+                "imovelMdm"
+              ]
+            },
+            {
+              "recommendationId": "qualificacaoLeadAgent",
+              "artifactType": "agent",
+              "title": "Agente IA para qualificação de lead",
+              "description": "Agente que classifica lead como quente/morno/frio e sugere follow-up.",
+              "priority": "soon",
+              "defaultPriority": "soon",
+              "reason": "Apoia priorização e comunicação com leads.",
+              "requiresClientDecision": false,
+              "dependencies": [
+                "llmProviderPlugin",
+                "leadClienteMdm"
+              ]
+            },
+            {
+              "recommendationId": "i18nModule",
+              "artifactType": "horizontalModule",
+              "title": "Módulo de i18n pt-BR/en",
+              "description": "Internacionalização para interface em pt-BR e en.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Requisito explícito de idiomas.",
+              "requiresClientDecision": false,
+              "dependencies": []
+            },
+            {
+              "recommendationId": "authRolesModule",
+              "artifactType": "horizontalModule",
+              "title": "Módulo de permissões por papel",
+              "description": "Controle de acesso para admin da imobiliária e corretor.",
+              "priority": "now",
+              "defaultPriority": "now",
+              "reason": "Papéis distintos com responsabilidades diferentes.",
+              "requiresClientDecision": false,
+              "dependencies": []
+            }
+          ]
+        },
+        "questions": [
+          "Qual provedor/modelo de LLM deve ser usado?",
+          "Como as fotos mock dos imóveis serão armazenadas (URLs externas, base64 ou upload local)?"
+        ],
+        "trace": [
+          "Escopo confirmado com CRM imobiliário, Kanban e agendamentos.",
+          "Dashboard básico e métricas iniciais aceitos.",
+          "Papéis definidos: adminImobiliaria e corretor.",
+          "IA planejada para descrições e qualificação de leads."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 32,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

@@ -1,0 +1,736 @@
+{
+  "savedAt": "2026-06-11T13:36:59.663Z",
+  "agentName": "agentPlanUsecaseEntities",
+  "stepId": 19,
+  "planning": {
+    "planId": "plan-usecase-entities",
+    "dependsOn": [
+      "plan-persistence-index",
+      "plan-metrics-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitUsecaseEntitiesPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "backendArchitecture": {
+            "pattern": "clean-architecture",
+            "layer1Responsibility": "Acesso a dados externos, tabelas MDM e tabelas de métricas do módulo",
+            "layer2Responsibility": "Controllers e BFF que recebem requisições e delegam aos use cases",
+            "layer3Responsibility": "Casos de uso do domínio imobiliário, orquestração de regras de negócio e atualização de métricas"
+          },
+          "controllerRules": {
+            "bffMustCallUsecases": true,
+            "bffDirectTableAccessForbidden": true
+          },
+          "usecaseEntities": [
+            {
+              "usecaseEntityId": "imovelEntity",
+              "title": "Imóvel",
+              "purpose": "Gestão completa de imóveis, incluindo criação, edição, arquivamento, busca e geração de descrição por IA.",
+              "sourceTables": [
+                {
+                  "tableName": "imovel",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "imovel_inventory_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "allowedOperations": [
+                "create",
+                "read",
+                "update"
+              ],
+              "layer": "layer_3_usecases",
+              "rulesApplied": []
+            },
+            {
+              "usecaseEntityId": "leadEntity",
+              "title": "Lead",
+              "purpose": "Gestão de leads no pipeline, criação, movimentação no Kanban e qualificação por IA.",
+              "sourceTables": [
+                {
+                  "tableName": "lead",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "lead_pipeline_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "allowedOperations": [
+                "create",
+                "read",
+                "update"
+              ],
+              "layer": "layer_3_usecases",
+              "rulesApplied": [
+                "leadPipelineStages",
+                "kanbanMoveUpdatesStatus"
+              ]
+            },
+            {
+              "usecaseEntityId": "visitaEntity",
+              "title": "Visita",
+              "purpose": "Agendamento, reagendamento e cancelamento de visitas a imóveis.",
+              "sourceTables": [
+                {
+                  "tableName": "visita",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "visita_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "allowedOperations": [
+                "create",
+                "read",
+                "update"
+              ],
+              "layer": "layer_3_usecases",
+              "rulesApplied": [
+                "visitaRequiresLinks",
+                "imovelActiveStatus"
+              ]
+            },
+            {
+              "usecaseEntityId": "negocioEntity",
+              "title": "Negócio",
+              "purpose": "Criação e acompanhamento de propostas e negócios.",
+              "sourceTables": [
+                {
+                  "tableName": "negocio",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "negocio_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "allowedOperations": [
+                "create",
+                "read",
+                "update"
+              ],
+              "layer": "layer_3_usecases",
+              "rulesApplied": [
+                "negocioRequiresLinks"
+              ]
+            },
+            {
+              "usecaseEntityId": "corretorEntity",
+              "title": "Corretor",
+              "purpose": "Gestão de corretores da imobiliária, incluindo cadastro, edição e controle de status.",
+              "sourceTables": [
+                {
+                  "tableName": "corretor",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "corretor_status_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "allowedOperations": [
+                "create",
+                "read",
+                "update"
+              ],
+              "layer": "layer_3_usecases",
+              "rulesApplied": []
+            },
+            {
+              "usecaseEntityId": "dashboardMetricsEntity",
+              "title": "Métricas do Dashboard",
+              "purpose": "Consolidação de métricas para visualização no dashboard administrativo.",
+              "sourceTables": [
+                {
+                  "tableName": "lead_pipeline_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "visita_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "negocio_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "imovel_inventory_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "corretor_status_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "allowedOperations": [
+                "read"
+              ],
+              "layer": "layer_3_usecases",
+              "rulesApplied": [
+                "dashboardMetricsRefresh"
+              ]
+            }
+          ],
+          "usecases": [
+            {
+              "usecaseId": "criarImovel",
+              "title": "Criar imóvel",
+              "purpose": "Cadastrar um novo imóvel no sistema e atualizar métricas de inventário.",
+              "actor": "corretor",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "imovelEntity"
+              ],
+              "outputEntities": [
+                "imovelEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "imovel",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "imovel",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "imovel_inventory_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "editarImovel",
+              "title": "Editar imóvel",
+              "purpose": "Atualizar dados de um imóvel existente.",
+              "actor": "corretor",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "imovelEntity"
+              ],
+              "outputEntities": [
+                "imovelEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "imovel",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "imovel",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "imovel_inventory_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "arquivarImovel",
+              "title": "Arquivar imóvel",
+              "purpose": "Arquivar um imóvel, removendo-o do inventário ativo.",
+              "actor": "corretor",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "imovelEntity"
+              ],
+              "outputEntities": [
+                "imovelEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "imovel",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "imovel",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "imovel_inventory_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "buscarImovel",
+              "title": "Buscar imóvel",
+              "purpose": "Consultar e listar imóveis com filtros.",
+              "actor": "corretor",
+              "layer": "layer_3_usecases",
+              "inputEntities": [],
+              "outputEntities": [
+                "imovelEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "imovel",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "criarLead",
+              "title": "Criar lead",
+              "purpose": "Cadastrar um novo lead no pipeline.",
+              "actor": "corretor",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "leadEntity"
+              ],
+              "outputEntities": [
+                "leadEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "lead",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "lead",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "lead_pipeline_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "leadPipelineStages"
+              ]
+            },
+            {
+              "usecaseId": "moverLeadKanban",
+              "title": "Mover lead no Kanban",
+              "purpose": "Alterar a etapa do lead no pipeline e atualizar métricas.",
+              "actor": "corretor",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "leadEntity"
+              ],
+              "outputEntities": [
+                "leadEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "lead",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "lead",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "lead_pipeline_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "leadPipelineStages",
+                "kanbanMoveUpdatesStatus"
+              ]
+            },
+            {
+              "usecaseId": "agendarVisita",
+              "title": "Agendar visita",
+              "purpose": "Agendar uma visita vinculada a um imóvel e lead.",
+              "actor": "corretor",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "visitaEntity"
+              ],
+              "outputEntities": [
+                "visitaEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "visita",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "imovel",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "visita",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "visita_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "visitaRequiresLinks",
+                "imovelActiveStatus"
+              ]
+            },
+            {
+              "usecaseId": "reagendarVisita",
+              "title": "Reagendar visita",
+              "purpose": "Alterar a data ou horário de uma visita existente.",
+              "actor": "corretor",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "visitaEntity"
+              ],
+              "outputEntities": [
+                "visitaEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "visita",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "visita",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "visita_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "cancelarVisita",
+              "title": "Cancelar visita",
+              "purpose": "Cancelar uma visita previamente agendada.",
+              "actor": "corretor",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "visitaEntity"
+              ],
+              "outputEntities": [
+                "visitaEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "visita",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "visita",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "visita_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "criarProposta",
+              "title": "Criar proposta",
+              "purpose": "Criar uma nova proposta/negócio vinculada a lead e imóvel.",
+              "actor": "corretor",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "negocioEntity"
+              ],
+              "outputEntities": [
+                "negocioEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "negocio",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "negocio",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "negocio_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": [
+                "negocioRequiresLinks"
+              ]
+            },
+            {
+              "usecaseId": "atualizarStatusProposta",
+              "title": "Atualizar status da proposta",
+              "purpose": "Atualizar o status de uma proposta em andamento.",
+              "actor": "corretor",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "negocioEntity"
+              ],
+              "outputEntities": [
+                "negocioEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "negocio",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "negocio",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "negocio_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "gerarDescricaoImovelIa",
+              "title": "Gerar descrição de imóvel com IA",
+              "purpose": "Gerar e persistir descrição automatizada de imóvel via LLM.",
+              "actor": "corretor",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "imovelEntity"
+              ],
+              "outputEntities": [
+                "imovelEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "imovel",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "imovel",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "classificarLeadIa",
+              "title": "Classificar lead com IA",
+              "purpose": "Qualificar e classificar um lead automaticamente via IA.",
+              "actor": "corretor",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "leadEntity"
+              ],
+              "outputEntities": [
+                "leadEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "lead",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "lead",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "visualizarDashboard",
+              "title": "Visualizar dashboard",
+              "purpose": "Consultar métricas consolidadas para o dashboard administrativo.",
+              "actor": "adminImobiliaria",
+              "layer": "layer_3_usecases",
+              "inputEntities": [],
+              "outputEntities": [
+                "dashboardMetricsEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "lead_pipeline_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "visita_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "negocio_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "imovel_inventory_metrics",
+                  "ownership": "moduleOwned"
+                },
+                {
+                  "tableName": "corretor_status_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": [
+                "dashboardMetricsRefresh"
+              ]
+            },
+            {
+              "usecaseId": "criarCorretor",
+              "title": "Criar corretor",
+              "purpose": "Cadastrar um novo corretor na imobiliária.",
+              "actor": "adminImobiliaria",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "corretorEntity"
+              ],
+              "outputEntities": [
+                "corretorEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "corretor",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "corretor",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "corretor_status_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "editarCorretor",
+              "title": "Editar corretor",
+              "purpose": "Atualizar dados cadastrais de um corretor.",
+              "actor": "adminImobiliaria",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "corretorEntity"
+              ],
+              "outputEntities": [
+                "corretorEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "corretor",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "corretor",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "corretor_status_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "alterarStatusCorretor",
+              "title": "Ativar/desativar corretor",
+              "purpose": "Alterar o status ativo/inativo de um corretor.",
+              "actor": "adminImobiliaria",
+              "layer": "layer_3_usecases",
+              "inputEntities": [
+                "corretorEntity"
+              ],
+              "outputEntities": [
+                "corretorEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "corretor",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [
+                {
+                  "tableName": "corretor",
+                  "ownership": "mdmOwned"
+                },
+                {
+                  "tableName": "corretor_status_metrics",
+                  "ownership": "moduleOwned"
+                }
+              ],
+              "rulesApplied": []
+            },
+            {
+              "usecaseId": "buscarCorretor",
+              "title": "Buscar corretor",
+              "purpose": "Consultar e listar corretores cadastrados.",
+              "actor": "adminImobiliaria",
+              "layer": "layer_3_usecases",
+              "inputEntities": [],
+              "outputEntities": [
+                "corretorEntity"
+              ],
+              "readsTables": [
+                {
+                  "tableName": "corretor",
+                  "ownership": "mdmOwned"
+                }
+              ],
+              "writesTables": [],
+              "rulesApplied": []
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Consolidação de 12 grupos aprovados em 6 entidades de caso de uso (Imóvel, Lead, Visita, Negócio, Corretor, Métricas do Dashboard)",
+          "Todas as entidades de negócio base são mdmOwned; tabelas de métricas são moduleOwned",
+          "Mapeamento completo das 18 ações de usuário para usecases individuais com usecaseId referenciável",
+          "Atualização de métricas vinculada aos usecases de escrita transacional (criação, edição, arquivamento, mudança de status)",
+          "Regras de negócio distribuídas nos usecases aplicáveis (pipeline, Kanban, vínculos, dashboard)",
+          "Arquitetura em camadas definida com acesso exclusivo da layer_3 às tabelas e proibição de acesso direto do BFF"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 45,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

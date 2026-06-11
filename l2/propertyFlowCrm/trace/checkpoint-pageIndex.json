@@ -1,0 +1,413 @@
+{
+  "schemaVersion": "2026-06-06",
+  "artifactType": "indexCheckpoint",
+  "indexName": "pageIndex",
+  "moduleName": "propertyFlowCrm",
+  "status": "frozen",
+  "approvedAt": "2026-06-11T13:44:37.492Z",
+  "source": {
+    "agentName": "agentPlanPageIndex",
+    "stepId": 24,
+    "planId": "plan-page-index"
+  },
+  "healthReport": {
+    "localErrors": [],
+    "localWarnings": [],
+    "criticErrors": [],
+    "criticWarnings": [],
+    "attempts": 1,
+    "notes": []
+  },
+  "index": {
+    "runId": "provider-tool-call",
+    "stepId": "21-plan-page-index",
+    "schemaVersion": "2026-06-02",
+    "status": "ok",
+    "result": {
+      "pages": [
+        {
+          "pageId": "imoveisLista",
+          "pageName": "Imóveis",
+          "actor": "corretor",
+          "purpose": "Listar, buscar e acessar imóveis para criar, editar ou arquivar.",
+          "capabilities": [
+            "gerirImoveis"
+          ],
+          "flowRefs": {
+            "experienceFlows": [],
+            "entityLifecycles": [
+              "propertyLifecycleWorkflow"
+            ],
+            "taskWorkflows": [],
+            "automations": []
+          },
+          "pluginRefs": [],
+          "mdmRefs": [
+            "property"
+          ],
+          "primaryUserActions": [
+            "criarImovel",
+            "editarImovel",
+            "arquivarImovel",
+            "buscarImovel"
+          ],
+          "pageInputHints": [
+            "filtrosBusca",
+            "ordenacao",
+            "statusImovel"
+          ],
+          "navigationRefs": [
+            {
+              "direction": "outbound",
+              "pageId": "imovelEditor",
+              "trigger": "Criar ou editar imóvel"
+            }
+          ],
+          "persistenceHints": [],
+          "usecaseHints": [
+            "buscarImovel",
+            "criarImovel",
+            "editarImovel",
+            "arquivarImovel"
+          ],
+          "metricRefs": [],
+          "rulesApplied": [
+            "imovelActiveStatus"
+          ],
+          "bffCommandHints": [
+            {
+              "name": "buscarImovel",
+              "purpose": "Buscar lista de imóveis conforme filtros.",
+              "input": "filtrosBusca, statusImovel, paginação",
+              "output": "lista de imóveis com dados resumidos"
+            }
+          ]
+        },
+        {
+          "pageId": "imovelEditor",
+          "pageName": "Cadastro de imóvel",
+          "actor": "corretor",
+          "purpose": "Criar ou editar imóvel e controlar status.",
+          "capabilities": [
+            "gerirImoveis"
+          ],
+          "flowRefs": {
+            "experienceFlows": [],
+            "entityLifecycles": [
+              "propertyLifecycleWorkflow"
+            ],
+            "taskWorkflows": [],
+            "automations": []
+          },
+          "pluginRefs": [],
+          "mdmRefs": [
+            "property"
+          ],
+          "primaryUserActions": [
+            "criarImovel",
+            "editarImovel",
+            "arquivarImovel"
+          ],
+          "pageInputHints": [
+            "imovelId"
+          ],
+          "navigationRefs": [
+            {
+              "direction": "inbound",
+              "pageId": "imoveisLista",
+              "trigger": "Selecionar imóvel ou criar novo"
+            },
+            {
+              "direction": "outbound",
+              "pageId": "imoveisLista",
+              "trigger": "Salvar ou arquivar imóvel"
+            }
+          ],
+          "persistenceHints": [],
+          "usecaseHints": [
+            "criarImovel",
+            "editarImovel",
+            "arquivarImovel"
+          ],
+          "metricRefs": [],
+          "rulesApplied": [
+            "imovelActiveStatus"
+          ],
+          "bffCommandHints": [
+            {
+              "name": "criarImovel",
+              "purpose": "Registrar um novo imóvel.",
+              "input": "dados do imóvel, status inicial",
+              "output": "imóvel criado com id"
+            },
+            {
+              "name": "editarImovel",
+              "purpose": "Atualizar dados do imóvel existente.",
+              "input": "imovelId, alterações de cadastro",
+              "output": "imóvel atualizado"
+            },
+            {
+              "name": "arquivarImovel",
+              "purpose": "Arquivar imóvel.",
+              "input": "imovelId, motivo",
+              "output": "status do imóvel arquivado"
+            }
+          ]
+        },
+        {
+          "pageId": "leadsKanban",
+          "pageName": "Leads (Kanban)",
+          "actor": "corretor",
+          "purpose": "Gerenciar pipeline de leads em Kanban, criando e movendo leads entre etapas.",
+          "capabilities": [
+            "gerirLeads"
+          ],
+          "flowRefs": {
+            "experienceFlows": [],
+            "entityLifecycles": [
+              "leadPipelineWorkflow"
+            ],
+            "taskWorkflows": [],
+            "automations": []
+          },
+          "pluginRefs": [],
+          "mdmRefs": [
+            "leadCustomer"
+          ],
+          "primaryUserActions": [
+            "criarLead",
+            "moverLeadKanban"
+          ],
+          "pageInputHints": [
+            "filtroEtapa",
+            "corretorResponsavel"
+          ],
+          "navigationRefs": [
+            {
+              "direction": "outbound",
+              "pageId": "negociosPropostas",
+              "trigger": "Converter lead em proposta"
+            }
+          ],
+          "persistenceHints": [],
+          "usecaseHints": [
+            "criarLead",
+            "moverLeadKanban"
+          ],
+          "metricRefs": [],
+          "rulesApplied": [
+            "leadPipelineStages",
+            "kanbanMoveUpdatesStatus"
+          ],
+          "bffCommandHints": [
+            {
+              "name": "moverLeadKanban",
+              "purpose": "Atualizar etapa do lead no pipeline.",
+              "input": "leadId, etapaDestino",
+              "output": "lead com etapa atualizada"
+            },
+            {
+              "name": "criarLead",
+              "purpose": "Criar novo lead no pipeline.",
+              "input": "dados do lead, etapa inicial",
+              "output": "lead criado com id"
+            }
+          ]
+        },
+        {
+          "pageId": "visitasAgenda",
+          "pageName": "Agenda de visitas",
+          "actor": "corretor",
+          "purpose": "Agendar, reagendar e cancelar visitas vinculadas a imóveis e leads.",
+          "capabilities": [
+            "agendarVisitas"
+          ],
+          "flowRefs": {
+            "experienceFlows": [],
+            "entityLifecycles": [
+              "visitSchedulingWorkflow"
+            ],
+            "taskWorkflows": [],
+            "automations": []
+          },
+          "pluginRefs": [],
+          "mdmRefs": [
+            "visitAppointment",
+            "property",
+            "leadCustomer"
+          ],
+          "primaryUserActions": [
+            "agendarVisita",
+            "reagendarVisita",
+            "cancelarVisita"
+          ],
+          "pageInputHints": [
+            "imovelId",
+            "leadId",
+            "dataHoraPreferida"
+          ],
+          "navigationRefs": [
+            {
+              "direction": "inbound",
+              "pageId": "imoveisLista",
+              "trigger": "Agendar visita para imóvel"
+            },
+            {
+              "direction": "inbound",
+              "pageId": "leadsKanban",
+              "trigger": "Agendar visita para lead"
+            }
+          ],
+          "persistenceHints": [],
+          "usecaseHints": [
+            "agendarVisita",
+            "reagendarVisita",
+            "cancelarVisita"
+          ],
+          "metricRefs": [],
+          "rulesApplied": [
+            "visitaRequiresLinks",
+            "imovelActiveStatus"
+          ],
+          "bffCommandHints": [
+            {
+              "name": "agendarVisita",
+              "purpose": "Criar agendamento de visita.",
+              "input": "imovelId, leadId, dataHora, observacoes",
+              "output": "visita agendada com id"
+            },
+            {
+              "name": "reagendarVisita",
+              "purpose": "Atualizar data e hora da visita.",
+              "input": "visitaId, novaDataHora",
+              "output": "visita reagendada"
+            },
+            {
+              "name": "cancelarVisita",
+              "purpose": "Cancelar visita existente.",
+              "input": "visitaId, motivo",
+              "output": "visita cancelada"
+            }
+          ]
+        },
+        {
+          "pageId": "negociosPropostas",
+          "pageName": "Negócios e propostas",
+          "actor": "corretor",
+          "purpose": "Criar propostas com seleção de imóvel e lead e acompanhar o status dos negócios.",
+          "capabilities": [
+            "acompanharNegocios"
+          ],
+          "flowRefs": {
+            "experienceFlows": [],
+            "entityLifecycles": [
+              "proposalDealWorkflow"
+            ],
+            "taskWorkflows": [],
+            "automations": []
+          },
+          "pluginRefs": [],
+          "mdmRefs": [
+            "dealProposal",
+            "property",
+            "leadCustomer"
+          ],
+          "primaryUserActions": [
+            "criarProposta",
+            "atualizarStatusProposta"
+          ],
+          "pageInputHints": [
+            "leadId",
+            "imovelId",
+            "valorProposta"
+          ],
+          "navigationRefs": [
+            {
+              "direction": "inbound",
+              "pageId": "leadsKanban",
+              "trigger": "Criar proposta a partir de lead"
+            }
+          ],
+          "persistenceHints": [],
+          "usecaseHints": [
+            "criarProposta",
+            "atualizarStatusProposta"
+          ],
+          "metricRefs": [],
+          "rulesApplied": [
+            "negocioRequiresLinks"
+          ],
+          "bffCommandHints": [
+            {
+              "name": "criarProposta",
+              "purpose": "Registrar proposta vinculada a lead e imóvel.",
+              "input": "leadId, imovelId, condições, valor",
+              "output": "proposta criada com id"
+            },
+            {
+              "name": "atualizarStatusProposta",
+              "purpose": "Atualizar status da proposta no negócio.",
+              "input": "propostaId, novoStatus",
+              "output": "proposta com status atualizado"
+            }
+          ]
+        },
+        {
+          "pageId": "dashboardAdministrativo",
+          "pageName": "Dashboard administrativo",
+          "actor": "adminImobiliaria",
+          "purpose": "Visualizar métricas do pipeline, visitas, negócios, inventário e corretores.",
+          "capabilities": [
+            "dashboardBasico"
+          ],
+          "flowRefs": {
+            "experienceFlows": [],
+            "entityLifecycles": [],
+            "taskWorkflows": [],
+            "automations": [
+              "dashboardMetricsWorkflow"
+            ]
+          },
+          "pluginRefs": [],
+          "mdmRefs": [],
+          "primaryUserActions": [
+            "visualizarDashboard"
+          ],
+          "pageInputHints": [
+            "periodo",
+            "filtroCorretor"
+          ],
+          "navigationRefs": [],
+          "persistenceHints": [],
+          "usecaseHints": [
+            "visualizarDashboard"
+          ],
+          "metricRefs": [
+            "leadPipelineMetrics",
+            "visitaMetrics",
+            "negocioMetrics",
+            "imovelInventoryMetrics",
+            "corretorStatusMetrics"
+          ],
+          "rulesApplied": [
+            "dashboardMetricsRefresh"
+          ],
+          "bffCommandHints": [
+            {
+              "name": "visualizarDashboard",
+              "purpose": "Carregar métricas agregadas para o dashboard.",
+              "input": "periodo, filtros",
+              "output": "conjuntos de métricas agregadas"
+            }
+          ]
+        }
+      ]
+    },
+    "questions": [],
+    "trace": [
+      "pageIndex derived from now capabilities: gerirImoveis, gerirLeads, agendarVisitas, acompanharNegocios, dashboardBasico",
+      "included admin-only dashboard due to initialMetricsRequested and metrics dashboard plan",
+      "used entity lifecycle workflows for core operational pages; automation workflow for dashboard refresh"
+    ]
+  }
+}

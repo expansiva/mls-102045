@@ -1,0 +1,41 @@
+{
+  "savedAt": "2026-06-11T13:39:29.625Z",
+  "agentName": "agentPlanUsecaseDefinition",
+  "stepId": 51,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitUsecaseDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "usecaseDefinition": {
+            "usecaseId": "buscarCorretor",
+            "commands": [
+              {
+                "commandId": "listarCorretores",
+                "input": [],
+                "output": [
+                  {
+                    "name": "corretores",
+                    "type": "corretorEntity[]"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Usecase buscarCorretor consulta tabela corretor e retorna lista de corretorEntity."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 55,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

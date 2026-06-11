@@ -1,0 +1,89 @@
+{
+  "savedAt": "2026-06-11T13:25:26.574Z",
+  "agentName": "agentBlueprintReview",
+  "stepId": 10,
+  "planning": {
+    "planId": "plan-blueprint-review",
+    "dependsOn": [
+      "plan-solution-blueprint"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitBlueprintReview",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "issues": [
+            {
+              "severity": "error",
+              "code": "layer3.usecase.missing",
+              "message": "Ações com escrita/alteração de status exigem planejamento layer_3 (BFF/usecase) explícito: falta usecaseEntity para gestão de corretores (CRUD) e arquivamento/alteração de status do imóvel, além de atualização/cancelamento de visita e atualização de status de proposta.",
+              "path": "result.artifactPlan.usecaseEntities",
+              "evidence": [
+                "Há userActions com commandType update/create (editarImovel, arquivarImovel, reagendarVisita, cancelarVisita, atualizarStatusProposta) sem usecaseEntity dedicado.",
+                "Existe página corretoresPage (soon) mas não há capability nem usecaseEntity para CRUD de Corretor."
+              ]
+            },
+            {
+              "severity": "error",
+              "code": "capability.missing",
+              "message": "Há página aprovada sem capability correspondente: Corretores.",
+              "path": "result.artifactPlan.pages[5]",
+              "evidence": [
+                "corretoresPage presente com priority soon.",
+                "Não existe capability 'gerirCorretores' ou similar."
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "rulesApplied.mismatch",
+              "message": "Regra 'imovelActiveStatus' aplicada em 'criarImovel' não faz sentido para criação; regra deveria ser aplicada ao agendar visita.",
+              "path": "result.userActions",
+              "evidence": [
+                "criarImovel aplica imovelActiveStatus, mas a regra diz 'Somente imóveis com status ativo podem receber visitas agendadas'.",
+                "agendarVisita já aplica imovelActiveStatus."
+              ]
+            },
+            {
+              "severity": "warning",
+              "code": "status.enum.missing",
+              "message": "Status/enum declarados nas regras não estão formalizados como enums no modelo (statusFunil, status de Visita, status de Negócio, status de Imóvel).",
+              "path": "result.ontology.entities",
+              "evidence": [
+                "statusFunil é string sem enum.",
+                "status (Visita) é string sem enum.",
+                "status (Negocio) é string sem enum.",
+                "status (Imovel) é string sem enum."
+              ]
+            }
+          ],
+          "recommendedFixes": [
+            "Adicionar capability 'gerirCorretores' (soon) e seus userActions e usecaseEntity de CRUD para Corretor, ou remover corretoresPage se não for entregar.",
+            "Criar usecaseEntities layer_3 para: atualizar/arquivar imóvel, reagendar/cancelar visita, atualizar status de proposta. Mapear cada userAction de escrita a um usecaseEntity.",
+            "Remover 'imovelActiveStatus' de criarImovel e manter a regra apenas nos fluxos de agendamento de visita.",
+            "Definir enums explícitos para statusFunil, status de Visita, status de Negócio e status do Imóvel no ontology para evitar conflito entre fluxos."
+          ]
+        },
+        "questions": [
+          "Confirma a entrega do cadastro de Corretores (CRUD) na fase soon? Se sim, qual escopo mínimo (criar/editar/ativar/desativar)?",
+          "Deseja formalizar os enums de status (Imóvel, Lead, Visita, Negócio) como listas fechadas já nesta fase?",
+          "Algum fluxo adicional de atualização que precise de usecaseEntity layer_3 (ex.: reatribuir corretor do lead/imóvel)?"
+        ],
+        "trace": [
+          "Revisado blueprint: capabilities x artifacts, userActions x usecaseEntities, regras e relacionamento com ontologia.",
+          "Verificadas exigências de layer_3 para comandos de escrita e atualização de métricas.",
+          "Conferido coverage de páginas/plugins/agents/MDM/métricas/dashboards e consistência de regras com ações."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 35,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

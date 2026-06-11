@@ -1,0 +1,47 @@
+{
+  "savedAt": "2026-06-11T13:39:29.729Z",
+  "agentName": "agentPlanUsecaseDefinition",
+  "stepId": 50,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitUsecaseDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "usecaseDefinition": {
+            "usecaseId": "criarCorretor",
+            "commands": [
+              {
+                "commandId": "criarCorretor",
+                "input": [
+                  {
+                    "name": "corretor",
+                    "type": "corretorEntity",
+                    "required": true
+                  }
+                ],
+                "output": [
+                  {
+                    "name": "corretor",
+                    "type": "corretorEntity"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Comando único para cadastrar corretor e retornar a entidade criada."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 56,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

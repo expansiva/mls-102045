@@ -1,0 +1,167 @@
+{
+  "savedAt": "2026-06-11T13:45:53.879Z",
+  "agentName": "agentValidateSolutionCoverage",
+  "stepId": 26,
+  "planning": {
+    "planId": "plan-validate-solution-coverage",
+    "dependsOn": [
+      "plan-mdm",
+      "plan-horizontals",
+      "plan-plugins",
+      "plan-persistence-index",
+      "plan-table-definition",
+      "plan-metrics-index",
+      "plan-metric-table-definition",
+      "plan-usecase-entities",
+      "plan-usecase-definition",
+      "plan-workflow-definition",
+      "plan-agents",
+      "plan-page-definition"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitSolutionCoverageValidation",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "summary": {
+            "passed": false,
+            "errorCount": 10,
+            "warningCount": 2
+          },
+          "issues": [
+            {
+              "severity": "warning",
+              "code": "page.def.missing",
+              "message": "page leadsKanban is in the index but has no definition",
+              "path": "pageIndex.leadsKanban",
+              "evidence": []
+            },
+            {
+              "severity": "warning",
+              "code": "page.def.missing",
+              "message": "page negociosPropostas is in the index but has no definition",
+              "path": "pageIndex.negociosPropostas",
+              "evidence": []
+            },
+            {
+              "severity": "error",
+              "code": "page.navigationRefs.missing",
+              "message": "Página não declara navigationRefs (array obrigatório, mesmo vazio).",
+              "path": "pages[pageId=dashboardAdministrativo]",
+              "evidence": [
+                "pageInputs presente, navigationRefs ausente"
+              ]
+            },
+            {
+              "severity": "error",
+              "code": "page.navigationRefs.missing",
+              "message": "Página não declara navigationRefs (array obrigatório, mesmo vazio).",
+              "path": "pages[pageId=imoveisLista]",
+              "evidence": [
+                "pageInputs presente, navigationRefs ausente"
+              ]
+            },
+            {
+              "severity": "error",
+              "code": "page.navigationRefs.missing",
+              "message": "Página não declara navigationRefs (array obrigatório, mesmo vazio).",
+              "path": "pages[pageId=imovelEditor]",
+              "evidence": [
+                "pageInputs presente, navigationRefs ausente"
+              ]
+            },
+            {
+              "severity": "error",
+              "code": "page.navigationRefs.missing",
+              "message": "Página não declara navigationRefs (array obrigatório, mesmo vazio).",
+              "path": "pages[pageId=visitasAgenda]",
+              "evidence": [
+                "pageInputs presente, navigationRefs ausente"
+              ]
+            },
+            {
+              "severity": "error",
+              "code": "metricTable.definition.incomplete",
+              "message": "Tabela de métricas sem timeColumn/hypertable/dimensions/measures/updatePolicy (TimescaleDB obrigatório).",
+              "path": "metricTables[metricTableId=corretorStatusMetrics]",
+              "evidence": [
+                "storageEngine=postgresTimescaleDB",
+                "campos obrigatórios ausentes"
+              ]
+            },
+            {
+              "severity": "error",
+              "code": "metricTable.definition.incomplete",
+              "message": "Tabela de métricas sem timeColumn/hypertable/dimensions/measures/updatePolicy (TimescaleDB obrigatório).",
+              "path": "metricTables[metricTableId=imovelInventoryMetrics]",
+              "evidence": [
+                "storageEngine=postgresTimescaleDB",
+                "campos obrigatórios ausentes"
+              ]
+            },
+            {
+              "severity": "error",
+              "code": "metricTable.definition.incomplete",
+              "message": "Tabela de métricas sem timeColumn/hypertable/dimensions/measures/updatePolicy (TimescaleDB obrigatório).",
+              "path": "metricTables[metricTableId=leadPipelineMetrics]",
+              "evidence": [
+                "storageEngine=postgresTimescaleDB",
+                "campos obrigatórios ausentes"
+              ]
+            },
+            {
+              "severity": "error",
+              "code": "metricTable.definition.incomplete",
+              "message": "Tabela de métricas sem timeColumn/hypertable/dimensions/measures/updatePolicy (TimescaleDB obrigatório).",
+              "path": "metricTables[metricTableId=negocioMetrics]",
+              "evidence": [
+                "storageEngine=postgresTimescaleDB",
+                "campos obrigatórios ausentes"
+              ]
+            },
+            {
+              "severity": "error",
+              "code": "metricTable.definition.incomplete",
+              "message": "Tabela de métricas sem timeColumn/hypertable/dimensions/measures/updatePolicy (TimescaleDB obrigatório).",
+              "path": "metricTables[metricTableId=visitaMetrics]",
+              "evidence": [
+                "storageEngine=postgresTimescaleDB",
+                "campos obrigatórios ausentes"
+              ]
+            },
+            {
+              "severity": "error",
+              "code": "mdm.missing",
+              "message": "MDM deve estar presente e completo; apenas domínios foram fornecidos, sem definições/tabelas MDM.",
+              "path": "mdmDomains",
+              "evidence": [
+                "mdmDomains=5",
+                "tables=0",
+                "nenhuma definição MDM detalhada no snapshot"
+              ]
+            }
+          ],
+          "readyToSaveDefs": false
+        },
+        "questions": [],
+        "trace": [
+          "Validado índice de páginas vs definições.",
+          "Verificados campos obrigatórios de página (pageInputs/navigationRefs).",
+          "Verificados requisitos de métricas TimescaleDB.",
+          "Verificada presença/completude MDM.",
+          "Consolidado contagem de erros/avisos e bloqueio de saveAsDefs."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 55,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

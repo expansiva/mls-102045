@@ -1,0 +1,236 @@
+/// <mls fileReference="_102045_/l1/propertyFlowCrm/layer_1_external/negocioMetrics.defs.ts" enhancement="_blank"/>
+
+export const negocioMetricsTableDefs = {
+  "schemaVersion": "2026-06-06",
+  "artifactType": "metricTable",
+  "artifactId": "negocioMetrics",
+  "moduleName": "propertyFlowCrm",
+  "status": "draft",
+  "source": {
+    "agentName": "agentPlanMetricTableDefinition",
+    "stepId": 47,
+    "planId": ""
+  },
+  "data": {
+    "metricTableDefinition": {
+      "metricTableId": "negocioMetrics",
+      "tableName": "negocio_metrics",
+      "moduleId": "propertyFlowCrm",
+      "title": "Métricas de Negócios",
+      "purpose": "Série temporal de criação, evolução e fechamento de propostas e negócios",
+      "tableKind": "metricTimeseries",
+      "storageEngine": "postgresTimescaleDB",
+      "layer": "layer_1_external",
+      "timeColumn": "event_timestamp",
+      "columns": [
+        {
+          "name": "event_timestamp",
+          "type": "timestamptz",
+          "nullable": false,
+          "description": "Momento do evento de negócio"
+        },
+        {
+          "name": "negocio_id",
+          "type": "uuid",
+          "nullable": false,
+          "description": "Identificador do negócio"
+        },
+        {
+          "name": "imovel_id",
+          "type": "uuid",
+          "nullable": false,
+          "description": "Imóvel negociado"
+        },
+        {
+          "name": "lead_id",
+          "type": "uuid",
+          "nullable": false,
+          "description": "Lead/cliente associado"
+        },
+        {
+          "name": "corretor_id",
+          "type": "uuid",
+          "nullable": false,
+          "description": "Corretor responsável"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "nullable": false,
+          "description": "Status do negócio"
+        },
+        {
+          "name": "deal_count",
+          "type": "integer",
+          "nullable": false,
+          "default": 1,
+          "description": "Contagem de negócios"
+        },
+        {
+          "name": "proposal_value",
+          "type": "numeric",
+          "nullable": false,
+          "default": 0,
+          "description": "Valor da proposta"
+        },
+        {
+          "name": "closed_value",
+          "type": "numeric",
+          "nullable": false,
+          "default": 0,
+          "description": "Valor fechado"
+        }
+      ],
+      "dimensions": [
+        {
+          "dimensionId": "negocioId",
+          "column": "negocio_id",
+          "type": "string",
+          "description": "Identificador do negócio"
+        },
+        {
+          "dimensionId": "imovelId",
+          "column": "imovel_id",
+          "type": "string",
+          "description": "Imóvel negociado"
+        },
+        {
+          "dimensionId": "leadId",
+          "column": "lead_id",
+          "type": "string",
+          "description": "Lead/cliente associado"
+        },
+        {
+          "dimensionId": "corretorId",
+          "column": "corretor_id",
+          "type": "string",
+          "description": "Corretor responsável"
+        },
+        {
+          "dimensionId": "status",
+          "column": "status",
+          "type": "string",
+          "description": "Status do negócio"
+        }
+      ],
+      "measures": [
+        {
+          "measureId": "dealCount",
+          "column": "deal_count",
+          "aggregation": "sum",
+          "unit": "negócios",
+          "description": "Contagem de negócios"
+        },
+        {
+          "measureId": "proposalValue",
+          "column": "proposal_value",
+          "aggregation": "sum",
+          "unit": "BRL",
+          "description": "Valor da proposta"
+        },
+        {
+          "measureId": "closedValue",
+          "column": "closed_value",
+          "aggregation": "sum",
+          "unit": "BRL",
+          "description": "Valor fechado"
+        }
+      ],
+      "sourceWriteEvents": [
+        "negocio_created",
+        "negocio_updated",
+        "negocio_status_changed"
+      ],
+      "hypertable": {
+        "timeColumn": "event_timestamp",
+        "chunkTimeInterval": "7 days",
+        "retentionPolicy": "2 years",
+        "compressionPolicy": "30 days",
+        "indexes": [
+          {
+            "indexName": "negocio_metrics_event_timestamp_idx",
+            "columns": [
+              "event_timestamp"
+            ],
+            "purpose": "Ordenação temporal para consultas de séries",
+            "unique": false
+          },
+          {
+            "indexName": "negocio_metrics_negocio_time_idx",
+            "columns": [
+              "negocio_id",
+              "event_timestamp"
+            ],
+            "purpose": "Busca por negócio com recorte temporal",
+            "unique": false
+          },
+          {
+            "indexName": "negocio_metrics_imovel_time_idx",
+            "columns": [
+              "imovel_id",
+              "event_timestamp"
+            ],
+            "purpose": "Busca por imóvel e período",
+            "unique": false
+          },
+          {
+            "indexName": "negocio_metrics_lead_time_idx",
+            "columns": [
+              "lead_id",
+              "event_timestamp"
+            ],
+            "purpose": "Busca por lead e período",
+            "unique": false
+          },
+          {
+            "indexName": "negocio_metrics_corretor_time_idx",
+            "columns": [
+              "corretor_id",
+              "event_timestamp"
+            ],
+            "purpose": "Busca por corretor e período",
+            "unique": false
+          },
+          {
+            "indexName": "negocio_metrics_status_time_idx",
+            "columns": [
+              "status",
+              "event_timestamp"
+            ],
+            "purpose": "Filtros por status do negócio e período",
+            "unique": false
+          }
+        ]
+      },
+      "updatePolicy": {
+        "updatedByLayer": "layer_3_usecases",
+        "pagesMayUpdate": false,
+        "controllersMayUpdate": false,
+        "usecaseRefs": [
+          "rastrearNegocioUsecase",
+          "atualizarStatusPropostaUsecase"
+        ]
+      },
+      "accessPolicy": {
+        "directAccessAllowedFor": [
+          "layer_3_usecases"
+        ],
+        "forbiddenFor": [
+          "pages",
+          "layer_2_controllers",
+          "agents"
+        ]
+      },
+      "rulesApplied": [
+        "negocioRequiresLinks"
+      ]
+    },
+    "defsPlan": {
+      "fileName": "tables/negocioMetrics.defs.ts",
+      "exportName": "negocioMetricsTableDefs",
+      "saveAsDefs": true
+    }
+  }
+} as const;
+
+export default negocioMetricsTableDefs;
