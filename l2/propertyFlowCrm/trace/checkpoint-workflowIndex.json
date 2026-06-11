@@ -1,0 +1,399 @@
+{
+  "schemaVersion": "2026-06-06",
+  "artifactType": "indexCheckpoint",
+  "indexName": "workflowIndex",
+  "moduleName": "propertyFlowCrm",
+  "status": "frozen",
+  "approvedAt": "2026-06-11T13:42:20.420Z",
+  "source": {
+    "agentName": "agentPlanWorkflowIndex",
+    "stepId": 21,
+    "planId": "plan-workflow-index"
+  },
+  "healthReport": {
+    "localErrors": [],
+    "localWarnings": [],
+    "criticErrors": [],
+    "criticWarnings": [],
+    "attempts": 1,
+    "notes": []
+  },
+  "index": {
+    "runId": "provider-tool-call",
+    "stepId": "17-plan-workflow-index",
+    "schemaVersion": "2026-06-02",
+    "status": "ok",
+    "result": {
+      "workflows": [
+        {
+          "workflowId": "leadPipelineWorkflow",
+          "title": "Pipeline de Leads",
+          "purpose": "Gerenciar o ciclo de vida dos leads através das etapas do funil de vendas, refletindo mudanças no Kanban e alimentando métricas de pipeline.",
+          "executionMode": "entityLifecycle",
+          "createsTask": false,
+          "priority": "now",
+          "actors": [
+            "corretor"
+          ],
+          "relatedEntities": [
+            "Lead"
+          ],
+          "persistenceRefs": [
+            "leadPipelineMetrics"
+          ],
+          "usecaseRefs": [
+            "criarLead",
+            "moverLeadKanban"
+          ],
+          "metricRefs": [
+            "leadPipelineMetrics"
+          ],
+          "relatedCapabilities": [
+            "gerirLeads"
+          ],
+          "rulesApplied": [
+            "leadPipelineStages",
+            "kanbanMoveUpdatesStatus"
+          ],
+          "implementationSuggestions": [
+            {
+              "suggestionId": "val-transicao-pipeline",
+              "title": "Validar transições de etapa no backend",
+              "reason": "Garantir que apenas transições válidas entre as etapas do pipeline sejam permitidas, evitando estados inconsistentes.",
+              "priority": "now"
+            },
+            {
+              "suggestionId": "metricas-tempo-real",
+              "title": "Atualizar métricas do pipeline em tempo real",
+              "reason": "Manter o dashboard e indicadores consistentes imediatamente após a movimentação de um lead no Kanban.",
+              "priority": "now"
+            }
+          ]
+        },
+        {
+          "workflowId": "visitSchedulingWorkflow",
+          "title": "Agendamento de Visitas",
+          "purpose": "Controlar o ciclo de vida de visitas desde o agendamento até o cancelamento ou conclusão, garantindo vínculos com imóvel ativo e lead.",
+          "executionMode": "entityLifecycle",
+          "createsTask": false,
+          "priority": "now",
+          "actors": [
+            "corretor"
+          ],
+          "relatedEntities": [
+            "Visita",
+            "Imovel",
+            "Lead"
+          ],
+          "persistenceRefs": [
+            "visitaMetrics"
+          ],
+          "usecaseRefs": [
+            "agendarVisita",
+            "reagendarVisita",
+            "cancelarVisita"
+          ],
+          "metricRefs": [
+            "visitaMetrics"
+          ],
+          "relatedCapabilities": [
+            "agendarVisitas"
+          ],
+          "rulesApplied": [
+            "visitaRequiresLinks",
+            "imovelActiveStatus"
+          ],
+          "implementationSuggestions": [
+            {
+              "suggestionId": "check-disponibilidade",
+              "title": "Verificar disponibilidade do imóvel e do corretor",
+              "reason": "Evitar conflitos de agendamento e duplicidade de visitas no mesmo horário.",
+              "priority": "now"
+            },
+            {
+              "suggestionId": "notificacao-visita",
+              "title": "Notificar corretor sobre visitas próximas",
+              "reason": "Reduzir no-shows e melhorar a preparação do corretor antes do atendimento.",
+              "priority": "soon"
+            }
+          ]
+        },
+        {
+          "workflowId": "proposalDealWorkflow",
+          "title": "Evolução de Propostas e Negócios",
+          "purpose": "Acompanhar o progresso de propostas desde a criação até o fechamento ou arquivamento, vinculando lead e imóvel e atualizando métricas de negócios.",
+          "executionMode": "entityLifecycle",
+          "createsTask": false,
+          "priority": "now",
+          "actors": [
+            "corretor",
+            "adminImobiliaria"
+          ],
+          "relatedEntities": [
+            "Negocio",
+            "Lead",
+            "Imovel"
+          ],
+          "persistenceRefs": [
+            "negocioMetrics"
+          ],
+          "usecaseRefs": [
+            "criarProposta",
+            "atualizarStatusProposta"
+          ],
+          "metricRefs": [
+            "negocioMetrics"
+          ],
+          "relatedCapabilities": [
+            "acompanharNegocios"
+          ],
+          "rulesApplied": [
+            "negocioRequiresLinks"
+          ],
+          "implementationSuggestions": [
+            {
+              "suggestionId": "bloqueio-status",
+              "title": "Bloquear alteração de status indevida",
+              "reason": "Manter a integridade do fluxo de negociação e evitar retrocessos não autorizados.",
+              "priority": "now"
+            },
+            {
+              "suggestionId": "notifica-admin-negocio",
+              "title": "Notificar admin sobre propostas em negociação",
+              "reason": "Manter visibilidade gerencial sobre oportunidades em andamento que exijam acompanhamento.",
+              "priority": "soon"
+            }
+          ]
+        },
+        {
+          "workflowId": "propertyLifecycleWorkflow",
+          "title": "Ciclo de Vida do Imóvel",
+          "purpose": "Gerenciar a criação, atualização e arquivamento de imóveis no catálogo da imobiliária, mantendo o inventário e métricas consistentes.",
+          "executionMode": "entityLifecycle",
+          "createsTask": false,
+          "priority": "now",
+          "actors": [
+            "corretor",
+            "adminImobiliaria"
+          ],
+          "relatedEntities": [
+            "Imovel"
+          ],
+          "persistenceRefs": [
+            "imovelInventoryMetrics"
+          ],
+          "usecaseRefs": [
+            "criarImovel",
+            "editarImovel",
+            "arquivarImovel",
+            "buscarImovel"
+          ],
+          "metricRefs": [
+            "imovelInventoryMetrics"
+          ],
+          "relatedCapabilities": [
+            "gerirImoveis"
+          ],
+          "rulesApplied": [
+            "imovelActiveStatus"
+          ],
+          "implementationSuggestions": [
+            {
+              "suggestionId": "valida-campos-ativacao",
+              "title": "Validar campos obrigatórios antes de ativar",
+              "reason": "Garantir qualidade mínima do cadastro para imóveis disponibilizados no catálogo.",
+              "priority": "now"
+            },
+            {
+              "suggestionId": "atualiza-inventario",
+              "title": "Atualizar contagem de inventário ao arquivar",
+              "reason": "Manter as métricas de disponibilidade e inventário sempre consistentes.",
+              "priority": "now"
+            }
+          ]
+        },
+        {
+          "workflowId": "brokerLifecycleWorkflow",
+          "title": "Gestão de Corretores",
+          "purpose": "Controlar o cadastro, edição e ativação/desativação de corretores na plataforma, refletindo no status geral da equipe.",
+          "executionMode": "entityLifecycle",
+          "createsTask": false,
+          "priority": "soon",
+          "actors": [
+            "adminImobiliaria"
+          ],
+          "relatedEntities": [
+            "Corretor"
+          ],
+          "persistenceRefs": [
+            "corretorStatusMetrics"
+          ],
+          "usecaseRefs": [
+            "criarCorretor",
+            "editarCorretor",
+            "alterarStatusCorretor",
+            "buscarCorretor"
+          ],
+          "metricRefs": [
+            "corretorStatusMetrics"
+          ],
+          "relatedCapabilities": [
+            "gerirCorretores"
+          ],
+          "rulesApplied": [],
+          "implementationSuggestions": [
+            {
+              "suggestionId": "check-vinculos-corretor",
+              "title": "Verificar vínculos ativos antes de desativar corretor",
+              "reason": "Evitar registros órfãos em visitas e negócios vinculados ao corretor inativado.",
+              "priority": "soon"
+            },
+            {
+              "suggestionId": "metricas-corretor",
+              "title": "Atualizar métricas de equipe ao alterar status",
+              "reason": "Manter o dashboard de corretores e indicadores de equipe sempre atualizados.",
+              "priority": "soon"
+            }
+          ]
+        },
+        {
+          "workflowId": "iaPropertyDescriptionWorkflow",
+          "title": "Geração de Descrição de Imóvel com IA",
+          "purpose": "Orquestrar a geração automática de descrições de imóveis utilizando o plugin de LLM, permitindo revisão antes da aplicação.",
+          "executionMode": "automation",
+          "createsTask": false,
+          "priority": "soon",
+          "actors": [
+            "corretor"
+          ],
+          "relatedEntities": [
+            "Imovel"
+          ],
+          "persistenceRefs": [],
+          "usecaseRefs": [
+            "gerarDescricaoImovelIa"
+          ],
+          "metricRefs": [],
+          "relatedCapabilities": [
+            "iaDescricaoImovel"
+          ],
+          "rulesApplied": [],
+          "implementationSuggestions": [
+            {
+              "suggestionId": "fila-assincrona-descricao",
+              "title": "Implementar fila de processamento assíncrono",
+              "reason": "Chamadas ao provedor de LLM podem ter latência elevada e não devem bloquear a interface.",
+              "priority": "soon"
+            },
+            {
+              "suggestionId": "revisao-descricao",
+              "title": "Permitir revisão e confirmação antes de salvar",
+              "reason": "Garantir qualidade, adequação de tom e precisão das informações geradas pela IA.",
+              "priority": "now"
+            }
+          ]
+        },
+        {
+          "workflowId": "iaLeadScoringWorkflow",
+          "title": "Classificação de Lead com IA",
+          "purpose": "Orquestrar a qualificação automática de leads através do plugin de LLM, registrando score e justificativa para apoio ao corretor.",
+          "executionMode": "automation",
+          "createsTask": false,
+          "priority": "soon",
+          "actors": [
+            "corretor"
+          ],
+          "relatedEntities": [
+            "Lead"
+          ],
+          "persistenceRefs": [],
+          "usecaseRefs": [
+            "classificarLeadIa"
+          ],
+          "metricRefs": [],
+          "relatedCapabilities": [
+            "iaClassificacaoLead"
+          ],
+          "rulesApplied": [],
+          "implementationSuggestions": [
+            {
+              "suggestionId": "background-scoring",
+              "title": "Processar classificação em background",
+              "reason": "Não bloquear a interface do corretor durante a análise do lead pela IA.",
+              "priority": "soon"
+            },
+            {
+              "suggestionId": "historico-score",
+              "title": "Registrar score e justificativa no histórico do lead",
+              "reason": "Permitir auditoria, transparência e refinamento futuro do modelo de classificação.",
+              "priority": "soon"
+            }
+          ]
+        },
+        {
+          "workflowId": "dashboardMetricsWorkflow",
+          "title": "Atualização de Métricas do Dashboard",
+          "purpose": "Consolidar e atualizar as métricas exibidas no dashboard administrativo, integrando dados de leads, visitas, negócios, imóveis e corretores.",
+          "executionMode": "automation",
+          "createsTask": false,
+          "priority": "now",
+          "actors": [
+            "adminImobiliaria"
+          ],
+          "relatedEntities": [],
+          "persistenceRefs": [
+            "leadPipelineMetrics",
+            "visitaMetrics",
+            "negocioMetrics",
+            "imovelInventoryMetrics",
+            "corretorStatusMetrics"
+          ],
+          "usecaseRefs": [
+            "visualizarDashboard"
+          ],
+          "metricRefs": [
+            "leadPipelineMetrics",
+            "visitaMetrics",
+            "negocioMetrics",
+            "imovelInventoryMetrics",
+            "corretorStatusMetrics"
+          ],
+          "relatedCapabilities": [
+            "dashboardBasico"
+          ],
+          "rulesApplied": [
+            "dashboardMetricsRefresh"
+          ],
+          "implementationSuggestions": [
+            {
+              "suggestionId": "atualizacao-incremental",
+              "title": "Implementar atualização incremental em vez de full refresh",
+              "reason": "Reduzir carga no banco de dados e melhorar a performance da consolidação.",
+              "priority": "soon"
+            },
+            {
+              "suggestionId": "cache-metricas",
+              "title": "Cachear métricas por curto período",
+              "reason": "Melhorar o tempo de resposta na carga do dashboard administrativo.",
+              "priority": "now"
+            }
+          ]
+        }
+      ]
+    },
+    "questions": [
+      "O agendamento de visitas deve gerar uma tarefa ou lembrete atribuído ao corretor, ou basta o registro no calendário?",
+      "A atualização de status de uma proposta exige aprovação explícita do adminImobiliaria, ou o corretor pode transicionar livremente entre os estados?",
+      "Ao desativar um corretor, o sistema deve reatribuir automaticamente suas visitas e negócios pendentes para outro corretor, ou apenas bloquear a desativação enquanto houver vínculos ativos?"
+    ],
+    "trace": [
+      "Mapeadas 8 workflows a partir das capabilities prioritárias e ações de usuário identificadas no plano.",
+      "Definidos workflows entityLifecycle para domínios com estado multi-etapa: leads (Kanban), visitas, negócios, imóveis e corretores.",
+      "Definidos workflows automation para processos com integração externa (LLM) e consolidação de métricas (dashboard).",
+      "Vinculadas tabelas de métricas do módulo em persistenceRefs e metricRefs conforme regra T-009.",
+      "Excluídas tabelas MDM de persistenceRefs, mantendo apenas as métricas module-owned.",
+      "Incluídos usecaseRefs para workflows cujas transições devem ser executadas pela camada layer_3_usecases.",
+      "Adicionadas sugestões de implementação focadas em validação de transições, processamento assíncrono de IA e estratégia de cache de métricas."
+    ]
+  }
+}

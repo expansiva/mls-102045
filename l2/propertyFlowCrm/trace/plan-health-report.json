@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "2026-06-06",
+  "artifactType": "planHealthReport",
+  "moduleName": "propertyFlowCrm",
+  "savedAt": "2026-06-11T13:45:54.481Z",
+  "source": {
+    "agentName": "agentValidateSolutionCoverage",
+    "stepId": 27,
+    "planId": "org-materialization"
+  },
+  "report": {
+    "summary": {
+      "passed": true,
+      "errorCount": 0,
+      "warningCount": 2
+    },
+    "issues": [
+      {
+        "severity": "warning",
+        "code": "page.def.missing",
+        "message": "page leadsKanban is in the index but has no definition",
+        "path": "pageIndex.leadsKanban",
+        "evidence": []
+      },
+      {
+        "severity": "warning",
+        "code": "page.def.missing",
+        "message": "page negociosPropostas is in the index but has no definition",
+        "path": "pageIndex.negociosPropostas",
+        "evidence": []
+      }
+    ],
+    "checklistResults": null,
+    "readyToSaveDefs": true,
+    "deterministicOnly": true,
+    "refreshedAt": "2026-06-11T13:45:54.481Z",
+    "refreshedBy": "agentNewSolutionFinal (T-016 deterministic re-validation)"
+  }
+}

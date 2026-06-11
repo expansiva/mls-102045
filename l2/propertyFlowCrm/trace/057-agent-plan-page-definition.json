@@ -1,0 +1,321 @@
+{
+  "savedAt": "2026-06-11T13:45:18.807Z",
+  "agentName": "agentPlanPageDefinition",
+  "stepId": 57,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPageDefinitionPlan",
+      "arguments": {
+        "status": "needs_input",
+        "result": {
+          "pageDefinition": {
+            "pageId": "leadsKanban",
+            "pageName": "Leads (Kanban)",
+            "actor": "corretor",
+            "purpose": "Gerenciar pipeline de leads em Kanban, criando e movendo leads entre etapas.",
+            "capabilities": [
+              "gerirLeads"
+            ],
+            "flowRefs": {
+              "experienceFlows": [],
+              "entityLifecycles": [
+                "leadPipelineWorkflow"
+              ],
+              "taskWorkflows": [],
+              "automations": []
+            },
+            "pluginRefs": [],
+            "mdmRefs": [
+              "leadCustomer"
+            ],
+            "pageInputs": [
+              {
+                "name": "filtroEtapa",
+                "type": "string",
+                "required": false,
+                "sources": [
+                  "queryParam"
+                ],
+                "description": "Filtro opcional por etapa do funil."
+              },
+              {
+                "name": "corretorResponsavel",
+                "type": "string",
+                "required": false,
+                "sources": [
+                  "queryParam"
+                ],
+                "description": "Filtro opcional por corretor responsável."
+              }
+            ],
+            "navigationRefs": [
+              {
+                "direction": "outbound",
+                "pageId": "negociosPropostas",
+                "trigger": "Converter lead em proposta",
+                "description": "Acessar criação de proposta a partir de um lead."
+              }
+            ],
+            "sections": [
+              {
+                "sectionName": "Ações e filtros",
+                "mode": "edit",
+                "organisms": [
+                  {
+                    "organismName": "LeadQuickCreate",
+                    "purpose": "Cadastrar novo lead já no pipeline.",
+                    "userActions": [
+                      "criarLead"
+                    ],
+                    "requiredEntities": [
+                      "leadEntity"
+                    ],
+                    "readsFields": [],
+                    "writesFields": [
+                      "leadId",
+                      "nomeLead",
+                      "contatoLead",
+                      "statusFunil",
+                      "etapaInicial"
+                    ],
+                    "rulesApplied": [
+                      "RULE_leadPipelineStages"
+                    ]
+                  },
+                  {
+                    "organismName": "KanbanFilters",
+                    "purpose": "Filtrar o Kanban por etapa ou corretor responsável.",
+                    "userActions": [
+                      "filtrarLeads"
+                    ],
+                    "requiredEntities": [
+                      "leadEntity"
+                    ],
+                    "readsFields": [
+                      "statusFunil",
+                      "corretorResponsavel"
+                    ],
+                    "writesFields": [],
+                    "rulesApplied": []
+                  }
+                ]
+              },
+              {
+                "sectionName": "Pipeline em Kanban",
+                "mode": "view",
+                "organisms": [
+                  {
+                    "organismName": "LeadsKanbanBoard",
+                    "purpose": "Visualizar leads por etapa e mover cards entre colunas.",
+                    "userActions": [
+                      "moverLeadKanban",
+                      "selecionarLead"
+                    ],
+                    "requiredEntities": [
+                      "leadEntity"
+                    ],
+                    "readsFields": [
+                      "leadId",
+                      "nomeLead",
+                      "statusFunil",
+                      "atualizadoEm"
+                    ],
+                    "writesFields": [
+                      "statusFunil",
+                      "atualizadoEm"
+                    ],
+                    "rulesApplied": [
+                      "RULE_leadPipelineStages",
+                      "RULE_kanbanMoveUpdatesStatus"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "bffCommands": [
+            {
+              "commandName": "listarLeadsKanban",
+              "purpose": "Listar leads agrupados por etapa para o Kanban, com filtros opcionais.",
+              "kind": "query",
+              "input": [
+                {
+                  "name": "filtroEtapa",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "corretorResponsavel",
+                  "type": "string",
+                  "required": false
+                }
+              ],
+              "output": [
+                {
+                  "name": "leadId",
+                  "type": "string"
+                },
+                {
+                  "name": "nomeLead",
+                  "type": "string"
+                },
+                {
+                  "name": "statusFunil",
+                  "type": "string"
+                },
+                {
+                  "name": "atualizadoEm",
+                  "type": "date"
+                }
+              ],
+              "readsEntities": [
+                "leadEntity"
+              ],
+              "writesEntities": [],
+              "readsTables": [],
+              "writesTables": [],
+              "usecaseRefs": [
+                "listarLeadsKanban"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "RULE_leadPipelineStages"
+              ]
+            },
+            {
+              "commandName": "criarLead",
+              "purpose": "Criar novo lead no pipeline a partir do Kanban.",
+              "kind": "command",
+              "input": [
+                {
+                  "name": "nomeLead",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "name": "contatoLead",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "name": "etapaInicial",
+                  "type": "string",
+                  "required": true
+                }
+              ],
+              "output": [
+                {
+                  "name": "leadId",
+                  "type": "string"
+                },
+                {
+                  "name": "statusFunil",
+                  "type": "string"
+                }
+              ],
+              "readsEntities": [
+                "leadEntity"
+              ],
+              "writesEntities": [
+                "leadEntity"
+              ],
+              "readsTables": [],
+              "writesTables": [
+                "lead_pipeline_metrics"
+              ],
+              "usecaseRefs": [
+                "criarLead"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "RULE_leadPipelineStages"
+              ]
+            },
+            {
+              "commandName": "moverLeadKanban",
+              "purpose": "Atualizar etapa do lead no pipeline após arrastar no Kanban.",
+              "kind": "command",
+              "input": [
+                {
+                  "name": "leadId",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "name": "etapaDestino",
+                  "type": "string",
+                  "required": true
+                }
+              ],
+              "output": [
+                {
+                  "name": "leadId",
+                  "type": "string"
+                },
+                {
+                  "name": "statusFunil",
+                  "type": "string"
+                },
+                {
+                  "name": "atualizadoEm",
+                  "type": "date"
+                }
+              ],
+              "readsEntities": [
+                "leadEntity"
+              ],
+              "writesEntities": [
+                "leadEntity"
+              ],
+              "readsTables": [],
+              "writesTables": [
+                "lead_pipeline_metrics"
+              ],
+              "usecaseRefs": [
+                "moverLeadKanban"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "RULE_leadPipelineStages",
+                "RULE_kanbanMoveUpdatesStatus"
+              ]
+            }
+          ]
+        },
+        "questions": [
+          "Existe um caso de uso oficial para listar leads do Kanban (ex.: listarLeadsKanban)? Se sim, qual o usecaseId correto a ser referenciado?",
+          "Quais campos mínimos do Lead devem ser exibidos no card do Kanban (ex.: telefone, interesse em imóvel, valor de proposta)?",
+          "O filtro por corretorResponsavel deve ser preenchido via lista de corretores ou apenas texto livre? Se houver lista, qual usecaseId de leitura de corretores?"
+        ],
+        "trace": [
+          "pageSelector=leadsKanban",
+          "capabilities=gerirLeads",
+          "flowRefs.entityLifecycles=leadPipelineWorkflow",
+          "primaryUserActions=criarLead,moverLeadKanban",
+          "bffCommandHints=criarLead,moverLeadKanban",
+          "rulesApplied=leadPipelineStages,kanbanMoveUpdatesStatus",
+          "mdmRefs=leadCustomer"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 60,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "savedAt": "2026-06-11T13:39:29.834Z",
+  "agentName": "agentPlanUsecaseDefinition",
+  "stepId": 52,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitUsecaseDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "usecaseDefinition": {
+            "usecaseId": "editarCorretor",
+            "commands": [
+              {
+                "commandId": "editarCorretor",
+                "input": [
+                  {
+                    "name": "corretor",
+                    "type": "corretorEntity",
+                    "required": true
+                  }
+                ],
+                "output": [
+                  {
+                    "name": "corretor",
+                    "type": "corretorEntity"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Definição baseada no usecase editarCorretor com entrada/saída corretorEntity e escrita em corretor e corretor_status_metrics."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 57,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

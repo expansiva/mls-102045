@@ -1,0 +1,540 @@
+{
+  "savedAt": "2026-06-11T13:31:46.637Z",
+  "agentName": "agentPlanMetricsIndex",
+  "stepId": 17,
+  "planning": {
+    "planId": "plan-metrics-index",
+    "dependsOn": [
+      "plan-persistence-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitMetricsIndex",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "metricsPlan": {
+            "enabled": true,
+            "storageEngine": "postgresTimescaleDB",
+            "moduleId": "propertyFlowCrm",
+            "title": "Plano de Métricas do propertyFlowCrm",
+            "description": "Métricas operacionais para acompanhamento de imóveis, leads, visitas, negócios e corretores",
+            "updateResponsibility": "layer_3_usecases",
+            "derivationSources": [
+              "baseTableUpdates",
+              "lifecycleTransitions",
+              "operationalRisks"
+            ]
+          },
+          "metricTables": [
+            {
+              "metricTableId": "leadPipelineMetrics",
+              "tableName": "lead_pipeline_metrics",
+              "title": "Métricas do Pipeline de Leads",
+              "purpose": "Série temporal de eventos do pipeline de leads para análise de volume, etapas e conversões",
+              "storageEngine": "postgresTimescaleDB",
+              "sourceBaseTables": [
+                "lead"
+              ],
+              "sourceEntities": [
+                "Lead"
+              ],
+              "sourceWriteEvents": [
+                "lead_created",
+                "lead_updated",
+                "lead_stage_changed"
+              ],
+              "timeColumn": "event_timestamp",
+              "dimensions": [
+                {
+                  "dimensionId": "leadId",
+                  "column": "lead_id",
+                  "type": "string",
+                  "description": "Identificador do lead"
+                },
+                {
+                  "dimensionId": "stage",
+                  "column": "stage",
+                  "type": "string",
+                  "description": "Etapa atual do pipeline"
+                },
+                {
+                  "dimensionId": "corretorId",
+                  "column": "corretor_id",
+                  "type": "string",
+                  "description": "Corretor responsável"
+                },
+                {
+                  "dimensionId": "origin",
+                  "column": "origin",
+                  "type": "string",
+                  "description": "Origem do lead"
+                }
+              ],
+              "measures": [
+                {
+                  "measureId": "leadCount",
+                  "column": "lead_count",
+                  "type": "integer",
+                  "aggregation": "sum",
+                  "description": "Quantidade de leads no evento",
+                  "unit": "leads"
+                },
+                {
+                  "measureId": "stageTransitionCount",
+                  "column": "stage_transition_count",
+                  "type": "integer",
+                  "aggregation": "sum",
+                  "description": "Quantidade de transições de etapa",
+                  "unit": "transições"
+                }
+              ],
+              "aggregationWindows": [
+                "1 hour",
+                "1 day",
+                "1 week",
+                "1 month"
+              ],
+              "retentionPolicy": "2 years",
+              "priority": "now",
+              "rulesApplied": [
+                "leadPipelineStages",
+                "kanbanMoveUpdatesStatus"
+              ],
+              "reason": "Permite ao administrador acompanhar o volume de leads, gargalos no pipeline e performance por corretor"
+            },
+            {
+              "metricTableId": "visitaMetrics",
+              "tableName": "visita_metrics",
+              "title": "Métricas de Visitas",
+              "purpose": "Série temporal de agendamentos, reagendamentos, cancelamentos e conclusões de visitas",
+              "storageEngine": "postgresTimescaleDB",
+              "sourceBaseTables": [
+                "visita"
+              ],
+              "sourceEntities": [
+                "Visita"
+              ],
+              "sourceWriteEvents": [
+                "visita_created",
+                "visita_updated",
+                "visita_cancelled",
+                "visita_rescheduled",
+                "visita_completed"
+              ],
+              "timeColumn": "event_timestamp",
+              "dimensions": [
+                {
+                  "dimensionId": "visitaId",
+                  "column": "visita_id",
+                  "type": "string",
+                  "description": "Identificador da visita"
+                },
+                {
+                  "dimensionId": "imovelId",
+                  "column": "imovel_id",
+                  "type": "string",
+                  "description": "Imóvel visitado"
+                },
+                {
+                  "dimensionId": "leadId",
+                  "column": "lead_id",
+                  "type": "string",
+                  "description": "Lead/cliente associado"
+                },
+                {
+                  "dimensionId": "corretorId",
+                  "column": "corretor_id",
+                  "type": "string",
+                  "description": "Corretor responsável"
+                },
+                {
+                  "dimensionId": "status",
+                  "column": "status",
+                  "type": "string",
+                  "description": "Status da visita"
+                }
+              ],
+              "measures": [
+                {
+                  "measureId": "visitCount",
+                  "column": "visit_count",
+                  "type": "integer",
+                  "aggregation": "sum",
+                  "description": "Contagem de visitas",
+                  "unit": "visitas"
+                },
+                {
+                  "measureId": "cancellationCount",
+                  "column": "cancellation_count",
+                  "type": "integer",
+                  "aggregation": "sum",
+                  "description": "Contagem de cancelamentos",
+                  "unit": "cancelamentos"
+                },
+                {
+                  "measureId": "rescheduleCount",
+                  "column": "reschedule_count",
+                  "type": "integer",
+                  "aggregation": "sum",
+                  "description": "Contagem de reagendamentos",
+                  "unit": "reagendamentos"
+                }
+              ],
+              "aggregationWindows": [
+                "1 hour",
+                "1 day",
+                "1 week",
+                "1 month"
+              ],
+              "retentionPolicy": "2 years",
+              "priority": "now",
+              "rulesApplied": [
+                "visitaRequiresLinks",
+                "imovelActiveStatus"
+              ],
+              "reason": "Suporta o acompanhamento da operação de visitas, taxa de comparecimento e produtividade dos corretores"
+            },
+            {
+              "metricTableId": "negocioMetrics",
+              "tableName": "negocio_metrics",
+              "title": "Métricas de Negócios",
+              "purpose": "Série temporal de criação, evolução e fechamento de propostas e negócios",
+              "storageEngine": "postgresTimescaleDB",
+              "sourceBaseTables": [
+                "negocio"
+              ],
+              "sourceEntities": [
+                "Negocio"
+              ],
+              "sourceWriteEvents": [
+                "negocio_created",
+                "negocio_updated",
+                "negocio_status_changed"
+              ],
+              "timeColumn": "event_timestamp",
+              "dimensions": [
+                {
+                  "dimensionId": "negocioId",
+                  "column": "negocio_id",
+                  "type": "string",
+                  "description": "Identificador do negócio"
+                },
+                {
+                  "dimensionId": "imovelId",
+                  "column": "imovel_id",
+                  "type": "string",
+                  "description": "Imóvel negociado"
+                },
+                {
+                  "dimensionId": "leadId",
+                  "column": "lead_id",
+                  "type": "string",
+                  "description": "Lead/cliente associado"
+                },
+                {
+                  "dimensionId": "corretorId",
+                  "column": "corretor_id",
+                  "type": "string",
+                  "description": "Corretor responsável"
+                },
+                {
+                  "dimensionId": "status",
+                  "column": "status",
+                  "type": "string",
+                  "description": "Status do negócio"
+                }
+              ],
+              "measures": [
+                {
+                  "measureId": "dealCount",
+                  "column": "deal_count",
+                  "type": "integer",
+                  "aggregation": "sum",
+                  "description": "Contagem de negócios",
+                  "unit": "negócios"
+                },
+                {
+                  "measureId": "proposalValue",
+                  "column": "proposal_value",
+                  "type": "numeric",
+                  "aggregation": "sum",
+                  "description": "Valor da proposta",
+                  "unit": "BRL"
+                },
+                {
+                  "measureId": "closedValue",
+                  "column": "closed_value",
+                  "type": "numeric",
+                  "aggregation": "sum",
+                  "description": "Valor fechado",
+                  "unit": "BRL"
+                }
+              ],
+              "aggregationWindows": [
+                "1 hour",
+                "1 day",
+                "1 week",
+                "1 month"
+              ],
+              "retentionPolicy": "2 years",
+              "priority": "now",
+              "rulesApplied": [
+                "negocioRequiresLinks"
+              ],
+              "reason": "Permite ao administrador monitorar o funil de vendas, ticket médio e taxa de conversão de negócios"
+            },
+            {
+              "metricTableId": "imovelInventoryMetrics",
+              "tableName": "imovel_inventory_metrics",
+              "title": "Métricas de Inventário de Imóveis",
+              "purpose": "Série temporal do inventário de imóveis, capturando ativações, arquivamentos e atualizações",
+              "storageEngine": "postgresTimescaleDB",
+              "sourceBaseTables": [
+                "imovel"
+              ],
+              "sourceEntities": [
+                "Imovel"
+              ],
+              "sourceWriteEvents": [
+                "imovel_created",
+                "imovel_updated",
+                "imovel_archived"
+              ],
+              "timeColumn": "event_timestamp",
+              "dimensions": [
+                {
+                  "dimensionId": "imovelId",
+                  "column": "imovel_id",
+                  "type": "string",
+                  "description": "Identificador do imóvel"
+                },
+                {
+                  "dimensionId": "status",
+                  "column": "status",
+                  "type": "string",
+                  "description": "Status do imóvel"
+                },
+                {
+                  "dimensionId": "corretorId",
+                  "column": "corretor_id",
+                  "type": "string",
+                  "description": "Corretor responsável"
+                },
+                {
+                  "dimensionId": "propertyType",
+                  "column": "property_type",
+                  "type": "string",
+                  "description": "Tipo do imóvel"
+                }
+              ],
+              "measures": [
+                {
+                  "measureId": "propertyCount",
+                  "column": "property_count",
+                  "type": "integer",
+                  "aggregation": "sum",
+                  "description": "Contagem de imóveis",
+                  "unit": "imóveis"
+                },
+                {
+                  "measureId": "listedValue",
+                  "column": "listed_value",
+                  "type": "numeric",
+                  "aggregation": "sum",
+                  "description": "Valor de listagem",
+                  "unit": "BRL"
+                }
+              ],
+              "aggregationWindows": [
+                "1 hour",
+                "1 day",
+                "1 week",
+                "1 month"
+              ],
+              "retentionPolicy": "2 years",
+              "priority": "now",
+              "rulesApplied": [
+                "imovelActiveStatus"
+              ],
+              "reason": "Fornece visibilidade do estoque disponível, imóveis arquivados e valor total sob gestão"
+            },
+            {
+              "metricTableId": "corretorStatusMetrics",
+              "tableName": "corretor_status_metrics",
+              "title": "Métricas de Status de Corretores",
+              "purpose": "Série temporal de mudanças de status e ativação de corretores na imobiliária",
+              "storageEngine": "postgresTimescaleDB",
+              "sourceBaseTables": [
+                "corretor"
+              ],
+              "sourceEntities": [
+                "Corretor"
+              ],
+              "sourceWriteEvents": [
+                "corretor_created",
+                "corretor_updated",
+                "corretor_status_changed"
+              ],
+              "timeColumn": "event_timestamp",
+              "dimensions": [
+                {
+                  "dimensionId": "corretorId",
+                  "column": "corretor_id",
+                  "type": "string",
+                  "description": "Identificador do corretor"
+                },
+                {
+                  "dimensionId": "status",
+                  "column": "status",
+                  "type": "string",
+                  "description": "Status do corretor"
+                }
+              ],
+              "measures": [
+                {
+                  "measureId": "statusChangeCount",
+                  "column": "status_change_count",
+                  "type": "integer",
+                  "aggregation": "sum",
+                  "description": "Contagem de alterações de status",
+                  "unit": "eventos"
+                },
+                {
+                  "measureId": "activeBrokerCount",
+                  "column": "active_broker_count",
+                  "type": "integer",
+                  "aggregation": "sum",
+                  "description": "Contagem de corretores ativos",
+                  "unit": "corretores"
+                }
+              ],
+              "aggregationWindows": [
+                "1 hour",
+                "1 day",
+                "1 week",
+                "1 month"
+              ],
+              "retentionPolicy": "2 years",
+              "priority": "soon",
+              "rulesApplied": [],
+              "reason": "Apoia a gestão de equipe e acompanhamento da força de vendas ativa"
+            }
+          ],
+          "dashboardPages": [
+            {
+              "metricDashboardId": "adminDashboard",
+              "title": "Dashboard Administrativo",
+              "actor": "adminImobiliaria",
+              "accessPolicy": "admin-only",
+              "priority": "now",
+              "sources": [
+                "leadPipelineMetrics",
+                "visitaMetrics",
+                "negocioMetrics",
+                "imovelInventoryMetrics",
+                "corretorStatusMetrics"
+              ],
+              "rulesApplied": [
+                "dashboardMetricsRefresh"
+              ],
+              "description": "Dashboard central para acompanhamento operacional e estratégico da imobiliária",
+              "widgets": [
+                {
+                  "widgetId": "leadsAtivos",
+                  "title": "Leads Ativos",
+                  "metricId": "leadCount",
+                  "type": "stat",
+                  "sourceMetricTable": "leadPipelineMetrics"
+                },
+                {
+                  "widgetId": "visitasAgendadas",
+                  "title": "Visitas Agendadas",
+                  "metricId": "visitCount",
+                  "type": "stat",
+                  "sourceMetricTable": "visitaMetrics"
+                },
+                {
+                  "widgetId": "taxaCancelamentoVisitas",
+                  "title": "Cancelamentos de Visitas",
+                  "metricId": "cancellationCount",
+                  "type": "stat",
+                  "sourceMetricTable": "visitaMetrics"
+                },
+                {
+                  "widgetId": "propostasCriadas",
+                  "title": "Propostas Criadas",
+                  "metricId": "dealCount",
+                  "type": "stat",
+                  "sourceMetricTable": "negocioMetrics"
+                },
+                {
+                  "widgetId": "valorPropostas",
+                  "title": "Valor em Propostas",
+                  "metricId": "proposalValue",
+                  "type": "stat",
+                  "sourceMetricTable": "negocioMetrics"
+                },
+                {
+                  "widgetId": "valorFechado",
+                  "title": "Valor Fechado",
+                  "metricId": "closedValue",
+                  "type": "stat",
+                  "sourceMetricTable": "negocioMetrics"
+                },
+                {
+                  "widgetId": "imoveisAtivos",
+                  "title": "Imóveis Ativos",
+                  "metricId": "propertyCount",
+                  "type": "stat",
+                  "sourceMetricTable": "imovelInventoryMetrics"
+                },
+                {
+                  "widgetId": "valorInventario",
+                  "title": "Valor do Inventário",
+                  "metricId": "listedValue",
+                  "type": "stat",
+                  "sourceMetricTable": "imovelInventoryMetrics"
+                },
+                {
+                  "widgetId": "evolucaoLeads",
+                  "title": "Evolução de Leads",
+                  "metricId": "leadCount",
+                  "type": "chart",
+                  "sourceMetricTable": "leadPipelineMetrics"
+                },
+                {
+                  "widgetId": "corretoresAtivos",
+                  "title": "Corretores Ativos",
+                  "metricId": "activeBrokerCount",
+                  "type": "stat",
+                  "sourceMetricTable": "corretorStatusMetrics"
+                }
+              ]
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Iniciado planejamento de métricas operacionais para o módulo propertyFlowCrm",
+          "Identificadas 5 entidades principais: Imovel, Lead, Visita, Negocio e Corretor",
+          "Definidas 5 tabelas de métricas em postgresTimescaleDB separadas das tabelas transacionais",
+          "Cada tabela inclui dimensões com as chaves estrangeiras dos relacionamentos diretos da ontologia",
+          "Métricas derivadas de atualizações de tabelas base, transições de ciclo de vida e riscos operacionais",
+          "Responsabilidade de atualização atribuída à camada layer_3_usecases",
+          "Dashboard administrativo único com acesso restrito a adminImobiliaria",
+          "Widgets planejados para cobrir volume de leads, visitas, negócios, inventário e corretores ativos"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 42,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

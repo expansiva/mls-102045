@@ -1,0 +1,259 @@
+{
+  "savedAt": "2026-06-11T13:45:19.172Z",
+  "agentName": "agentPlanPageDefinition",
+  "stepId": 59,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPageDefinitionPlan",
+      "arguments": {
+        "status": "needs_input",
+        "result": {
+          "pageDefinition": {
+            "pageId": "negociosPropostas",
+            "pageName": "Negócios e propostas",
+            "actor": "corretor",
+            "purpose": "Criar propostas com seleção de imóvel e lead e acompanhar o status dos negócios.",
+            "capabilities": [
+              "acompanharNegocios"
+            ],
+            "flowRefs": {
+              "experienceFlows": [],
+              "entityLifecycles": [
+                "proposalDealWorkflow"
+              ],
+              "taskWorkflows": [],
+              "automations": []
+            },
+            "pluginRefs": [],
+            "mdmRefs": [
+              "dealProposal",
+              "property",
+              "leadCustomer"
+            ],
+            "pageInputs": [
+              {
+                "name": "leadId",
+                "type": "string",
+                "required": false,
+                "sources": [
+                  "previousStepResult",
+                  "routeParam"
+                ],
+                "description": "Lead pré-selecionado para criação de proposta.",
+                "entityRef": "leadEntity",
+                "fieldRef": "Lead.id"
+              },
+              {
+                "name": "imovelId",
+                "type": "string",
+                "required": false,
+                "sources": [
+                  "routeParam",
+                  "previousStepResult"
+                ],
+                "description": "Imóvel pré-selecionado para criação de proposta.",
+                "entityRef": "imovelEntity",
+                "fieldRef": "Imovel.id"
+              },
+              {
+                "name": "valorProposta",
+                "type": "number",
+                "required": false,
+                "sources": [
+                  "previousStepResult",
+                  "queryParam"
+                ],
+                "description": "Valor inicial da proposta.",
+                "entityRef": "negocioEntity",
+                "fieldRef": "Negocio.valor"
+              }
+            ],
+            "navigationRefs": [
+              {
+                "direction": "inbound",
+                "pageId": "leadsKanban",
+                "trigger": "Criar proposta a partir de lead",
+                "description": "Entrada com lead pré-selecionado."
+              }
+            ],
+            "sections": [
+              {
+                "sectionName": "Criar proposta",
+                "mode": "create",
+                "organisms": [
+                  {
+                    "organismName": "FormularioCriarProposta",
+                    "purpose": "Registrar uma nova proposta vinculada a lead e imóvel.",
+                    "userActions": [
+                      "criarProposta"
+                    ],
+                    "requiredEntities": [
+                      "negocioEntity",
+                      "leadEntity",
+                      "imovelEntity"
+                    ],
+                    "readsFields": [],
+                    "writesFields": [
+                      "Negocio.leadId",
+                      "Negocio.imovelId",
+                      "Negocio.valor",
+                      "Negocio.condicoes"
+                    ],
+                    "rulesApplied": [
+                      "negocioRequiresLinks"
+                    ]
+                  }
+                ]
+              },
+              {
+                "sectionName": "Atualizar status da proposta",
+                "mode": "update",
+                "organisms": [
+                  {
+                    "organismName": "AtualizarStatusProposta",
+                    "purpose": "Atualizar o status de uma proposta existente.",
+                    "userActions": [
+                      "atualizarStatusProposta"
+                    ],
+                    "requiredEntities": [
+                      "negocioEntity"
+                    ],
+                    "readsFields": [],
+                    "writesFields": [
+                      "Negocio.status"
+                    ],
+                    "rulesApplied": []
+                  }
+                ]
+              }
+            ]
+          },
+          "bffCommands": [
+            {
+              "commandName": "criarProposta",
+              "purpose": "Registrar proposta vinculada a lead e imóvel.",
+              "kind": "command",
+              "input": [
+                {
+                  "name": "leadId",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "name": "imovelId",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "name": "condicoes",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "valor",
+                  "type": "number",
+                  "required": true
+                }
+              ],
+              "output": [
+                {
+                  "name": "propostaId",
+                  "type": "string"
+                },
+                {
+                  "name": "status",
+                  "type": "string"
+                }
+              ],
+              "readsEntities": [
+                "negocioEntity",
+                "leadEntity",
+                "imovelEntity"
+              ],
+              "writesEntities": [
+                "negocioEntity"
+              ],
+              "readsTables": [],
+              "writesTables": [
+                "negocio_metrics"
+              ],
+              "usecaseRefs": [
+                "criarProposta"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "negocioRequiresLinks"
+              ]
+            },
+            {
+              "commandName": "atualizarStatusProposta",
+              "purpose": "Atualizar status da proposta no negócio.",
+              "kind": "command",
+              "input": [
+                {
+                  "name": "propostaId",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "name": "novoStatus",
+                  "type": "string",
+                  "required": true
+                }
+              ],
+              "output": [
+                {
+                  "name": "propostaId",
+                  "type": "string"
+                },
+                {
+                  "name": "status",
+                  "type": "string"
+                }
+              ],
+              "readsEntities": [
+                "negocioEntity"
+              ],
+              "writesEntities": [
+                "negocioEntity"
+              ],
+              "readsTables": [],
+              "writesTables": [
+                "negocio_metrics"
+              ],
+              "usecaseRefs": [
+                "atualizarStatusProposta"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": []
+            }
+          ]
+        },
+        "questions": [
+          "Qual é o caso de uso (usecaseId) autorizado para listar/consultar negócios/propostas nesta página? Preciso dele para a seção de acompanhamento.",
+          "Deseja seleção de lead e imóvel por busca/lista? Se sim, quais usecases de leitura devo usar (por ex. listarLeads, listarImoveis)?",
+          "Quais são os valores permitidos de status para atualização manual (enum de status) e se há restrições de transição a aplicar na UI?"
+        ],
+        "trace": [
+          "Página planejada apenas com criação e atualização de status porque não há usecase listado para consulta de negócios.",
+          "Necessário definir usecases de leitura para acompanhar negócios e para seleção de lead/imóvel, se aplicável."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 62,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

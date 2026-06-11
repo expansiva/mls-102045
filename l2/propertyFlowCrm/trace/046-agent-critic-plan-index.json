@@ -1,0 +1,116 @@
+{
+  "savedAt": "2026-06-11T13:38:57.815Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 46,
+  "planning": {
+    "planId": "plan-index-critic:usecasePlan:1",
+    "dependsOn": [
+      "plan-usecase-entities"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "needs_input",
+        "result": {
+          "approved": false,
+          "errors": [
+            {
+              "code": "usecase.missing.read",
+              "message": "Falta usecase de leitura para lead (ex: buscarLead/listarLeads) necessário para a página Pipeline de Leads e workflow de Kanban",
+              "path": "usecases"
+            },
+            {
+              "code": "usecase.missing.read",
+              "message": "Falta usecase de leitura para visita (ex: buscarVisita/listarVisitas) necessário para a página Agendador de Visitas",
+              "path": "usecases"
+            },
+            {
+              "code": "usecase.missing.read",
+              "message": "Falta usecase de leitura para negocio (ex: buscarNegocio/listarNegocios) necessário para a página Rastreador de Negócios",
+              "path": "usecases"
+            },
+            {
+              "code": "usecase.metricWrite.missing",
+              "message": "usecase atualizarStatusProposta escreve a tabela base negocio mas não escreve na tabela de métrica negocio_metrics; usecases que escrevem tabelas transacionais base devem atualizar as métricas relacionadas",
+              "path": "usecases[10]"
+            }
+          ],
+          "warnings": [
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase criarImovel escreve na tabela de métrica imovelInventoryMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[0]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase editarImovel escreve na tabela de métrica imovelInventoryMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[1]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase arquivarImovel escreve na tabela de métrica imovelInventoryMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[2]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase criarLead escreve na tabela de métrica leadPipelineMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[4]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase moverLeadKanban escreve na tabela de métrica leadPipelineMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[5]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase agendarVisita escreve na tabela de métrica visitaMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[6]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase reagendarVisita escreve na tabela de métrica visitaMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[7]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase cancelarVisita escreve na tabela de métrica visitaMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[8]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase criarProposta escreve na tabela de métrica negocioMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[9]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase criarCorretor escreve na tabela de métrica corretorStatusMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[14]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase editarCorretor escreve na tabela de métrica corretorStatusMetrics mas não mapeia para nenhuma de suas medidas/sourceWriteEvents; remova a escrita ou proponha a medida faltante no índice de métricas",
+              "path": "usecases[15]"
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Verificada cobertura de escrita em todas as tabelas module-owned pelos usecases",
+          "Identificados usecases de leitura faltantes para lead, visita e negocio exigidos pelas páginas e workflows aprovados",
+          "Confirmado que atualizarStatusProposta escreve tabela base negocio mas omite negocio_metrics",
+          "Repetidos e confirmados todos os warnings determinísticos de metricWrite.unjustified"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 47,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

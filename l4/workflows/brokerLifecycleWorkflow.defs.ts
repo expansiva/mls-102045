@@ -1,0 +1,213 @@
+/// <mls fileReference="_102045_/l4/workflows/brokerLifecycleWorkflow.defs.ts" enhancement="_blank"/>
+
+export const brokerLifecycleWorkflowDef = {
+  "schemaVersion": "2026-06-06",
+  "artifactType": "workflow",
+  "artifactId": "brokerLifecycleWorkflow",
+  "moduleName": "propertyFlowCrm",
+  "status": "draft",
+  "source": {
+    "agentName": "agentPlanWorkflowDefinition",
+    "stepId": 55,
+    "planId": ""
+  },
+  "data": {
+    "workflowDefinition": {
+      "workflowId": "brokerLifecycleWorkflow",
+      "title": "Gestão de Corretores",
+      "purpose": "Controlar o cadastro, edição e ativação/desativação de corretores na plataforma, refletindo no status geral da equipe.",
+      "executionMode": "entityLifecycle",
+      "createsTask": false,
+      "taskConfig": {
+        "taskTitleTemplate": "",
+        "assigneeRules": [],
+        "slaRules": [],
+        "taskRoomRequired": false
+      },
+      "actors": [
+        "adminImobiliaria"
+      ],
+      "states": [
+        {
+          "stateId": "notRegistered",
+          "description": "Corretor ainda não cadastrado na imobiliária."
+        },
+        {
+          "stateId": "active",
+          "description": "Corretor ativo e disponível para atuar."
+        },
+        {
+          "stateId": "inactive",
+          "description": "Corretor inativo e indisponível para atuar."
+        }
+      ],
+      "transitions": [
+        {
+          "from": "notRegistered",
+          "to": "active",
+          "trigger": "createBroker",
+          "actor": "adminImobiliaria",
+          "conditions": [],
+          "actions": [
+            "setCorretor.ativo=true",
+            "setCorretor.criadoEm=now",
+            "setCorretor.atualizadoEm=now"
+          ],
+          "rulesApplied": []
+        },
+        {
+          "from": "active",
+          "to": "active",
+          "trigger": "updateBroker",
+          "actor": "adminImobiliaria",
+          "conditions": [],
+          "actions": [
+            "setCorretor.nome",
+            "setCorretor.email",
+            "setCorretor.telefone",
+            "setCorretor.creci",
+            "setCorretor.atualizadoEm=now"
+          ],
+          "rulesApplied": []
+        },
+        {
+          "from": "inactive",
+          "to": "inactive",
+          "trigger": "updateBroker",
+          "actor": "adminImobiliaria",
+          "conditions": [],
+          "actions": [
+            "setCorretor.nome",
+            "setCorretor.email",
+            "setCorretor.telefone",
+            "setCorretor.creci",
+            "setCorretor.atualizadoEm=now"
+          ],
+          "rulesApplied": []
+        },
+        {
+          "from": "active",
+          "to": "inactive",
+          "trigger": "deactivateBroker",
+          "actor": "adminImobiliaria",
+          "conditions": [],
+          "actions": [
+            "setCorretor.ativo=false",
+            "setCorretor.atualizadoEm=now"
+          ],
+          "rulesApplied": []
+        },
+        {
+          "from": "inactive",
+          "to": "active",
+          "trigger": "activateBroker",
+          "actor": "adminImobiliaria",
+          "conditions": [],
+          "actions": [
+            "setCorretor.ativo=true",
+            "setCorretor.atualizadoEm=now"
+          ],
+          "rulesApplied": []
+        }
+      ],
+      "requiredEntities": [
+        "Corretor"
+      ],
+      "persistenceRefs": [
+        "corretorStatusMetrics"
+      ],
+      "usecaseRefs": [
+        "criarCorretor",
+        "editarCorretor",
+        "alterarStatusCorretor",
+        "buscarCorretor"
+      ],
+      "metricRefs": [
+        "corretorStatusMetrics"
+      ],
+      "userActions": [
+        "criarCorretor",
+        "editarCorretor",
+        "alterarStatusCorretor",
+        "buscarCorretor"
+      ],
+      "relatedPages": [],
+      "relatedAgents": [],
+      "relatedPlugins": [],
+      "rulesApplied": [],
+      "implementationSuggestions": [
+        {
+          "suggestionId": "checkVinculosCorretor",
+          "title": "Verificar vínculos ativos antes de desativar corretor",
+          "priority": "soon",
+          "description": "Adicionar validação no caso de uso de alteração de status para impedir desativação quando houver visitas ou negócios ativos vinculados ao corretor.",
+          "tradeoff": "Pode aumentar o tempo de resposta ao exigir consultas adicionais."
+        },
+        {
+          "suggestionId": "metricasCorretor",
+          "title": "Atualizar métricas de equipe ao alterar status",
+          "priority": "soon",
+          "description": "Garantir que os casos de uso disparem atualizações na tabela de métricas de status de corretor após criação, edição e mudança de status.",
+          "tradeoff": "Maior carga de escrita na base de métricas."
+        },
+        {
+          "suggestionId": "noTaskFlowRequired",
+          "title": "Fluxo sem tarefas operacionais",
+          "priority": "soon",
+          "description": "Manter o workflow sem criação de tarefas porque as ações são imediatas e executadas diretamente pelo admin da imobiliária via casos de uso.",
+          "tradeoff": "Sem trilha de acompanhamento baseada em tarefas."
+        }
+      ],
+      "workflowScope": "singleModule",
+      "moduleRefs": [
+        "propertyFlowCrm"
+      ],
+      "pageRefsByModule": [],
+      "entityRefsByModule": [
+        {
+          "moduleId": "propertyFlowCrm",
+          "entity": "Corretor"
+        }
+      ],
+      "writesArtifacts": [
+        {
+          "moduleId": "propertyFlowCrm",
+          "artifactType": "workflow",
+          "artifactId": "brokerLifecycleWorkflow"
+        },
+        {
+          "moduleId": "propertyFlowCrm",
+          "artifactType": "usecase",
+          "artifactId": "criarCorretor"
+        },
+        {
+          "moduleId": "propertyFlowCrm",
+          "artifactType": "usecase",
+          "artifactId": "editarCorretor"
+        },
+        {
+          "moduleId": "propertyFlowCrm",
+          "artifactType": "usecase",
+          "artifactId": "alterarStatusCorretor"
+        },
+        {
+          "moduleId": "propertyFlowCrm",
+          "artifactType": "usecase",
+          "artifactId": "buscarCorretor"
+        },
+        {
+          "moduleId": "propertyFlowCrm",
+          "artifactType": "metricTable",
+          "artifactId": "corretorStatusMetrics"
+        }
+      ]
+    },
+    "defsPlan": {
+      "fileName": "workflows/brokerLifecycleWorkflow.defs.ts",
+      "exportName": "brokerLifecycleWorkflowDef",
+      "saveAsDefs": true
+    }
+  }
+} as const;
+
+export default brokerLifecycleWorkflowDef;
