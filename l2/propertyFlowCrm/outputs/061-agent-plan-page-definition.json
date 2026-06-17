@@ -1,0 +1,484 @@
+{
+  "savedAt": "2026-06-17T14:18:46.944Z",
+  "agentName": "agentPlanPageDefinition",
+  "stepId": 61,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPageDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "pageDefinition": {
+            "pageId": "dealsTracker",
+            "pageName": "Rastreador de negócios",
+            "actor": "corretor",
+            "purpose": "Criar propostas e avançar etapas do negócio.",
+            "capabilities": [
+              "trackDeals"
+            ],
+            "flowRefs": {
+              "experienceFlows": [],
+              "entityLifecycles": [
+                "dealStageProgressFlow"
+              ],
+              "taskWorkflows": [],
+              "automations": []
+            },
+            "pluginRefs": [],
+            "mdmRefs": [
+              "deal",
+              "lead",
+              "property"
+            ],
+            "pageInputs": [],
+            "navigationRefs": [],
+            "sections": [
+              {
+                "sectionName": "Pipeline de negócios",
+                "mode": "view",
+                "organisms": [
+                  {
+                    "organismName": "FiltroETabelaDeNegocios",
+                    "purpose": "Listar negócios por etapa e pesquisa para acompanhar o pipeline.",
+                    "userActions": [
+                      "filtrarPorEtapa",
+                      "buscarNegocio",
+                      "selecionarNegocio"
+                    ],
+                    "requiredEntities": [
+                      "Deal"
+                    ],
+                    "readsFields": [
+                      "dealId",
+                      "status",
+                      "leadId",
+                      "propertyId",
+                      "valorProposta",
+                      "updatedAt"
+                    ],
+                    "writesFields": [],
+                    "rulesApplied": [
+                      "ruleDealStages"
+                    ]
+                  },
+                  {
+                    "organismName": "CriarPropostaRapida",
+                    "purpose": "Criar novo negócio/proposta a partir de lead e imóvel selecionados.",
+                    "userActions": [
+                      "criarNegocio"
+                    ],
+                    "requiredEntities": [
+                      "Deal",
+                      "Lead",
+                      "Property"
+                    ],
+                    "readsFields": [
+                      "leadId",
+                      "propertyId"
+                    ],
+                    "writesFields": [
+                      "dealId",
+                      "status",
+                      "leadId",
+                      "propertyId",
+                      "valorProposta",
+                      "createdAt"
+                    ],
+                    "rulesApplied": [
+                      "ruleDealStages"
+                    ]
+                  }
+                ]
+              },
+              {
+                "sectionName": "Detalhes do negócio",
+                "mode": "view",
+                "organisms": [
+                  {
+                    "organismName": "ResumoDoNegocio",
+                    "purpose": "Exibir detalhes do negócio selecionado e sua etapa atual.",
+                    "userActions": [
+                      "visualizarNegocio"
+                    ],
+                    "requiredEntities": [
+                      "Deal"
+                    ],
+                    "readsFields": [
+                      "dealId",
+                      "status",
+                      "leadId",
+                      "propertyId",
+                      "valorProposta",
+                      "descricao",
+                      "updatedAt"
+                    ],
+                    "writesFields": [],
+                    "rulesApplied": [
+                      "ruleDealStages"
+                    ]
+                  },
+                  {
+                    "organismName": "AvancarEtapaDoNegocio",
+                    "purpose": "Mover o negócio para a próxima etapa conforme o fluxo.",
+                    "userActions": [
+                      "avancarEtapaNegocio"
+                    ],
+                    "requiredEntities": [
+                      "Deal",
+                      "DealStageChange"
+                    ],
+                    "readsFields": [
+                      "dealId",
+                      "status",
+                      "valorProposta"
+                    ],
+                    "writesFields": [
+                      "status",
+                      "dealStageChangeId",
+                      "fromStage",
+                      "toStage",
+                      "changedAt"
+                    ],
+                    "rulesApplied": [
+                      "ruleDealStages"
+                    ]
+                  },
+                  {
+                    "organismName": "HistoricoDeEtapas",
+                    "purpose": "Exibir histórico de mudanças de etapa do negócio.",
+                    "userActions": [
+                      "visualizarHistoricoEtapas"
+                    ],
+                    "requiredEntities": [
+                      "DealStageChange"
+                    ],
+                    "readsFields": [
+                      "dealStageChangeId",
+                      "dealId",
+                      "fromStage",
+                      "toStage",
+                      "changedAt"
+                    ],
+                    "writesFields": [],
+                    "rulesApplied": [
+                      "ruleDealStages"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "bffCommands": [
+            {
+              "commandName": "listarNegocios",
+              "purpose": "Carregar negócios por etapa.",
+              "kind": "query",
+              "input": [
+                {
+                  "name": "etapa",
+                  "type": "string",
+                  "required": false
+                },
+                {
+                  "name": "termoPesquisa",
+                  "type": "string",
+                  "required": false
+                }
+              ],
+              "output": [
+                {
+                  "name": "dealId",
+                  "type": "Deal"
+                },
+                {
+                  "name": "status",
+                  "type": "string"
+                },
+                {
+                  "name": "leadId",
+                  "type": "Lead"
+                },
+                {
+                  "name": "propertyId",
+                  "type": "Property"
+                },
+                {
+                  "name": "valorProposta",
+                  "type": "number"
+                },
+                {
+                  "name": "updatedAt",
+                  "type": "date"
+                }
+              ],
+              "readsEntities": [
+                "Deal"
+              ],
+              "writesEntities": [],
+              "readsTables": [],
+              "writesTables": [],
+              "usecaseRefs": [
+                "listarNegocios"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "ruleDealStages"
+              ]
+            },
+            {
+              "commandName": "obterNegocio",
+              "purpose": "Carregar detalhes do negócio selecionado.",
+              "kind": "query",
+              "input": [
+                {
+                  "name": "dealId",
+                  "type": "Deal",
+                  "required": true
+                }
+              ],
+              "output": [
+                {
+                  "name": "dealId",
+                  "type": "Deal"
+                },
+                {
+                  "name": "status",
+                  "type": "string"
+                },
+                {
+                  "name": "leadId",
+                  "type": "Lead"
+                },
+                {
+                  "name": "propertyId",
+                  "type": "Property"
+                },
+                {
+                  "name": "valorProposta",
+                  "type": "number"
+                },
+                {
+                  "name": "descricao",
+                  "type": "string"
+                },
+                {
+                  "name": "updatedAt",
+                  "type": "date"
+                }
+              ],
+              "readsEntities": [
+                "Deal"
+              ],
+              "writesEntities": [],
+              "readsTables": [],
+              "writesTables": [],
+              "usecaseRefs": [
+                "obterNegocio"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "ruleDealStages"
+              ]
+            },
+            {
+              "commandName": "criarNegocio",
+              "purpose": "Criar nova proposta vinculada.",
+              "kind": "command",
+              "input": [
+                {
+                  "name": "leadId",
+                  "type": "Lead",
+                  "required": true
+                },
+                {
+                  "name": "propertyId",
+                  "type": "Property",
+                  "required": true
+                },
+                {
+                  "name": "valorProposta",
+                  "type": "number",
+                  "required": true
+                },
+                {
+                  "name": "termosIniciais",
+                  "type": "string",
+                  "required": false
+                }
+              ],
+              "output": [
+                {
+                  "name": "dealId",
+                  "type": "Deal"
+                },
+                {
+                  "name": "status",
+                  "type": "string"
+                }
+              ],
+              "readsEntities": [
+                "Lead",
+                "Property"
+              ],
+              "writesEntities": [
+                "Deal"
+              ],
+              "readsTables": [],
+              "writesTables": [
+                "deal_pipeline_metrics",
+                "broker_activity_metrics"
+              ],
+              "usecaseRefs": [
+                "criarNegocio"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "ruleDealStages"
+              ]
+            },
+            {
+              "commandName": "avancarEtapaNegocio",
+              "purpose": "Atualizar etapa do negócio.",
+              "kind": "command",
+              "input": [
+                {
+                  "name": "dealId",
+                  "type": "Deal",
+                  "required": true
+                },
+                {
+                  "name": "toStage",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "name": "termosAtualizados",
+                  "type": "string",
+                  "required": false
+                }
+              ],
+              "output": [
+                {
+                  "name": "dealId",
+                  "type": "Deal"
+                },
+                {
+                  "name": "status",
+                  "type": "string"
+                },
+                {
+                  "name": "dealStageChangeId",
+                  "type": "DealStageChange"
+                }
+              ],
+              "readsEntities": [
+                "Deal"
+              ],
+              "writesEntities": [
+                "Deal",
+                "DealStageChange"
+              ],
+              "readsTables": [],
+              "writesTables": [
+                "deal_stage_change",
+                "deal_pipeline_metrics",
+                "broker_activity_metrics"
+              ],
+              "usecaseRefs": [
+                "avancarEtapaNegocio"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "ruleDealStages"
+              ]
+            },
+            {
+              "commandName": "listarMudancasEtapaNegocio",
+              "purpose": "Listar histórico de mudanças nos negócios.",
+              "kind": "query",
+              "input": [
+                {
+                  "name": "dealId",
+                  "type": "Deal",
+                  "required": true
+                }
+              ],
+              "output": [
+                {
+                  "name": "dealStageChangeId",
+                  "type": "DealStageChange"
+                },
+                {
+                  "name": "dealId",
+                  "type": "Deal"
+                },
+                {
+                  "name": "fromStage",
+                  "type": "string"
+                },
+                {
+                  "name": "toStage",
+                  "type": "string"
+                },
+                {
+                  "name": "changedAt",
+                  "type": "date"
+                }
+              ],
+              "readsEntities": [
+                "DealStageChange"
+              ],
+              "writesEntities": [],
+              "readsTables": [
+                "deal_stage_change"
+              ],
+              "writesTables": [],
+              "usecaseRefs": [
+                "listarMudancasEtapaNegocio"
+              ],
+              "layerContract": {
+                "controllerLayer": "layer_2_controllers",
+                "mustCallLayer": "layer_3_usecases",
+                "directTableAccessForbidden": true
+              },
+              "rulesApplied": [
+                "ruleDealStages"
+              ]
+            }
+          ]
+        },
+        "questions": [],
+        "trace": [
+          "Página dealsTracker derivada do pageIndexItem e capability trackDeals.",
+          "Fluxo de lifecycle dealStageProgressFlow incluído em flowRefs.",
+          "Organismos criados para lista/pipeline, criação de negócio, detalhes, avanço de etapa e histórico.",
+          "Comandos BFF alinhados aos usecases listarNegocios, obterNegocio, criarNegocio, avancarEtapaNegocio e listarMudancasEtapaNegocio.",
+          "Tabelas MDM omitidas de readsTables; apenas tabelas moduleOwned declaradas em writes/reads conforme usecases."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 63,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

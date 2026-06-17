@@ -1,0 +1,42 @@
+{
+  "savedAt": "2026-06-17T14:13:30.697Z",
+  "agentName": "agentPlanUsecaseDefinition",
+  "stepId": 57,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitUsecaseDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "usecaseDefinition": {
+            "usecaseId": "listarAtualizacoesMetricas",
+            "commands": [
+              {
+                "commandId": "listarAtualizacoesMetricas",
+                "input": [],
+                "output": [
+                  {
+                    "name": "atualizacoes",
+                    "type": "dashboardMetricEntity[]"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Usecase sem entradas; lista histórico de atualizações de métricas.",
+          "Saída mapeada para coleção de dashboardMetricEntity."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 43,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

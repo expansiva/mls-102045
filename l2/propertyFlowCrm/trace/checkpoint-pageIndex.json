@@ -1,0 +1,538 @@
+{
+  "schemaVersion": "2026-06-06",
+  "artifactType": "indexCheckpoint",
+  "indexName": "pageIndex",
+  "moduleName": "propertyFlowCrm",
+  "status": "frozen",
+  "approvedAt": "2026-06-17T14:18:08.415Z",
+  "source": {
+    "agentName": "agentPlanPageIndex",
+    "stepId": 26,
+    "planId": "plan-page-index"
+  },
+  "healthReport": {
+    "localErrors": [],
+    "localWarnings": [],
+    "criticErrors": [],
+    "criticWarnings": [],
+    "attempts": 1,
+    "notes": []
+  },
+  "index": {
+    "runId": "provider-tool-call",
+    "stepId": "21-plan-page-index",
+    "schemaVersion": "2026-06-02",
+    "status": "ok",
+    "result": {
+      "pages": [
+        {
+          "pageId": "propertiesList",
+          "pageName": "Lista de imóveis",
+          "actor": "corretor",
+          "purpose": "Pesquisar e cadastrar imóveis no estoque.",
+          "capabilities": [
+            "manageProperties"
+          ],
+          "flowRefs": {
+            "experienceFlows": [],
+            "entityLifecycles": [],
+            "taskWorkflows": [],
+            "automations": []
+          },
+          "pluginRefs": [],
+          "mdmRefs": [
+            "property",
+            "broker"
+          ],
+          "primaryUserActions": [
+            "createProperty",
+            "searchProperties"
+          ],
+          "pageInputHints": [],
+          "navigationRefs": [
+            {
+              "direction": "outbound",
+              "pageId": "propertyDetails",
+              "trigger": "selecionar imóvel"
+            }
+          ],
+          "persistenceHints": [],
+          "usecaseHints": [
+            "listarImoveis",
+            "criarImovel"
+          ],
+          "metricRefs": [],
+          "rulesApplied": [
+            "rulePropertyStatusLifecycle"
+          ],
+          "bffCommandHints": [
+            {
+              "name": "listarImoveis",
+              "purpose": "Carregar lista e filtros de imóveis.",
+              "input": "filtros de status, localização e paginação",
+              "output": "lista de imóveis com status e dados principais"
+            },
+            {
+              "name": "criarImovel",
+              "purpose": "Cadastrar novo imóvel a partir do formulário.",
+              "input": "dados do imóvel e corretor",
+              "output": "imóvel criado com status inicial"
+            }
+          ]
+        },
+        {
+          "pageId": "propertyDetails",
+          "pageName": "Detalhes do imóvel",
+          "actor": "corretor",
+          "purpose": "Editar dados, preço e status do imóvel.",
+          "capabilities": [
+            "manageProperties"
+          ],
+          "flowRefs": {
+            "experienceFlows": [],
+            "entityLifecycles": [],
+            "taskWorkflows": [],
+            "automations": [
+              "propertyDescriptionRequestFlow"
+            ]
+          },
+          "pluginRefs": [],
+          "mdmRefs": [
+            "property"
+          ],
+          "primaryUserActions": [
+            "updateProperty",
+            "generatePropertyDescription"
+          ],
+          "pageInputHints": [
+            "propertyId"
+          ],
+          "navigationRefs": [
+            {
+              "direction": "inbound",
+              "pageId": "propertiesList",
+              "trigger": "abrir detalhes do imóvel"
+            }
+          ],
+          "persistenceHints": [
+            "propertyDescriptionRequest"
+          ],
+          "usecaseHints": [
+            "obterImovel",
+            "atualizarImovel",
+            "solicitarDescricaoImovel",
+            "listarSolicitacoesDescricaoImovel"
+          ],
+          "metricRefs": [],
+          "rulesApplied": [
+            "rulePropertyStatusLifecycle",
+            "ruleAiHumanReview"
+          ],
+          "bffCommandHints": [
+            {
+              "name": "obterImovel",
+              "purpose": "Carregar detalhes completos do imóvel.",
+              "input": "propertyId",
+              "output": "dados do imóvel com status atual"
+            },
+            {
+              "name": "atualizarImovel",
+              "purpose": "Salvar atualizações do imóvel.",
+              "input": "propertyId e campos editados",
+              "output": "imóvel atualizado"
+            },
+            {
+              "name": "solicitarDescricaoImovel",
+              "purpose": "Solicitar geração de descrição via IA.",
+              "input": "propertyId e contexto do imóvel",
+              "output": "solicitação criada e status"
+            }
+          ]
+        },
+        {
+          "pageId": "leadsPipeline",
+          "pageName": "Pipeline de leads",
+          "actor": "corretor",
+          "purpose": "Visualizar e mover leads entre etapas e cadastrar novos leads.",
+          "capabilities": [
+            "manageLeads",
+            "leadPipeline"
+          ],
+          "flowRefs": {
+            "experienceFlows": [],
+            "entityLifecycles": [
+              "leadPipelineStageFlow"
+            ],
+            "taskWorkflows": [],
+            "automations": [
+              "leadQualificationRequestFlow"
+            ]
+          },
+          "pluginRefs": [],
+          "mdmRefs": [
+            "lead",
+            "broker"
+          ],
+          "primaryUserActions": [
+            "createLead",
+            "moveLeadStage",
+            "classifyLeadTemperature"
+          ],
+          "pageInputHints": [],
+          "navigationRefs": [
+            {
+              "direction": "outbound",
+              "pageId": "leadDetails",
+              "trigger": "abrir detalhes do lead"
+            }
+          ],
+          "persistenceHints": [
+            "leadStageChange",
+            "leadQualificationRequest"
+          ],
+          "usecaseHints": [
+            "listarLeads",
+            "criarLead",
+            "moverEtapaLead",
+            "listarMudancasEtapaLead",
+            "solicitarQualificacaoLead"
+          ],
+          "metricRefs": [],
+          "rulesApplied": [
+            "ruleLeadPipelineStages",
+            "ruleAiHumanReview"
+          ],
+          "bffCommandHints": [
+            {
+              "name": "listarLeads",
+              "purpose": "Carregar leads por etapa do pipeline.",
+              "input": "filtros de etapa e pesquisa",
+              "output": "lista de leads com etapa atual"
+            },
+            {
+              "name": "moverEtapaLead",
+              "purpose": "Atualizar etapa do lead ao mover card.",
+              "input": "leadId, etapa destino e motivo opcional",
+              "output": "mudança de etapa registrada"
+            },
+            {
+              "name": "criarLead",
+              "purpose": "Cadastrar novo lead no pipeline.",
+              "input": "dados de contato e interesse",
+              "output": "lead criado com status novo"
+            },
+            {
+              "name": "solicitarQualificacaoLead",
+              "purpose": "Solicitar qualificação via IA.",
+              "input": "leadId e contexto do lead",
+              "output": "solicitação criada e status"
+            }
+          ]
+        },
+        {
+          "pageId": "leadDetails",
+          "pageName": "Detalhes do lead",
+          "actor": "corretor",
+          "purpose": "Atualizar informações e histórico do lead.",
+          "capabilities": [
+            "manageLeads"
+          ],
+          "flowRefs": {
+            "experienceFlows": [],
+            "entityLifecycles": [],
+            "taskWorkflows": [],
+            "automations": []
+          },
+          "pluginRefs": [],
+          "mdmRefs": [
+            "lead"
+          ],
+          "primaryUserActions": [
+            "updateLead"
+          ],
+          "pageInputHints": [
+            "leadId"
+          ],
+          "navigationRefs": [
+            {
+              "direction": "inbound",
+              "pageId": "leadsPipeline",
+              "trigger": "abrir detalhes do lead"
+            }
+          ],
+          "persistenceHints": [],
+          "usecaseHints": [
+            "obterLead",
+            "atualizarLead"
+          ],
+          "metricRefs": [],
+          "rulesApplied": [
+            "ruleLeadPipelineStages"
+          ],
+          "bffCommandHints": [
+            {
+              "name": "obterLead",
+              "purpose": "Carregar dados completos do lead.",
+              "input": "leadId",
+              "output": "dados de contato, preferências e histórico"
+            },
+            {
+              "name": "atualizarLead",
+              "purpose": "Salvar alterações do lead.",
+              "input": "leadId e campos editados",
+              "output": "lead atualizado"
+            }
+          ]
+        },
+        {
+          "pageId": "visitsAgenda",
+          "pageName": "Agenda de visitas",
+          "actor": "corretor",
+          "purpose": "Agendar, confirmar, reagendar e cancelar visitas.",
+          "capabilities": [
+            "scheduleVisits"
+          ],
+          "flowRefs": {
+            "experienceFlows": [],
+            "entityLifecycles": [
+              "visitSchedulingFlow"
+            ],
+            "taskWorkflows": [],
+            "automations": []
+          },
+          "pluginRefs": [],
+          "mdmRefs": [
+            "visit",
+            "property",
+            "lead"
+          ],
+          "primaryUserActions": [
+            "scheduleVisit",
+            "updateVisitStatus"
+          ],
+          "pageInputHints": [],
+          "navigationRefs": [],
+          "persistenceHints": [
+            "visitScheduleRequest"
+          ],
+          "usecaseHints": [
+            "listarVisitas",
+            "agendarVisita",
+            "obterVisita",
+            "atualizarStatusVisita",
+            "listarSolicitacoesAgendamentoVisita"
+          ],
+          "metricRefs": [],
+          "rulesApplied": [
+            "ruleVisitStatus"
+          ],
+          "bffCommandHints": [
+            {
+              "name": "listarVisitas",
+              "purpose": "Carregar agenda e filtros de visitas.",
+              "input": "intervalo de datas e filtros por imóvel/lead",
+              "output": "lista de visitas com status"
+            },
+            {
+              "name": "agendarVisita",
+              "purpose": "Criar novo agendamento.",
+              "input": "propertyId, leadId, data e hora",
+              "output": "visita criada com status agendada"
+            },
+            {
+              "name": "atualizarStatusVisita",
+              "purpose": "Atualizar status ou reagendar visita.",
+              "input": "visitId, novo status e data/hora opcional",
+              "output": "visita atualizada"
+            }
+          ]
+        },
+        {
+          "pageId": "dealsTracker",
+          "pageName": "Rastreador de negócios",
+          "actor": "corretor",
+          "purpose": "Criar propostas e avançar etapas do negócio.",
+          "capabilities": [
+            "trackDeals"
+          ],
+          "flowRefs": {
+            "experienceFlows": [],
+            "entityLifecycles": [
+              "dealStageProgressFlow"
+            ],
+            "taskWorkflows": [],
+            "automations": []
+          },
+          "pluginRefs": [],
+          "mdmRefs": [
+            "deal",
+            "lead",
+            "property"
+          ],
+          "primaryUserActions": [
+            "createDeal",
+            "advanceDealStage"
+          ],
+          "pageInputHints": [],
+          "navigationRefs": [],
+          "persistenceHints": [
+            "dealStageChange"
+          ],
+          "usecaseHints": [
+            "listarNegocios",
+            "criarNegocio",
+            "avancarEtapaNegocio",
+            "listarMudancasEtapaNegocio",
+            "obterNegocio"
+          ],
+          "metricRefs": [],
+          "rulesApplied": [
+            "ruleDealStages"
+          ],
+          "bffCommandHints": [
+            {
+              "name": "listarNegocios",
+              "purpose": "Carregar negócios por etapa.",
+              "input": "filtros de etapa e pesquisa",
+              "output": "lista de negócios com etapa atual"
+            },
+            {
+              "name": "criarNegocio",
+              "purpose": "Criar nova proposta vinculada.",
+              "input": "leadId, propertyId e termos iniciais",
+              "output": "negócio criado com status rascunho"
+            },
+            {
+              "name": "avancarEtapaNegocio",
+              "purpose": "Atualizar etapa do negócio.",
+              "input": "dealId, etapa destino e termos",
+              "output": "mudança de etapa registrada"
+            },
+            {
+              "name": "obterNegocio",
+              "purpose": "Carregar detalhes do negócio selecionado.",
+              "input": "dealId",
+              "output": "detalhes e status do negócio"
+            }
+          ]
+        },
+        {
+          "pageId": "dashboard",
+          "pageName": "Dashboard de métricas",
+          "actor": "gestor",
+          "purpose": "Acompanhar KPIs e métricas de leads, imóveis e negócios.",
+          "capabilities": [
+            "viewDashboard"
+          ],
+          "flowRefs": {
+            "experienceFlows": [],
+            "entityLifecycles": [],
+            "taskWorkflows": [],
+            "automations": [
+              "dashboardMetricsUpdateFlow"
+            ]
+          },
+          "pluginRefs": [],
+          "mdmRefs": [],
+          "primaryUserActions": [
+            "viewDashboard"
+          ],
+          "pageInputHints": [],
+          "navigationRefs": [],
+          "persistenceHints": [
+            "dashboardMetricUpdate"
+          ],
+          "usecaseHints": [
+            "visualizarDashboard"
+          ],
+          "metricRefs": [
+            "propertyStatusMetrics",
+            "leadPipelineMetrics",
+            "dealPipelineMetrics",
+            "brokerActivityMetrics"
+          ],
+          "rulesApplied": [
+            "ruleMetricRefresh"
+          ],
+          "bffCommandHints": [
+            {
+              "name": "visualizarDashboard",
+              "purpose": "Carregar métricas para o dashboard do gestor.",
+              "input": "filtros de período",
+              "output": "KPIs e séries agregadas"
+            }
+          ]
+        },
+        {
+          "pageId": "adminDashboard",
+          "pageName": "Dashboard administrativo",
+          "actor": "admin",
+          "purpose": "Monitorar métricas administrativas e forçar atualização.",
+          "capabilities": [
+            "adminDashboard"
+          ],
+          "flowRefs": {
+            "experienceFlows": [],
+            "entityLifecycles": [],
+            "taskWorkflows": [],
+            "automations": [
+              "dashboardMetricsUpdateFlow"
+            ]
+          },
+          "pluginRefs": [],
+          "mdmRefs": [],
+          "primaryUserActions": [
+            "viewAdminDashboard",
+            "refreshMetrics"
+          ],
+          "pageInputHints": [],
+          "navigationRefs": [],
+          "persistenceHints": [
+            "dashboardMetricUpdate"
+          ],
+          "usecaseHints": [
+            "visualizarAdminDashboard",
+            "atualizarMetricasDashboard",
+            "listarAtualizacoesMetricas"
+          ],
+          "metricRefs": [
+            "propertyStatusMetrics",
+            "leadPipelineMetrics",
+            "dealPipelineMetrics",
+            "brokerActivityMetrics"
+          ],
+          "rulesApplied": [
+            "ruleMetricRefresh"
+          ],
+          "bffCommandHints": [
+            {
+              "name": "visualizarAdminDashboard",
+              "purpose": "Carregar indicadores administrativos.",
+              "input": "filtros de período",
+              "output": "indicadores e status das métricas"
+            },
+            {
+              "name": "atualizarMetricasDashboard",
+              "purpose": "Forçar atualização das métricas.",
+              "input": "parâmetros de atualização",
+              "output": "atualização iniciada e timestamp"
+            },
+            {
+              "name": "listarAtualizacoesMetricas",
+              "purpose": "Exibir histórico de atualizações de métricas.",
+              "input": "intervalo de datas",
+              "output": "lista de atualizações"
+            }
+          ]
+        }
+      ]
+    },
+    "questions": [],
+    "trace": [
+      "Páginas derivadas dos pageHints das jornadas: propertiesList, propertyDetails, leadsPipeline, leadDetails, visitsAgenda, dealsTracker, dashboard, adminDashboard.",
+      "Incluídas páginas de kanban/agenda/tracker conforme exigência das jornadas.",
+      "Dashboard administrativo incluído por métrica inicial e capability adminDashboard.",
+      "Fluxos associados conforme executionMode dos workflows."
+    ]
+  }
+}

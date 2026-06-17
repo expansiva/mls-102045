@@ -1,0 +1,132 @@
+{
+  "savedAt": "2026-06-17T14:05:51.084Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 47,
+  "planning": {
+    "planId": "plan-index-critic:metricsIndex:1",
+    "dependsOn": [
+      "plan-metrics-index"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "approved": false,
+          "errors": [
+            {
+              "code": "metrics.table.notApproved",
+              "message": "metric table visitMetrics is not listed in approvedArtifacts.metricTables and exceeds approved scope",
+              "path": "metricTables[3]"
+            },
+            {
+              "code": "metrics.dashboard.notApproved",
+              "message": "metric dashboard managerMetricsDashboard is not listed in approvedArtifacts.metricDashboards",
+              "path": "dashboardPages[1]"
+            }
+          ],
+          "warnings": [
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table propertyStatusMetrics sources unknown base table property",
+              "path": "metricTables[0]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table leadPipelineMetrics sources unknown base table lead",
+              "path": "metricTables[1]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table leadPipelineMetrics sources unknown base table lead_stage_change",
+              "path": "metricTables[1]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table dealPipelineMetrics sources unknown base table deal",
+              "path": "metricTables[2]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table dealPipelineMetrics sources unknown base table deal_stage_change",
+              "path": "metricTables[2]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table visitMetrics sources unknown base table visit",
+              "path": "metricTables[3]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table brokerActivityMetrics sources unknown base table property",
+              "path": "metricTables[4]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table brokerActivityMetrics sources unknown base table lead",
+              "path": "metricTables[4]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table brokerActivityMetrics sources unknown base table visit",
+              "path": "metricTables[4]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table brokerActivityMetrics sources unknown base table deal",
+              "path": "metricTables[4]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table brokerActivityMetrics sources unknown base table property_description_request",
+              "path": "metricTables[4]"
+            },
+            {
+              "code": "metrics.sourceBaseTable.unknown",
+              "message": "metric table brokerActivityMetrics sources unknown base table lead_qualification_request",
+              "path": "metricTables[4]"
+            },
+            {
+              "code": "metrics.table.priorityMismatch",
+              "message": "brokerActivityMetrics has priority 'soon' but approved 'Tabela de Métricas do Dashboard' has priority 'now'",
+              "path": "metricTables[4]"
+            },
+            {
+              "code": "metrics.dimension.typeInconsistent",
+              "message": "brokerActivityMetrics dimensions propertyId and leadId use type 'text' instead of 'string'",
+              "path": "metricTables[4].dimensions"
+            }
+          ],
+          "notes": [
+            "brokerActivityMetrics pode corresponder à 'Tabela de Métricas do Dashboard' aprovada, mas o mapeamento é incerto devido à divergência de título e prioridade.",
+            "A página 'Dashboard' do gestor está aprovada, porém não há metricDashboard correspondente em approvedArtifacts.metricDashboards."
+          ]
+        },
+        "questions": [
+          "O brokerActivityMetrics deve ser tratado como a implementação da 'Tabela de Métricas do Dashboard' aprovada, ou falta uma tabela genérica de métricas do dashboard?",
+          "O managerMetricsDashboard é necessário para atender a página 'Dashboard' aprovada do gestor, mesmo não constando em approvedArtifacts.metricDashboards?"
+        ],
+        "trace": [
+          "Verificou approvedArtifacts.metricTables (4 itens) contra metricTables do índice (5 itens).",
+          "Mapeou propertyStatusMetrics, leadPipelineMetrics e dealPipelineMetrics às métricas aprovadas.",
+          "Identificou visitMetrics como tabela não aprovada e não claramente necessária para as capacidades aprovadas.",
+          "Verificou approvedArtifacts.metricDashboards (1 item) contra dashboardPages do índice (2 itens).",
+          "Identificou managerMetricsDashboard como dashboard não aprovado.",
+          "Confirmou warnings determinísticos de sourceBaseTable desconhecido.",
+          "Verificou T-013: dimensões de FKs de relacionamentos diretos parecem atendidas para todas as tabelas.",
+          "Verificou storageEngine postgresTimescaleDB em todas as tabelas e updateResponsibility layer_3_usecases."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 40,
+    "interaction": null,
+    "nextSteps": null
+  }
+}
