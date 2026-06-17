@@ -13,29 +13,6 @@
   "links": [],
   "servicesConfigEnabled": false,
   "modules": [
-    {
-      "moduleName": "propertyFlowCrm",
-      "module": {
-        "moduleName": "propertyFlowCrm",
-        "purpose": "Centralizar imóveis, leads, visitas e propostas para acelerar fechamentos na corretagem imobiliária.",
-        "businessDomain": "gestaoImobiliaria",
-        "languages": [
-          "pt-BR",
-          "en"
-        ],
-        "visualStyle": {
-          "tone": "Moderno e profissional",
-          "layout": "Dashboard e listas com Kanban para leads",
-          "palette": [
-            "#0F172A",
-            "#2563EB",
-            "#22C55E",
-            "#F59E0B",
-            "#F8FAFC"
-          ]
-        }
-      }
-    }
   ],
   "dependencies": [
     {
