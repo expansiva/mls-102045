@@ -1,0 +1,376 @@
+{
+  "savedAt": "2026-06-17T13:39:14.142Z",
+  "agentName": "agentDiscoverSolutionScope",
+  "stepId": 5,
+  "planning": {
+    "planId": "req-discover-scope",
+    "dependsOn": [
+      "req-clarification-answer"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitSolutionScopeDraft",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "domain": "propertyFlowCrm",
+          "summary": "Aplicativo PropertyFlowCRM para imobiliárias e corretores centralizarem imóveis, leads, visitas e negócios com dashboard básico, pipeline em kanban com alternância de lista e recursos de IA para descrição de imóveis e qualificação de leads.",
+          "actors": [
+            {
+              "actorId": "corretor",
+              "description": "Profissional que cadastra imóveis, gerencia leads, agenda visitas e acompanha negócios."
+            },
+            {
+              "actorId": "gestor",
+              "description": "Responsável por acompanhar desempenho da equipe, pipeline e resultados."
+            },
+            {
+              "actorId": "admin",
+              "description": "Configura parâmetros do sistema, acessos e visão administrativa do painel."
+            }
+          ],
+          "capabilities": [
+            {
+              "capabilityId": "manageProperties",
+              "description": "Cadastrar, editar, buscar e desativar imóveis com características e fotos mock.",
+              "actor": "corretor",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "manageLeads",
+              "description": "Cadastrar e atualizar leads/clientes com anotações e qualificação.",
+              "actor": "corretor",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "leadPipeline",
+              "description": "Visualizar e mover leads no pipeline por etapas em kanban ou lista.",
+              "actor": "corretor",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "scheduleVisits",
+              "description": "Agendar visitas vinculadas a imóvel e lead, com controle de status.",
+              "actor": "corretor",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "trackDeals",
+              "description": "Criar e acompanhar negócios/propostas por etapas e valores.",
+              "actor": "corretor",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "aiPropertyDescription",
+              "description": "Gerar descrição de imóvel a partir de bullets fornecidos.",
+              "actor": "corretor",
+              "priority": "soon"
+            },
+            {
+              "capabilityId": "aiLeadQualification",
+              "description": "Classificar lead como quente/morno/frio e sugerir mensagem de follow-up.",
+              "actor": "corretor",
+              "priority": "soon"
+            },
+            {
+              "capabilityId": "viewDashboard",
+              "description": "Acompanhar métricas básicas de imóveis ativos, leads do mês e pipeline.",
+              "actor": "gestor",
+              "priority": "now"
+            },
+            {
+              "capabilityId": "adminDashboard",
+              "description": "Acessar painel administrativo para métricas e configuração básica.",
+              "actor": "admin",
+              "priority": "now"
+            }
+          ],
+          "artifactSignals": {
+            "pages": [
+              {
+                "signal": "dashboardPage",
+                "title": "Dashboard",
+                "actor": "gestor",
+                "reason": "Exibe métricas básicas solicitadas: imóveis ativos, leads do mês e pipeline.",
+                "priority": "now"
+              },
+              {
+                "signal": "adminDashboardPage",
+                "title": "Admin Dashboard",
+                "actor": "admin",
+                "reason": "Solicitado dashboard inicial e visão administrativa para configuração e acompanhamento.",
+                "priority": "now"
+              },
+              {
+                "signal": "propertyCrudPage",
+                "title": "Imóveis",
+                "actor": "corretor",
+                "reason": "CRUD de imóveis com busca e visualização de detalhes.",
+                "priority": "now"
+              },
+              {
+                "signal": "leadPipelinePage",
+                "title": "Pipeline de Leads",
+                "actor": "corretor",
+                "reason": "Kanban padrão com alternância para lista conforme clarificação.",
+                "priority": "now"
+              },
+              {
+                "signal": "visitSchedulerPage",
+                "title": "Agendador de Visitas",
+                "actor": "corretor",
+                "reason": "Coordenação de visitas e horários.",
+                "priority": "now"
+              },
+              {
+                "signal": "dealTrackerPage",
+                "title": "Rastreador de Negócios",
+                "actor": "corretor",
+                "reason": "Acompanhamento de propostas por etapas e valores.",
+                "priority": "now"
+              },
+              {
+                "signal": "leadDetailPage",
+                "title": "Detalhes do Lead/Cliente",
+                "actor": "corretor",
+                "reason": "Editar informações, anotações e qualificação do lead.",
+                "priority": "now"
+              },
+              {
+                "signal": "propertyDetailPage",
+                "title": "Detalhes do Imóvel",
+                "actor": "corretor",
+                "reason": "Ver fotos mock, características e descrições geradas.",
+                "priority": "now"
+              }
+            ],
+            "workflows": [
+              {
+                "signal": "leadQualificationWorkflow",
+                "title": "Qualificação de Lead",
+                "actor": "corretor",
+                "reason": "Fluxo de classificação quente/morno/frio e atualização do pipeline.",
+                "priority": "now"
+              },
+              {
+                "signal": "visitSchedulingWorkflow",
+                "title": "Agendamento de Visita",
+                "actor": "corretor",
+                "reason": "Criação, confirmação e atualização de visitas.",
+                "priority": "now"
+              },
+              {
+                "signal": "dealStageWorkflow",
+                "title": "Etapas de Negócio/Proposta",
+                "actor": "corretor",
+                "reason": "Transições de status do negócio até fechamento.",
+                "priority": "now"
+              },
+              {
+                "signal": "propertyLifecycleWorkflow",
+                "title": "Ciclo de Vida do Imóvel",
+                "actor": "corretor",
+                "reason": "Status do imóvel (ativo/inativo/vendido) afeta pipeline e dashboard.",
+                "priority": "now"
+              }
+            ],
+            "plugins": [],
+            "agents": [
+              {
+                "signal": "propertyDescriptionAgent",
+                "title": "Agente de Descrição de Imóvel",
+                "actor": "corretor",
+                "reason": "Gera descrição do imóvel a partir de bullets.",
+                "priority": "soon"
+              },
+              {
+                "signal": "leadTemperatureAgent",
+                "title": "Agente de Temperatura do Lead",
+                "actor": "corretor",
+                "reason": "Classifica lead e sugere follow-up.",
+                "priority": "soon"
+              }
+            ],
+            "horizontalModules": [
+              {
+                "signal": "authzModule",
+                "title": "Autenticação e Autorização",
+                "reason": "Perfis Corretor, Gestor e Admin exigem controle de acesso.",
+                "priority": "now"
+              },
+              {
+                "signal": "i18nModule",
+                "title": "Internacionalização",
+                "reason": "Suporte a pt-BR e en conforme solicitado.",
+                "priority": "now"
+              },
+              {
+                "signal": "auditModule",
+                "title": "Auditoria e Logs",
+                "reason": "Rastrear alterações em imóveis, leads e negócios.",
+                "priority": "soon"
+              }
+            ],
+            "mdm": [
+              {
+                "signal": "propertyMdm",
+                "title": "MDM de Imóvel",
+                "reason": "Entidade central com atributos, status e fotos; necessária para relacionar leads, visitas e negócios.",
+                "priority": "now",
+                "mdmKind": "core"
+              },
+              {
+                "signal": "leadMdm",
+                "title": "MDM de Lead/Cliente",
+                "reason": "Base para pipeline, qualificação e histórico de interações.",
+                "priority": "now",
+                "mdmKind": "core"
+              },
+              {
+                "signal": "visitMdm",
+                "title": "MDM de Visita/Agendamento",
+                "reason": "Agenda central vinculada a imóveis e leads.",
+                "priority": "now",
+                "mdmKind": "core"
+              },
+              {
+                "signal": "dealMdm",
+                "title": "MDM de Negócio/Proposta",
+                "reason": "Controle de etapas e valores do funil de fechamento.",
+                "priority": "now",
+                "mdmKind": "core"
+              },
+              {
+                "signal": "brokerMdm",
+                "title": "MDM de Corretor",
+                "reason": "Identifica responsáveis e atribuições.",
+                "priority": "now",
+                "mdmKind": "core"
+              }
+            ],
+            "metrics": [
+              {
+                "signal": "activePropertiesMetric",
+                "title": "Imóveis Ativos",
+                "actor": "gestor",
+                "reason": "Métrica solicitada no dashboard básico.",
+                "priority": "now"
+              },
+              {
+                "signal": "monthlyLeadsMetric",
+                "title": "Leads do Mês",
+                "actor": "gestor",
+                "reason": "Métrica solicitada no dashboard básico.",
+                "priority": "now"
+              },
+              {
+                "signal": "pipelineDealsMetric",
+                "title": "Pipeline de Fechamentos",
+                "actor": "gestor",
+                "reason": "Indicador principal do rastreador de negócios.",
+                "priority": "now"
+              }
+            ],
+            "usecases": [
+              {
+                "signal": "createUpdateProperty",
+                "title": "Criar/Atualizar Imóvel",
+                "actor": "corretor",
+                "reason": "Necessário para CRUD e manutenção do portfólio.",
+                "priority": "now"
+              },
+              {
+                "signal": "searchProperties",
+                "title": "Buscar Imóveis",
+                "actor": "corretor",
+                "reason": "Busca no CRUD de imóveis.",
+                "priority": "now"
+              },
+              {
+                "signal": "createUpdateLead",
+                "title": "Criar/Atualizar Lead",
+                "actor": "corretor",
+                "reason": "Base do pipeline e qualificação.",
+                "priority": "now"
+              },
+              {
+                "signal": "moveLeadStage",
+                "title": "Mover Lead no Pipeline",
+                "actor": "corretor",
+                "reason": "Transição entre etapas do kanban/lista.",
+                "priority": "now"
+              },
+              {
+                "signal": "scheduleVisit",
+                "title": "Agendar Visita",
+                "actor": "corretor",
+                "reason": "Coordenação de visitas vinculadas a imóvel e lead.",
+                "priority": "now"
+              },
+              {
+                "signal": "updateVisitStatus",
+                "title": "Atualizar Status da Visita",
+                "actor": "corretor",
+                "reason": "Confirmar, reagendar ou cancelar visitas.",
+                "priority": "now"
+              },
+              {
+                "signal": "createUpdateDeal",
+                "title": "Criar/Atualizar Negócio",
+                "actor": "corretor",
+                "reason": "Manter propostas e valores por etapa.",
+                "priority": "now"
+              },
+              {
+                "signal": "advanceDealStage",
+                "title": "Avançar Etapa do Negócio",
+                "actor": "corretor",
+                "reason": "Transição de status no rastreador de negócios.",
+                "priority": "now"
+              },
+              {
+                "signal": "generatePropertyDescription",
+                "title": "Gerar Descrição do Imóvel",
+                "actor": "corretor",
+                "reason": "Uso do LLM para criar texto de anúncio.",
+                "priority": "soon"
+              },
+              {
+                "signal": "classifyLeadTemperature",
+                "title": "Classificar Temperatura do Lead",
+                "actor": "corretor",
+                "reason": "LLM classifica e sugere follow-up.",
+                "priority": "soon"
+              },
+              {
+                "signal": "updateDashboardMetrics",
+                "title": "Atualizar Métricas do Dashboard",
+                "actor": "admin",
+                "reason": "Atualizações agregadas após mudanças em imóveis, leads e negócios.",
+                "priority": "now"
+              }
+            ]
+          },
+          "businessRisks": [
+            "Qualidade das descrições e classificações de IA pode variar e exigir revisão humana.",
+            "Mudanças frequentes de status podem gerar métricas inconsistentes se não houver atualização agregada confiável."
+          ],
+          "missingContext": []
+        },
+        "questions": [],
+        "trace": [
+          "Escopo baseado no prompt inicial e clarificação 1/2: kanban padrão com alternância, MVP com ambos, dashboard básico, roles corretor/gestor/admin, idiomas pt-BR e en."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 34,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

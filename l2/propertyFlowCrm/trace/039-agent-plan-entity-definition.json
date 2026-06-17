@@ -1,0 +1,76 @@
+{
+  "savedAt": "2026-06-17T13:59:07.729Z",
+  "agentName": "agentPlanEntityDefinition",
+  "stepId": 39,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitEntityDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "entityDefinition": {
+            "entityId": "DashboardMetricUpdate",
+            "title": "Atualização de métricas do dashboard",
+            "description": "Evento de atualização agregada após mudanças de imóveis, leads e negócios.",
+            "ownership": "moduleOwned",
+            "kind": "usecaseEntity",
+            "fields": [
+              {
+                "fieldId": "dashboardMetricUpdateId",
+                "type": "uuid",
+                "required": true,
+                "description": "Identificador único da atualização de métricas do dashboard."
+              },
+              {
+                "fieldId": "propertyIds",
+                "type": "Property",
+                "required": false,
+                "description": "Imóveis agregados para cálculo das métricas nesta atualização."
+              },
+              {
+                "fieldId": "leadIds",
+                "type": "Lead",
+                "required": false,
+                "description": "Leads agregados para cálculo das métricas nesta atualização."
+              },
+              {
+                "fieldId": "dealIds",
+                "type": "Deal",
+                "required": false,
+                "description": "Negócios agregados para cálculo das métricas nesta atualização."
+              },
+              {
+                "fieldId": "createdAt",
+                "type": "datetime",
+                "required": true,
+                "description": "Data e hora de criação do evento de atualização."
+              },
+              {
+                "fieldId": "updatedAt",
+                "type": "datetime",
+                "required": true,
+                "description": "Data e hora da última atualização do registro."
+              }
+            ],
+            "rulesApplied": [
+              "ruleMetricRefresh"
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Entidade atual é DashboardMetricUpdate com relações many-to-many com Property, Lead e Deal.",
+          "Incluídos campos de referência correspondentes no lado many.",
+          "Incluídos campos de auditoria por ser entidade persistida."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 43,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

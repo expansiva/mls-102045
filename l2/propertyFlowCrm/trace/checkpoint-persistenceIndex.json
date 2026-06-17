@@ -1,0 +1,240 @@
+{
+  "schemaVersion": "2026-06-06",
+  "artifactType": "indexCheckpoint",
+  "indexName": "persistenceIndex",
+  "moduleName": "propertyFlowCrm",
+  "status": "frozen",
+  "approvedAt": "2026-06-17T14:01:13.493Z",
+  "source": {
+    "agentName": "agentPlanPersistenceIndex",
+    "stepId": 17,
+    "planId": "plan-persistence-index"
+  },
+  "healthReport": {
+    "localErrors": [],
+    "localWarnings": [],
+    "criticErrors": [],
+    "criticWarnings": [],
+    "attempts": 1,
+    "notes": []
+  },
+  "index": {
+    "runId": "provider-tool-call",
+    "stepId": "12-plan-persistence-index",
+    "schemaVersion": "2026-06-02",
+    "status": "ok",
+    "result": {
+      "persistenceScope": {
+        "moduleId": "propertyFlowCrm",
+        "newTablesRequired": true,
+        "metricsTablesRequired": true,
+        "excludedEntities": [
+          {
+            "entityId": "Property",
+            "ownership": "mdmOwned",
+            "reason": "ruleScopeMdmEntity"
+          },
+          {
+            "entityId": "Lead",
+            "ownership": "mdmOwned",
+            "reason": "ruleScopeMdmEntity"
+          },
+          {
+            "entityId": "Visit",
+            "ownership": "mdmOwned",
+            "reason": "ruleScopeMdmEntity"
+          },
+          {
+            "entityId": "Deal",
+            "ownership": "mdmOwned",
+            "reason": "ruleScopeMdmEntity"
+          },
+          {
+            "entityId": "Broker",
+            "ownership": "mdmOwned",
+            "reason": "ruleScopeMdmEntity"
+          }
+        ]
+      },
+      "tables": [
+        {
+          "tableId": "propertyDescriptionRequest",
+          "tableName": "property_description_request",
+          "title": "Solicitação de descrição do imóvel",
+          "purpose": "Registrar pedidos de geração de descrição via IA e seu histórico.",
+          "ownership": "moduleOwned",
+          "rootEntity": "PropertyDescriptionRequest",
+          "sourceEntities": [
+            "PropertyDescriptionRequest"
+          ],
+          "embeddedEntities": [],
+          "persistencePattern": "eventLog",
+          "tableKind": "transactional",
+          "detailsColumnRecommended": true,
+          "priority": "soon",
+          "readsByArtifacts": [
+            "Gerar descrição do imóvel via IA",
+            "Agente de Descrição de Imóvel"
+          ],
+          "writesByArtifacts": [
+            "Gerar descrição do imóvel via IA",
+            "Agente de Descrição de Imóvel"
+          ],
+          "rulesApplied": [
+            "ruleAiHumanReview"
+          ],
+          "reason": "ruleUsecaseEntityEventLog"
+        },
+        {
+          "tableId": "leadQualificationRequest",
+          "tableName": "lead_qualification_request",
+          "title": "Solicitação de qualificação do lead",
+          "purpose": "Registrar solicitações de qualificação de leads via IA e resultados.",
+          "ownership": "moduleOwned",
+          "rootEntity": "LeadQualificationRequest",
+          "sourceEntities": [
+            "LeadQualificationRequest"
+          ],
+          "embeddedEntities": [],
+          "persistencePattern": "eventLog",
+          "tableKind": "transactional",
+          "detailsColumnRecommended": true,
+          "priority": "soon",
+          "readsByArtifacts": [
+            "Classificar lead via IA",
+            "Agente de Temperatura do Lead"
+          ],
+          "writesByArtifacts": [
+            "Classificar lead via IA",
+            "Agente de Temperatura do Lead"
+          ],
+          "rulesApplied": [
+            "ruleAiHumanReview"
+          ],
+          "reason": "ruleUsecaseEntityEventLog"
+        },
+        {
+          "tableId": "visitScheduleRequest",
+          "tableName": "visit_schedule_request",
+          "title": "Solicitação de agendamento de visita",
+          "purpose": "Registrar pedidos de agendamento e alterações de visita.",
+          "ownership": "moduleOwned",
+          "rootEntity": "VisitScheduleRequest",
+          "sourceEntities": [
+            "VisitScheduleRequest"
+          ],
+          "embeddedEntities": [],
+          "persistencePattern": "eventLog",
+          "tableKind": "transactional",
+          "detailsColumnRecommended": true,
+          "priority": "now",
+          "readsByArtifacts": [
+            "Agendar visita",
+            "Atualizar status da visita",
+            "Agendador de Visitas",
+            "Agente de Lembrete de Visitas"
+          ],
+          "writesByArtifacts": [
+            "Agendar visita",
+            "Atualizar status da visita",
+            "Agendador de Visitas"
+          ],
+          "rulesApplied": [
+            "ruleVisitStatus"
+          ],
+          "reason": "ruleUsecaseEntityEventLog"
+        },
+        {
+          "tableId": "leadStageChange",
+          "tableName": "lead_stage_change",
+          "title": "Mudança de etapa do lead",
+          "purpose": "Registrar movimentos do lead no pipeline.",
+          "ownership": "moduleOwned",
+          "rootEntity": "LeadStageChange",
+          "sourceEntities": [
+            "LeadStageChange"
+          ],
+          "embeddedEntities": [],
+          "persistencePattern": "eventLog",
+          "tableKind": "transactional",
+          "detailsColumnRecommended": true,
+          "priority": "now",
+          "readsByArtifacts": [
+            "Mover lead no pipeline",
+            "Pipeline de Leads"
+          ],
+          "writesByArtifacts": [
+            "Mover lead no pipeline"
+          ],
+          "rulesApplied": [
+            "ruleLeadPipelineStages"
+          ],
+          "reason": "ruleUsecaseEntityEventLog"
+        },
+        {
+          "tableId": "dealStageChange",
+          "tableName": "deal_stage_change",
+          "title": "Mudança de etapa do negócio",
+          "purpose": "Registrar avanços e mudanças de etapa do negócio/proposta.",
+          "ownership": "moduleOwned",
+          "rootEntity": "DealStageChange",
+          "sourceEntities": [
+            "DealStageChange"
+          ],
+          "embeddedEntities": [],
+          "persistencePattern": "eventLog",
+          "tableKind": "transactional",
+          "detailsColumnRecommended": true,
+          "priority": "now",
+          "readsByArtifacts": [
+            "Avançar etapa do negócio",
+            "Rastreador de Negócios"
+          ],
+          "writesByArtifacts": [
+            "Avançar etapa do negócio"
+          ],
+          "rulesApplied": [
+            "ruleDealStages"
+          ],
+          "reason": "ruleUsecaseEntityEventLog"
+        },
+        {
+          "tableId": "dashboardMetricUpdate",
+          "tableName": "dashboard_metric_update",
+          "title": "Atualização de métricas do dashboard",
+          "purpose": "Registrar execuções de atualização de métricas administrativas.",
+          "ownership": "moduleOwned",
+          "rootEntity": "DashboardMetricUpdate",
+          "sourceEntities": [
+            "DashboardMetricUpdate"
+          ],
+          "embeddedEntities": [],
+          "persistencePattern": "eventLog",
+          "tableKind": "transactional",
+          "detailsColumnRecommended": true,
+          "priority": "now",
+          "readsByArtifacts": [
+            "Atualizar métricas do dashboard",
+            "Ver dashboard",
+            "Ver dashboard administrativo",
+            "Dashboard de Métricas (Admin)"
+          ],
+          "writesByArtifacts": [
+            "Atualizar métricas do dashboard"
+          ],
+          "rulesApplied": [
+            "ruleMetricRefresh"
+          ],
+          "reason": "ruleUsecaseEntityEventLog"
+        }
+      ]
+    },
+    "questions": [],
+    "trace": [
+      "ruleScopeNewTransactionalTables",
+      "ruleExcludeMdmEntities",
+      "ruleMetricsFlag",
+      "ruleUsecaseEntityEventLog"
+    ]
+  }
+}

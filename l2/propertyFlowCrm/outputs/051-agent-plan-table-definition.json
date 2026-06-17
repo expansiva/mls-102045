@@ -1,0 +1,155 @@
+{
+  "savedAt": "2026-06-17T14:01:30.185Z",
+  "agentName": "agentPlanTableDefinition",
+  "stepId": 51,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitTableDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "tableDefinition": {
+            "tableId": "dealStageChange",
+            "tableName": "deal_stage_change",
+            "moduleId": "propertyFlowCrm",
+            "title": "Mudança de etapa do negócio",
+            "purpose": "Registrar avanços e mudanças de etapa do negócio/proposta.",
+            "ownership": "moduleOwned",
+            "rootEntity": "DealStageChange",
+            "layer": "layer_1_external",
+            "tableKind": "transactional",
+            "columns": [
+              {
+                "name": "deal_stage_change_id",
+                "type": "uuid",
+                "nullable": false,
+                "primaryKey": true,
+                "description": "Identificador único da mudança de etapa do negócio."
+              },
+              {
+                "name": "deal_id",
+                "type": "uuid",
+                "nullable": false,
+                "description": "Negócio alvo cuja etapa será alterada."
+              },
+              {
+                "name": "from_stage",
+                "type": "varchar",
+                "nullable": false,
+                "description": "Etapa anterior do negócio antes da mudança."
+              },
+              {
+                "name": "to_stage",
+                "type": "varchar",
+                "nullable": false,
+                "description": "Nova etapa do negócio após a mudança."
+              },
+              {
+                "name": "status",
+                "type": "varchar",
+                "nullable": false,
+                "default": "active",
+                "description": "Status do registro de mudança de etapa."
+              },
+              {
+                "name": "changed_at",
+                "type": "timestamptz",
+                "nullable": false,
+                "description": "Data e hora em que a mudança de etapa ocorreu."
+              },
+              {
+                "name": "created_at",
+                "type": "timestamptz",
+                "nullable": false,
+                "description": "Data e hora de criação do registro de mudança."
+              },
+              {
+                "name": "updated_at",
+                "type": "timestamptz",
+                "nullable": false,
+                "description": "Data e hora da última atualização do registro de mudança."
+              }
+            ],
+            "primaryKey": [
+              "deal_stage_change_id"
+            ],
+            "foreignRefs": [
+              {
+                "fieldName": "deal_id",
+                "targetEntity": "Deal",
+                "targetOwnership": "mdmOwned",
+                "reason": "Mudança de etapa referencia o negócio alvo."
+              }
+            ],
+            "indexes": [
+              {
+                "indexName": "idx_deal_stage_change_deal_id",
+                "columns": [
+                  "deal_id"
+                ],
+                "reason": "Busca por mudanças por negócio."
+              },
+              {
+                "indexName": "idx_deal_stage_change_changed_at",
+                "columns": [
+                  "changed_at"
+                ],
+                "reason": "Ordenação e filtros por data da mudança."
+              },
+              {
+                "indexName": "idx_deal_stage_change_deal_id_changed_at",
+                "columns": [
+                  "deal_id",
+                  "changed_at"
+                ],
+                "reason": "Timeline de mudanças por negócio."
+              }
+            ],
+            "detailsColumn": {
+              "enabled": true,
+              "columnName": "details",
+              "reason": "Armazenar dados internos adicionais do evento sem impacto em filtros principais."
+            },
+            "metricUpdatePolicy": {
+              "feedsMetrics": true,
+              "updatedByLayer": "layer_3_usecases",
+              "metricRefs": []
+            },
+            "accessPolicy": {
+              "directAccessAllowedFor": [
+                "layer_3_usecases"
+              ],
+              "forbiddenFor": [
+                "pages",
+                "layer_2_controllers",
+                "agents"
+              ]
+            },
+            "rulesApplied": [
+              "ruleDealStages"
+            ]
+          },
+          "defsPlan": {
+            "fileName": "tables/dealStageChange.defs.ts",
+            "exportName": "dealStageChangeTableDefinition",
+            "saveAsDefs": true
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Tabela deal_stage_change definida como log transacional de mudanças de etapa do negócio.",
+          "Colunas principais incluem chave primária, referência ao negócio, etapas, status e datas para filtros e auditoria.",
+          "details habilitado para dados adicionais do evento sem afetar consultas principais.",
+          "Índices planejados para rastrear mudanças por negócio e por data."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 39,
+    "interaction": null,
+    "nextSteps": null
+  }
+}
