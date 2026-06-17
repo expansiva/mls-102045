@@ -1,0 +1,41 @@
+{
+  "savedAt": "2026-06-17T14:13:24.704Z",
+  "agentName": "agentPlanUsecaseDefinition",
+  "stepId": 55,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitUsecaseDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "usecaseDefinition": {
+            "usecaseId": "atualizarMetricasDashboard",
+            "commands": [
+              {
+                "commandId": "atualizarMetricasDashboard",
+                "input": [],
+                "output": [
+                  {
+                    "name": "dashboardMetricEntity",
+                    "type": "dashboardMetricEntity"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Definido comando principal para recalcular e persistir métricas do dashboard sem parâmetros de entrada."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 43,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

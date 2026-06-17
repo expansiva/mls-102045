@@ -1,0 +1,142 @@
+{
+  "savedAt": "2026-06-17T14:12:36.707Z",
+  "agentName": "agentCriticPlanIndex",
+  "stepId": 51,
+  "planning": {
+    "planId": "plan-index-critic:usecasePlan:1",
+    "dependsOn": [
+      "plan-usecase-entities"
+    ],
+    "executionMode": "sequential",
+    "executionHost": "client"
+  },
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitPlanIndexCritique",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "approved": true,
+          "errors": [],
+          "warnings": [
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase criarImovel writes metric table propertyStatusMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[2]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase criarImovel writes metric table brokerActivityMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[2]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase atualizarImovel writes metric table propertyStatusMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[3]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase atualizarImovel writes metric table brokerActivityMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[3]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase criarLead writes metric table leadPipelineMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[6]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase criarLead writes metric table brokerActivityMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[6]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase atualizarLead writes metric table leadPipelineMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[7]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase atualizarLead writes metric table brokerActivityMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[7]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase criarNegocio writes metric table dealPipelineMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[14]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase criarNegocio writes metric table brokerActivityMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[14]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase avancarEtapaNegocio writes metric table dealPipelineMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[15]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase avancarEtapaNegocio writes metric table brokerActivityMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[15]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase solicitarDescricaoImovel writes metric table brokerActivityMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[18]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase solicitarQualificacaoLead writes metric table brokerActivityMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[21]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase moverEtapaLead writes metric table leadPipelineMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[24]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase moverEtapaLead writes metric table brokerActivityMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[24]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase atualizarMetricasDashboard writes metric table propertyStatusMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[32]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase atualizarMetricasDashboard writes metric table leadPipelineMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[32]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase atualizarMetricasDashboard writes metric table dealPipelineMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[32]"
+            },
+            {
+              "code": "usecase.metricWrite.unjustified",
+              "message": "usecase atualizarMetricasDashboard writes metric table brokerActivityMetrics but does not map to any of its measures/sourceWriteEvents; remove the write or propose the missing measure in the metrics index",
+              "path": "usecases[32]"
+            }
+          ],
+          "notes": []
+        },
+        "questions": [],
+        "trace": [
+          "Checked all module-owned tables for write coverage by usecases",
+          "Checked read coverage (empty writesTables) for every written table",
+          "Checked lifecycle transition coverage for all entities",
+          "Verified layer_3_usecases access layer_1_external tables only",
+          "Confirmed deterministic warnings about unjustified metric writes; no errors found"
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 43,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "savedAt": "2026-06-17T14:13:18.722Z",
+  "agentName": "agentPlanUsecaseDefinition",
+  "stepId": 54,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitUsecaseDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "usecaseDefinition": {
+            "usecaseId": "obterMudancaEtapaNegocio",
+            "commands": [
+              {
+                "commandId": "obterMudancaEtapaNegocio",
+                "input": [
+                  {
+                    "name": "dealStageChangeId",
+                    "type": "string",
+                    "required": true
+                  }
+                ],
+                "output": [
+                  {
+                    "name": "dealStageChange",
+                    "type": "dealStageChangeEntity"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Definido comando único para recuperar detalhes de mudança de etapa do negócio.",
+          "Entrada inclui identificador da mudança de etapa.",
+          "Saída retorna entidade de mudança de etapa."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 60,
+    "interaction": null,
+    "nextSteps": null
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "savedAt": "2026-06-17T14:16:30.367Z",
+  "agentName": "agentPlanWorkflowDefinition",
+  "stepId": 56,
+  "planning": null,
+  "status": "waiting_after_prompt",
+  "payload": {
+    "type": "flexible",
+    "result": {
+      "toolName": "submitWorkflowDefinitionPlan",
+      "arguments": {
+        "status": "ok",
+        "result": {
+          "workflowDefinition": {
+            "workflowId": "propertyDescriptionRequestFlow",
+            "title": "Descrição de Imóvel via IA",
+            "purpose": "Gerenciar solicitações de descrição de imóveis com retorno da IA e revisão humana.",
+            "executionMode": "automation",
+            "createsTask": false,
+            "taskConfig": {
+              "taskTitleTemplate": "",
+              "assigneeRules": [],
+              "slaRules": [],
+              "taskRoomRequired": false
+            },
+            "actors": [
+              "corretor"
+            ],
+            "states": [
+              {
+                "stateId": "requestCreated",
+                "description": "Solicitação criada e registrada com bullets informados."
+              },
+              {
+                "stateId": "aiDescriptionReady",
+                "description": "Descrição da IA registrada e aguardando revisão humana."
+              },
+              {
+                "stateId": "reviewApproved",
+                "description": "Descrição aprovada pelo corretor."
+              },
+              {
+                "stateId": "reviewRejected",
+                "description": "Descrição rejeitada pelo corretor."
+              }
+            ],
+            "transitions": [
+              {
+                "from": "requestCreated",
+                "to": "aiDescriptionReady",
+                "trigger": "descricaoAiRecebida",
+                "actor": "corretor",
+                "conditions": [],
+                "actions": [
+                  "set PropertyDescriptionRequest.aiDescription",
+                  "set PropertyDescriptionRequest.reviewStatus=pendente",
+                  "set PropertyDescriptionRequest.updatedAt"
+                ],
+                "rulesApplied": [
+                  "ruleAiHumanReview"
+                ]
+              },
+              {
+                "from": "aiDescriptionReady",
+                "to": "reviewApproved",
+                "trigger": "aprovarDescricao",
+                "actor": "corretor",
+                "conditions": [],
+                "actions": [
+                  "set PropertyDescriptionRequest.reviewStatus=aprovada",
+                  "set PropertyDescriptionRequest.humanReviewNotes",
+                  "set PropertyDescriptionRequest.updatedAt"
+                ],
+                "rulesApplied": [
+                  "ruleAiHumanReview"
+                ]
+              },
+              {
+                "from": "aiDescriptionReady",
+                "to": "reviewRejected",
+                "trigger": "rejeitarDescricao",
+                "actor": "corretor",
+                "conditions": [],
+                "actions": [
+                  "set PropertyDescriptionRequest.reviewStatus=rejeitada",
+                  "set PropertyDescriptionRequest.humanReviewNotes",
+                  "set PropertyDescriptionRequest.updatedAt"
+                ],
+                "rulesApplied": [
+                  "ruleAiHumanReview"
+                ]
+              }
+            ],
+            "requiredEntities": [
+              "PropertyDescriptionRequest"
+            ],
+            "persistenceRefs": [
+              "propertyDescriptionRequest"
+            ],
+            "usecaseRefs": [
+              "listarSolicitacoesDescricaoImovel",
+              "obterSolicitacaoDescricaoImovel",
+              "solicitarDescricaoImovel"
+            ],
+            "metricRefs": [],
+            "userActions": [
+              "solicitarDescricaoImovel",
+              "verSolicitacaoDescricaoImovel",
+              "aprovarDescricaoImovel",
+              "rejeitarDescricaoImovel"
+            ],
+            "relatedPages": [],
+            "relatedAgents": [],
+            "relatedPlugins": [],
+            "rulesApplied": [
+              "ruleAiHumanReview"
+            ],
+            "implementationSuggestions": [
+              {
+                "suggestionId": "manualEditStep",
+                "title": "Etapa de edição manual antes de publicar",
+                "priority": "soon",
+                "description": "Adicionar uma etapa explícita de edição manual do texto antes da aprovação final, mantendo a revisão humana obrigatória.",
+                "tradeoff": "Aumenta o tempo total do fluxo em troca de maior qualidade do conteúdo."
+              },
+              {
+                "suggestionId": "noTaskAutomation",
+                "title": "Manter fluxo sem criação de tarefa",
+                "priority": "now",
+                "description": "Como o fluxo é automático e conduzido pelo corretor em listas e detalhes, não criar tarefas dedicadas; registrar status diretamente na solicitação.",
+                "tradeoff": "Sem tarefas, o acompanhamento depende de filtros e notificações na lista de solicitações."
+              }
+            ],
+            "workflowScope": "singleModule",
+            "moduleRefs": [
+              "propertyFlowCrm"
+            ],
+            "pageRefsByModule": [],
+            "entityRefsByModule": [
+              {
+                "moduleId": "propertyFlowCrm",
+                "entity": "PropertyDescriptionRequest"
+              }
+            ],
+            "writesArtifacts": [
+              {
+                "moduleId": "propertyFlowCrm",
+                "artifactType": "workflow",
+                "artifactId": "propertyDescriptionRequestFlow"
+              }
+            ]
+          },
+          "defsPlan": {
+            "fileName": "workflows/propertyDescriptionRequestFlow.defs.ts",
+            "exportName": "propertyDescriptionRequestFlowDef",
+            "saveAsDefs": true
+          }
+        },
+        "questions": [],
+        "trace": [
+          "Fluxo definido apenas para PropertyDescriptionRequest, mantendo execução automation e createsTask=false conforme índice.",
+          "Transições atualizam somente campos existentes de PropertyDescriptionRequest e aplicam ruleAiHumanReview.",
+          "UsecaseRefs limitados aos casos de uso listados no índice e relacionados à solicitação; nenhuma atualização de Property foi incluída para evitar escrita em MDM sem campo de descrição."
+        ]
+      }
+    },
+    "status": "completed",
+    "stepId": 60,
+    "interaction": null,
+    "nextSteps": null
+  }
+}
