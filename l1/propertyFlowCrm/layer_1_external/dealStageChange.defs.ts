@@ -142,3 +142,20 @@ export const dealStageChangeTableDefinition = {
 } as const;
 
 export default dealStageChangeTableDefinition;
+
+export const pipeline = [
+  {
+    "id": "dealStageChange__layer_1_external",
+    "type": "layer_1_external",
+    "outputPath": "_102045_/l1/propertyFlowCrm/layer_1_external/dealStageChange.ts",
+    "defPath": "_102045_/l1/propertyFlowCrm/layer_1_external/dealStageChange.defs.ts",
+    "dependsFiles": [],
+    "dependsOn": [],
+    "skills": [
+      "_102021_/l2/skills/layer_1.md",
+      "_102034_.d.ts"
+    ],
+    "afterSaveBackEnd": "_102021_/l2/agentMaterializeSolution/registerBackEnd.ts?registerLayer1",
+    "agent": "agentMaterializeGen"
+  }
+] as const;

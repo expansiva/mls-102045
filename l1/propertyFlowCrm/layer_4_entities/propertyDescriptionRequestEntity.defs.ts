@@ -94,3 +94,21 @@ export const entity = {
 } as const;
 
 export default entity;
+
+export const pipeline = [
+  {
+    "id": "propertyDescriptionRequestEntity__layer_4_entities",
+    "type": "layer_4_entities",
+    "outputPath": "_102045_/l1/propertyFlowCrm/layer_4_entities/propertyDescriptionRequestEntity.ts",
+    "defPath": "_102045_/l1/propertyFlowCrm/layer_4_entities/propertyDescriptionRequestEntity.defs.ts",
+    "dependsFiles": [
+      "_102045_/l1/propertyFlowCrm/layer_1_external/propertyDescriptionRequest.d.ts"
+    ],
+    "dependsOn": [],
+    "skills": [
+      "_102021_/l2/skills/layer_4.md",
+      "_102034_.d.ts"
+    ],
+    "agent": "agentMaterializeGen"
+  }
+] as const;

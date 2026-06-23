@@ -83,3 +83,21 @@ export const entity = {
 } as const;
 
 export default entity;
+
+export const pipeline = [
+  {
+    "id": "dealStageChangeEntity__layer_4_entities",
+    "type": "layer_4_entities",
+    "outputPath": "_102045_/l1/propertyFlowCrm/layer_4_entities/dealStageChangeEntity.ts",
+    "defPath": "_102045_/l1/propertyFlowCrm/layer_4_entities/dealStageChangeEntity.defs.ts",
+    "dependsFiles": [
+      "_102045_/l1/propertyFlowCrm/layer_1_external/dealStageChange.d.ts"
+    ],
+    "dependsOn": [],
+    "skills": [
+      "_102021_/l2/skills/layer_4.md",
+      "_102034_.d.ts"
+    ],
+    "agent": "agentMaterializeGen"
+  }
+] as const;

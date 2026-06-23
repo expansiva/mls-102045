@@ -129,3 +129,25 @@ export const entity = {
 } as const;
 
 export default entity;
+
+export const pipeline = [
+  {
+    "id": "dashboardMetricEntity__layer_4_entities",
+    "type": "layer_4_entities",
+    "outputPath": "_102045_/l1/propertyFlowCrm/layer_4_entities/dashboardMetricEntity.ts",
+    "defPath": "_102045_/l1/propertyFlowCrm/layer_4_entities/dashboardMetricEntity.defs.ts",
+    "dependsFiles": [
+      "_102045_/l1/propertyFlowCrm/layer_1_external/dashboardMetricUpdate.d.ts",
+      "_102045_/l1/propertyFlowCrm/layer_1_external/propertyStatusMetrics.d.ts",
+      "_102045_/l1/propertyFlowCrm/layer_1_external/leadPipelineMetrics.d.ts",
+      "_102045_/l1/propertyFlowCrm/layer_1_external/dealPipelineMetrics.d.ts",
+      "_102045_/l1/propertyFlowCrm/layer_1_external/brokerActivityMetrics.d.ts"
+    ],
+    "dependsOn": [],
+    "skills": [
+      "_102021_/l2/skills/layer_4.md",
+      "_102034_.d.ts"
+    ],
+    "agent": "agentMaterializeGen"
+  }
+] as const;

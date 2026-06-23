@@ -158,3 +158,20 @@ export const leadQualificationRequestTableDefinition = {
 } as const;
 
 export default leadQualificationRequestTableDefinition;
+
+export const pipeline = [
+  {
+    "id": "leadQualificationRequest__layer_1_external",
+    "type": "layer_1_external",
+    "outputPath": "_102045_/l1/propertyFlowCrm/layer_1_external/leadQualificationRequest.ts",
+    "defPath": "_102045_/l1/propertyFlowCrm/layer_1_external/leadQualificationRequest.defs.ts",
+    "dependsFiles": [],
+    "dependsOn": [],
+    "skills": [
+      "_102021_/l2/skills/layer_1.md",
+      "_102034_.d.ts"
+    ],
+    "afterSaveBackEnd": "_102021_/l2/agentMaterializeSolution/registerBackEnd.ts?registerLayer1",
+    "agent": "agentMaterializeGen"
+  }
+] as const;
