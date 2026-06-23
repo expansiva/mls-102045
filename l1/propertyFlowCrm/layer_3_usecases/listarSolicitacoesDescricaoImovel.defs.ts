@@ -38,3 +38,24 @@ export const useCase = {
 } as const;
 
 export default useCase;
+
+export const pipeline = [
+  {
+    "id": "listarSolicitacoesDescricaoImovel__layer_3_usecases",
+    "type": "layer_3_usecases",
+    "outputPath": "_102045_/l1/propertyFlowCrm/layer_3_usecases/listarSolicitacoesDescricaoImovel.ts",
+    "defPath": "_102045_/l1/propertyFlowCrm/layer_3_usecases/listarSolicitacoesDescricaoImovel.defs.ts",
+    "dependsFiles": [
+      "_102045_/l1/propertyFlowCrm/layer_4_entities/propertyDescriptionRequestEntity.d.ts"
+    ],
+    "dependsOn": [],
+    "skills": [
+      "_102021_/l2/skills/layer_3.md"
+    ],
+    "rulesPath": "_102045_/l5/propertyFlowCrm/rules.defs.ts",
+    "rulesApplied": [
+      "ruleAiHumanReview"
+    ],
+    "agent": "agentMaterializeGen"
+  }
+] as const;

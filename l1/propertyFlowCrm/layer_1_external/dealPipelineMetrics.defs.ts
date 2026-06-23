@@ -223,3 +223,20 @@ export const dealPipelineMetricsMetricTableDefinition = {
 } as const;
 
 export default dealPipelineMetricsMetricTableDefinition;
+
+export const pipeline = [
+  {
+    "id": "dealPipelineMetrics__layer_1_external",
+    "type": "layer_1_external",
+    "outputPath": "_102045_/l1/propertyFlowCrm/layer_1_external/dealPipelineMetrics.ts",
+    "defPath": "_102045_/l1/propertyFlowCrm/layer_1_external/dealPipelineMetrics.defs.ts",
+    "dependsFiles": [],
+    "dependsOn": [],
+    "skills": [
+      "_102021_/l2/skills/layer_1.md",
+      "_102034_.d.ts"
+    ],
+    "afterSaveBackEnd": "_102021_/l2/agentMaterializeSolution/registerBackEnd.ts?registerLayer1",
+    "agent": "agentMaterializeGen"
+  }
+] as const;

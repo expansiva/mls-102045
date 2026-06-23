@@ -190,3 +190,20 @@ export const leadPipelineMetricsTableDefinition = {
 } as const;
 
 export default leadPipelineMetricsTableDefinition;
+
+export const pipeline = [
+  {
+    "id": "leadPipelineMetrics__layer_1_external",
+    "type": "layer_1_external",
+    "outputPath": "_102045_/l1/propertyFlowCrm/layer_1_external/leadPipelineMetrics.ts",
+    "defPath": "_102045_/l1/propertyFlowCrm/layer_1_external/leadPipelineMetrics.defs.ts",
+    "dependsFiles": [],
+    "dependsOn": [],
+    "skills": [
+      "_102021_/l2/skills/layer_1.md",
+      "_102034_.d.ts"
+    ],
+    "afterSaveBackEnd": "_102021_/l2/agentMaterializeSolution/registerBackEnd.ts?registerLayer1",
+    "agent": "agentMaterializeGen"
+  }
+] as const;
