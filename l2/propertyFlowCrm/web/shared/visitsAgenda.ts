@@ -2,7 +2,7 @@
 
 import { CollabLitElement } from '/_102029_/l2/collabLitElement.js';
 import { property } from 'lit/decorators.js';
-import type { AuraNormalizedError } from '/_102029_/l2/contracts/bootstrap.js';
+import type { MasterFrontendNormalizedError } from '/_102029_/l2/contracts/bootstrap.js';
 import type { BffClientOptions } from '/_102029_/l2/bffClient.js';
 import { execBff } from '/_102029_/l2/bffClient.js';
 import {
@@ -164,7 +164,7 @@ export class VisitsAgendaVisitsAgendaBase extends CollabLitElement {
     );
     if (!response.ok || !response.data) {
       if (options?.mode === 'blocking') {
-        throw (response.error ?? { code: 'UNEXPECTED_ERROR', message: this.msg.couldNotLoad }) satisfies AuraNormalizedError;
+        throw (response.error ?? { code: 'UNEXPECTED_ERROR', message: this.msg.couldNotLoad }) satisfies MasterFrontendNormalizedError;
       }
       this.status = this.msg.couldNotLoad;
       return;
@@ -194,7 +194,7 @@ export class VisitsAgendaVisitsAgendaBase extends CollabLitElement {
     );
     if (!response.ok || !response.data) {
       if (options?.mode === 'blocking') {
-        throw (response.error ?? { code: 'UNEXPECTED_ERROR', message: this.msg.couldNotLoad }) satisfies AuraNormalizedError;
+        throw (response.error ?? { code: 'UNEXPECTED_ERROR', message: this.msg.couldNotLoad }) satisfies MasterFrontendNormalizedError;
       }
       this.status = this.msg.couldNotLoad;
       return;
@@ -235,7 +235,7 @@ export class VisitsAgendaVisitsAgendaBase extends CollabLitElement {
     );
     if (!response.ok || !response.data) {
       if (options?.mode === 'blocking') {
-        throw (response.error ?? { code: 'UNEXPECTED_ERROR', message: this.msg.couldNotLoad }) satisfies AuraNormalizedError;
+        throw (response.error ?? { code: 'UNEXPECTED_ERROR', message: this.msg.couldNotLoad }) satisfies MasterFrontendNormalizedError;
       }
       this.status = this.msg.couldNotLoad;
       return;
