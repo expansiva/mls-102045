@@ -1,0 +1,30 @@
+/// <mls fileReference="_102045_/l1/cafeFlow/layer_1_external/adapters/persistence/order.ts" enhancement="_blank"/>
+import type { TableDefinition } from '/_102034_/l1/server/layer_1_external/persistence/contracts.js';
+
+export const orderTableDef: TableDefinition = {
+  moduleId: 'cafeFlow',
+  repositoryName: 'cafeFlowOrder',
+  tableName: 'order',
+  purpose: 'transacao',
+  description:
+    'Pedidos. Campos não indexados (tableNumber, priority, priorityReason, receivedAt, inPreparationAt, readyAt, deliveredAt, updatedAt) e coleção filha OrderItem em details (JSONB).',
+  backupHot: false,
+  storageProfile: 'postgres',
+  writeMode: 'sync',
+  columns: [
+    { name: 'order_id', postgresType: 'TEXT', description: 'PK – unique order identifier' },
+    { name: 'shift_id', postgresType: 'TEXT', description: 'FK to shift' },
+    { name: 'status', postgresType: 'TEXT', description: 'order lifecycle status' },
+    { name: 'order_type', postgresType: 'TEXT', description: 'order type discriminator' },
+    { name: 'created_at', postgresType: 'TIMESTAMPTZ', defaultSql: 'NOW()', description: 'ordering timestamp' },
+    { name: 'details', postgresType: 'JSONB', description: 'tableNumber, priority, priorityReason, receivedAt, inPreparationAt, readyAt, deliveredAt, updatedAt + child collection OrderItem' },
+  ],
+  primaryKey: ['order_id'],
+  indexes: [
+    { name: 'idx_order_shift_id', columns: ['shift_id'] },
+    { name: 'idx_order_status', columns: ['status'] },
+    { name: 'idx_order_order_type', columns: ['order_type'] },
+    { name: 'idx_order_created_at', columns: ['created_at'] },
+  ],
+  version: 1,
+};

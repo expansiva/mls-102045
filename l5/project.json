@@ -1,5 +1,12 @@
 {
   "orgName": "expansiva",
+  "designSystems": [
+    {
+      "dsIndex": "0",
+      "dsName": "localDesignSystem",
+      "widgetIOName": "_100554_configDsDefault"
+    }
+  ],
   "languages": [
     {
       "language": "en",
@@ -14,45 +21,153 @@
   "servicesConfigEnabled": false,
   "modules": [
     {
-      "moduleName": "propertyFlowCrm",
-      "module": {
-        "moduleName": "propertyFlowCrm",
-        "purpose": "Centralizar gestão de imóveis, leads, visitas e negócios para corretores e imobiliárias, com suporte a IA e métricas básicas.",
-        "businessDomain": "CRM imobiliário",
-        "languages": [
-          "pt-BR",
-          "en"
-        ],
-        "visualStyle": {
-          "tone": "Moderno e clean, com foco em usabilidade",
-          "layout": "Painéis com cards, listas e kanban; calendário para visitas; navegação lateral simples",
-          "palette": [
-            "#0F172A",
-            "#2563EB",
-            "#22C55E",
-            "#F59E0B",
-            "#F8FAFC"
-          ]
-        }
+      "moduleName": "cafeFlow",
+      "backend": {
+        "backendControllers": "./_102045_/l1/cafeFlow/layer_1_external/adapters/http/controllers",
+        "persistence": {
+          "tableDefsDir": "./_102045_/l1/cafeFlow/layer_1_external/adapters/persistence"
+        },
+        "routeKeys": [
+          "cafeFlow.browseStockItems.browseStockItems",
+          "cafeFlow.manageStockItem.manageStockItem",
+          "cafeFlow.menuItemLifecycle.browseMenuItems",
+          "cafeFlow.menuItemLifecycle.manageMenuItem",
+          "cafeFlow.orderLifecycle.createOrder",
+          "cafeFlow.orderLifecycle.deliverOrder",
+          "cafeFlow.orderLifecycle.updateOrderStatus",
+          "cafeFlow.orderLifecycle.viewKitchenBoard",
+          "cafeFlow.orderLifecycle.viewOrderBoard",
+          "cafeFlow.requestAiPromoSuggestions.requestAiPromoSuggestions",
+          "cafeFlow.requestAiSalesSummary.requestAiSalesSummary",
+          "cafeFlow.shiftLifecycle.closeShift",
+          "cafeFlow.shiftLifecycle.openShift",
+          "cafeFlow.shiftLifecycle.viewShiftClosingReport",
+          "cafeFlow.viewDashboard.viewDashboard"
+        ]
       }
-    }
-  ],
-  "dependencies": [
-    {
-      "projectId": "102034",
-      "kind": "mdm-infrastructure"
     }
   ],
   "layouts": {
     "1": {
-      "name": "standard",
-      "skill": "_102020_/l2/agentMaterializeSolution/skills/genPageRender.ts"
+      "name": "Default"
+    },
+    "2": {
+      "name": "Ux 2"
+    },
+    "3": {
+      "name": "Ux 3"
     }
   },
-  "designSystems": {
-    "1": {
-      "name": "default",
-      "skill": "_102020_/l2/agentMaterializeSolution/skills/genPageDS.ts"
+  "dependencies": [
+    {
+      "projectId": "102034",
+      "kind": "mdm-infrastructure"
+    },
+    {
+      "projectId": "102041",
+      "kind": "studio-header-navs"
+    },
+    {
+      "projectId": "102020",
+      "kind": "studio-runtime"
+    },
+    {
+      "projectId": "100554",
+      "kind": "studio-runtime"
+    },
+    {
+      "projectId": "100555",
+      "kind": "studio-runtime"
+    },
+    {
+      "projectId": "102025",
+      "kind": "studio-runtime"
+    }
+  ],
+  "customize": {
+    "clientShell": {
+      "mode": "spa",
+      "activeProfile": "production",
+      "regions": {
+        "header": {
+          "activeProfile": "default",
+          "profiles": {
+            "default": {
+              "renderer": {
+                "entrypoint": "/_102033_/l2/shared/layout/aura-header.js",
+                "source": "../mls-102033/l2/shared/layout/aura-header.ts",
+                "tag": "collab-aura-header"
+              },
+              "brand": {
+                "logoUrl": "/_102045_/l2/cafeFlow/logo.svg",
+                "logoAlt": "Cafe Flow",
+                "title": "Cafe Flow",
+                "subtitle": "Gestão do café",
+                "href": "/"
+              }
+            },
+            "studio": {
+              "renderer": {
+                "entrypoint": "/_102033_/l2/shared/layout/aura-studio-header.js",
+                "source": "../mls-102033/l2/shared/layout/aura-studio-header.ts",
+                "tag": "collab-aura-studio-header"
+              }
+            }
+          }
+        },
+        "aside": {
+          "activeProfile": "default",
+          "profiles": {
+            "default": {
+              "renderer": {
+                "entrypoint": "/_102033_/l2/shared/layout/aura-aside.js",
+                "source": "../mls-102033/l2/shared/layout/aura-aside.ts",
+                "tag": "collab-aura-aside"
+              },
+              "widthPx": 375
+            },
+            "messages": {
+              "renderer": {
+                "entrypoint": "/_102025_/l2/collabMessages.js",
+                "tag": "collab-messages-102025"
+              },
+              "widthPx": 375
+            },
+            "studio": {
+              "renderer": {
+                "entrypoint": "/_102033_/l2/shared/layout/aura-studio-aside.js",
+                "source": "../mls-102033/l2/shared/layout/aura-studio-aside.ts",
+                "tag": "collab-aura-studio-aside"
+              },
+              "widthPx": 375
+            }
+          }
+        },
+        "content": {
+          "activeProfile": "default",
+          "profiles": {
+            "studio": {
+              "renderer": {
+                "entrypoint": "/_102033_/l2/shared/layout/aura-service-host.js",
+                "source": "../mls-102033/l2/shared/layout/aura-service-host.ts",
+                "tag": "collab-aura-service-host"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "masters": {
+    "frontend": {
+      "masterProject": 102020,
+      "agentFolder": "agentChangeFrontend",
+      "runtimeProject": 102033
+    },
+    "backend": {
+      "masterProject": 102021,
+      "agentFolder": "agentChangeBackend",
+      "runtimeProject": 102034
     }
   }
 }
