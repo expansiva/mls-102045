@@ -211,7 +211,7 @@ export const pipeline = [
       "_102045_/l2/cafeFlow/web/shared/kitchenQueue.defs.ts",
       "_102045_/l2/cafeFlow/web/shared/kitchenQueue.ts",
       "_102045_/l2/cafeFlow/web/contracts/kitchenQueue.defs.ts",
-      "_102045_/l2/cafeFlow/web/contracts/kitchenQueue.ts",
+      "_102045_/l2/cafeFlow/web/contracts/kitchenQueue.ts"
     ],
     "dependsOn": [
       "kitchenQueue__l2_shared"

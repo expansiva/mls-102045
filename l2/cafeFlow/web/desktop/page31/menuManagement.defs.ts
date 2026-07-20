@@ -282,7 +282,7 @@ export const pipeline = [
       "_102045_/l2/cafeFlow/web/shared/menuManagement.defs.ts",
       "_102045_/l2/cafeFlow/web/shared/menuManagement.ts",
       "_102045_/l2/cafeFlow/web/contracts/menuManagement.defs.ts",
-      "_102045_/l2/cafeFlow/web/contracts/menuManagement.ts",
+      "_102045_/l2/cafeFlow/web/contracts/menuManagement.ts"
     ],
     "dependsOn": [
       "menuManagement__l2_shared"

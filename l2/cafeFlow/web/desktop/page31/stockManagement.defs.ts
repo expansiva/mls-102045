@@ -238,7 +238,7 @@ export const pipeline = [
       "_102045_/l2/cafeFlow/web/shared/stockManagement.defs.ts",
       "_102045_/l2/cafeFlow/web/shared/stockManagement.ts",
       "_102045_/l2/cafeFlow/web/contracts/stockManagement.defs.ts",
-      "_102045_/l2/cafeFlow/web/contracts/stockManagement.ts",
+      "_102045_/l2/cafeFlow/web/contracts/stockManagement.ts"
     ],
     "dependsOn": [
       "stockManagement__l2_shared"

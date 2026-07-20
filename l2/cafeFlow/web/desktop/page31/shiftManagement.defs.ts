@@ -289,7 +289,7 @@ export const pipeline = [
       "_102045_/l2/cafeFlow/web/shared/shiftManagement.defs.ts",
       "_102045_/l2/cafeFlow/web/shared/shiftManagement.ts",
       "_102045_/l2/cafeFlow/web/contracts/shiftManagement.defs.ts",
-      "_102045_/l2/cafeFlow/web/contracts/shiftManagement.ts",
+      "_102045_/l2/cafeFlow/web/contracts/shiftManagement.ts"
     ],
     "dependsOn": [
       "shiftManagement__l2_shared"

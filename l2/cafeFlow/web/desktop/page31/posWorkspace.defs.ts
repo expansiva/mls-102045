@@ -310,8 +310,7 @@ export const pipeline = [
       "_102045_/l2/cafeFlow/web/shared/posWorkspace.defs.ts",
       "_102045_/l2/cafeFlow/web/shared/posWorkspace.ts",
       "_102045_/l2/cafeFlow/web/contracts/posWorkspace.defs.ts",
-      "_102045_/l2/cafeFlow/web/contracts/posWorkspace.ts",
- 
+      "_102045_/l2/cafeFlow/web/contracts/posWorkspace.ts"
     ],
     "dependsOn": [
       "posWorkspace__l2_shared"

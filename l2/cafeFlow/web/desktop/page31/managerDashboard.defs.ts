@@ -270,7 +270,7 @@ export const pipeline = [
       "_102045_/l2/cafeFlow/web/shared/managerDashboard.defs.ts",
       "_102045_/l2/cafeFlow/web/shared/managerDashboard.ts",
       "_102045_/l2/cafeFlow/web/contracts/managerDashboard.defs.ts",
-      "_102045_/l2/cafeFlow/web/contracts/managerDashboard.ts",
+      "_102045_/l2/cafeFlow/web/contracts/managerDashboard.ts"
     ],
     "dependsOn": [
       "managerDashboard__l2_shared"
