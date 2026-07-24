@@ -1,0 +1,14 @@
+{
+  "name": "102045",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "buildCI": "node ../scripts/buildCI/buildCI.mjs 102045"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mls-102020": "git+https://github.com/expansiva/mls-102020.git",
+    "mls-102027": "git+https://github.com/expansiva/mls-102027.git"
+  }
+}
