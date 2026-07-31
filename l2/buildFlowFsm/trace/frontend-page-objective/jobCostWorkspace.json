@@ -1,0 +1,44 @@
+{
+  "savedAt": "2026-07-31T06:05:50.525Z",
+  "pageId": "jobCostWorkspace",
+  "genome": "page21",
+  "objective": {
+    "actor": "Billing staff",
+    "jobToBeDone": "Review the complete accumulated job cost breakdown for a specific project — labor, materials, and change orders — against the approved budget before preparing billing documents.",
+    "primaryDecision": "Is the project's total actual cost within budget, and are the cost components (labor, material, change orders) accurate enough to proceed with billing?",
+    "decisiveInfo": [
+      "name",
+      "clientName",
+      "status",
+      "budget",
+      "laborCost",
+      "materialCost",
+      "changeOrderCost",
+      "totalCost",
+      "budgetVariance",
+      "startDate",
+      "endDate"
+    ],
+    "usageFrequency": "Occasional / back-office — triggered per billing cycle for a specific project, navigated to via route param (projectId).",
+    "criticalActions": [
+      {
+        "action": "viewJobCostSummary",
+        "presentation": "summary-first — auto-loads on page entry via route param; cost figures displayed as prominent metric cards with budget variance highlighted; no manual trigger needed"
+      }
+    ],
+    "informationHierarchy": [
+      "1. Project identity header: name, client, status, date range",
+      "2. Budget vs. total cost variance — the decisive number (prominent, visually flagged if over budget)",
+      "3. Cost breakdown: labor cost, material cost, change order cost",
+      "4. Supporting context: budget amount, project lifecycle status"
+    ],
+    "successCriteria": "Billing staff can immediately see whether the project is over or under budget and understand which cost category is driving the variance, without navigating away or performing any manual input.",
+    "antiPatterns": [
+      "Exposing projectId as a typed input — it is a route param, always context-derived",
+      "Rendering cost fields as editable inputs — all costs are computed outputs",
+      "Showing status as a <select> — it is a read-only lifecycle output",
+      "Splitting the summary into multiple separate form sections",
+      "Hiding the budget variance — it is the most decisive number and must lead"
+    ]
+  }
+}

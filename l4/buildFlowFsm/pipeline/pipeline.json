@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "2026-07-05-ns-pipeline-v1",
+  "flowId": "agentNewSolution",
+  "moduleName": "buildFlowFsm",
+  "createdAt": "2026-07-31T04:45:27.743Z",
+  "updatedAt": "2026-07-31T05:04:24.838Z",
+  "steps": {
+    "e1-draft": {
+      "status": "approved",
+      "updatedAt": "2026-07-31T04:45:27.751Z",
+      "dirty": false,
+      "inputsHash": "djb2:96f2d749",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-31T04:45:27.744Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-31T04:45:27.751Z",
+      "approvedBy": "auto"
+    },
+    "checkpoint-draft": {
+      "status": "pending",
+      "updatedAt": "2026-07-31T04:45:27.743Z"
+    },
+    "e2-journeys": {
+      "status": "approved",
+      "updatedAt": "2026-07-31T04:48:16.731Z",
+      "dirty": false,
+      "inputsHash": "djb2:1f1314d1",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-31T04:48:16.230Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-31T04:48:16.731Z",
+      "approvedBy": "human",
+      "artifactVersion": 1
+    },
+    "checkpoint-journeys": {
+      "status": "approved",
+      "updatedAt": "2026-07-31T04:48:16.731Z",
+      "dirty": false,
+      "approvedAt": "2026-07-31T04:48:16.731Z",
+      "approvedBy": "human",
+      "artifactVersion": 1
+    },
+    "e3-ontology": {
+      "status": "approved",
+      "updatedAt": "2026-07-31T04:51:14.092Z",
+      "dirty": false,
+      "inputsHash": "djb2:2c6377f6",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-31T04:50:32.478Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-31T04:51:14.092Z",
+      "approvedBy": "auto"
+    },
+    "e4-actors-rules-refs": {
+      "status": "approved",
+      "updatedAt": "2026-07-31T04:53:03.460Z",
+      "dirty": false,
+      "inputsHash": "djb2:f55e3475",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-31T04:53:03.460Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-31T04:53:03.460Z",
+      "approvedBy": "auto"
+    },
+    "e5-workflows-operations": {
+      "status": "approved",
+      "updatedAt": "2026-07-31T04:58:23.846Z",
+      "dirty": false,
+      "inputsHash": "djb2:f55e3475",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-31T04:55:17.635Z",
+        "errors": [],
+        "warnings": [
+          "classification.managedEntity.create.missing Project: entity \"Project\" is under management but has no standalone create operation",
+          "classification.managedEntity.create.missing WorkTask: entity \"WorkTask\" is under management but has no standalone create operation",
+          "classification.managedEntity.create.missing ChangeOrder: entity \"ChangeOrder\" is under management but has no standalone create operation",
+          "classification.managedEntity.create.missing StatusReport: entity \"StatusReport\" is under management but has no standalone create operation",
+          "classification.managedEntity.unused BillingSummary: managedEntities entry \"BillingSummary\" has no write operations under management — entry is inert",
+          "classification.managedEntity.unused Invoice: managedEntities entry \"Invoice\" has no write operations under management — entry is inert"
+        ]
+      },
+      "approvedAt": "2026-07-31T04:58:23.846Z",
+      "approvedBy": "auto"
+    },
+    "e6-journey-map": {
+      "status": "approved",
+      "updatedAt": "2026-07-31T05:04:24.335Z",
+      "dirty": false,
+      "inputsHash": "djb2:6bd330e5",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-31T04:59:48.670Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-31T05:04:24.335Z",
+      "approvedBy": "auto"
+    },
+    "e7-validation-summary": {
+      "status": "approved",
+      "updatedAt": "2026-07-31T05:04:24.838Z",
+      "dirty": false,
+      "inputsHash": "djb2:f55e8f03",
+      "lastGate": {
+        "ok": true,
+        "checkedAt": "2026-07-31T05:04:24.838Z",
+        "errors": [],
+        "warnings": []
+      },
+      "approvedAt": "2026-07-31T05:04:24.838Z",
+      "approvedBy": "auto"
+    }
+  }
+}

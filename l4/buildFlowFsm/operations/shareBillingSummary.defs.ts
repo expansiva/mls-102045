@@ -1,0 +1,203 @@
+/// <mls fileReference="_102045_/l4/buildFlowFsm/operations/shareBillingSummary.defs.ts" enhancement="_blank"/>
+
+export const operationShareBillingSummary = {
+  "operationId": "shareBillingSummary",
+  "title": "Share billing summary with client",
+  "actors": [
+    "billingStaff"
+  ],
+  "entity": "BillingSummary",
+  "kind": "update",
+  "reads": [
+    "BillingSummary"
+  ],
+  "writes": [
+    "BillingSummary"
+  ],
+  "rulesApplied": [
+    "billingSummaryClientFacing",
+    "clientBillingAccess"
+  ],
+  "story": {
+    "actor": "billingStaff",
+    "goal": "Share a compiled billing summary with the client so they can review charges before invoicing",
+    "steps": [
+      "Select a draft billing summary for the project",
+      "Confirm the labor, material, and change-order breakdown is ready for the client",
+      "Share the billing summary, marking it as shared and recording the share timestamp"
+    ],
+    "outcome": "The billing summary status is shared, sharedAt is set, and the client can view the client-facing cost breakdown"
+  },
+  "accessPattern": {
+    "kind": "commandInput",
+    "description": "Billing staff confirms sharing a selected draft billing summary with the client",
+    "entity": "BillingSummary",
+    "keyField": "BillingSummary.billingSummaryId",
+    "pagination": "none",
+    "selection": "single",
+    "output": [
+      "BillingSummary.billingSummaryId",
+      "BillingSummary.projectId",
+      "BillingSummary.status",
+      "BillingSummary.periodStart",
+      "BillingSummary.periodEnd",
+      "BillingSummary.laborCost",
+      "BillingSummary.materialCost",
+      "BillingSummary.changeOrderCost",
+      "BillingSummary.totalCost",
+      "BillingSummary.sharedAt",
+      "BillingSummary.updatedAt"
+    ]
+  },
+  "outputShape": {
+    "kind": "object",
+    "fields": [
+      {
+        "name": "billingSummaryId",
+        "type": "string",
+        "required": true,
+        "fieldRef": "BillingSummary.billingSummaryId"
+      },
+      {
+        "name": "projectId",
+        "type": "string",
+        "required": true,
+        "fieldRef": "BillingSummary.projectId"
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "required": true,
+        "fieldRef": "BillingSummary.status"
+      },
+      {
+        "name": "periodStart",
+        "type": "string",
+        "required": true,
+        "fieldRef": "BillingSummary.periodStart"
+      },
+      {
+        "name": "periodEnd",
+        "type": "string",
+        "required": true,
+        "fieldRef": "BillingSummary.periodEnd"
+      },
+      {
+        "name": "laborCost",
+        "type": "number",
+        "required": true,
+        "fieldRef": "BillingSummary.laborCost"
+      },
+      {
+        "name": "materialCost",
+        "type": "number",
+        "required": true,
+        "fieldRef": "BillingSummary.materialCost"
+      },
+      {
+        "name": "changeOrderCost",
+        "type": "number",
+        "required": true,
+        "fieldRef": "BillingSummary.changeOrderCost"
+      },
+      {
+        "name": "totalCost",
+        "type": "number",
+        "required": true,
+        "fieldRef": "BillingSummary.totalCost"
+      },
+      {
+        "name": "sharedAt",
+        "type": "string",
+        "required": true,
+        "fieldRef": "BillingSummary.sharedAt"
+      },
+      {
+        "name": "updatedAt",
+        "type": "string",
+        "required": true,
+        "fieldRef": "BillingSummary.updatedAt"
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "billingSummaryId",
+      "fieldRef": "BillingSummary.billingSummaryId",
+      "required": true,
+      "source": "routeParam",
+      "description": "Identifier of the draft billing summary to share with the client"
+    },
+    {
+      "inputId": "status",
+      "fieldRef": "BillingSummary.status",
+      "required": true,
+      "source": "systemDefault",
+      "description": "Lifecycle status set to shared when the summary is sent to the client"
+    },
+    {
+      "inputId": "sharedAt",
+      "fieldRef": "BillingSummary.sharedAt",
+      "required": true,
+      "source": "systemDefault",
+      "description": "Timestamp recorded when the billing summary is shared with the client"
+    },
+    {
+      "inputId": "updatedAt",
+      "fieldRef": "BillingSummary.updatedAt",
+      "required": true,
+      "source": "systemDefault",
+      "description": "Timestamp of this share update"
+    }
+  ],
+  "contextResolution": [
+    {
+      "inputId": "billingSummaryId",
+      "targetRef": "BillingSummary.billingSummaryId",
+      "source": "routeParam",
+      "originRef": "routeParam.billingSummaryId",
+      "description": "Resolved from the route parameter identifying the billing summary being shared"
+    },
+    {
+      "inputId": "status",
+      "targetRef": "BillingSummary.status",
+      "source": "systemDefault",
+      "originRef": "systemDefault.locale",
+      "description": "Server sets status to the fixed value shared when the share action succeeds"
+    },
+    {
+      "inputId": "sharedAt",
+      "targetRef": "BillingSummary.sharedAt",
+      "source": "systemDefault",
+      "originRef": "systemDefault.now",
+      "description": "Server stamps the current datetime when the billing summary is shared"
+    },
+    {
+      "inputId": "updatedAt",
+      "targetRef": "BillingSummary.updatedAt",
+      "source": "systemDefault",
+      "originRef": "systemDefault.now",
+      "description": "Server stamps the current datetime on the share update"
+    }
+  ],
+  "acceptanceAssertions": [
+    "After confirmation the billing summary status is shared and sharedAt is set to the share timestamp",
+    "Only a billing summary in draft status can be shared; already shared summaries are rejected",
+    "After sharing, the client can view the billing summary with laborCost, materialCost, changeOrderCost, and totalCost and cannot edit it",
+    "The shared billing summary remains client-facing and does not expose internal cost-code detail",
+    "updatedAt is refreshed when the billing summary is shared"
+  ],
+  "pageId": "billingSummaryLifecycle",
+  "commandName": "shareBillingSummary",
+  "bffName": "buildFlowFsm.billingSummaryLifecycle.shareBillingSummary",
+  "capability": {
+    "capabilityId": "billingSummaryLifecycle",
+    "title": "Billing summary lifecycle",
+    "actor": "billingStaff",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationShareBillingSummary;

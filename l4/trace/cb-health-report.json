@@ -1,0 +1,1092 @@
+{
+  "savedAt": "2026-07-31T05:45:21.957Z",
+  "outcome": "passed",
+  "l1Defs": 88,
+  "findings": [],
+  "warnings": [],
+  "repairHistory": [
+    "2026-07-31T05:11:14.761Z :: usecase-defs:voidTimeLog :: attempt 1 :: usecase defs validation failed: usecase voidTimeLog: unknown port 'TimeLogRepository'; usecase voidTimeLog.voidTimeLog: unknown port 'TimeLogRepository'",
+    "2026-07-31T05:12:02.706Z :: usecase-defs:queryMaterialUsages :: attempt 1 :: usecase defs validation failed: usecase queryMaterialUsages: unknown port 'MaterialUsagePort'; usecase queryMaterialUsages.queryMaterialUsages: unknown port 'MaterialUsagePort'",
+    "2026-07-31T05:43:05.846Z :: _102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.defs.ts :: validate-all g1 :: compiler -> buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.ts: TS2551: Property 'voidReason' does not exist on type 'MaterialUsage'. Did you mean 'voidedReason'?"
+  ],
+  "globalAttempts": 1,
+  "judgeRuns": 1,
+  "costByPhase": {
+    "gen-domain": {
+      "cost": 0.034800000000000005,
+      "calls": 6,
+      "inputTokens": 8796,
+      "outputTokens": 3708
+    },
+    "gen-port": {
+      "cost": 0.0144,
+      "calls": 1,
+      "inputTokens": 740,
+      "outputTokens": 2359
+    },
+    "gen-table": {
+      "cost": 0.022,
+      "calls": 1,
+      "inputTokens": 1897,
+      "outputTokens": 3352
+    },
+    "gen-adapter": {
+      "cost": 0.0144,
+      "calls": 1,
+      "inputTokens": 1591,
+      "outputTokens": 2092
+    },
+    "gen-usecase": {
+      "cost": 0.7061,
+      "calls": 45,
+      "inputTokens": 198646,
+      "outputTokens": 92868
+    },
+    "judge": {
+      "cost": 0.19419999999999998,
+      "calls": 2,
+      "inputTokens": 80595,
+      "outputTokens": 9241
+    },
+    "materialize": {
+      "cost": 2.8137000000000008,
+      "calls": 89,
+      "inputTokens": 862342,
+      "outputTokens": 237487
+    },
+    "seeds": {
+      "cost": 0.1611,
+      "calls": 3,
+      "inputTokens": 19595,
+      "outputTokens": 25630
+    }
+  },
+  "costSummary": {
+    "totalCost": 3.9607000000000006,
+    "totalCalls": 148,
+    "topPhase": "materialize",
+    "topPhaseCost": 2.8137000000000008
+  },
+  "rounds": [
+    {
+      "savedAt": "2026-07-31T05:17:51.831Z",
+      "outcome": "materialize-dispatch",
+      "stale": [
+        "_102045_/l1/buildFlowFsm/layer_3_domain/entities/timeLog.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_3_domain/entities/materialUsage.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_3_domain/entities/billingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_3_domain/entities/project.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_3_domain/entities/workTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_3_domain/entities/statusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_3_domain/entities/invoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_3_domain/entities/changeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/projectRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/workTaskRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/billingSummaryRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/invoiceRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/changeOrderRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/statusReportRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/timeLogRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/materialUsageRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/project.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/workTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/billingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/invoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/changeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/statusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/timeLog.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsage.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/projectRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/workTaskRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/billingSummaryRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/invoiceRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/changeOrderRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/statusReportRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/timeLogRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateProjectStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateChangeOrderStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewWorkTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createWorkTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryMyWorkTasks.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateProject.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateWorkTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createProject.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createChangeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewJobCostSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryProjects.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryChangeOrders.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateWorkTaskStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewProject.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateStatusReportStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateChangeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewStatusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewChangeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateStatusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/voidMaterialUsage.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryWorkTasks.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/generateStatusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/shareBillingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryDelayRiskSuggestions.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewDashboard.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewBillingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/sendInvoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryClients.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryBillingSummaries.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createMaterialUsage.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryInvoices.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/generateDelayRiskSuggestions.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryTimeLogs.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewInvoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/deleteClient.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createTimeLog.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createBillingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createInvoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createClient.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateClient.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/voidTimeLog.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryMaterialUsages.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/dashboardWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/projectLifecycleWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/myTasksWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientManagementWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/changeOrderWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/invoiceWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/taskBoardWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientBillingWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/billingSummaryWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/fieldLoggingWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/projectDetailWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/jobCostWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientStatusWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/statusReportWorkspace.defs.ts"
+      ],
+      "pendingRepairs": [],
+      "minRank": 0,
+      "repairMode": false,
+      "costByPhase": {
+        "gen-domain": {
+          "cost": 0.034800000000000005,
+          "calls": 6,
+          "inputTokens": 8796,
+          "outputTokens": 3708
+        },
+        "gen-port": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 740,
+          "outputTokens": 2359
+        },
+        "gen-table": {
+          "cost": 0.022,
+          "calls": 1,
+          "inputTokens": 1897,
+          "outputTokens": 3352
+        },
+        "gen-adapter": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 1591,
+          "outputTokens": 2092
+        },
+        "gen-usecase": {
+          "cost": 0.7061,
+          "calls": 45,
+          "inputTokens": 198646,
+          "outputTokens": 92868
+        },
+        "judge": {
+          "cost": 0.19419999999999998,
+          "calls": 2,
+          "inputTokens": 80595,
+          "outputTokens": 9241
+        }
+      },
+      "costSummary": {
+        "totalCost": 0.9859,
+        "totalCalls": 56,
+        "topPhase": "gen-usecase",
+        "topPhaseCost": 0.7061
+      }
+    },
+    {
+      "savedAt": "2026-07-31T05:18:20.915Z",
+      "outcome": "materialize-dispatch",
+      "stale": [
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/projectRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/workTaskRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/billingSummaryRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/invoiceRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/changeOrderRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/statusReportRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/timeLogRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/ports/materialUsageRepository.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/project.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/workTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/billingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/invoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/changeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/statusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/timeLog.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsage.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/projectRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/workTaskRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/billingSummaryRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/invoiceRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/changeOrderRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/statusReportRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/timeLogRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateProjectStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateChangeOrderStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewWorkTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createWorkTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryMyWorkTasks.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateProject.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateWorkTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createProject.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createChangeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewJobCostSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryProjects.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryChangeOrders.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateWorkTaskStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewProject.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateStatusReportStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateChangeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewStatusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewChangeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateStatusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/voidMaterialUsage.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryWorkTasks.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/generateStatusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/shareBillingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryDelayRiskSuggestions.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewDashboard.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewBillingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/sendInvoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryClients.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryBillingSummaries.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createMaterialUsage.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryInvoices.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/generateDelayRiskSuggestions.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryTimeLogs.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewInvoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/deleteClient.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createTimeLog.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createBillingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createInvoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createClient.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateClient.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/voidTimeLog.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryMaterialUsages.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/dashboardWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/projectLifecycleWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/myTasksWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientManagementWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/changeOrderWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/invoiceWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/taskBoardWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientBillingWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/billingSummaryWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/fieldLoggingWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/projectDetailWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/jobCostWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientStatusWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/statusReportWorkspace.defs.ts"
+      ],
+      "pendingRepairs": [],
+      "minRank": 1,
+      "repairMode": false,
+      "costByPhase": {
+        "gen-domain": {
+          "cost": 0.034800000000000005,
+          "calls": 6,
+          "inputTokens": 8796,
+          "outputTokens": 3708
+        },
+        "gen-port": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 740,
+          "outputTokens": 2359
+        },
+        "gen-table": {
+          "cost": 0.022,
+          "calls": 1,
+          "inputTokens": 1897,
+          "outputTokens": 3352
+        },
+        "gen-adapter": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 1591,
+          "outputTokens": 2092
+        },
+        "gen-usecase": {
+          "cost": 0.7061,
+          "calls": 45,
+          "inputTokens": 198646,
+          "outputTokens": 92868
+        },
+        "judge": {
+          "cost": 0.19419999999999998,
+          "calls": 2,
+          "inputTokens": 80595,
+          "outputTokens": 9241
+        },
+        "materialize": {
+          "cost": 0.0771,
+          "calls": 8,
+          "inputTokens": 25509,
+          "outputTokens": 5863
+        }
+      },
+      "costSummary": {
+        "totalCost": 1.063,
+        "totalCalls": 64,
+        "topPhase": "gen-usecase",
+        "topPhaseCost": 0.7061
+      }
+    },
+    {
+      "savedAt": "2026-07-31T05:18:56.038Z",
+      "outcome": "materialize-dispatch",
+      "stale": [
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/project.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/workTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/billingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/invoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/changeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/statusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/timeLog.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsage.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/projectRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/workTaskRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/billingSummaryRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/invoiceRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/changeOrderRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/statusReportRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/timeLogRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateProjectStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateChangeOrderStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewWorkTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createWorkTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryMyWorkTasks.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateProject.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateWorkTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createProject.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createChangeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewJobCostSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryProjects.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryChangeOrders.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateWorkTaskStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewProject.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateStatusReportStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateChangeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewStatusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewChangeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateStatusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/voidMaterialUsage.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryWorkTasks.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/generateStatusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/shareBillingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryDelayRiskSuggestions.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewDashboard.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewBillingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/sendInvoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryClients.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryBillingSummaries.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createMaterialUsage.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryInvoices.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/generateDelayRiskSuggestions.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryTimeLogs.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewInvoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/deleteClient.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createTimeLog.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createBillingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createInvoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createClient.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateClient.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/voidTimeLog.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryMaterialUsages.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/dashboardWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/projectLifecycleWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/myTasksWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientManagementWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/changeOrderWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/invoiceWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/taskBoardWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientBillingWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/billingSummaryWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/fieldLoggingWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/projectDetailWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/jobCostWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientStatusWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/statusReportWorkspace.defs.ts"
+      ],
+      "pendingRepairs": [],
+      "minRank": 2,
+      "repairMode": false,
+      "costByPhase": {
+        "gen-domain": {
+          "cost": 0.034800000000000005,
+          "calls": 6,
+          "inputTokens": 8796,
+          "outputTokens": 3708
+        },
+        "gen-port": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 740,
+          "outputTokens": 2359
+        },
+        "gen-table": {
+          "cost": 0.022,
+          "calls": 1,
+          "inputTokens": 1897,
+          "outputTokens": 3352
+        },
+        "gen-adapter": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 1591,
+          "outputTokens": 2092
+        },
+        "gen-usecase": {
+          "cost": 0.7061,
+          "calls": 45,
+          "inputTokens": 198646,
+          "outputTokens": 92868
+        },
+        "judge": {
+          "cost": 0.19419999999999998,
+          "calls": 2,
+          "inputTokens": 80595,
+          "outputTokens": 9241
+        },
+        "materialize": {
+          "cost": 0.1311,
+          "calls": 16,
+          "inputTokens": 50580,
+          "outputTokens": 8098
+        }
+      },
+      "costSummary": {
+        "totalCost": 1.117,
+        "totalCalls": 72,
+        "topPhase": "gen-usecase",
+        "topPhaseCost": 0.7061
+      }
+    },
+    {
+      "savedAt": "2026-07-31T05:19:29.532Z",
+      "outcome": "materialize-dispatch",
+      "stale": [
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/projectRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/workTaskRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/billingSummaryRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/invoiceRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/changeOrderRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/statusReportRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/timeLogRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateProjectStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateChangeOrderStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewWorkTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createWorkTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryMyWorkTasks.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateProject.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateWorkTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createProject.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createChangeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewJobCostSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryProjects.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryChangeOrders.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateWorkTaskStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewProject.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateStatusReportStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateChangeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewStatusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewChangeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateStatusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/voidMaterialUsage.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryWorkTasks.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/generateStatusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/shareBillingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryDelayRiskSuggestions.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewDashboard.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewBillingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/sendInvoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryClients.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryBillingSummaries.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createMaterialUsage.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryInvoices.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/generateDelayRiskSuggestions.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryTimeLogs.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewInvoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/deleteClient.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createTimeLog.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createBillingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createInvoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createClient.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateClient.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/voidTimeLog.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryMaterialUsages.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/dashboardWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/projectLifecycleWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/myTasksWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientManagementWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/changeOrderWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/invoiceWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/taskBoardWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientBillingWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/billingSummaryWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/fieldLoggingWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/projectDetailWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/jobCostWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientStatusWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/statusReportWorkspace.defs.ts"
+      ],
+      "pendingRepairs": [],
+      "minRank": 3,
+      "repairMode": false,
+      "costByPhase": {
+        "gen-domain": {
+          "cost": 0.034800000000000005,
+          "calls": 6,
+          "inputTokens": 8796,
+          "outputTokens": 3708
+        },
+        "gen-port": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 740,
+          "outputTokens": 2359
+        },
+        "gen-table": {
+          "cost": 0.022,
+          "calls": 1,
+          "inputTokens": 1897,
+          "outputTokens": 3352
+        },
+        "gen-adapter": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 1591,
+          "outputTokens": 2092
+        },
+        "gen-usecase": {
+          "cost": 0.7061,
+          "calls": 45,
+          "inputTokens": 198646,
+          "outputTokens": 92868
+        },
+        "judge": {
+          "cost": 0.19419999999999998,
+          "calls": 2,
+          "inputTokens": 80595,
+          "outputTokens": 9241
+        },
+        "materialize": {
+          "cost": 0.22269999999999998,
+          "calls": 24,
+          "inputTokens": 88698,
+          "outputTokens": 12898
+        }
+      },
+      "costSummary": {
+        "totalCost": 1.2086,
+        "totalCalls": 80,
+        "topPhase": "gen-usecase",
+        "topPhaseCost": 0.7061
+      }
+    },
+    {
+      "savedAt": "2026-07-31T05:20:13.205Z",
+      "outcome": "materialize-dispatch",
+      "stale": [
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateProjectStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateChangeOrderStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewWorkTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createWorkTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryMyWorkTasks.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateProject.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateWorkTask.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createProject.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createChangeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewJobCostSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryProjects.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryChangeOrders.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateWorkTaskStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewProject.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateStatusReportStatus.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateChangeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewStatusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewChangeOrder.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateStatusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/voidMaterialUsage.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryWorkTasks.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/generateStatusReport.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/shareBillingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryDelayRiskSuggestions.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewDashboard.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewBillingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/sendInvoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryClients.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryBillingSummaries.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createMaterialUsage.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryInvoices.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/generateDelayRiskSuggestions.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryTimeLogs.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/viewInvoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/deleteClient.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createTimeLog.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createBillingSummary.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createInvoice.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/createClient.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/updateClient.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/voidTimeLog.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_2_application/usecases/queryMaterialUsages.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/dashboardWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/projectLifecycleWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/myTasksWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientManagementWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/changeOrderWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/invoiceWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/taskBoardWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientBillingWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/billingSummaryWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/fieldLoggingWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/projectDetailWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/jobCostWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientStatusWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/statusReportWorkspace.defs.ts"
+      ],
+      "pendingRepairs": [],
+      "minRank": 4,
+      "repairMode": false,
+      "costByPhase": {
+        "gen-domain": {
+          "cost": 0.034800000000000005,
+          "calls": 6,
+          "inputTokens": 8796,
+          "outputTokens": 3708
+        },
+        "gen-port": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 740,
+          "outputTokens": 2359
+        },
+        "gen-table": {
+          "cost": 0.022,
+          "calls": 1,
+          "inputTokens": 1897,
+          "outputTokens": 3352
+        },
+        "gen-adapter": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 1591,
+          "outputTokens": 2092
+        },
+        "gen-usecase": {
+          "cost": 0.7061,
+          "calls": 45,
+          "inputTokens": 198646,
+          "outputTokens": 92868
+        },
+        "judge": {
+          "cost": 0.19419999999999998,
+          "calls": 2,
+          "inputTokens": 80595,
+          "outputTokens": 9241
+        },
+        "materialize": {
+          "cost": 0.44750000000000006,
+          "calls": 32,
+          "inputTokens": 161351,
+          "outputTokens": 30635
+        }
+      },
+      "costSummary": {
+        "totalCost": 1.4334,
+        "totalCalls": 88,
+        "topPhase": "gen-usecase",
+        "topPhaseCost": 0.7061
+      }
+    },
+    {
+      "savedAt": "2026-07-31T05:27:27.869Z",
+      "outcome": "materialize-dispatch",
+      "stale": [
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/dashboardWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/projectLifecycleWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/myTasksWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientManagementWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/changeOrderWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/invoiceWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/taskBoardWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientBillingWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/billingSummaryWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/fieldLoggingWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/projectDetailWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/jobCostWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/clientStatusWorkspace.defs.ts",
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers/statusReportWorkspace.defs.ts"
+      ],
+      "pendingRepairs": [],
+      "minRank": 5,
+      "repairMode": false,
+      "costByPhase": {
+        "gen-domain": {
+          "cost": 0.034800000000000005,
+          "calls": 6,
+          "inputTokens": 8796,
+          "outputTokens": 3708
+        },
+        "gen-port": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 740,
+          "outputTokens": 2359
+        },
+        "gen-table": {
+          "cost": 0.022,
+          "calls": 1,
+          "inputTokens": 1897,
+          "outputTokens": 3352
+        },
+        "gen-adapter": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 1591,
+          "outputTokens": 2092
+        },
+        "gen-usecase": {
+          "cost": 0.7061,
+          "calls": 45,
+          "inputTokens": 198646,
+          "outputTokens": 92868
+        },
+        "judge": {
+          "cost": 0.19419999999999998,
+          "calls": 2,
+          "inputTokens": 80595,
+          "outputTokens": 9241
+        },
+        "materialize": {
+          "cost": 2.2532000000000005,
+          "calls": 74,
+          "inputTokens": 683920,
+          "outputTokens": 193493
+        }
+      },
+      "costSummary": {
+        "totalCost": 3.2391000000000005,
+        "totalCalls": 130,
+        "topPhase": "materialize",
+        "topPhaseCost": 2.2532000000000005
+      }
+    },
+    {
+      "savedAt": "2026-07-31T05:35:23.192Z",
+      "outcome": "pre-seeds-warning",
+      "reason": "1 finding(s) are defs-level (not repairable by re-materialization)",
+      "l1Defs": 88,
+      "findings": [
+        "compiler -> buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.ts: TS2551: Property 'voidReason' does not exist on type 'MaterialUsage'. Did you mean 'voidedReason'?",
+        "compiler -> buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.ts: TS2322: Type '{ materialUsageId: string; projectId: string; status: MaterialUsageStatus; materialName: string; quantity: number; unit: MaterialUsageUnit; unitCost: number; ... 5 more ...; createdAt: string; }' is not assignable to type 'MaterialUsage'. -> Object literal may only specify known properties, but 'voidReason' does not exist in type 'MaterialUsage'. Did you mean to write 'voidedReason'?",
+        "composition root missing -> registerRepositories.ts absent though 8 repository adapter(s) exist (102034 resolveRepository will 500)"
+      ],
+      "unmapped": [
+        "composition root missing -> registerRepositories.ts absent though 8 repository adapter(s) exist (102034 resolveRepository will 500)"
+      ],
+      "warnings": [],
+      "repairHistory": [
+        "2026-07-31T05:11:14.761Z :: usecase-defs:voidTimeLog :: attempt 1 :: usecase defs validation failed: usecase voidTimeLog: unknown port 'TimeLogRepository'; usecase voidTimeLog.voidTimeLog: unknown port 'TimeLogRepository'",
+        "2026-07-31T05:12:02.706Z :: usecase-defs:queryMaterialUsages :: attempt 1 :: usecase defs validation failed: usecase queryMaterialUsages: unknown port 'MaterialUsagePort'; usecase queryMaterialUsages.queryMaterialUsages: unknown port 'MaterialUsagePort'"
+      ],
+      "globalAttempts": 0,
+      "costByPhase": {
+        "gen-domain": {
+          "cost": 0.034800000000000005,
+          "calls": 6,
+          "inputTokens": 8796,
+          "outputTokens": 3708
+        },
+        "gen-port": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 740,
+          "outputTokens": 2359
+        },
+        "gen-table": {
+          "cost": 0.022,
+          "calls": 1,
+          "inputTokens": 1897,
+          "outputTokens": 3352
+        },
+        "gen-adapter": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 1591,
+          "outputTokens": 2092
+        },
+        "gen-usecase": {
+          "cost": 0.7061,
+          "calls": 45,
+          "inputTokens": 198646,
+          "outputTokens": 92868
+        },
+        "judge": {
+          "cost": 0.19419999999999998,
+          "calls": 2,
+          "inputTokens": 80595,
+          "outputTokens": 9241
+        },
+        "materialize": {
+          "cost": 2.7977000000000007,
+          "calls": 88,
+          "inputTokens": 858790,
+          "outputTokens": 236471
+        }
+      },
+      "costSummary": {
+        "totalCost": 3.7836000000000007,
+        "totalCalls": 144,
+        "topPhase": "materialize",
+        "topPhaseCost": 2.7977000000000007
+      }
+    },
+    {
+      "savedAt": "2026-07-31T05:43:05.847Z",
+      "outcome": "repair-round",
+      "round": 1,
+      "globalAttempts": 1,
+      "repairTargets": [
+        {
+          "defRef": "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.defs.ts",
+          "findings": 2,
+          "first": "compiler -> buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.ts: TS2551: Property 'voidReason' does not exist on type 'MaterialUsage'. Did you mean 'voidedReason'?"
+        }
+      ],
+      "targetCount": 1,
+      "flakyCompilerSuppressed": 0,
+      "cascadeCompilerSuppressed": 0,
+      "l1Defs": 88,
+      "findings": [
+        "compiler -> buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.ts: TS2551: Property 'voidReason' does not exist on type 'MaterialUsage'. Did you mean 'voidedReason'?",
+        "compiler -> buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.ts: TS2322: Type '{ materialUsageId: string; projectId: string; status: MaterialUsageStatus; materialName: string; quantity: number; unit: MaterialUsageUnit; unitCost: number; ... 5 more ...; createdAt: string; }' is not assignable to type 'MaterialUsage'. -> Object literal may only specify known properties, but 'voidReason' does not exist in type 'MaterialUsage'. Did you mean to write 'voidedReason'?"
+      ],
+      "warnings": [],
+      "repairHistory": [
+        "2026-07-31T05:11:14.761Z :: usecase-defs:voidTimeLog :: attempt 1 :: usecase defs validation failed: usecase voidTimeLog: unknown port 'TimeLogRepository'; usecase voidTimeLog.voidTimeLog: unknown port 'TimeLogRepository'",
+        "2026-07-31T05:12:02.706Z :: usecase-defs:queryMaterialUsages :: attempt 1 :: usecase defs validation failed: usecase queryMaterialUsages: unknown port 'MaterialUsagePort'; usecase queryMaterialUsages.queryMaterialUsages: unknown port 'MaterialUsagePort'",
+        "2026-07-31T05:43:05.846Z :: _102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.defs.ts :: validate-all g1 :: compiler -> buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.ts: TS2551: Property 'voidReason' does not exist on type 'MaterialUsage'. Did you mean 'voidedReason'?"
+      ],
+      "costByPhase": {
+        "gen-domain": {
+          "cost": 0.034800000000000005,
+          "calls": 6,
+          "inputTokens": 8796,
+          "outputTokens": 3708
+        },
+        "gen-port": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 740,
+          "outputTokens": 2359
+        },
+        "gen-table": {
+          "cost": 0.022,
+          "calls": 1,
+          "inputTokens": 1897,
+          "outputTokens": 3352
+        },
+        "gen-adapter": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 1591,
+          "outputTokens": 2092
+        },
+        "gen-usecase": {
+          "cost": 0.7061,
+          "calls": 45,
+          "inputTokens": 198646,
+          "outputTokens": 92868
+        },
+        "judge": {
+          "cost": 0.19419999999999998,
+          "calls": 2,
+          "inputTokens": 80595,
+          "outputTokens": 9241
+        },
+        "materialize": {
+          "cost": 2.7977000000000007,
+          "calls": 88,
+          "inputTokens": 858790,
+          "outputTokens": 236471
+        },
+        "seeds": {
+          "cost": 0.1611,
+          "calls": 3,
+          "inputTokens": 19595,
+          "outputTokens": 25630
+        }
+      },
+      "costSummary": {
+        "totalCost": 3.9447000000000005,
+        "totalCalls": 147,
+        "topPhase": "materialize",
+        "topPhaseCost": 2.7977000000000007
+      }
+    },
+    {
+      "savedAt": "2026-07-31T05:43:07.813Z",
+      "outcome": "materialize-dispatch",
+      "stale": [
+        "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.defs.ts"
+      ],
+      "pendingRepairs": [
+        {
+          "target": "_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.defs.ts",
+          "attempts": 0,
+          "findings": [
+            "compiler -> buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.ts: TS2551: Property 'voidReason' does not exist on type 'MaterialUsage'. Did you mean 'voidedReason'?",
+            "compiler -> buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.ts: TS2322: Type '{ materialUsageId: string; projectId: string; status: MaterialUsageStatus; materialName: string; quantity: number; unit: MaterialUsageUnit; unitCost: number; ... 5 more ...; createdAt: string; }' is not assignable to type 'MaterialUsage'. -> Object literal may only specify known properties, but 'voidReason' does not exist in type 'MaterialUsage'. Did you mean to write 'voidedReason'?"
+          ]
+        }
+      ],
+      "minRank": 0,
+      "repairMode": true,
+      "costByPhase": {
+        "gen-domain": {
+          "cost": 0.034800000000000005,
+          "calls": 6,
+          "inputTokens": 8796,
+          "outputTokens": 3708
+        },
+        "gen-port": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 740,
+          "outputTokens": 2359
+        },
+        "gen-table": {
+          "cost": 0.022,
+          "calls": 1,
+          "inputTokens": 1897,
+          "outputTokens": 3352
+        },
+        "gen-adapter": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 1591,
+          "outputTokens": 2092
+        },
+        "gen-usecase": {
+          "cost": 0.7061,
+          "calls": 45,
+          "inputTokens": 198646,
+          "outputTokens": 92868
+        },
+        "judge": {
+          "cost": 0.19419999999999998,
+          "calls": 2,
+          "inputTokens": 80595,
+          "outputTokens": 9241
+        },
+        "materialize": {
+          "cost": 2.7977000000000007,
+          "calls": 88,
+          "inputTokens": 858790,
+          "outputTokens": 236471
+        },
+        "seeds": {
+          "cost": 0.1611,
+          "calls": 3,
+          "inputTokens": 19595,
+          "outputTokens": 25630
+        }
+      },
+      "costSummary": {
+        "totalCost": 3.9447000000000005,
+        "totalCalls": 147,
+        "topPhase": "materialize",
+        "topPhaseCost": 2.7977000000000007
+      }
+    },
+    {
+      "savedAt": "2026-07-31T05:45:21.957Z",
+      "outcome": "passed",
+      "l1Defs": 88,
+      "findings": [],
+      "warnings": [],
+      "repairHistory": [
+        "2026-07-31T05:11:14.761Z :: usecase-defs:voidTimeLog :: attempt 1 :: usecase defs validation failed: usecase voidTimeLog: unknown port 'TimeLogRepository'; usecase voidTimeLog.voidTimeLog: unknown port 'TimeLogRepository'",
+        "2026-07-31T05:12:02.706Z :: usecase-defs:queryMaterialUsages :: attempt 1 :: usecase defs validation failed: usecase queryMaterialUsages: unknown port 'MaterialUsagePort'; usecase queryMaterialUsages.queryMaterialUsages: unknown port 'MaterialUsagePort'",
+        "2026-07-31T05:43:05.846Z :: _102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.defs.ts :: validate-all g1 :: compiler -> buildFlowFsm/layer_1_external/adapters/persistence/materialUsageRepositoryAdapter.ts: TS2551: Property 'voidReason' does not exist on type 'MaterialUsage'. Did you mean 'voidedReason'?"
+      ],
+      "globalAttempts": 1,
+      "judgeRuns": 1,
+      "costByPhase": {
+        "gen-domain": {
+          "cost": 0.034800000000000005,
+          "calls": 6,
+          "inputTokens": 8796,
+          "outputTokens": 3708
+        },
+        "gen-port": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 740,
+          "outputTokens": 2359
+        },
+        "gen-table": {
+          "cost": 0.022,
+          "calls": 1,
+          "inputTokens": 1897,
+          "outputTokens": 3352
+        },
+        "gen-adapter": {
+          "cost": 0.0144,
+          "calls": 1,
+          "inputTokens": 1591,
+          "outputTokens": 2092
+        },
+        "gen-usecase": {
+          "cost": 0.7061,
+          "calls": 45,
+          "inputTokens": 198646,
+          "outputTokens": 92868
+        },
+        "judge": {
+          "cost": 0.19419999999999998,
+          "calls": 2,
+          "inputTokens": 80595,
+          "outputTokens": 9241
+        },
+        "materialize": {
+          "cost": 2.8137000000000008,
+          "calls": 89,
+          "inputTokens": 862342,
+          "outputTokens": 237487
+        },
+        "seeds": {
+          "cost": 0.1611,
+          "calls": 3,
+          "inputTokens": 19595,
+          "outputTokens": 25630
+        }
+      },
+      "costSummary": {
+        "totalCost": 3.9607000000000006,
+        "totalCalls": 148,
+        "topPhase": "materialize",
+        "topPhaseCost": 2.8137000000000008
+      }
+    }
+  ]
+}

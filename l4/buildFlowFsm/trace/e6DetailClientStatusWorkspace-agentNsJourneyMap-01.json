@@ -1,0 +1,230 @@
+{
+  "savedAt": "2026-07-31T05:00:37.055Z",
+  "stepId": "e6-detail-clientStatusWorkspace",
+  "agentName": "agentNsJourneyMap",
+  "attempt": 1,
+  "payload": {
+    "workspace": {
+      "workspaceId": "clientStatusWorkspace",
+      "title": "Project Status",
+      "actors": [
+        "client"
+      ],
+      "kind": "operation",
+      "entity": "StatusReport",
+      "bffCalls": [
+        {
+          "bffId": "getStatusReport",
+          "kind": "query",
+          "uses": [
+            {
+              "operationId": "viewStatusReport"
+            }
+          ],
+          "input": [
+            {
+              "name": "statusReportId",
+              "from": "viewStatusReport.statusReportId",
+              "type": "string",
+              "required": true,
+              "source": "pageInput"
+            },
+            {
+              "name": "clientId",
+              "from": "viewStatusReport.clientId",
+              "type": "string",
+              "required": true,
+              "source": "actorSession"
+            }
+          ],
+          "output": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "statusReportId",
+                "from": "viewStatusReport.statusReportId",
+                "type": "string",
+                "required": true
+              },
+              {
+                "name": "projectId",
+                "from": "viewStatusReport.projectId",
+                "type": "string"
+              },
+              {
+                "name": "projectName",
+                "from": "viewStatusReport.projectName",
+                "type": "string",
+                "required": true
+              },
+              {
+                "name": "status",
+                "from": "viewStatusReport.status",
+                "type": "string",
+                "required": true
+              },
+              {
+                "name": "reportPeriodStart",
+                "from": "viewStatusReport.reportPeriodStart",
+                "type": "string",
+                "required": true
+              },
+              {
+                "name": "reportPeriodEnd",
+                "from": "viewStatusReport.reportPeriodEnd",
+                "type": "string",
+                "required": true
+              },
+              {
+                "name": "summary",
+                "from": "viewStatusReport.summary",
+                "type": "string",
+                "required": true
+              },
+              {
+                "name": "tasksOverview",
+                "from": "viewStatusReport.tasksOverview",
+                "type": "object"
+              },
+              {
+                "name": "timeLogsOverview",
+                "from": "viewStatusReport.timeLogsOverview",
+                "type": "object"
+              },
+              {
+                "name": "materialsOverview",
+                "from": "viewStatusReport.materialsOverview",
+                "type": "object"
+              },
+              {
+                "name": "delayRiskAssessment",
+                "from": "viewStatusReport.delayRiskAssessment",
+                "type": "object"
+              },
+              {
+                "name": "pmNotes",
+                "from": "viewStatusReport.pmNotes",
+                "type": "string"
+              },
+              {
+                "name": "generatedAt",
+                "from": "viewStatusReport.generatedAt",
+                "type": "string"
+              },
+              {
+                "name": "sharedAt",
+                "from": "viewStatusReport.sharedAt",
+                "type": "string"
+              }
+            ]
+          },
+          "route": "buildFlowFsm.clientStatusWorkspace.getStatusReport"
+        }
+      ],
+      "sections": [
+        {
+          "sectionId": "reportHeader",
+          "intent": "Client sees the project name, reporting period, and overall status at a glance.",
+          "organisms": [
+            {
+              "role": "primarySurface",
+              "dataSource": "getStatusReport"
+            }
+          ]
+        },
+        {
+          "sectionId": "aiSummary",
+          "intent": "Client reads the AI-generated narrative summary covering tasks, time, materials, and delay risks.",
+          "organisms": [
+            {
+              "role": "richText",
+              "dataSource": "getStatusReport"
+            }
+          ]
+        },
+        {
+          "sectionId": "detailedOverviews",
+          "intent": "Client reviews structured breakdowns of tasks, time logs, materials, and delay risk assessment.",
+          "organisms": [
+            {
+              "role": "detailPanel",
+              "dataSource": "getStatusReport"
+            }
+          ]
+        },
+        {
+          "sectionId": "pmNotesSection",
+          "intent": "Client reads the project manager's notes and confirms when the report was generated and shared.",
+          "organisms": [
+            {
+              "role": "richText",
+              "dataSource": "getStatusReport"
+            }
+          ]
+        }
+      ],
+      "operationIds": [
+        "viewStatusReport"
+      ],
+      "purpose": "Client reviews the shared project status report to stay informed on progress and budget.",
+      "presentation": {
+        "categoryRef": "readOnlyDetailPortal",
+        "confidence": 10,
+        "classificationNote": "This workspace is a pure read-only view of a single StatusReport record for an external stakeholder (client). There are no write operations whatsoever — only a single 'view' query. The summary-first layout with structured overviews and PM notes is a textbook match for readOnlyDetailPortal.",
+        "alternates": [
+          {
+            "categoryRef": "aiAssistedAuthoring",
+            "confidence": 3,
+            "reason": "The report contains AI-generated content, but the client only reads it — there is no generate/review/publish cycle on this workspace."
+          }
+        ]
+      }
+    },
+    "errors": [
+      {
+        "severity": "error",
+        "code": "section.primarySurface.count",
+        "message": "workspace clientStatusWorkspace section aiSummary must declare exactly 1 primarySurface, found 0",
+        "path": "clientStatusWorkspace"
+      },
+      {
+        "severity": "error",
+        "code": "content.role.notLanding",
+        "message": "workspace clientStatusWorkspace section aiSummary: content role \"richText\" is only allowed on a landing page",
+        "path": "clientStatusWorkspace"
+      },
+      {
+        "severity": "error",
+        "code": "content.role.hasReference",
+        "message": "workspace clientStatusWorkspace section aiSummary: content role \"richText\" must not reference a bffCall",
+        "path": "clientStatusWorkspace"
+      },
+      {
+        "severity": "error",
+        "code": "section.primarySurface.count",
+        "message": "workspace clientStatusWorkspace section detailedOverviews must declare exactly 1 primarySurface, found 0",
+        "path": "clientStatusWorkspace"
+      },
+      {
+        "severity": "error",
+        "code": "section.primarySurface.count",
+        "message": "workspace clientStatusWorkspace section pmNotesSection must declare exactly 1 primarySurface, found 0",
+        "path": "clientStatusWorkspace"
+      },
+      {
+        "severity": "error",
+        "code": "content.role.notLanding",
+        "message": "workspace clientStatusWorkspace section pmNotesSection: content role \"richText\" is only allowed on a landing page",
+        "path": "clientStatusWorkspace"
+      },
+      {
+        "severity": "error",
+        "code": "content.role.hasReference",
+        "message": "workspace clientStatusWorkspace section pmNotesSection: content role \"richText\" must not reference a bffCall",
+        "path": "clientStatusWorkspace"
+      }
+    ]
+  },
+  "error": "section.primarySurface.count: workspace clientStatusWorkspace section aiSummary must declare exactly 1 primarySurface, found 0\ncontent.role.notLanding: workspace clientStatusWorkspace section aiSummary: content role \"richText\" is only allowed on a landing page\ncontent.role.hasReference: workspace clientStatusWorkspace section aiSummary: content role \"richText\" must not reference a bffCall\nsection.primarySurface.count: workspace clientStatusWorkspace section detailedOverviews must declare exactly 1 primarySurface, found 0\nsection.primarySurface.count: workspace clientStatusWorkspace section pmNotesSection must declare exactly 1 primarySurface, found 0\ncontent.role.notLanding: workspace clientStatusWorkspace section pmNotesSection: content role \"richText\" is only allowed on a landing page\ncontent.role.hasReference: workspace clientStatusWorkspace section pmNotesSection: content role \"richText\" must not reference a bffCall",
+  "promptChars": 17459
+}

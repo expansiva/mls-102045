@@ -1,0 +1,170 @@
+{
+  "savedAt": "2026-07-31T05:00:28.191Z",
+  "stepId": "e6-detail-jobCostWorkspace",
+  "agentName": "agentNsJourneyMap",
+  "attempt": 1,
+  "payload": {
+    "workspace": {
+      "workspaceId": "jobCostWorkspace",
+      "title": "Job Cost Summary",
+      "actors": [
+        "billingStaff"
+      ],
+      "kind": "operation",
+      "entity": "Project",
+      "bffCalls": [
+        {
+          "bffId": "getJobCostSummary",
+          "kind": "query",
+          "uses": [
+            {
+              "operationId": "viewJobCostSummary"
+            }
+          ],
+          "input": [
+            {
+              "name": "projectId",
+              "from": "viewJobCostSummary.projectId",
+              "type": "string",
+              "required": true,
+              "source": "pageInput"
+            }
+          ],
+          "output": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "projectId",
+                "from": "viewJobCostSummary.projectId",
+                "type": "string",
+                "required": true
+              },
+              {
+                "name": "name",
+                "from": "viewJobCostSummary.name",
+                "type": "string",
+                "required": true
+              },
+              {
+                "name": "clientId",
+                "from": "viewJobCostSummary.clientId",
+                "type": "string"
+              },
+              {
+                "name": "clientName",
+                "from": "viewJobCostSummary.clientName",
+                "type": "string"
+              },
+              {
+                "name": "budget",
+                "from": "viewJobCostSummary.budget",
+                "type": "number",
+                "required": true
+              },
+              {
+                "name": "status",
+                "from": "viewJobCostSummary.status",
+                "type": "string",
+                "required": true
+              },
+              {
+                "name": "startDate",
+                "from": "viewJobCostSummary.startDate",
+                "type": "string"
+              },
+              {
+                "name": "endDate",
+                "from": "viewJobCostSummary.endDate",
+                "type": "string"
+              },
+              {
+                "name": "laborCost",
+                "from": "viewJobCostSummary.laborCost",
+                "type": "number",
+                "required": true
+              },
+              {
+                "name": "materialCost",
+                "from": "viewJobCostSummary.materialCost",
+                "type": "number",
+                "required": true
+              },
+              {
+                "name": "changeOrderCost",
+                "from": "viewJobCostSummary.changeOrderCost",
+                "type": "number",
+                "required": true
+              },
+              {
+                "name": "totalCost",
+                "from": "viewJobCostSummary.totalCost",
+                "type": "number",
+                "required": true
+              },
+              {
+                "name": "budgetVariance",
+                "from": "viewJobCostSummary.budgetVariance",
+                "type": "number",
+                "required": true
+              }
+            ]
+          },
+          "route": "buildFlowFsm.jobCostWorkspace.getJobCostSummary"
+        }
+      ],
+      "sections": [
+        {
+          "sectionId": "projectIdentitySection",
+          "intent": "Review project identity, client, lifecycle status, and scheduled dates before examining costs.",
+          "organisms": [
+            {
+              "role": "primarySurface",
+              "dataSource": "getJobCostSummary"
+            }
+          ]
+        },
+        {
+          "sectionId": "costBreakdownSection",
+          "intent": "Examine accumulated labor, material, and change order costs, and compare total actual cost against the project budget.",
+          "organisms": [
+            {
+              "role": "detailPanel",
+              "dataSource": "getJobCostSummary"
+            }
+          ]
+        }
+      ],
+      "operationIds": [
+        "viewJobCostSummary"
+      ],
+      "purpose": "Billing staff reviews accumulated job costs per project before preparing billing documents.",
+      "presentation": {
+        "categoryRef": "readOnlyDetailPortal",
+        "confidence": 9,
+        "classificationNote": "This workspace is a pure read-only view of a single project's cost summary — no write operations exist. The actor reviews aggregated cost figures and budget variance before billing, which is a classic summary-first, single-record, no-action-of-write pattern.",
+        "alternates": [
+          {
+            "categoryRef": "reportExplorer",
+            "confidence": 4,
+            "reason": "Could be considered a report, but there is no filtering, export, or ad-hoc query — it is a fixed single-record view driven by a pageInput projectId."
+          },
+          {
+            "categoryRef": "dashboardCommandCenter",
+            "confidence": 3,
+            "reason": "Contains KPI-like cost metrics, but there is only one entity in scope and no monitoring, alerts, or recommended actions."
+          }
+        ]
+      }
+    },
+    "errors": [
+      {
+        "severity": "error",
+        "code": "section.primarySurface.count",
+        "message": "workspace jobCostWorkspace section costBreakdownSection must declare exactly 1 primarySurface, found 0",
+        "path": "jobCostWorkspace"
+      }
+    ]
+  },
+  "error": "section.primarySurface.count: workspace jobCostWorkspace section costBreakdownSection must declare exactly 1 primarySurface, found 0",
+  "promptChars": 17533
+}

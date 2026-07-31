@@ -1,0 +1,45 @@
+{
+  "savedAt": "2026-07-31T06:06:34.714Z",
+  "pageId": "statusReportWorkspace",
+  "genome": "page21",
+  "objective": {
+    "actor": "Project Manager",
+    "jobToBeDone": "Generate an AI-assisted status report for a project period, then review, edit, and advance the report through its lifecycle (draft → reviewed → shared with client).",
+    "primaryDecision": "Whether the generated report content is accurate and complete enough to share with the client — driving the edit-then-transition flow.",
+    "decisiveInfo": [
+      "projectId (context-derived, from selected project)",
+      "reportPeriodStart / reportPeriodEnd (user-chosen date range)",
+      "summary, tasksOverview, timeLogsOverview, materialsOverview, delayRiskAssessment, pmNotes (editable AI-generated content)",
+      "current report status (draft / reviewed / shared)"
+    ],
+    "usageFrequency": "Occasional — triggered per project reporting cycle; the PM works through the full generate → review → share sequence in one focused session.",
+    "criticalActions": [
+      {
+        "action": "generateReport",
+        "presentation": "primary-button inside a compact generation panel; projectId is context-derived (hidden), only period dates are user inputs"
+      },
+      {
+        "action": "updateReportContent",
+        "presentation": "inline rich-text editor sections within the report detail panel; save is a persistent footer action"
+      },
+      {
+        "action": "updateReportStatus",
+        "presentation": "contextual-transition-actions — one button per valid next state (Mark Reviewed, Share with Client) rendered in the report header, never a free status select"
+      }
+    ],
+    "informationHierarchy": [
+      "1. Report generation panel — project context + period picker + Generate action",
+      "2. Generated report detail — current status badge, period, generatedAt timestamp",
+      "3. Editable content sections — summary, tasks overview, time logs overview, materials overview, delay risk assessment, PM notes",
+      "4. Lifecycle transition actions — Mark Reviewed / Share with Client buttons based on current status"
+    ],
+    "successCriteria": "The PM can generate a report, review and refine all AI-produced sections in one place, and advance the report to 'shared' without navigating away or manually typing any system-owned identifier.",
+    "antiPatterns": [
+      "Exposing statusReportId as a manual text input",
+      "Rendering status transition as a free <select> over all enum values",
+      "Splitting generate and review into entirely separate pages with no continuity",
+      "Showing system-owned fields (generatedAt, createdAt, updatedAt) as editable inputs",
+      "Requiring the PM to re-enter projectId after it is already in context"
+    ]
+  }
+}

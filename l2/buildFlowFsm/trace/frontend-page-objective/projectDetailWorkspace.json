@@ -1,0 +1,49 @@
+{
+  "savedAt": "2026-07-31T06:06:34.716Z",
+  "pageId": "projectDetailWorkspace",
+  "genome": "page21",
+  "objective": {
+    "actor": "Project Manager",
+    "jobToBeDone": "Review the full project record, track task and cost progress, inspect change orders, and generate or review AI delay-risk suggestions — all from a single workspace anchored to the project.",
+    "primaryDecision": "Is this project on track? — assessed by reading project status + schedule, scanning overdue tasks, reviewing cost exposure from time logs and materials, and acting on delay-risk suggestions.",
+    "decisiveInfo": [
+      "name, status, budget, startDate, endDate, siteAddress, clientName (getProjectDetail)",
+      "workTasks: title, assignee, status, dueDate (listWorkTasks)",
+      "changeOrders: title, costAdjustment, scheduleAdjustmentDays, status, impactType (listChangeOrders)",
+      "changeOrderDetail: costAdjustment vs projectBudget, approvalStatus (getChangeOrderDetail)",
+      "timeLogs: hoursWorked, laborCost, workerName, logDate, status (listTimeLogs)",
+      "materialUsages: materialName, quantity, unitCost, status (listMaterialUsages)",
+      "delayRiskSuggestions: riskLevel, reason, workTaskTitle, suggestedAction (listDelayRiskSuggestions)"
+    ],
+    "usageFrequency": "Frequent / daily — PM opens this page at the start of each work session to assess project health and act on risks.",
+    "criticalActions": [
+      {
+        "action": "triggerDelayRiskSuggestions",
+        "presentation": "primary-button within the delay-risk panel, contextual to the selected status report"
+      },
+      {
+        "action": "listDelayRiskSuggestions",
+        "presentation": "inline list with acknowledged filter toggle, rendered after trigger completes"
+      },
+      {
+        "action": "getChangeOrderDetail",
+        "presentation": "master-detail — selecting a change order row opens the detail panel inline"
+      }
+    ],
+    "informationHierarchy": [
+      "1. Project header — identity, status, schedule, budget (anchor for all analysis)",
+      "2. Work task timeline — filterable list of tasks with status and due-date signals",
+      "3. Change orders — filterable list + inline detail panel for cost/schedule impact",
+      "4. Cost tracking — time logs (labor) and material usages (materials) side by side",
+      "5. Delay-risk insights — AI suggestions triggered per status report, reviewed inline"
+    ],
+    "successCriteria": "PM can assess project health, spot overdue tasks, understand cost exposure from change orders and actuals, and generate + review delay-risk suggestions without leaving the page.",
+    "antiPatterns": [
+      "Separate full-page form for triggering delay-risk suggestions",
+      "Status fields rendered as free <select> inputs",
+      "Manually typed projectId, changeOrderId, or statusReportId fields",
+      "One independent section per query with no grouping by analytical theme",
+      "Hiding the change order detail behind a navigation away from the list"
+    ]
+  }
+}

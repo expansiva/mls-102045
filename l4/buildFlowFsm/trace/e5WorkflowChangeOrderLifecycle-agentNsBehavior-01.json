@@ -1,0 +1,150 @@
+{
+  "savedAt": "2026-07-31T04:55:43.493Z",
+  "stepId": "e5-workflow-changeOrderLifecycle",
+  "agentName": "agentNsBehavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "workflowId": "changeOrderLifecycle",
+      "title": "Change order lifecycle",
+      "executionMode": "sequential",
+      "trigger": "Project manager creates a change order on an active project to document a scope, cost, or schedule adjustment.",
+      "actors": [
+        "projectManager"
+      ],
+      "states": [
+        "draft",
+        "pendingReview",
+        "approved",
+        "rejected"
+      ],
+      "transitions": [
+        {
+          "from": "draft",
+          "to": "pendingReview",
+          "on": "updateChangeOrderStatus",
+          "by": "projectManager",
+          "guard": "Change order describes scope, cost, or schedule impact"
+        },
+        {
+          "from": "pendingReview",
+          "to": "approved",
+          "on": "updateChangeOrderStatus",
+          "by": "projectManager"
+        },
+        {
+          "from": "pendingReview",
+          "to": "rejected",
+          "on": "updateChangeOrderStatus",
+          "by": "projectManager",
+          "guard": "Rejection reason is recorded"
+        }
+      ],
+      "operationIds": [
+        "createChangeOrder",
+        "updateChangeOrderStatus"
+      ],
+      "entities": [
+        "ChangeOrder",
+        "Project"
+      ],
+      "rulesApplied": [
+        "operationsRequireActiveProject",
+        "changeOrderDescriptionRequired",
+        "onlyApprovedChangeOrdersAffectCosting",
+        "jobCostDerivation"
+      ],
+      "story": {
+        "actor": "projectManager",
+        "goal": "Document a scope, cost, or schedule change on an active project and apply its cost impact to the job.",
+        "steps": [
+          "The project manager creates a change order describing the scope, cost, or schedule adjustment on an active project.",
+          "The project manager reviews how the change order affects the project budget before deciding.",
+          "The project manager moves the change order to pending review and then approves it so the adjusted cost flows into job costing.",
+          "If the change is not warranted, the project manager rejects it with a recorded reason."
+        ],
+        "outcome": "An approved change order adjusts the project's scope, cost, or schedule and flows into job costing and billing summaries."
+      },
+      "pageId": "changeOrderLifecycle",
+      "capabilities": [
+        {
+          "capabilityId": "changeOrderLifecycle",
+          "title": "Change order lifecycle",
+          "actor": "projectManager",
+          "priority": "now"
+        }
+      ],
+      "statusFrontend": "toCreate",
+      "statusBackend": "toCreate"
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "workflowId": "changeOrderLifecycle",
+        "title": "Change order lifecycle",
+        "executionMode": "sequential",
+        "trigger": "Project manager creates a change order on an active project to document a scope, cost, or schedule adjustment.",
+        "actors": [
+          "projectManager"
+        ],
+        "states": [
+          "draft",
+          "pendingReview",
+          "approved",
+          "rejected"
+        ],
+        "transitions": [
+          {
+            "from": "draft",
+            "to": "pendingReview",
+            "on": "updateChangeOrderStatus",
+            "by": "projectManager",
+            "guard": "Change order describes scope, cost, or schedule impact"
+          },
+          {
+            "from": "pendingReview",
+            "to": "approved",
+            "on": "updateChangeOrderStatus",
+            "by": "projectManager"
+          },
+          {
+            "from": "pendingReview",
+            "to": "rejected",
+            "on": "updateChangeOrderStatus",
+            "by": "projectManager",
+            "guard": "Rejection reason is recorded"
+          }
+        ],
+        "operationIds": [
+          "createChangeOrder",
+          "updateChangeOrderStatus"
+        ],
+        "entities": [
+          "ChangeOrder",
+          "Project"
+        ],
+        "rulesApplied": [
+          "operationsRequireActiveProject",
+          "changeOrderDescriptionRequired",
+          "onlyApprovedChangeOrdersAffectCosting",
+          "jobCostDerivation"
+        ],
+        "story": {
+          "actor": "projectManager",
+          "goal": "Document a scope, cost, or schedule change on an active project and apply its cost impact to the job.",
+          "steps": [
+            "The project manager creates a change order describing the scope, cost, or schedule adjustment on an active project.",
+            "The project manager reviews how the change order affects the project budget before deciding.",
+            "The project manager moves the change order to pending review and then approves it so the adjusted cost flows into job costing.",
+            "If the change is not warranted, the project manager rejects it with a recorded reason."
+          ],
+          "outcome": "An approved change order adjusts the project's scope, cost, or schedule and flows into job costing and billing summaries."
+        }
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false
+    }
+  }
+}

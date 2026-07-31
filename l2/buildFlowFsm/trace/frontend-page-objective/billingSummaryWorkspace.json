@@ -1,0 +1,45 @@
+{
+  "savedAt": "2026-07-31T06:05:28.823Z",
+  "pageId": "billingSummaryWorkspace",
+  "genome": "page21",
+  "objective": {
+    "actor": "Billing staff",
+    "jobToBeDone": "Compile and share client-facing billing summaries by reviewing accumulated job costs, creating draft summaries for a billing period, and sharing them with the client before invoice generation.",
+    "primaryDecision": "Select a billing summary to review its cost breakdown, then either create a new one or share a draft with the client.",
+    "decisiveInfo": [
+      "periodStart",
+      "periodEnd",
+      "laborCost",
+      "materialCost",
+      "changeOrderCost",
+      "totalCost",
+      "status",
+      "sharedAt"
+    ],
+    "usageFrequency": "Occasional / back-office — billing staff uses this at billing cycle milestones, not continuously.",
+    "criticalActions": [
+      {
+        "action": "createBillingSummaryCmd",
+        "presentation": "primary-button opening an inline period-picker form above the list; projectId is route-derived and never typed"
+      },
+      {
+        "action": "shareBillingSummaryCmd",
+        "presentation": "contextual-transition-actions — a single 'Share with Client' button rendered on the selected draft row/detail panel; billingSummaryId is selection-derived, never typed"
+      }
+    ],
+    "informationHierarchy": [
+      "1. Filterable list of billing summaries (project, status, period, cost totals)",
+      "2. Selected summary detail — cost breakdown (labor, materials, change orders, total) and lifecycle status",
+      "3. Create action — period date inputs for a new summary under the current project",
+      "4. Share action — contextual transition button available only when selected summary is in draft status"
+    ],
+    "successCriteria": "Billing staff can scan all summaries, create a new one by picking only the period dates, and share a draft with one click — without typing any id or manually setting status.",
+    "antiPatterns": [
+      "Manually typed billingSummaryId or projectId input fields",
+      "Free <select> over all status enum values for the share transition",
+      "Separate full-page form for create — period dates only, inline or modal",
+      "Showing system-owned fields (createdAt, updatedAt, sharedAt) as editable inputs",
+      "Stacking a share form section below the list instead of contextual inline action"
+    ]
+  }
+}

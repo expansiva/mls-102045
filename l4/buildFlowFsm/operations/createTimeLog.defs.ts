@@ -1,0 +1,188 @@
+/// <mls fileReference="_102045_/l4/buildFlowFsm/operations/createTimeLog.defs.ts" enhancement="_blank"/>
+
+export const operationCreateTimeLog = {
+  "operationId": "createTimeLog",
+  "title": "Log hours worked",
+  "actors": [
+    "fieldWorker"
+  ],
+  "entity": "TimeLog",
+  "kind": "create",
+  "reads": [
+    "WorkTask"
+  ],
+  "writes": [
+    "TimeLog"
+  ],
+  "rulesApplied": [
+    "jobCostDerivation",
+    "timeLogLinkingRequired"
+  ],
+  "story": {
+    "actor": "fieldWorker",
+    "goal": "Enter hours spent on a work task so labor costs are captured for job costing and progress tracking",
+    "steps": [
+      "Select the work task the hours apply to",
+      "Enter the date the work was performed and the number of hours worked",
+      "Confirm to post the time log entry"
+    ],
+    "outcome": "A posted time log is stored linked to the task and worker, with labor cost available for job costing"
+  },
+  "accessPattern": {
+    "kind": "commandInput",
+    "description": "Command form for a field worker to post hours worked against a specific work task",
+    "entity": "TimeLog",
+    "keyField": "TimeLog.timeLogId",
+    "pagination": "none",
+    "selection": "none",
+    "output": [
+      "TimeLog.timeLogId",
+      "TimeLog.workTaskId",
+      "TimeLog.workerName",
+      "TimeLog.logDate",
+      "TimeLog.hoursWorked",
+      "TimeLog.laborCost",
+      "TimeLog.status",
+      "TimeLog.createdAt"
+    ]
+  },
+  "outputShape": {
+    "kind": "object",
+    "fields": [
+      {
+        "name": "timeLogId",
+        "type": "string",
+        "required": true,
+        "fieldRef": "TimeLog.timeLogId"
+      },
+      {
+        "name": "workTaskId",
+        "type": "string",
+        "required": true,
+        "fieldRef": "TimeLog.workTaskId"
+      },
+      {
+        "name": "workerName",
+        "type": "string",
+        "required": true,
+        "fieldRef": "TimeLog.workerName"
+      },
+      {
+        "name": "logDate",
+        "type": "string",
+        "required": true,
+        "fieldRef": "TimeLog.logDate"
+      },
+      {
+        "name": "hoursWorked",
+        "type": "number",
+        "required": true,
+        "fieldRef": "TimeLog.hoursWorked"
+      },
+      {
+        "name": "laborCost",
+        "type": "number",
+        "required": true,
+        "fieldRef": "TimeLog.laborCost"
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "required": true,
+        "fieldRef": "TimeLog.status"
+      },
+      {
+        "name": "createdAt",
+        "type": "string",
+        "required": true,
+        "fieldRef": "TimeLog.createdAt"
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "workTaskId",
+      "fieldRef": "TimeLog.workTaskId",
+      "required": true,
+      "source": "userInput",
+      "description": "Work task the logged hours are recorded against"
+    },
+    {
+      "inputId": "logDate",
+      "fieldRef": "TimeLog.logDate",
+      "required": true,
+      "source": "userInput",
+      "description": "Calendar date on which the work was performed"
+    },
+    {
+      "inputId": "hoursWorked",
+      "fieldRef": "TimeLog.hoursWorked",
+      "required": true,
+      "source": "userInput",
+      "description": "Number of hours worked on the task for this log entry"
+    },
+    {
+      "inputId": "workerName",
+      "fieldRef": "TimeLog.workerName",
+      "required": true,
+      "source": "actorSession",
+      "description": "Name of the signed-in field worker who performed the work"
+    },
+    {
+      "inputId": "timeLogId",
+      "fieldRef": "TimeLog.timeLogId",
+      "required": true,
+      "source": "systemDefault",
+      "description": "System-generated primary identifier for the new time log"
+    },
+    {
+      "inputId": "createdAt",
+      "fieldRef": "TimeLog.createdAt",
+      "required": true,
+      "source": "systemDefault",
+      "description": "Server timestamp when the time log entry is created"
+    }
+  ],
+  "contextResolution": [
+    {
+      "inputId": "workerName",
+      "targetRef": "TimeLog.workerName",
+      "source": "actorSession",
+      "originRef": "actorSession.actorId",
+      "description": "Resolve the display name of the signed-in field worker from the actor session identity"
+    },
+    {
+      "inputId": "timeLogId",
+      "targetRef": "TimeLog.timeLogId",
+      "source": "systemDefault",
+      "originRef": "systemDefault.uuid",
+      "description": "Generate a new UUID for the time log primary key at creation time"
+    },
+    {
+      "inputId": "createdAt",
+      "targetRef": "TimeLog.createdAt",
+      "source": "systemDefault",
+      "originRef": "systemDefault.now",
+      "description": "Stamp createdAt with the current server time when the entry is posted"
+    }
+  ],
+  "acceptanceAssertions": [
+    "After confirmation a TimeLog exists with status posted and is linked to the selected workTaskId",
+    "The time log stores the entered hoursWorked and logDate for the field worker who submitted it",
+    "workerName on the time log identifies the field worker and the entry is linked to both a task and a worker",
+    "laborCost is set on the posted time log so the entry contributes to job cost and budget-vs-actual derivation"
+  ],
+  "pageId": "createTimeLog",
+  "commandName": "createTimeLog",
+  "bffName": "buildFlowFsm.createTimeLog.createTimeLog",
+  "capability": {
+    "capabilityId": "createTimeLog",
+    "title": "Log hours worked",
+    "actor": "fieldWorker",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationCreateTimeLog;

@@ -1,0 +1,164 @@
+{
+  "savedAt": "2026-07-31T04:55:35.722Z",
+  "stepId": "e5-workflow-workTaskLifecycle",
+  "agentName": "agentNsBehavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "workflowId": "workTaskLifecycle",
+      "title": "Work task lifecycle",
+      "executionMode": "sequential",
+      "trigger": "Project manager creates a work task on an active project and assigns it to a field worker with a due date.",
+      "actors": [
+        "projectManager",
+        "fieldWorker"
+      ],
+      "states": [
+        "assigned",
+        "inProgress",
+        "completed",
+        "cancelled"
+      ],
+      "transitions": [
+        {
+          "from": "assigned",
+          "to": "inProgress",
+          "on": "updateWorkTaskStatus",
+          "by": "fieldWorker",
+          "guard": "Only the assigned worker or project manager may change status"
+        },
+        {
+          "from": "inProgress",
+          "to": "completed",
+          "on": "updateWorkTaskStatus",
+          "by": "fieldWorker",
+          "guard": "Only the assigned worker or project manager may change status"
+        },
+        {
+          "from": "assigned",
+          "to": "cancelled",
+          "on": "updateWorkTaskStatus",
+          "by": "projectManager"
+        },
+        {
+          "from": "inProgress",
+          "to": "cancelled",
+          "on": "updateWorkTaskStatus",
+          "by": "projectManager"
+        }
+      ],
+      "operationIds": [
+        "createWorkTask",
+        "updateWorkTaskStatus"
+      ],
+      "entities": [
+        "WorkTask",
+        "Project"
+      ],
+      "rulesApplied": [
+        "operationsRequireActiveProject",
+        "singleTaskAssignment",
+        "taskDueDateWithinSchedule",
+        "taskStatusUpdateAuthorization"
+      ],
+      "story": {
+        "actor": "projectManager",
+        "goal": "Break the project into actionable work tasks, assign them to field workers, and track progress through completion.",
+        "steps": [
+          "The project manager creates a work task tied to an active project with a clear description.",
+          "The project manager assigns the task to one field worker and sets a due date within the project schedule.",
+          "The field worker starts the task and updates its status from assigned to in progress.",
+          "The field worker finishes the work and marks the task completed so project tracking stays current."
+        ],
+        "outcome": "Work tasks are created, assigned, and progressed through in progress to completed (or cancelled when needed), keeping the project schedule accurate."
+      },
+      "pageId": "workTaskLifecycle",
+      "capabilities": [
+        {
+          "capabilityId": "workTaskLifecycle",
+          "title": "Work task lifecycle",
+          "actor": "projectManager",
+          "priority": "now"
+        }
+      ],
+      "statusFrontend": "toCreate",
+      "statusBackend": "toCreate"
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "workflowId": "workTaskLifecycle",
+        "title": "Work task lifecycle",
+        "executionMode": "sequential",
+        "trigger": "Project manager creates a work task on an active project and assigns it to a field worker with a due date.",
+        "actors": [
+          "projectManager",
+          "fieldWorker"
+        ],
+        "states": [
+          "assigned",
+          "inProgress",
+          "completed",
+          "cancelled"
+        ],
+        "transitions": [
+          {
+            "from": "assigned",
+            "to": "inProgress",
+            "on": "updateWorkTaskStatus",
+            "by": "fieldWorker",
+            "guard": "Only the assigned worker or project manager may change status"
+          },
+          {
+            "from": "inProgress",
+            "to": "completed",
+            "on": "updateWorkTaskStatus",
+            "by": "fieldWorker",
+            "guard": "Only the assigned worker or project manager may change status"
+          },
+          {
+            "from": "assigned",
+            "to": "cancelled",
+            "on": "updateWorkTaskStatus",
+            "by": "projectManager"
+          },
+          {
+            "from": "inProgress",
+            "to": "cancelled",
+            "on": "updateWorkTaskStatus",
+            "by": "projectManager"
+          }
+        ],
+        "operationIds": [
+          "createWorkTask",
+          "updateWorkTaskStatus"
+        ],
+        "entities": [
+          "WorkTask",
+          "Project"
+        ],
+        "rulesApplied": [
+          "operationsRequireActiveProject",
+          "singleTaskAssignment",
+          "taskDueDateWithinSchedule",
+          "taskStatusUpdateAuthorization"
+        ],
+        "story": {
+          "actor": "projectManager",
+          "goal": "Break the project into actionable work tasks, assign them to field workers, and track progress through completion.",
+          "steps": [
+            "The project manager creates a work task tied to an active project with a clear description.",
+            "The project manager assigns the task to one field worker and sets a due date within the project schedule.",
+            "The field worker starts the task and updates its status from assigned to in progress.",
+            "The field worker finishes the work and marks the task completed so project tracking stays current."
+          ],
+          "outcome": "Work tasks are created, assigned, and progressed through in progress to completed (or cancelled when needed), keeping the project schedule accurate."
+        }
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false
+    }
+  }
+}

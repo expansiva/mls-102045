@@ -1,0 +1,210 @@
+/// <mls fileReference="_102045_/l4/buildFlowFsm/operations/queryWorkTasks.defs.ts" enhancement="_blank"/>
+
+export const operationQueryWorkTasks = {
+  "operationId": "queryWorkTasks",
+  "title": "Browse work tasks",
+  "actors": [
+    "projectManager"
+  ],
+  "entity": "WorkTask",
+  "kind": "query",
+  "reads": [
+    "WorkTask"
+  ],
+  "writes": [],
+  "rulesApplied": [
+    "overdueTaskHighlighting",
+    "taskSortingByDueDate"
+  ],
+  "story": {
+    "actor": "projectManager",
+    "goal": "Browse work tasks across projects to confirm sequencing, spot overdue and upcoming work, and decide where to reassign or reprioritize",
+    "steps": [
+      "Open the task list, project timeline, or dashboard task panel",
+      "Optionally filter by project, status, or assigned worker",
+      "Review each task's title, assignee, status, and due date",
+      "Identify overdue and upcoming tasks that need attention"
+    ],
+    "outcome": "The project manager sees a due-date-sorted list of work tasks with overdue highlighting so they can reassign or reprioritize before problems escalate"
+  },
+  "accessPattern": {
+    "kind": "list",
+    "description": "List work tasks with optional filters by project, status, and assignee, sorted by due date for timeline and dashboard review",
+    "entity": "WorkTask",
+    "keyField": "WorkTask.workTaskId",
+    "filters": [
+      "WorkTask.projectId",
+      "WorkTask.status",
+      "WorkTask.assignedWorkerId",
+      "WorkTask.dueDate"
+    ],
+    "sort": [
+      "WorkTask.dueDate"
+    ],
+    "pagination": "optional",
+    "selection": "single",
+    "output": [
+      "WorkTask.workTaskId",
+      "WorkTask.projectId",
+      "WorkTask.title",
+      "WorkTask.description",
+      "WorkTask.assignedWorkerId",
+      "WorkTask.status",
+      "WorkTask.dueDate",
+      "WorkTask.completedAt",
+      "WorkTask.cancelledAt",
+      "WorkTask.createdAt",
+      "WorkTask.updatedAt"
+    ]
+  },
+  "outputShape": {
+    "kind": "paginated",
+    "fields": [
+      {
+        "name": "workTasks",
+        "type": "array",
+        "required": true,
+        "item": {
+          "fields": [
+            {
+              "name": "workTaskId",
+              "type": "string",
+              "required": true,
+              "fieldRef": "WorkTask.workTaskId"
+            },
+            {
+              "name": "projectId",
+              "type": "string",
+              "required": true,
+              "fieldRef": "WorkTask.projectId"
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "required": true,
+              "fieldRef": "WorkTask.title"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "fieldRef": "WorkTask.description"
+            },
+            {
+              "name": "assignedWorkerId",
+              "type": "string",
+              "required": true,
+              "fieldRef": "WorkTask.assignedWorkerId"
+            },
+            {
+              "name": "status",
+              "type": "string",
+              "required": true,
+              "fieldRef": "WorkTask.status"
+            },
+            {
+              "name": "dueDate",
+              "type": "string",
+              "required": true,
+              "fieldRef": "WorkTask.dueDate"
+            },
+            {
+              "name": "completedAt",
+              "type": "string",
+              "required": false,
+              "fieldRef": "WorkTask.completedAt"
+            },
+            {
+              "name": "cancelledAt",
+              "type": "string",
+              "required": false,
+              "fieldRef": "WorkTask.cancelledAt"
+            },
+            {
+              "name": "createdAt",
+              "type": "string",
+              "required": true,
+              "fieldRef": "WorkTask.createdAt"
+            },
+            {
+              "name": "updatedAt",
+              "type": "string",
+              "required": true,
+              "fieldRef": "WorkTask.updatedAt"
+            },
+            {
+              "name": "isOverdue",
+              "type": "boolean",
+              "required": true
+            }
+          ]
+        }
+      },
+      {
+        "name": "total",
+        "type": "number",
+        "required": true
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "projectId",
+      "fieldRef": "WorkTask.projectId",
+      "required": false,
+      "source": "userInput",
+      "description": "Optional project filter to list only tasks belonging to one project"
+    },
+    {
+      "inputId": "status",
+      "fieldRef": "WorkTask.status",
+      "required": false,
+      "source": "userInput",
+      "description": "Optional lifecycle status filter (assigned, inProgress, completed, cancelled)"
+    },
+    {
+      "inputId": "assignedWorkerId",
+      "fieldRef": "WorkTask.assignedWorkerId",
+      "required": false,
+      "source": "userInput",
+      "description": "Optional filter by the field worker currently assigned to the task"
+    },
+    {
+      "inputId": "page",
+      "type": "number",
+      "required": false,
+      "source": "userInput",
+      "description": "Optional page number when paginating the task list"
+    },
+    {
+      "inputId": "pageSize",
+      "type": "number",
+      "required": false,
+      "source": "userInput",
+      "description": "Optional page size when paginating the task list"
+    }
+  ],
+  "contextResolution": [],
+  "acceptanceAssertions": [
+    "The operation returns work tasks sorted by dueDate ascending so the most urgent work appears first",
+    "Each returned task includes workTaskId, projectId, title, assignedWorkerId, status, and dueDate",
+    "Tasks whose dueDate is before the current date and whose status is not completed or cancelled have isOverdue set to true",
+    "When projectId is provided, only tasks with that projectId are returned",
+    "When status is provided, only tasks with that status are returned",
+    "When no projectId filter is provided, tasks across projects are returned so the dashboard can surface upcoming and overdue work",
+    "The response includes total reflecting the full filtered count alongside the workTasks page"
+  ],
+  "pageId": "queryWorkTasks",
+  "commandName": "queryWorkTasks",
+  "bffName": "buildFlowFsm.queryWorkTasks.queryWorkTasks",
+  "capability": {
+    "capabilityId": "queryWorkTasks",
+    "title": "Browse work tasks",
+    "actor": "projectManager",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationQueryWorkTasks;

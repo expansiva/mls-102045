@@ -1,0 +1,228 @@
+/// <mls fileReference="_102045_/l1/buildFlowFsm/layer_3_domain/entities/statusReport.defs.ts" enhancement="_blank"/>
+
+export const statusReportDomainEntity = {
+  "schemaVersion": "2026-06-26",
+  "artifactType": "domainEntity",
+  "artifactId": "StatusReport",
+  "moduleName": "buildFlowFsm",
+  "status": "draft",
+  "source": {
+    "agentName": "agentCbDomainEntity",
+    "stepId": 0,
+    "planId": ""
+  },
+  "data": {
+    "entityId": "StatusReport",
+    "title": "Status Report",
+    "fields": [
+      {
+        "fieldId": "statusReportId",
+        "type": "uuid",
+        "required": true,
+        "description": "Primary identifier of the status report."
+      },
+      {
+        "fieldId": "projectId",
+        "type": "uuid",
+        "required": true,
+        "description": "Reference to the project this status report belongs to."
+      },
+      {
+        "fieldId": "status",
+        "type": "string",
+        "required": true,
+        "description": "Lifecycle state of the report: draft, reviewed, or shared with the client.",
+        "enum": [
+          "draft",
+          "reviewed",
+          "shared"
+        ]
+      },
+      {
+        "fieldId": "reportPeriodStart",
+        "type": "date",
+        "required": true,
+        "description": "Start date of the reporting period covered by this status report."
+      },
+      {
+        "fieldId": "reportPeriodEnd",
+        "type": "date",
+        "required": true,
+        "description": "End date of the reporting period covered by this status report."
+      },
+      {
+        "fieldId": "summary",
+        "type": "text",
+        "required": true,
+        "description": "AI-generated narrative summary of overall project status for the period."
+      },
+      {
+        "fieldId": "tasksOverview",
+        "type": "text",
+        "required": false,
+        "description": "AI-generated overview of task progress derived from live work tasks."
+      },
+      {
+        "fieldId": "timeLogsOverview",
+        "type": "text",
+        "required": false,
+        "description": "AI-generated overview of hours logged derived from live time logs."
+      },
+      {
+        "fieldId": "materialsOverview",
+        "type": "text",
+        "required": false,
+        "description": "AI-generated overview of material consumption derived from live material usage."
+      },
+      {
+        "fieldId": "delayRiskAssessment",
+        "type": "text",
+        "required": false,
+        "description": "AI-generated assessment of delay risks based on project data and associated delay-risk suggestions."
+      },
+      {
+        "fieldId": "pmNotes",
+        "type": "text",
+        "required": false,
+        "description": "Notes or edits added by the project manager during review of the report."
+      },
+      {
+        "fieldId": "generatedAt",
+        "type": "datetime",
+        "required": true,
+        "description": "Timestamp when the AI generated the initial report content."
+      },
+      {
+        "fieldId": "reviewedAt",
+        "type": "datetime",
+        "required": false,
+        "description": "Timestamp when the project manager completed review and moved the report to reviewed state."
+      },
+      {
+        "fieldId": "sharedAt",
+        "type": "datetime",
+        "required": false,
+        "description": "Timestamp when the report was shared with the client."
+      },
+      {
+        "fieldId": "createdAt",
+        "type": "datetime",
+        "required": true,
+        "description": "Record creation timestamp."
+      },
+      {
+        "fieldId": "updatedAt",
+        "type": "datetime",
+        "required": true,
+        "description": "Last update timestamp for the record."
+      }
+    ],
+    "valueObjects": [
+      {
+        "name": "DelayRiskSuggestion",
+        "collection": true,
+        "fields": [
+          {
+            "fieldId": "delayRiskSuggestionId",
+            "type": "uuid",
+            "required": true,
+            "description": "Primary identifier for the delay-risk suggestion."
+          },
+          {
+            "fieldId": "statusReportId",
+            "type": "uuid",
+            "required": true,
+            "description": "Reference to the status report that contains this suggestion."
+          },
+          {
+            "fieldId": "workTaskId",
+            "type": "uuid",
+            "required": true,
+            "description": "Reference to the work task flagged as at risk of delay."
+          },
+          {
+            "fieldId": "riskLevel",
+            "type": "string",
+            "required": true,
+            "description": "Severity of the delay risk as assessed by the AI.",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          {
+            "fieldId": "reason",
+            "type": "text",
+            "required": true,
+            "description": "AI-generated explanation of why the task is at risk, based on time logs, material usage and task progress."
+          },
+          {
+            "fieldId": "suggestedAction",
+            "type": "text",
+            "required": false,
+            "description": "Optional recommended action to mitigate the delay risk."
+          },
+          {
+            "fieldId": "acknowledged",
+            "type": "boolean",
+            "required": true,
+            "description": "Whether the project manager has reviewed and acknowledged this advisory suggestion."
+          },
+          {
+            "fieldId": "createdAt",
+            "type": "datetime",
+            "required": true,
+            "description": "Timestamp when the suggestion was generated by the AI."
+          },
+          {
+            "fieldId": "updatedAt",
+            "type": "datetime",
+            "required": true,
+            "description": "Timestamp of the last modification to the suggestion."
+          }
+        ]
+      }
+    ],
+    "statusEnum": [
+      "draft",
+      "reviewed",
+      "shared"
+    ],
+    "invariants": [
+      "reportPeriodStart must be on or before reportPeriodEnd",
+      "createdAt must be on or before generatedAt",
+      "generatedAt must be on or before reviewedAt when reviewedAt is present",
+      "reviewedAt must be on or before sharedAt when sharedAt is present",
+      "createdAt must be on or before updatedAt",
+      "Status transitions are forward-only: draft -> reviewed -> shared; no backward transitions allowed",
+      "When status is 'draft', reviewedAt and sharedAt must be null",
+      "When status is 'reviewed', reviewedAt must be set and sharedAt must be null",
+      "When status is 'shared', both reviewedAt and sharedAt must be set",
+      "pmNotes may only be populated when status is 'reviewed' or 'shared' (added by PM during review)",
+      "A DelayRiskSuggestion may only have acknowledged = true when the parent StatusReport status is 'reviewed' or 'shared'",
+      "Every DelayRiskSuggestion embedded in the report must reference the same statusReportId as the parent aggregate",
+      "DelayRiskSuggestion.createdAt must be on or before the parent report's generatedAt (suggestions are AI-generated alongside the report)",
+      "DelayRiskSuggestion.updatedAt must be on or before the parent report's updatedAt"
+    ]
+  }
+} as const;
+
+export default statusReportDomainEntity;
+
+export const pipeline = [
+  {
+    "id": "statusReport__domainEntity",
+    "type": "domainEntity",
+    "outputPath": "_102045_/l1/buildFlowFsm/layer_3_domain/entities/statusReport.ts",
+    "defPath": "_102045_/l1/buildFlowFsm/layer_3_domain/entities/statusReport.defs.ts",
+    "dependsFiles": [],
+    "dependsOn": [],
+    "skills": [
+      "_102021_/l2/agentChangeBackend/skills/architecture.md",
+      "_102021_/l2/agentChangeBackend/skills/domainEntity.md",
+      "_102034_.d.ts"
+    ],
+    "agent": "agentCbMaterialize"
+  }
+] as const;

@@ -7,3 +7,4 @@ tsconfig.tsbuildinfo
 appconfig.json
 .claude/worktrees/**
 .DS_Store
+.collab-fs.json

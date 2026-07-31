@@ -1,0 +1,26 @@
+/// <mls fileReference="_102045_/l4/buildFlowFsm/journeys/planProjectTasks.defs.ts" enhancement="_blank"/>
+
+export const planProjectTasksJourney = {
+  "journeyId": "planProjectTasks",
+  "actorId": "projectManager",
+  "title": "Plan and assign work tasks for a project",
+  "goal": "Break the project into actionable work tasks, assign them to field workers, and review the timeline so the crew knows what to do and when.",
+  "steps": [
+    "Create work tasks",
+    "Assign tasks with due dates",
+    "Review task timeline"
+  ],
+  "outcome": "Work tasks are created, assigned to field workers with due dates, and visible in a timeline view for schedule coordination.",
+  "operationIds": [
+    "createWorkTask",
+    "updateWorkTask",
+    "updateWorkTaskStatus",
+    "queryWorkTasks",
+    "queryMyWorkTasks",
+    "viewWorkTask",
+    "viewProject"
+  ],
+  "workspaceId": "projectDetailWorkspace"
+} as const;
+
+export default planProjectTasksJourney;

@@ -1,0 +1,93 @@
+/// <mls fileReference="_102045_/l4/buildFlowFsm/operations/deleteClient.defs.ts" enhancement="_blank"/>
+
+export const operationDeleteClient = {
+  "operationId": "deleteClient",
+  "title": "Delete client",
+  "actors": [
+    "projectManager"
+  ],
+  "entity": "Client",
+  "kind": "delete",
+  "reads": [
+    "Client"
+  ],
+  "writes": [
+    "Client"
+  ],
+  "rulesApplied": [],
+  "story": {
+    "actor": "projectManager",
+    "goal": "Remove a client record that is no longer needed from the system",
+    "steps": [
+      "Select the client record to remove",
+      "Confirm the deletion",
+      "System permanently deletes the client record"
+    ],
+    "outcome": "The client record is removed and no longer available for project or billing references"
+  },
+  "accessPattern": {
+    "kind": "commandInput",
+    "description": "Delete an existing client identified by clientId after user confirmation",
+    "entity": "Client",
+    "keyField": "Client.clientId",
+    "pagination": "none",
+    "selection": "single",
+    "output": [
+      "Client.clientId",
+      "Client.name"
+    ]
+  },
+  "outputShape": {
+    "kind": "object",
+    "fields": [
+      {
+        "name": "clientId",
+        "type": "string",
+        "required": true,
+        "fieldRef": "Client.clientId"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "fieldRef": "Client.name"
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "clientId",
+      "fieldRef": "Client.clientId",
+      "required": true,
+      "source": "selectedEntity",
+      "description": "Identifier of the client record selected for deletion"
+    }
+  ],
+  "contextResolution": [
+    {
+      "inputId": "clientId",
+      "targetRef": "Client.clientId",
+      "source": "selectedEntity",
+      "originRef": "Client.clientId",
+      "description": "Resolved from the client currently selected in the clients list or detail view"
+    }
+  ],
+  "acceptanceAssertions": [
+    "After confirmation the client record no longer exists in the system",
+    "A subsequent lookup by the same clientId returns no client",
+    "The operation only deletes the selected client and does not modify other client records"
+  ],
+  "pageId": "deleteClient",
+  "commandName": "deleteClient",
+  "bffName": "buildFlowFsm.deleteClient.deleteClient",
+  "capability": {
+    "capabilityId": "deleteClient",
+    "title": "Delete client",
+    "actor": "projectManager",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationDeleteClient;

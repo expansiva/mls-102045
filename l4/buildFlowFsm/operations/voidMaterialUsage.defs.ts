@@ -1,0 +1,178 @@
+/// <mls fileReference="_102045_/l4/buildFlowFsm/operations/voidMaterialUsage.defs.ts" enhancement="_blank"/>
+
+export const operationVoidMaterialUsage = {
+  "operationId": "voidMaterialUsage",
+  "title": "Void material usage",
+  "actors": [
+    "fieldWorker"
+  ],
+  "entity": "MaterialUsage",
+  "kind": "update",
+  "reads": [
+    "MaterialUsage"
+  ],
+  "writes": [
+    "MaterialUsage"
+  ],
+  "rulesApplied": [
+    "jobCostDerivation",
+    "materialUsageIsProjectLevel"
+  ],
+  "story": {
+    "actor": "fieldWorker",
+    "goal": "Void a previously posted material usage record that was entered in error so it no longer contributes to project job costs",
+    "steps": [
+      "Select the posted material usage entry to void",
+      "Provide a reason for voiding the entry",
+      "Confirm the void action",
+      "System marks the record as voided with timestamp and reason"
+    ],
+    "outcome": "The material usage record status is voided and it is excluded from job cost and budget-vs-actual calculations"
+  },
+  "accessPattern": {
+    "kind": "commandInput",
+    "description": "Form to void a selected posted material usage record by providing a void reason",
+    "entity": "MaterialUsage",
+    "keyField": "MaterialUsage.materialUsageId",
+    "pagination": "none",
+    "selection": "single",
+    "output": [
+      "MaterialUsage.materialUsageId",
+      "MaterialUsage.status",
+      "MaterialUsage.voidedAt",
+      "MaterialUsage.voidedReason"
+    ]
+  },
+  "outputShape": {
+    "kind": "object",
+    "fields": [
+      {
+        "name": "materialUsageId",
+        "type": "string",
+        "required": true,
+        "fieldRef": "MaterialUsage.materialUsageId"
+      },
+      {
+        "name": "projectId",
+        "type": "string",
+        "required": true,
+        "fieldRef": "MaterialUsage.projectId"
+      },
+      {
+        "name": "status",
+        "type": "string",
+        "required": true,
+        "fieldRef": "MaterialUsage.status"
+      },
+      {
+        "name": "materialName",
+        "type": "string",
+        "required": true,
+        "fieldRef": "MaterialUsage.materialName"
+      },
+      {
+        "name": "quantity",
+        "type": "number",
+        "required": true,
+        "fieldRef": "MaterialUsage.quantity"
+      },
+      {
+        "name": "unit",
+        "type": "string",
+        "required": true,
+        "fieldRef": "MaterialUsage.unit"
+      },
+      {
+        "name": "unitCost",
+        "type": "number",
+        "required": true,
+        "fieldRef": "MaterialUsage.unitCost"
+      },
+      {
+        "name": "voidedAt",
+        "type": "string",
+        "required": true,
+        "fieldRef": "MaterialUsage.voidedAt"
+      },
+      {
+        "name": "voidedReason",
+        "type": "string",
+        "required": true,
+        "fieldRef": "MaterialUsage.voidedReason"
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "materialUsageId",
+      "fieldRef": "MaterialUsage.materialUsageId",
+      "required": true,
+      "source": "selectedEntity",
+      "description": "Identifier of the posted material usage record to void"
+    },
+    {
+      "inputId": "voidedReason",
+      "fieldRef": "MaterialUsage.voidedReason",
+      "required": true,
+      "source": "userInput",
+      "description": "Reason provided by the field worker for voiding the material usage entry"
+    },
+    {
+      "inputId": "voidedAt",
+      "fieldRef": "MaterialUsage.voidedAt",
+      "required": true,
+      "source": "systemDefault",
+      "description": "Timestamp when the material usage record is voided"
+    },
+    {
+      "inputId": "status",
+      "fieldRef": "MaterialUsage.status",
+      "required": true,
+      "source": "systemDefault",
+      "description": "New lifecycle status set to voided on confirmation"
+    }
+  ],
+  "contextResolution": [
+    {
+      "inputId": "materialUsageId",
+      "targetRef": "MaterialUsage.materialUsageId",
+      "source": "selectedEntity",
+      "originRef": "MaterialUsage.materialUsageId",
+      "description": "Resolved from the material usage record the field worker selected in the list or detail view"
+    },
+    {
+      "inputId": "voidedAt",
+      "targetRef": "MaterialUsage.voidedAt",
+      "source": "systemDefault",
+      "originRef": "systemDefault.now",
+      "description": "Server sets the void timestamp to the current time at confirmation"
+    },
+    {
+      "inputId": "status",
+      "targetRef": "MaterialUsage.status",
+      "source": "systemDefault",
+      "originRef": "systemDefault.locale",
+      "description": "Server sets status to the fixed value voided when the void command is applied"
+    }
+  ],
+  "acceptanceAssertions": [
+    "After confirmation the material usage record exists with status voided",
+    "After confirmation voidedAt is set to the time of the void action",
+    "After confirmation voidedReason equals the reason provided by the field worker",
+    "Only a material usage record with status posted can be voided",
+    "A voided material usage record no longer contributes to project job cost and budget-vs-actual totals derived from material usage"
+  ],
+  "pageId": "voidMaterialUsage",
+  "commandName": "voidMaterialUsage",
+  "bffName": "buildFlowFsm.voidMaterialUsage.voidMaterialUsage",
+  "capability": {
+    "capabilityId": "voidMaterialUsage",
+    "title": "Void material usage",
+    "actor": "fieldWorker",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationVoidMaterialUsage;

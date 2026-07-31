@@ -1,0 +1,384 @@
+{
+  "savedAt": "2026-07-31T05:00:37.074Z",
+  "stepId": "e6-detail-statusReportWorkspace",
+  "agentName": "agentNsJourneyMap",
+  "attempt": 1,
+  "payload": {
+    "workspace": {
+      "workspaceId": "statusReportWorkspace",
+      "title": "Status Reports",
+      "actors": [
+        "projectManager"
+      ],
+      "kind": "workflow",
+      "entity": "StatusReport",
+      "workflowId": "statusReportLifecycle",
+      "bffCalls": [
+        {
+          "bffId": "cmdGenerateStatusReport",
+          "kind": "command",
+          "uses": [
+            {
+              "operationId": "generateStatusReport"
+            }
+          ],
+          "input": [
+            {
+              "name": "projectId",
+              "from": "generateStatusReport.projectId",
+              "required": true,
+              "source": "pageInput"
+            },
+            {
+              "name": "reportPeriodStart",
+              "from": "generateStatusReport.reportPeriodStart",
+              "required": true,
+              "source": "userDecision"
+            },
+            {
+              "name": "reportPeriodEnd",
+              "from": "generateStatusReport.reportPeriodEnd",
+              "required": true,
+              "source": "userDecision"
+            }
+          ],
+          "output": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "statusReportId",
+                "from": "generateStatusReport.statusReportId",
+                "type": "string",
+                "required": true
+              },
+              {
+                "name": "projectId",
+                "from": "generateStatusReport.projectId",
+                "type": "string"
+              },
+              {
+                "name": "status",
+                "from": "generateStatusReport.status",
+                "type": "string"
+              },
+              {
+                "name": "reportPeriodStart",
+                "from": "generateStatusReport.reportPeriodStart",
+                "type": "string"
+              },
+              {
+                "name": "reportPeriodEnd",
+                "from": "generateStatusReport.reportPeriodEnd",
+                "type": "string"
+              },
+              {
+                "name": "summary",
+                "from": "generateStatusReport.summary",
+                "type": "string"
+              },
+              {
+                "name": "tasksOverview",
+                "from": "generateStatusReport.tasksOverview",
+                "type": "string"
+              },
+              {
+                "name": "timeLogsOverview",
+                "from": "generateStatusReport.timeLogsOverview",
+                "type": "string"
+              },
+              {
+                "name": "materialsOverview",
+                "from": "generateStatusReport.materialsOverview",
+                "type": "string"
+              },
+              {
+                "name": "delayRiskAssessment",
+                "from": "generateStatusReport.delayRiskAssessment",
+                "type": "string"
+              },
+              {
+                "name": "generatedAt",
+                "from": "generateStatusReport.generatedAt",
+                "type": "string"
+              },
+              {
+                "name": "createdAt",
+                "from": "generateStatusReport.createdAt",
+                "type": "string"
+              },
+              {
+                "name": "updatedAt",
+                "from": "generateStatusReport.updatedAt",
+                "type": "string"
+              }
+            ]
+          },
+          "route": "buildFlowFsm.statusReportWorkspace.cmdGenerateStatusReport"
+        },
+        {
+          "bffId": "cmdUpdateStatusReport",
+          "kind": "command",
+          "uses": [
+            {
+              "operationId": "updateStatusReport"
+            }
+          ],
+          "input": [
+            {
+              "name": "statusReportId",
+              "from": "updateStatusReport.statusReportId",
+              "required": true,
+              "source": "derived",
+              "sourceRef": "cmdGenerateStatusReport.statusReportId"
+            },
+            {
+              "name": "summary",
+              "from": "updateStatusReport.summary",
+              "source": "userDecision"
+            },
+            {
+              "name": "tasksOverview",
+              "from": "updateStatusReport.tasksOverview",
+              "source": "userDecision"
+            },
+            {
+              "name": "timeLogsOverview",
+              "from": "updateStatusReport.timeLogsOverview",
+              "source": "userDecision"
+            },
+            {
+              "name": "materialsOverview",
+              "from": "updateStatusReport.materialsOverview",
+              "source": "userDecision"
+            },
+            {
+              "name": "delayRiskAssessment",
+              "from": "updateStatusReport.delayRiskAssessment",
+              "source": "userDecision"
+            },
+            {
+              "name": "pmNotes",
+              "from": "updateStatusReport.pmNotes",
+              "source": "userDecision"
+            }
+          ],
+          "output": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "statusReportId",
+                "from": "updateStatusReport.statusReportId",
+                "type": "string",
+                "required": true
+              },
+              {
+                "name": "projectId",
+                "from": "updateStatusReport.projectId",
+                "type": "string"
+              },
+              {
+                "name": "status",
+                "from": "updateStatusReport.status",
+                "type": "string"
+              },
+              {
+                "name": "reportPeriodStart",
+                "from": "updateStatusReport.reportPeriodStart",
+                "type": "string"
+              },
+              {
+                "name": "reportPeriodEnd",
+                "from": "updateStatusReport.reportPeriodEnd",
+                "type": "string"
+              },
+              {
+                "name": "summary",
+                "from": "updateStatusReport.summary",
+                "type": "string"
+              },
+              {
+                "name": "tasksOverview",
+                "from": "updateStatusReport.tasksOverview",
+                "type": "string"
+              },
+              {
+                "name": "timeLogsOverview",
+                "from": "updateStatusReport.timeLogsOverview",
+                "type": "string"
+              },
+              {
+                "name": "materialsOverview",
+                "from": "updateStatusReport.materialsOverview",
+                "type": "string"
+              },
+              {
+                "name": "delayRiskAssessment",
+                "from": "updateStatusReport.delayRiskAssessment",
+                "type": "string"
+              },
+              {
+                "name": "pmNotes",
+                "from": "updateStatusReport.pmNotes",
+                "type": "string"
+              },
+              {
+                "name": "updatedAt",
+                "from": "updateStatusReport.updatedAt",
+                "type": "string"
+              }
+            ]
+          },
+          "route": "buildFlowFsm.statusReportWorkspace.cmdUpdateStatusReport"
+        },
+        {
+          "bffId": "cmdUpdateStatusReportStatus",
+          "kind": "command",
+          "uses": [
+            {
+              "operationId": "updateStatusReportStatus"
+            }
+          ],
+          "input": [
+            {
+              "name": "statusReportId",
+              "from": "updateStatusReportStatus.statusReportId",
+              "required": true,
+              "source": "derived",
+              "sourceRef": "cmdGenerateStatusReport.statusReportId"
+            },
+            {
+              "name": "status",
+              "from": "updateStatusReportStatus.status",
+              "required": true,
+              "source": "userDecision"
+            }
+          ],
+          "output": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "statusReportId",
+                "from": "updateStatusReportStatus.statusReportId",
+                "type": "string",
+                "required": true
+              },
+              {
+                "name": "projectId",
+                "from": "updateStatusReportStatus.projectId",
+                "type": "string"
+              },
+              {
+                "name": "status",
+                "from": "updateStatusReportStatus.status",
+                "type": "string"
+              },
+              {
+                "name": "reviewedAt",
+                "from": "updateStatusReportStatus.reviewedAt",
+                "type": "string"
+              },
+              {
+                "name": "sharedAt",
+                "from": "updateStatusReportStatus.sharedAt",
+                "type": "string"
+              },
+              {
+                "name": "updatedAt",
+                "from": "updateStatusReportStatus.updatedAt",
+                "type": "string"
+              }
+            ]
+          },
+          "route": "buildFlowFsm.statusReportWorkspace.cmdUpdateStatusReportStatus"
+        }
+      ],
+      "sections": [
+        {
+          "sectionId": "generateSection",
+          "intent": "Project manager configures the reporting period and triggers AI-assisted report generation for the selected project.",
+          "organisms": [
+            {
+              "role": "primarySurface",
+              "action": "cmdGenerateStatusReport"
+            }
+          ]
+        },
+        {
+          "sectionId": "reviewEditSection",
+          "intent": "Project manager reviews the AI-generated content — summary, overviews, and delay-risk assessment — and edits or annotates sections before finalising.",
+          "organisms": [
+            {
+              "role": "detailPanel",
+              "dataSource": "cmdGenerateStatusReport"
+            },
+            {
+              "role": "contextualAction",
+              "action": "cmdUpdateStatusReport"
+            }
+          ]
+        },
+        {
+          "sectionId": "lifecycleSection",
+          "intent": "Project manager advances the report through its lifecycle — marking it as reviewed or sharing it with the client.",
+          "organisms": [
+            {
+              "role": "contextualAction",
+              "action": "cmdUpdateStatusReportStatus"
+            }
+          ]
+        }
+      ],
+      "operationIds": [
+        "generateStatusReport",
+        "updateStatusReport",
+        "updateStatusReportStatus"
+      ],
+      "purpose": "Project manager generates AI-assisted status reports, reviews delay-risk suggestions, and shares reports with clients.",
+      "presentation": {
+        "categoryRef": "aiAssistedAuthoring",
+        "confidence": 10,
+        "classificationNote": "The workspace follows the canonical AI-assisted authoring pattern: configure inputs → generate (LLM-backed) → review/edit content → transition lifecycle status to share. All three operations map directly to generate, review/edit, and publish/share steps.",
+        "alternates": [
+          {
+            "categoryRef": "entityRecordManagement",
+            "confidence": 4,
+            "reason": "The workspace does manage a StatusReport record with lifecycle transitions, but the dominant pattern is AI generation and human review, making aiAssistedAuthoring a far stronger fit."
+          },
+          {
+            "categoryRef": "processWizard",
+            "confidence": 3,
+            "reason": "The generate → review → share flow has a sequential feel, but it lacks strict step validation and a wizard summary screen; the AI authoring pattern is more precise."
+          }
+        ]
+      }
+    },
+    "errors": [
+      {
+        "severity": "error",
+        "code": "section.primarySurface.count",
+        "message": "workspace statusReportWorkspace section reviewEditSection must declare exactly 1 primarySurface, found 0",
+        "path": "statusReportWorkspace"
+      },
+      {
+        "severity": "error",
+        "code": "organism.reference.kind",
+        "message": "workspace statusReportWorkspace section reviewEditSection: role \"detailPanel\" dataSource \"cmdGenerateStatusReport\" must be a query bffCall (is command)",
+        "path": "statusReportWorkspace"
+      },
+      {
+        "severity": "error",
+        "code": "detailPanel.notGetById",
+        "message": "workspace statusReportWorkspace section reviewEditSection: detailPanel \"cmdGenerateStatusReport\" is accessPattern \"commandInput\", must be \"getById\"",
+        "path": "statusReportWorkspace"
+      },
+      {
+        "severity": "error",
+        "code": "section.primarySurface.count",
+        "message": "workspace statusReportWorkspace section lifecycleSection must declare exactly 1 primarySurface, found 0",
+        "path": "statusReportWorkspace"
+      }
+    ]
+  },
+  "error": "section.primarySurface.count: workspace statusReportWorkspace section reviewEditSection must declare exactly 1 primarySurface, found 0\norganism.reference.kind: workspace statusReportWorkspace section reviewEditSection: role \"detailPanel\" dataSource \"cmdGenerateStatusReport\" must be a query bffCall (is command)\ndetailPanel.notGetById: workspace statusReportWorkspace section reviewEditSection: detailPanel \"cmdGenerateStatusReport\" is accessPattern \"commandInput\", must be \"getById\"\nsection.primarySurface.count: workspace statusReportWorkspace section lifecycleSection must declare exactly 1 primarySurface, found 0",
+  "promptChars": 19220
+}

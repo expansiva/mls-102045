@@ -1,0 +1,52 @@
+{
+  "savedAt": "2026-07-31T06:06:06.579Z",
+  "pageId": "fieldLoggingWorkspace",
+  "genome": "page21",
+  "objective": {
+    "actor": "Field worker on an active job site",
+    "jobToBeDone": "Quickly post time and material usage records against active work tasks and projects so job costing stays accurate without leaving the field.",
+    "primaryDecision": "Submit a time log entry (select task → enter date + hours → confirm) or a material usage entry (enter material details → confirm) — and void either if posted in error.",
+    "decisiveInfo": [
+      "workTaskId (task selection — context-derived, never typed)",
+      "logDate (date of work)",
+      "hoursWorked (hours to post)",
+      "materialName, quantity, unit, unitCost, usageDate (material details)",
+      "costCode (optional cost allocation)",
+      "voidReason / voidedReason (required only on void)"
+    ],
+    "usageFrequency": "Daily / continuous — field workers log at end of shift or after each task; speed and low friction are critical; screen may be used on a mobile device.",
+    "criticalActions": [
+      {
+        "action": "submitTimeLog",
+        "presentation": "primary-button inside a compact inline form; workerName pre-filled from session, logDate defaults to today"
+      },
+      {
+        "action": "submitVoidTimeLog",
+        "presentation": "contextual-transition-actions — a Void button appearing on the selected posted time log row, opening a minimal reason input inline"
+      },
+      {
+        "action": "submitMaterialUsage",
+        "presentation": "primary-button inside a compact inline form; recordedBy pre-filled from session, usageDate defaults to today"
+      },
+      {
+        "action": "submitVoidMaterialUsage",
+        "presentation": "contextual-transition-actions — a Void button appearing on the selected posted material usage row, opening a minimal reason input inline"
+      }
+    ],
+    "informationHierarchy": [
+      "1. Time logging panel — task selector + date + hours form with submit action (most frequent daily action)",
+      "2. Posted time logs list — shows today's entries; void action contextual on each posted row",
+      "3. Material usage logging panel — material details form with submit action",
+      "4. Posted material usage list — shows today's entries; void action contextual on each posted row"
+    ],
+    "successCriteria": "A field worker can post a time log or material usage record in under 60 seconds, with session-derived defaults pre-filled, and can void an erroneous entry inline without navigating away.",
+    "antiPatterns": [
+      "Manually typed workTaskId or projectId — must be a picker/selector",
+      "Free <select> over all status enum values for voiding — use explicit Void button per row",
+      "Separate full-page form for void — keep inline with reason input",
+      "Exposing workerName or recordedBy as editable inputs — pre-fill from session",
+      "Separate navigation step to reach the void action — must be contextual on the record row",
+      "Showing all historical records — scope to today's session by default to reduce noise"
+    ]
+  }
+}

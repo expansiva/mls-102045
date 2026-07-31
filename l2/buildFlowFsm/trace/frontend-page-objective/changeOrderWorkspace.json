@@ -1,0 +1,49 @@
+{
+  "savedAt": "2026-07-31T06:05:25.158Z",
+  "pageId": "changeOrderWorkspace",
+  "genome": "page21",
+  "objective": {
+    "actor": "Project Manager",
+    "jobToBeDone": "Create, edit, and approve or reject change orders so that cost and schedule impacts are accurately recorded against the active project.",
+    "primaryDecision": "Approve or reject a change order after reviewing its cost and schedule impact against the project budget.",
+    "decisiveInfo": [
+      "title",
+      "description",
+      "impactType",
+      "costAdjustment",
+      "scheduleAdjustmentDays",
+      "status",
+      "rejectionReason"
+    ],
+    "usageFrequency": "Occasional — triggered when a project scope change arises; back-office workflow used by project managers.",
+    "criticalActions": [
+      {
+        "action": "cmdUpdateChangeOrderStatus",
+        "presentation": "contextual-transition-actions — render Approve and Reject as explicit buttons on the selected change order; Reject reveals a rejectionReason input inline; never a free status <select>."
+      },
+      {
+        "action": "cmdCreateChangeOrder",
+        "presentation": "primary-button opening an inline form panel; projectId is context-derived (hidden), not typed."
+      },
+      {
+        "action": "cmdUpdateChangeOrder",
+        "presentation": "inline-row-command or edit panel pre-populated from the selected change order; changeOrderId is route-derived, never typed."
+      }
+    ],
+    "informationHierarchy": [
+      "1. Change order list with current status — lets the PM scan what needs attention",
+      "2. Selected change order detail — title, description, impactType, costAdjustment, scheduleAdjustmentDays, status",
+      "3. Status transition actions (Approve / Reject) with optional rejection reason — the primary decision",
+      "4. Edit panel for correcting details of a draft/editable change order",
+      "5. Create new change order form — least frequent, lowest in hierarchy"
+    ],
+    "successCriteria": "The PM can review a change order's full impact, approve or reject it in two clicks, and create or correct a change order without leaving the workspace or manually typing any system-owned id.",
+    "antiPatterns": [
+      "Free <select> over all status enum values for status transitions",
+      "Manually typed changeOrderId or projectId inputs",
+      "Separate page or modal for status update",
+      "Stacking three independent full-page forms without a master list",
+      "Showing system-owned fields (createdAt, updatedAt, approvedAt, rejectedAt) as editable inputs"
+    ]
+  }
+}

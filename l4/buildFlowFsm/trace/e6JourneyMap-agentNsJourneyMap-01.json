@@ -1,0 +1,582 @@
+{
+  "savedAt": "2026-07-31T04:59:03.715Z",
+  "stepId": "e6-journey-map",
+  "agentName": "agentNsJourneyMap",
+  "attempt": 1,
+  "payload": {
+    "siteMap": {
+      "schemaVersion": "2026-07-19-ns-e6-sitemap-v1",
+      "moduleName": "buildFlowFsm",
+      "note": "Site map (permanent page index) — workspaces, landings and advisory edges. Detail (sections/organisms/bffCalls) lives per-workspace under workspaces/.",
+      "workspaces": [
+        {
+          "workspaceId": "dashboardWorkspace",
+          "title": "Operational Dashboard",
+          "actors": [
+            "projectManager"
+          ],
+          "kind": "operation",
+          "entity": "Project",
+          "operationIds": [
+            "viewDashboard",
+            "queryProjects",
+            "queryWorkTasks"
+          ],
+          "purpose": "Project manager gets a live overview of all active projects, budget health, and upcoming/overdue tasks."
+        },
+        {
+          "workspaceId": "projectDetailWorkspace",
+          "title": "Project Detail & Timeline",
+          "actors": [
+            "projectManager"
+          ],
+          "kind": "workflow",
+          "entity": "Project",
+          "operationIds": [
+            "createProject",
+            "updateProject",
+            "updateProjectStatus",
+            "viewProject",
+            "queryChangeOrders",
+            "viewChangeOrder",
+            "createChangeOrder",
+            "updateChangeOrder",
+            "updateChangeOrderStatus",
+            "queryTimeLogs",
+            "queryMaterialUsages",
+            "generateStatusReport",
+            "updateStatusReport",
+            "updateStatusReportStatus",
+            "generateDelayRiskSuggestions",
+            "queryDelayRiskSuggestions",
+            "createWorkTask",
+            "updateWorkTask"
+          ],
+          "purpose": "Project manager sets up, edits, and drives a single project through its full lifecycle — tasks, change orders, costs, and status reports — from one surface."
+        },
+        {
+          "workspaceId": "taskBoardWorkspace",
+          "title": "Task Board",
+          "actors": [
+            "projectManager"
+          ],
+          "kind": "workflow",
+          "entity": "WorkTask",
+          "operationIds": [
+            "queryWorkTasks",
+            "updateWorkTaskStatus"
+          ],
+          "purpose": "Project manager reviews and updates the status of all work tasks across projects.",
+          "workflowId": "workTaskLifecycle"
+        },
+        {
+          "workspaceId": "myTasksWorkspace",
+          "title": "My Tasks",
+          "actors": [
+            "fieldWorker"
+          ],
+          "kind": "workflow",
+          "entity": "WorkTask",
+          "operationIds": [
+            "queryMyWorkTasks",
+            "viewWorkTask",
+            "updateWorkTaskStatus",
+            "createTimeLog",
+            "voidTimeLog",
+            "createMaterialUsage",
+            "voidMaterialUsage"
+          ],
+          "purpose": "Field worker sees their assigned tasks, logs hours and materials, and marks tasks complete — all from a mobile-friendly surface.",
+          "workflowId": "workTaskLifecycle"
+        },
+        {
+          "workspaceId": "clientManagementWorkspace",
+          "title": "Client Directory",
+          "actors": [
+            "projectManager"
+          ],
+          "kind": "entityManagement",
+          "entity": "Client",
+          "operationIds": [
+            "queryClients",
+            "createClient",
+            "updateClient",
+            "deleteClient"
+          ],
+          "purpose": "Project manager maintains the client roster — browse, add, edit, and remove client records."
+        },
+        {
+          "workspaceId": "billingWorkspace",
+          "title": "Billing & Invoicing",
+          "actors": [
+            "billingStaff"
+          ],
+          "kind": "workflow",
+          "entity": "BillingSummary",
+          "operationIds": [
+            "viewJobCostSummary",
+            "queryBillingSummaries",
+            "createBillingSummary",
+            "shareBillingSummary",
+            "queryInvoices",
+            "createInvoice",
+            "sendInvoice"
+          ],
+          "purpose": "Billing staff reviews job costs, compiles billing summaries, generates invoices, and sends them to clients."
+        },
+        {
+          "workspaceId": "clientPortalWorkspace",
+          "title": "Client Portal",
+          "actors": [
+            "client"
+          ],
+          "kind": "landing",
+          "entity": "StatusReport",
+          "operationIds": [
+            "viewStatusReport",
+            "viewBillingSummary",
+            "viewInvoice"
+          ],
+          "purpose": "Client reviews shared project status reports, billing summaries, and invoices in a read-only self-serve view."
+        }
+      ],
+      "landings": [
+        {
+          "actorId": "projectManager",
+          "workspaceId": "dashboardWorkspace",
+          "reason": "Project manager starts each day with the operational dashboard to check project health, budget drift, and task urgency."
+        },
+        {
+          "actorId": "fieldWorker",
+          "workspaceId": "myTasksWorkspace",
+          "reason": "Field worker opens the app directly to their assigned task list to see what to work on today."
+        },
+        {
+          "actorId": "billingStaff",
+          "workspaceId": "billingWorkspace",
+          "reason": "Billing staff starts in the billing workspace to review job costs and manage summaries and invoices."
+        },
+        {
+          "actorId": "client",
+          "workspaceId": "clientPortalWorkspace",
+          "reason": "Client lands on the portal to view shared status reports and billing documents."
+        }
+      ],
+      "navigationEdges": [
+        {
+          "from": "dashboardWorkspace",
+          "to": "projectDetailWorkspace",
+          "operationId": "viewProject",
+          "description": "Project manager drills into a specific project from the dashboard or project list."
+        },
+        {
+          "from": "dashboardWorkspace",
+          "to": "taskBoardWorkspace",
+          "operationId": "queryWorkTasks",
+          "description": "Project manager navigates to the full task board from the dashboard task panel."
+        },
+        {
+          "from": "projectDetailWorkspace",
+          "to": "clientManagementWorkspace",
+          "operationId": "createClient",
+          "description": "Project manager opens the client directory to create or select a client while setting up a project."
+        },
+        {
+          "from": "projectDetailWorkspace",
+          "to": "billingWorkspace",
+          "operationId": "viewJobCostSummary",
+          "description": "Billing staff accesses job cost summary from a project context to begin billing preparation."
+        },
+        {
+          "from": "projectDetailWorkspace",
+          "to": "clientPortalWorkspace",
+          "operationId": "updateStatusReportStatus",
+          "description": "Project manager publishes a status report, making it visible to the client in the portal."
+        },
+        {
+          "from": "billingWorkspace",
+          "to": "clientPortalWorkspace",
+          "operationId": "shareBillingSummary",
+          "description": "Billing staff shares a billing summary, making it available to the client in the portal."
+        },
+        {
+          "from": "billingWorkspace",
+          "to": "clientPortalWorkspace",
+          "operationId": "sendInvoice",
+          "description": "Billing staff sends an invoice, making it visible to the client in the portal."
+        },
+        {
+          "from": "myTasksWorkspace",
+          "to": "myTasksWorkspace",
+          "operationId": "viewWorkTask",
+          "description": "Field worker taps a task in the list to open its detail and log time, materials, or update status."
+        }
+      ]
+    },
+    "gate": {
+      "ok": false,
+      "artifact": {
+        "schemaVersion": "2026-07-19-ns-e6-sitemap-v1",
+        "moduleName": "buildFlowFsm",
+        "note": "Site map (permanent page index) — workspaces, landings and advisory edges. Detail (sections/organisms/bffCalls) lives per-workspace under workspaces/.",
+        "workspaces": [
+          {
+            "workspaceId": "dashboardWorkspace",
+            "title": "Operational Dashboard",
+            "actors": [
+              "projectManager"
+            ],
+            "kind": "operation",
+            "entity": "Project",
+            "operationIds": [
+              "viewDashboard",
+              "queryProjects",
+              "queryWorkTasks"
+            ],
+            "purpose": "Project manager gets a live overview of all active projects, budget health, and upcoming/overdue tasks."
+          },
+          {
+            "workspaceId": "projectDetailWorkspace",
+            "title": "Project Detail & Timeline",
+            "actors": [
+              "projectManager"
+            ],
+            "kind": "workflow",
+            "entity": "Project",
+            "operationIds": [
+              "createProject",
+              "updateProject",
+              "updateProjectStatus",
+              "viewProject",
+              "queryChangeOrders",
+              "viewChangeOrder",
+              "createChangeOrder",
+              "updateChangeOrder",
+              "updateChangeOrderStatus",
+              "queryTimeLogs",
+              "queryMaterialUsages",
+              "generateStatusReport",
+              "updateStatusReport",
+              "updateStatusReportStatus",
+              "generateDelayRiskSuggestions",
+              "queryDelayRiskSuggestions",
+              "createWorkTask",
+              "updateWorkTask"
+            ],
+            "purpose": "Project manager sets up, edits, and drives a single project through its full lifecycle — tasks, change orders, costs, and status reports — from one surface."
+          },
+          {
+            "workspaceId": "taskBoardWorkspace",
+            "title": "Task Board",
+            "actors": [
+              "projectManager"
+            ],
+            "kind": "workflow",
+            "entity": "WorkTask",
+            "operationIds": [
+              "queryWorkTasks",
+              "updateWorkTaskStatus"
+            ],
+            "purpose": "Project manager reviews and updates the status of all work tasks across projects.",
+            "workflowId": "workTaskLifecycle"
+          },
+          {
+            "workspaceId": "myTasksWorkspace",
+            "title": "My Tasks",
+            "actors": [
+              "fieldWorker"
+            ],
+            "kind": "workflow",
+            "entity": "WorkTask",
+            "operationIds": [
+              "queryMyWorkTasks",
+              "viewWorkTask",
+              "updateWorkTaskStatus",
+              "createTimeLog",
+              "voidTimeLog",
+              "createMaterialUsage",
+              "voidMaterialUsage"
+            ],
+            "purpose": "Field worker sees their assigned tasks, logs hours and materials, and marks tasks complete — all from a mobile-friendly surface.",
+            "workflowId": "workTaskLifecycle"
+          },
+          {
+            "workspaceId": "clientManagementWorkspace",
+            "title": "Client Directory",
+            "actors": [
+              "projectManager"
+            ],
+            "kind": "entityManagement",
+            "entity": "Client",
+            "operationIds": [
+              "queryClients",
+              "createClient",
+              "updateClient",
+              "deleteClient"
+            ],
+            "purpose": "Project manager maintains the client roster — browse, add, edit, and remove client records."
+          },
+          {
+            "workspaceId": "billingWorkspace",
+            "title": "Billing & Invoicing",
+            "actors": [
+              "billingStaff"
+            ],
+            "kind": "workflow",
+            "entity": "BillingSummary",
+            "operationIds": [
+              "viewJobCostSummary",
+              "queryBillingSummaries",
+              "createBillingSummary",
+              "shareBillingSummary",
+              "queryInvoices",
+              "createInvoice",
+              "sendInvoice"
+            ],
+            "purpose": "Billing staff reviews job costs, compiles billing summaries, generates invoices, and sends them to clients."
+          },
+          {
+            "workspaceId": "clientPortalWorkspace",
+            "title": "Client Portal",
+            "actors": [
+              "client"
+            ],
+            "kind": "landing",
+            "entity": "StatusReport",
+            "operationIds": [
+              "viewStatusReport",
+              "viewBillingSummary",
+              "viewInvoice"
+            ],
+            "purpose": "Client reviews shared project status reports, billing summaries, and invoices in a read-only self-serve view."
+          }
+        ],
+        "landings": [
+          {
+            "actorId": "projectManager",
+            "workspaceId": "dashboardWorkspace",
+            "reason": "Project manager starts each day with the operational dashboard to check project health, budget drift, and task urgency."
+          },
+          {
+            "actorId": "fieldWorker",
+            "workspaceId": "myTasksWorkspace",
+            "reason": "Field worker opens the app directly to their assigned task list to see what to work on today."
+          },
+          {
+            "actorId": "billingStaff",
+            "workspaceId": "billingWorkspace",
+            "reason": "Billing staff starts in the billing workspace to review job costs and manage summaries and invoices."
+          },
+          {
+            "actorId": "client",
+            "workspaceId": "clientPortalWorkspace",
+            "reason": "Client lands on the portal to view shared status reports and billing documents."
+          }
+        ],
+        "navigationEdges": [
+          {
+            "from": "dashboardWorkspace",
+            "to": "projectDetailWorkspace",
+            "operationId": "viewProject",
+            "description": "Project manager drills into a specific project from the dashboard or project list."
+          },
+          {
+            "from": "dashboardWorkspace",
+            "to": "taskBoardWorkspace",
+            "operationId": "queryWorkTasks",
+            "description": "Project manager navigates to the full task board from the dashboard task panel."
+          },
+          {
+            "from": "projectDetailWorkspace",
+            "to": "clientManagementWorkspace",
+            "operationId": "createClient",
+            "description": "Project manager opens the client directory to create or select a client while setting up a project."
+          },
+          {
+            "from": "projectDetailWorkspace",
+            "to": "billingWorkspace",
+            "operationId": "viewJobCostSummary",
+            "description": "Billing staff accesses job cost summary from a project context to begin billing preparation."
+          },
+          {
+            "from": "projectDetailWorkspace",
+            "to": "clientPortalWorkspace",
+            "operationId": "updateStatusReportStatus",
+            "description": "Project manager publishes a status report, making it visible to the client in the portal."
+          },
+          {
+            "from": "billingWorkspace",
+            "to": "clientPortalWorkspace",
+            "operationId": "shareBillingSummary",
+            "description": "Billing staff shares a billing summary, making it available to the client in the portal."
+          },
+          {
+            "from": "billingWorkspace",
+            "to": "clientPortalWorkspace",
+            "operationId": "sendInvoice",
+            "description": "Billing staff sends an invoice, making it visible to the client in the portal."
+          },
+          {
+            "from": "myTasksWorkspace",
+            "to": "myTasksWorkspace",
+            "operationId": "viewWorkTask",
+            "description": "Field worker taps a task in the list to open its detail and log time, materials, or update status."
+          }
+        ]
+      },
+      "errors": [
+        {
+          "severity": "error",
+          "code": "siteMap.workflow.missing",
+          "message": "workspace projectDetailWorkspace has kind \"workflow\" but declares no workflowId",
+          "path": "projectDetailWorkspace"
+        },
+        {
+          "severity": "error",
+          "code": "siteMap.actors.notCovering",
+          "message": "workspace taskBoardWorkspace: hosts an operation for actor \"fieldWorker\" not in the workspace actors [projectManager]",
+          "path": "taskBoardWorkspace"
+        },
+        {
+          "severity": "error",
+          "code": "siteMap.actors.notCovering",
+          "message": "workspace myTasksWorkspace: hosts an operation for actor \"projectManager\" not in the workspace actors [fieldWorker]",
+          "path": "myTasksWorkspace"
+        },
+        {
+          "severity": "error",
+          "code": "siteMap.workflow.missing",
+          "message": "workspace billingWorkspace has kind \"workflow\" but declares no workflowId",
+          "path": "billingWorkspace"
+        }
+      ],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false,
+      "retryContext": "siteMap.workflow.missing projectDetailWorkspace: workspace projectDetailWorkspace has kind \"workflow\" but declares no workflowId\nsiteMap.actors.notCovering taskBoardWorkspace: workspace taskBoardWorkspace: hosts an operation for actor \"fieldWorker\" not in the workspace actors [projectManager]\nsiteMap.actors.notCovering myTasksWorkspace: workspace myTasksWorkspace: hosts an operation for actor \"projectManager\" not in the workspace actors [fieldWorker]\nsiteMap.workflow.missing billingWorkspace: workspace billingWorkspace has kind \"workflow\" but declares no workflowId",
+      "pipeline": {
+        "schemaVersion": "2026-07-05-ns-pipeline-v1",
+        "flowId": "agentNewSolution",
+        "moduleName": "buildFlowFsm",
+        "createdAt": "2026-07-31T04:45:27.743Z",
+        "updatedAt": "2026-07-31T04:59:03.714Z",
+        "steps": {
+          "e1-draft": {
+            "status": "approved",
+            "updatedAt": "2026-07-31T04:45:27.751Z",
+            "dirty": false,
+            "inputsHash": "djb2:96f2d749",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-31T04:45:27.744Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-31T04:45:27.751Z",
+            "approvedBy": "auto"
+          },
+          "checkpoint-draft": {
+            "status": "pending",
+            "updatedAt": "2026-07-31T04:45:27.743Z"
+          },
+          "e2-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-31T04:48:16.731Z",
+            "dirty": false,
+            "inputsHash": "djb2:1f1314d1",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-31T04:48:16.230Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-31T04:48:16.731Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "checkpoint-journeys": {
+            "status": "approved",
+            "updatedAt": "2026-07-31T04:48:16.731Z",
+            "dirty": false,
+            "approvedAt": "2026-07-31T04:48:16.731Z",
+            "approvedBy": "human",
+            "artifactVersion": 1
+          },
+          "e3-ontology": {
+            "status": "approved",
+            "updatedAt": "2026-07-31T04:51:14.092Z",
+            "dirty": false,
+            "inputsHash": "djb2:2c6377f6",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-31T04:50:32.478Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-31T04:51:14.092Z",
+            "approvedBy": "auto"
+          },
+          "e4-actors-rules-refs": {
+            "status": "approved",
+            "updatedAt": "2026-07-31T04:53:03.460Z",
+            "dirty": false,
+            "inputsHash": "djb2:f55e3475",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-31T04:53:03.460Z",
+              "errors": [],
+              "warnings": []
+            },
+            "approvedAt": "2026-07-31T04:53:03.460Z",
+            "approvedBy": "auto"
+          },
+          "e5-workflows-operations": {
+            "status": "approved",
+            "updatedAt": "2026-07-31T04:58:23.846Z",
+            "dirty": false,
+            "inputsHash": "djb2:f55e3475",
+            "lastGate": {
+              "ok": true,
+              "checkedAt": "2026-07-31T04:55:17.635Z",
+              "errors": [],
+              "warnings": [
+                "classification.managedEntity.create.missing Project: entity \"Project\" is under management but has no standalone create operation",
+                "classification.managedEntity.create.missing WorkTask: entity \"WorkTask\" is under management but has no standalone create operation",
+                "classification.managedEntity.create.missing ChangeOrder: entity \"ChangeOrder\" is under management but has no standalone create operation",
+                "classification.managedEntity.create.missing StatusReport: entity \"StatusReport\" is under management but has no standalone create operation",
+                "classification.managedEntity.unused BillingSummary: managedEntities entry \"BillingSummary\" has no write operations under management — entry is inert",
+                "classification.managedEntity.unused Invoice: managedEntities entry \"Invoice\" has no write operations under management — entry is inert"
+              ]
+            },
+            "approvedAt": "2026-07-31T04:58:23.846Z",
+            "approvedBy": "auto"
+          },
+          "e6-journey-map": {
+            "status": "gate_failed",
+            "updatedAt": "2026-07-31T04:59:03.714Z",
+            "dirty": false,
+            "inputsHash": "djb2:7b8cb1b7",
+            "lastGate": {
+              "ok": false,
+              "checkedAt": "2026-07-31T04:59:03.714Z",
+              "errors": [
+                "siteMap.workflow.missing projectDetailWorkspace: workspace projectDetailWorkspace has kind \"workflow\" but declares no workflowId",
+                "siteMap.actors.notCovering taskBoardWorkspace: workspace taskBoardWorkspace: hosts an operation for actor \"fieldWorker\" not in the workspace actors [projectManager]",
+                "siteMap.actors.notCovering myTasksWorkspace: workspace myTasksWorkspace: hosts an operation for actor \"projectManager\" not in the workspace actors [fieldWorker]",
+                "siteMap.workflow.missing billingWorkspace: workspace billingWorkspace has kind \"workflow\" but declares no workflowId"
+              ],
+              "warnings": []
+            }
+          },
+          "e7-validation-summary": {
+            "status": "pending",
+            "updatedAt": "2026-07-31T04:51:14.092Z"
+          }
+        }
+      }
+    },
+    "retryContext": "siteMap.workflow.missing projectDetailWorkspace: workspace projectDetailWorkspace has kind \"workflow\" but declares no workflowId\nsiteMap.actors.notCovering taskBoardWorkspace: workspace taskBoardWorkspace: hosts an operation for actor \"fieldWorker\" not in the workspace actors [projectManager]\nsiteMap.actors.notCovering myTasksWorkspace: workspace myTasksWorkspace: hosts an operation for actor \"projectManager\" not in the workspace actors [fieldWorker]\nsiteMap.workflow.missing billingWorkspace: workspace billingWorkspace has kind \"workflow\" but declares no workflowId"
+  },
+  "error": "siteMap.workflow.missing: workspace projectDetailWorkspace has kind \"workflow\" but declares no workflowId\nsiteMap.actors.notCovering: workspace taskBoardWorkspace: hosts an operation for actor \"fieldWorker\" not in the workspace actors [projectManager]\nsiteMap.actors.notCovering: workspace myTasksWorkspace: hosts an operation for actor \"projectManager\" not in the workspace actors [fieldWorker]\nsiteMap.workflow.missing: workspace billingWorkspace has kind \"workflow\" but declares no workflowId",
+  "promptChars": 33171
+}

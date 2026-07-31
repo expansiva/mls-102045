@@ -1,0 +1,45 @@
+{
+  "savedAt": "2026-07-31T06:06:58.115Z",
+  "pageId": "taskBoardWorkspace",
+  "genome": "page21",
+  "objective": {
+    "actor": "Project manager (creates/assigns tasks) and field worker (updates task status from the field)",
+    "jobToBeDone": "Create work tasks tied to active projects, assign them to field workers with due dates, and allow field workers to advance task lifecycle status so project tracking stays current.",
+    "primaryDecision": "Which task to act on next — create a new one or advance the status of an existing assigned task.",
+    "decisiveInfo": [
+      "title",
+      "assignedWorkerId",
+      "dueDate",
+      "status (current lifecycle state)",
+      "projectId (context-derived)"
+    ],
+    "usageFrequency": "Frequent / operational — project managers use it daily to create and assign tasks; field workers use it throughout the workday to advance task status.",
+    "criticalActions": [
+      {
+        "action": "cmdCreateWorkTask",
+        "presentation": "primary-button on an inline creation form pre-seeded with the active project context"
+      },
+      {
+        "action": "cmdUpdateWorkTaskStatus",
+        "presentation": "contextual-transition-actions — one button per valid next lifecycle state rendered on the selected task card, never a free select"
+      },
+      {
+        "action": "cmdUpdateWorkTask",
+        "presentation": "inline-row-command opening a detail panel for editing title, description, assignee and due date"
+      }
+    ],
+    "informationHierarchy": [
+      "1. Task board grouped by lifecycle status (card-board) — gives both actors an at-a-glance view of all tasks and their states",
+      "2. Selected task detail panel — shows current title, description, assignee, due date, status; surfaces edit and status-transition actions",
+      "3. Create task form — inline panel for the project manager to add a new task to the active project"
+    ],
+    "successCriteria": "A project manager can create and assign a task in under 60 seconds; a field worker can advance a task status in two taps with no manual id entry; the board always reflects the current lifecycle state without a page reload.",
+    "antiPatterns": [
+      "Manually typed workTaskId or projectId inputs",
+      "Free <select> over all status enum values for lifecycle transitions",
+      "Three separate stacked forms as the primary experience",
+      "Separate page navigation to edit a task",
+      "Showing system-owned timestamps (createdAt, updatedAt, completedAt, cancelledAt) as editable inputs"
+    ]
+  }
+}

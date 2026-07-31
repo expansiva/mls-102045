@@ -1,0 +1,79 @@
+/// <mls fileReference="_102045_/l4/buildFlowFsm/ontology/Invoice.defs.ts" enhancement="_blank"/>
+
+export const buildFlowFsmEntityInvoice = {
+  "entityId": "Invoice",
+  "title": "Invoice",
+  "description": "A formal billing document generated from approved job costs and change orders, sent to the client with payment processing handled externally.",
+  "kind": "core",
+  "ownership": "moduleOwned",
+  "fields": [
+    {
+      "fieldId": "invoiceId",
+      "type": "uuid",
+      "required": true,
+      "description": "Unique identifier for the invoice record"
+    },
+    {
+      "fieldId": "projectId",
+      "type": "uuid",
+      "required": true,
+      "description": "Reference to the project this invoice is generated from"
+    },
+    {
+      "fieldId": "clientId",
+      "type": "uuid",
+      "required": true,
+      "description": "Reference to the client being billed for this invoice"
+    },
+    {
+      "fieldId": "invoiceNumber",
+      "type": "string",
+      "required": true,
+      "description": "Human-readable invoice number used for external reference and communication"
+    },
+    {
+      "fieldId": "status",
+      "type": "string",
+      "required": true,
+      "description": "Current lifecycle state of the invoice",
+      "enum": [
+        "draft",
+        "sent"
+      ]
+    },
+    {
+      "fieldId": "totalAmount",
+      "type": "money",
+      "required": true,
+      "description": "Total billed amount including approved job costs and approved change orders"
+    },
+    {
+      "fieldId": "sentAt",
+      "type": "datetime",
+      "required": false,
+      "description": "Timestamp when the invoice was sent to the client"
+    },
+    {
+      "fieldId": "createdAt",
+      "type": "datetime",
+      "required": true,
+      "description": "Timestamp when the invoice record was created"
+    },
+    {
+      "fieldId": "updatedAt",
+      "type": "datetime",
+      "required": true,
+      "description": "Timestamp of the last modification to the invoice record"
+    }
+  ],
+  "statusEnum": [
+    "draft",
+    "sent"
+  ],
+  "lifecycleStates": [
+    "draft",
+    "sent"
+  ]
+} as const;
+
+export default buildFlowFsmEntityInvoice;

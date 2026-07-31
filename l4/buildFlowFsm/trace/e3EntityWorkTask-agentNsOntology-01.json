@@ -1,0 +1,213 @@
+{
+  "savedAt": "2026-07-31T04:50:59.651Z",
+  "stepId": "e3-entity-WorkTask",
+  "agentName": "agentNsOntology",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "entityId": "WorkTask",
+      "title": "Work Task",
+      "description": "A unit of work tied to a project, assigned to a field worker with a due date and progress status tracked through completion.",
+      "kind": "core",
+      "ownership": "moduleOwned",
+      "fields": [
+        {
+          "fieldId": "workTaskId",
+          "type": "uuid",
+          "required": true,
+          "description": "Primary identifier for the work task."
+        },
+        {
+          "fieldId": "projectId",
+          "type": "uuid",
+          "required": true,
+          "description": "Reference to the project this task belongs to."
+        },
+        {
+          "fieldId": "title",
+          "type": "string",
+          "required": true,
+          "description": "Short name describing the work task."
+        },
+        {
+          "fieldId": "description",
+          "type": "text",
+          "required": false,
+          "description": "Detailed scope or instructions for completing the task."
+        },
+        {
+          "fieldId": "assignedWorkerId",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the field worker assigned to this task; only one worker at a time."
+        },
+        {
+          "fieldId": "status",
+          "type": "string",
+          "required": true,
+          "description": "Current lifecycle state of the task, updated only by the assigned worker or project manager.",
+          "enum": [
+            "assigned",
+            "inProgress",
+            "completed",
+            "cancelled"
+          ]
+        },
+        {
+          "fieldId": "dueDate",
+          "type": "date",
+          "required": true,
+          "description": "Date by which the task should be completed, used to surface overdue and urgent work."
+        },
+        {
+          "fieldId": "completedAt",
+          "type": "datetime",
+          "required": false,
+          "description": "Timestamp when the task was marked completed."
+        },
+        {
+          "fieldId": "cancelledAt",
+          "type": "datetime",
+          "required": false,
+          "description": "Timestamp when the task was cancelled."
+        },
+        {
+          "fieldId": "cancellationReason",
+          "type": "text",
+          "required": false,
+          "description": "Reason recorded when a task is cancelled."
+        },
+        {
+          "fieldId": "createdAt",
+          "type": "datetime",
+          "required": true,
+          "description": "Timestamp when the work task was created."
+        },
+        {
+          "fieldId": "updatedAt",
+          "type": "datetime",
+          "required": true,
+          "description": "Timestamp of the last update to the work task."
+        }
+      ],
+      "statusEnum": [
+        "assigned",
+        "inProgress",
+        "completed",
+        "cancelled"
+      ],
+      "lifecycleStates": [
+        "assigned",
+        "inProgress",
+        "completed",
+        "cancelled"
+      ]
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "entityId": "WorkTask",
+        "title": "Work Task",
+        "description": "A unit of work tied to a project, assigned to a field worker with a due date and progress status tracked through completion.",
+        "kind": "core",
+        "ownership": "moduleOwned",
+        "fields": [
+          {
+            "fieldId": "workTaskId",
+            "type": "uuid",
+            "required": true,
+            "description": "Primary identifier for the work task."
+          },
+          {
+            "fieldId": "projectId",
+            "type": "uuid",
+            "required": true,
+            "description": "Reference to the project this task belongs to."
+          },
+          {
+            "fieldId": "title",
+            "type": "string",
+            "required": true,
+            "description": "Short name describing the work task."
+          },
+          {
+            "fieldId": "description",
+            "type": "text",
+            "required": false,
+            "description": "Detailed scope or instructions for completing the task."
+          },
+          {
+            "fieldId": "assignedWorkerId",
+            "type": "string",
+            "required": true,
+            "description": "Identifier of the field worker assigned to this task; only one worker at a time."
+          },
+          {
+            "fieldId": "status",
+            "type": "string",
+            "required": true,
+            "description": "Current lifecycle state of the task, updated only by the assigned worker or project manager.",
+            "enum": [
+              "assigned",
+              "inProgress",
+              "completed",
+              "cancelled"
+            ]
+          },
+          {
+            "fieldId": "dueDate",
+            "type": "date",
+            "required": true,
+            "description": "Date by which the task should be completed, used to surface overdue and urgent work."
+          },
+          {
+            "fieldId": "completedAt",
+            "type": "datetime",
+            "required": false,
+            "description": "Timestamp when the task was marked completed."
+          },
+          {
+            "fieldId": "cancelledAt",
+            "type": "datetime",
+            "required": false,
+            "description": "Timestamp when the task was cancelled."
+          },
+          {
+            "fieldId": "cancellationReason",
+            "type": "text",
+            "required": false,
+            "description": "Reason recorded when a task is cancelled."
+          },
+          {
+            "fieldId": "createdAt",
+            "type": "datetime",
+            "required": true,
+            "description": "Timestamp when the work task was created."
+          },
+          {
+            "fieldId": "updatedAt",
+            "type": "datetime",
+            "required": true,
+            "description": "Timestamp of the last update to the work task."
+          }
+        ],
+        "statusEnum": [
+          "assigned",
+          "inProgress",
+          "completed",
+          "cancelled"
+        ],
+        "lifecycleStates": [
+          "assigned",
+          "inProgress",
+          "completed",
+          "cancelled"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false
+    }
+  }
+}

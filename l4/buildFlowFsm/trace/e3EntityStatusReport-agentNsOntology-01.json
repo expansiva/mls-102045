@@ -1,0 +1,255 @@
+{
+  "savedAt": "2026-07-31T04:51:13.805Z",
+  "stepId": "e3-entity-StatusReport",
+  "agentName": "agentNsOntology",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "entityId": "StatusReport",
+      "title": "Status Report",
+      "description": "An AI-assisted project status summary generated from live tasks, time logs, and materials, reviewed by the PM and shareable with the client.",
+      "kind": "core",
+      "ownership": "moduleOwned",
+      "fields": [
+        {
+          "fieldId": "statusReportId",
+          "type": "uuid",
+          "required": true,
+          "description": "Primary identifier of the status report."
+        },
+        {
+          "fieldId": "projectId",
+          "type": "uuid",
+          "required": true,
+          "description": "Reference to the project this status report belongs to."
+        },
+        {
+          "fieldId": "status",
+          "type": "string",
+          "required": true,
+          "description": "Lifecycle state of the report: draft, reviewed, or shared with the client.",
+          "enum": [
+            "draft",
+            "reviewed",
+            "shared"
+          ]
+        },
+        {
+          "fieldId": "reportPeriodStart",
+          "type": "date",
+          "required": true,
+          "description": "Start date of the reporting period covered by this status report."
+        },
+        {
+          "fieldId": "reportPeriodEnd",
+          "type": "date",
+          "required": true,
+          "description": "End date of the reporting period covered by this status report."
+        },
+        {
+          "fieldId": "summary",
+          "type": "text",
+          "required": true,
+          "description": "AI-generated narrative summary of overall project status for the period."
+        },
+        {
+          "fieldId": "tasksOverview",
+          "type": "text",
+          "required": false,
+          "description": "AI-generated overview of task progress derived from live work tasks."
+        },
+        {
+          "fieldId": "timeLogsOverview",
+          "type": "text",
+          "required": false,
+          "description": "AI-generated overview of hours logged derived from live time logs."
+        },
+        {
+          "fieldId": "materialsOverview",
+          "type": "text",
+          "required": false,
+          "description": "AI-generated overview of material consumption derived from live material usage."
+        },
+        {
+          "fieldId": "delayRiskAssessment",
+          "type": "text",
+          "required": false,
+          "description": "AI-generated assessment of delay risks based on project data and associated delay-risk suggestions."
+        },
+        {
+          "fieldId": "pmNotes",
+          "type": "text",
+          "required": false,
+          "description": "Notes or edits added by the project manager during review of the report."
+        },
+        {
+          "fieldId": "generatedAt",
+          "type": "datetime",
+          "required": true,
+          "description": "Timestamp when the AI generated the initial report content."
+        },
+        {
+          "fieldId": "reviewedAt",
+          "type": "datetime",
+          "required": false,
+          "description": "Timestamp when the project manager completed review and moved the report to reviewed state."
+        },
+        {
+          "fieldId": "sharedAt",
+          "type": "datetime",
+          "required": false,
+          "description": "Timestamp when the report was shared with the client."
+        },
+        {
+          "fieldId": "createdAt",
+          "type": "datetime",
+          "required": true,
+          "description": "Record creation timestamp."
+        },
+        {
+          "fieldId": "updatedAt",
+          "type": "datetime",
+          "required": true,
+          "description": "Last update timestamp for the record."
+        }
+      ],
+      "statusEnum": [
+        "draft",
+        "reviewed",
+        "shared"
+      ],
+      "lifecycleStates": [
+        "draft",
+        "reviewed",
+        "shared"
+      ]
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "entityId": "StatusReport",
+        "title": "Status Report",
+        "description": "An AI-assisted project status summary generated from live tasks, time logs, and materials, reviewed by the PM and shareable with the client.",
+        "kind": "core",
+        "ownership": "moduleOwned",
+        "fields": [
+          {
+            "fieldId": "statusReportId",
+            "type": "uuid",
+            "required": true,
+            "description": "Primary identifier of the status report."
+          },
+          {
+            "fieldId": "projectId",
+            "type": "uuid",
+            "required": true,
+            "description": "Reference to the project this status report belongs to."
+          },
+          {
+            "fieldId": "status",
+            "type": "string",
+            "required": true,
+            "description": "Lifecycle state of the report: draft, reviewed, or shared with the client.",
+            "enum": [
+              "draft",
+              "reviewed",
+              "shared"
+            ]
+          },
+          {
+            "fieldId": "reportPeriodStart",
+            "type": "date",
+            "required": true,
+            "description": "Start date of the reporting period covered by this status report."
+          },
+          {
+            "fieldId": "reportPeriodEnd",
+            "type": "date",
+            "required": true,
+            "description": "End date of the reporting period covered by this status report."
+          },
+          {
+            "fieldId": "summary",
+            "type": "text",
+            "required": true,
+            "description": "AI-generated narrative summary of overall project status for the period."
+          },
+          {
+            "fieldId": "tasksOverview",
+            "type": "text",
+            "required": false,
+            "description": "AI-generated overview of task progress derived from live work tasks."
+          },
+          {
+            "fieldId": "timeLogsOverview",
+            "type": "text",
+            "required": false,
+            "description": "AI-generated overview of hours logged derived from live time logs."
+          },
+          {
+            "fieldId": "materialsOverview",
+            "type": "text",
+            "required": false,
+            "description": "AI-generated overview of material consumption derived from live material usage."
+          },
+          {
+            "fieldId": "delayRiskAssessment",
+            "type": "text",
+            "required": false,
+            "description": "AI-generated assessment of delay risks based on project data and associated delay-risk suggestions."
+          },
+          {
+            "fieldId": "pmNotes",
+            "type": "text",
+            "required": false,
+            "description": "Notes or edits added by the project manager during review of the report."
+          },
+          {
+            "fieldId": "generatedAt",
+            "type": "datetime",
+            "required": true,
+            "description": "Timestamp when the AI generated the initial report content."
+          },
+          {
+            "fieldId": "reviewedAt",
+            "type": "datetime",
+            "required": false,
+            "description": "Timestamp when the project manager completed review and moved the report to reviewed state."
+          },
+          {
+            "fieldId": "sharedAt",
+            "type": "datetime",
+            "required": false,
+            "description": "Timestamp when the report was shared with the client."
+          },
+          {
+            "fieldId": "createdAt",
+            "type": "datetime",
+            "required": true,
+            "description": "Record creation timestamp."
+          },
+          {
+            "fieldId": "updatedAt",
+            "type": "datetime",
+            "required": true,
+            "description": "Last update timestamp for the record."
+          }
+        ],
+        "statusEnum": [
+          "draft",
+          "reviewed",
+          "shared"
+        ],
+        "lifecycleStates": [
+          "draft",
+          "reviewed",
+          "shared"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "savedAt": "2026-07-31T06:10:29.319Z",
+  "phase": "materialize-phase-shared-verify",
+  "lastRoundPlanId": "materialize-phase-shared-verify",
+  "attempt": 1,
+  "allClear": true,
+  "passedCount": 2,
+  "passed": [
+    {
+      "planId": "materialize-billingsummaryworkspace-l2-shared",
+      "typecheck": "passed"
+    },
+    {
+      "planId": "materialize-projectdetailworkspace-l2-shared",
+      "typecheck": "passed"
+    }
+  ],
+  "brokenCount": 0,
+  "broken": [],
+  "agent": "agentCfeMaterializePhase"
+}

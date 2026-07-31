@@ -1,0 +1,20 @@
+{
+  "savedAt": "2026-07-31T05:04:24.839Z",
+  "stepId": "e7-validation-summary",
+  "agentName": "agentNsValidation",
+  "attempt": 1,
+  "payload": {
+    "report": {
+      "passed": true,
+      "counts": {
+        "entities": 10,
+        "workflows": 6,
+        "operations": 42,
+        "workspaces": 14
+      },
+      "errors": [],
+      "warnings": []
+    },
+    "todoOwners": 48
+  }
+}

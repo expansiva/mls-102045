@@ -1,0 +1,340 @@
+import { CollabLitElement } from '/_102029_/l2/collabLitElement.js';
+import type { GetProjectDetailOutput, ListWorkTasksOutput, ListChangeOrdersOutput, GetChangeOrderDetailOutput, ListTimeLogsOutput, ListMaterialUsagesOutput, TriggerDelayRiskSuggestionsOutput, ListDelayRiskSuggestionsOutput } from '/_102045_/l2/buildFlowFsm/web/contracts/projectDetailWorkspace.js';
+export type { GetProjectDetailInput, GetProjectDetailOutput, ListWorkTasksInput, ListWorkTasksOutput, ListChangeOrdersInput, ListChangeOrdersOutput, GetChangeOrderDetailInput, GetChangeOrderDetailOutput, ListTimeLogsInput, ListTimeLogsOutput, ListMaterialUsagesInput, ListMaterialUsagesOutput, TriggerDelayRiskSuggestionsInput, TriggerDelayRiskSuggestionsOutput, ListDelayRiskSuggestionsInput, ListDelayRiskSuggestionsOutput, } from '/_102045_/l2/buildFlowFsm/web/contracts/projectDetailWorkspace.js';
+declare const message_en: {
+    "section.projectDetailWorkspace.sec-projectHeader.title": string;
+    "organism.projectDetailWorkspace.getProjectDetail.title": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.title": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.empty": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.projectId.label": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.name.label": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.clientId.label": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.clientName.label": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.clientCompany.label": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.siteAddress.label": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.budget.label": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.startDate.label": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.endDate.label": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.status.label": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.holdReason.label": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.closedAt.label": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.cancelledAt.label": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.cancellationReason.label": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.createdAt.label": string;
+    "intent.projectDetailWorkspace.getProjectDetail.list.column.updatedAt.label": string;
+    "section.projectDetailWorkspace.sec-taskTimeline.title": string;
+    "organism.projectDetailWorkspace.listWorkTasks.title": string;
+    "intent.projectDetailWorkspace.listWorkTasks.list.title": string;
+    "intent.projectDetailWorkspace.listWorkTasks.list.empty": string;
+    "intent.projectDetailWorkspace.listWorkTasks.list.column.workTasks.label": string;
+    "intent.projectDetailWorkspace.listWorkTasks.list.column.total.label": string;
+    "intent.projectDetailWorkspace.listWorkTasks.list.filter.projectId.label": string;
+    "intent.projectDetailWorkspace.listWorkTasks.list.filter.status.label": string;
+    "intent.projectDetailWorkspace.listWorkTasks.list.filter.assignedWorkerId.label": string;
+    "intent.projectDetailWorkspace.listWorkTasks.list.filter.page.label": string;
+    "intent.projectDetailWorkspace.listWorkTasks.list.filter.pageSize.label": string;
+    "section.projectDetailWorkspace.sec-changeOrders.title": string;
+    "organism.projectDetailWorkspace.listChangeOrders.title": string;
+    "intent.projectDetailWorkspace.listChangeOrders.list.title": string;
+    "intent.projectDetailWorkspace.listChangeOrders.list.empty": string;
+    "intent.projectDetailWorkspace.listChangeOrders.list.column.changeOrders.label": string;
+    "intent.projectDetailWorkspace.listChangeOrders.list.column.total.label": string;
+    "intent.projectDetailWorkspace.listChangeOrders.list.filter.status.label": string;
+    "intent.projectDetailWorkspace.listChangeOrders.list.filter.impactType.label": string;
+    "intent.projectDetailWorkspace.listChangeOrders.list.filter.page.label": string;
+    "intent.projectDetailWorkspace.listChangeOrders.list.filter.pageSize.label": string;
+    "organism.projectDetailWorkspace.getChangeOrderDetail.title": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.title": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.empty": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.column.changeOrderId.label": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.column.projectId.label": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.column.title.label": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.column.description.label": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.column.impactType.label": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.column.costAdjustment.label": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.column.scheduleAdjustmentDays.label": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.column.status.label": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.column.rejectionReason.label": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.column.approvedAt.label": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.column.rejectedAt.label": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.column.projectName.label": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.column.projectBudget.label": string;
+    "intent.projectDetailWorkspace.getChangeOrderDetail.list.column.affectsJobCosting.label": string;
+    "section.projectDetailWorkspace.sec-costTracking.title": string;
+    "organism.projectDetailWorkspace.listTimeLogs.title": string;
+    "intent.projectDetailWorkspace.listTimeLogs.list.title": string;
+    "intent.projectDetailWorkspace.listTimeLogs.list.empty": string;
+    "intent.projectDetailWorkspace.listTimeLogs.list.column.timeLogs.label": string;
+    "intent.projectDetailWorkspace.listTimeLogs.list.column.total.label": string;
+    "intent.projectDetailWorkspace.listTimeLogs.list.filter.workTaskId.label": string;
+    "intent.projectDetailWorkspace.listTimeLogs.list.filter.workerName.label": string;
+    "intent.projectDetailWorkspace.listTimeLogs.list.filter.logDate.label": string;
+    "intent.projectDetailWorkspace.listTimeLogs.list.filter.status.label": string;
+    "intent.projectDetailWorkspace.listTimeLogs.list.filter.page.label": string;
+    "intent.projectDetailWorkspace.listTimeLogs.list.filter.pageSize.label": string;
+    "section.projectDetailWorkspace.sec-materialUsage.title": string;
+    "organism.projectDetailWorkspace.listMaterialUsages.title": string;
+    "intent.projectDetailWorkspace.listMaterialUsages.list.title": string;
+    "intent.projectDetailWorkspace.listMaterialUsages.list.empty": string;
+    "intent.projectDetailWorkspace.listMaterialUsages.list.column.materialUsages.label": string;
+    "intent.projectDetailWorkspace.listMaterialUsages.list.column.total.label": string;
+    "intent.projectDetailWorkspace.listMaterialUsages.list.filter.status.label": string;
+    "intent.projectDetailWorkspace.listMaterialUsages.list.filter.page.label": string;
+    "intent.projectDetailWorkspace.listMaterialUsages.list.filter.pageSize.label": string;
+    "section.projectDetailWorkspace.sec-delayRiskInsights.title": string;
+    "organism.projectDetailWorkspace.triggerDelayRiskSuggestions.title": string;
+    "intent.projectDetailWorkspace.triggerDelayRiskSuggestions.form.title": string;
+    "intent.projectDetailWorkspace.triggerDelayRiskSuggestions.form.action.triggerDelayRiskSuggestions": string;
+    "organism.projectDetailWorkspace.listDelayRiskSuggestions.title": string;
+    "intent.projectDetailWorkspace.listDelayRiskSuggestions.list.title": string;
+    "intent.projectDetailWorkspace.listDelayRiskSuggestions.list.empty": string;
+    "intent.projectDetailWorkspace.listDelayRiskSuggestions.list.column.delayRiskSuggestionId.label": string;
+    "intent.projectDetailWorkspace.listDelayRiskSuggestions.list.column.workTaskId.label": string;
+    "intent.projectDetailWorkspace.listDelayRiskSuggestions.list.column.workTaskTitle.label": string;
+    "intent.projectDetailWorkspace.listDelayRiskSuggestions.list.column.riskLevel.label": string;
+    "intent.projectDetailWorkspace.listDelayRiskSuggestions.list.column.reason.label": string;
+    "intent.projectDetailWorkspace.listDelayRiskSuggestions.list.column.suggestedAction.label": string;
+    "intent.projectDetailWorkspace.listDelayRiskSuggestions.list.column.acknowledged.label": string;
+    "intent.projectDetailWorkspace.listDelayRiskSuggestions.list.column.createdAt.label": string;
+    "intent.projectDetailWorkspace.listDelayRiskSuggestions.list.filter.acknowledged.label": string;
+    "section.projectDetailWorkspace.sec-project-header.title": string;
+    "section.projectDetailWorkspace.sec-task-timeline.title": string;
+    "section.projectDetailWorkspace.sec-change-orders.title": string;
+    "section.projectDetailWorkspace.sec-cost-tracking.title": string;
+    "section.projectDetailWorkspace.sec-delay-risk-insights.title": string;
+    "action.triggerDelayRiskSuggestions.success": string;
+    "action.triggerDelayRiskSuggestions.error": string;
+};
+type MessageType = typeof message_en;
+type ActionStatus = "idle" | "loading" | "success" | "error";
+export declare class BuildFlowFsmProjectDetailWorkspaceBase extends CollabLitElement {
+    /** state status — pageStatus */
+    status: string;
+    /** state getProjectDetailState — actionStatus, values: idle|loading|success|error */
+    getProjectDetailState: ActionStatus;
+    /** state getProjectDetailProjectId — input */
+    getProjectDetailProjectId: string;
+    /** state getProjectDetailData — queryResult, outputShape: object */
+    getProjectDetailData: GetProjectDetailOutput | null;
+    /** state listWorkTasksState — actionStatus, values: idle|loading|success|error */
+    listWorkTasksState: ActionStatus;
+    /** state listWorkTasksProjectId — input */
+    listWorkTasksProjectId: string;
+    /** state listWorkTasksStatus — input */
+    listWorkTasksStatus: string;
+    /** state listWorkTasksAssignedWorkerId — input */
+    listWorkTasksAssignedWorkerId: string;
+    /** state listWorkTasksPage — input */
+    listWorkTasksPage: string;
+    /** state listWorkTasksPageSize — input */
+    listWorkTasksPageSize: string;
+    /** state listWorkTasksData — queryResult, outputShape: paginated */
+    listWorkTasksData: ListWorkTasksOutput;
+    /** state listChangeOrdersState — actionStatus, values: idle|loading|success|error */
+    listChangeOrdersState: ActionStatus;
+    /** state listChangeOrdersProjectId — input */
+    listChangeOrdersProjectId: string;
+    /** state listChangeOrdersStatus — input */
+    listChangeOrdersStatus: string;
+    /** state listChangeOrdersImpactType — input */
+    listChangeOrdersImpactType: string;
+    /** state listChangeOrdersPage — input */
+    listChangeOrdersPage: string;
+    /** state listChangeOrdersPageSize — input */
+    listChangeOrdersPageSize: string;
+    /** state listChangeOrdersData — queryResult, outputShape: paginated */
+    listChangeOrdersData: ListChangeOrdersOutput;
+    /** state getChangeOrderDetailState — actionStatus, values: idle|loading|success|error */
+    getChangeOrderDetailState: ActionStatus;
+    /** state getChangeOrderDetailChangeOrderId — input */
+    getChangeOrderDetailChangeOrderId: string;
+    /** state getChangeOrderDetailData — queryResult, outputShape: object */
+    getChangeOrderDetailData: GetChangeOrderDetailOutput | null;
+    /** state listTimeLogsState — actionStatus, values: idle|loading|success|error */
+    listTimeLogsState: ActionStatus;
+    /** state listTimeLogsWorkTaskId — input */
+    listTimeLogsWorkTaskId: string;
+    /** state listTimeLogsWorkerName — input */
+    listTimeLogsWorkerName: string;
+    /** state listTimeLogsLogDate — input */
+    listTimeLogsLogDate: string;
+    /** state listTimeLogsStatus — input */
+    listTimeLogsStatus: string;
+    /** state listTimeLogsPage — input */
+    listTimeLogsPage: string;
+    /** state listTimeLogsPageSize — input */
+    listTimeLogsPageSize: string;
+    /** state listTimeLogsData — queryResult, outputShape: paginated */
+    listTimeLogsData: ListTimeLogsOutput;
+    /** state listMaterialUsagesState — actionStatus, values: idle|loading|success|error */
+    listMaterialUsagesState: ActionStatus;
+    /** state listMaterialUsagesProjectId — input */
+    listMaterialUsagesProjectId: string;
+    /** state listMaterialUsagesStatus — input */
+    listMaterialUsagesStatus: string;
+    /** state listMaterialUsagesPage — input */
+    listMaterialUsagesPage: string;
+    /** state listMaterialUsagesPageSize — input */
+    listMaterialUsagesPageSize: string;
+    /** state listMaterialUsagesData — queryResult, outputShape: paginated */
+    listMaterialUsagesData: ListMaterialUsagesOutput;
+    /** state triggerDelayRiskSuggestionsState — actionStatus, values: idle|loading|success|error */
+    triggerDelayRiskSuggestionsState: ActionStatus;
+    /** state triggerDelayRiskSuggestionsStatusReportId — input */
+    triggerDelayRiskSuggestionsStatusReportId: string;
+    /** state triggerDelayRiskSuggestionsOutput — commandOutput */
+    triggerDelayRiskSuggestionsOutput: TriggerDelayRiskSuggestionsOutput | null;
+    /** state triggerDelayRiskSuggestionsError — actionError */
+    triggerDelayRiskSuggestionsError: string;
+    /** state listDelayRiskSuggestionsState — actionStatus, values: idle|loading|success|error */
+    listDelayRiskSuggestionsState: ActionStatus;
+    /** state listDelayRiskSuggestionsStatusReportId — input */
+    listDelayRiskSuggestionsStatusReportId: string;
+    /** state listDelayRiskSuggestionsAcknowledged — input */
+    listDelayRiskSuggestionsAcknowledged: string;
+    /** state listDelayRiskSuggestionsData — queryResult, outputShape: array */
+    listDelayRiskSuggestionsData: ListDelayRiskSuggestionsOutput[];
+    /** i18n catalog — MessageType keys are the CLOSED msg vocabulary for page renders */
+    protected get msg(): MessageType;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    /** Notify contract of collabState — assign subscribed values to class fields */
+    handleIcaStateChange(key: string, value: unknown): void;
+    private initStateValue;
+    private applyRouteParams;
+    private optionalNumber;
+    private optionalString;
+    private optionalBoolean;
+    /** action getProjectDetail (query) — route buildFlowFsm.projectDetailWorkspace.getProjectDetail; inputs: projectId; writes ui.projectDetailWorkspace.data.getProjectDetail; status ui.projectDetailWorkspace.action.getProjectDetail.status */
+    loadGetProjectDetail(): Promise<void>;
+    /** handler for action getProjectDetail — bind UI events here */
+    handleGetProjectDetailClick(_e?: Event): void;
+    /** action listWorkTasks (query) — route buildFlowFsm.projectDetailWorkspace.listWorkTasks; inputs: projectId, status, assignedWorkerId, page, pageSize; writes ui.projectDetailWorkspace.data.listWorkTasks; status ui.projectDetailWorkspace.action.listWorkTasks.status */
+    loadListWorkTasks(): Promise<void>;
+    /** handler for action listWorkTasks — bind UI events here */
+    handleListWorkTasksClick(_e?: Event): void;
+    /** action listChangeOrders (query) — route buildFlowFsm.projectDetailWorkspace.listChangeOrders; inputs: projectId, status, impactType, page, pageSize; writes ui.projectDetailWorkspace.data.listChangeOrders; status ui.projectDetailWorkspace.action.listChangeOrders.status */
+    loadListChangeOrders(): Promise<void>;
+    /** handler for action listChangeOrders — bind UI events here */
+    handleListChangeOrdersClick(_e?: Event): void;
+    /** action getChangeOrderDetail (query) — route buildFlowFsm.projectDetailWorkspace.getChangeOrderDetail; inputs: changeOrderId; writes ui.projectDetailWorkspace.data.getChangeOrderDetail; status ui.projectDetailWorkspace.action.getChangeOrderDetail.status */
+    loadGetChangeOrderDetail(): Promise<void>;
+    /** handler for action getChangeOrderDetail — bind UI events here */
+    handleGetChangeOrderDetailClick(_e?: Event): void;
+    /** action listTimeLogs (query) — route buildFlowFsm.projectDetailWorkspace.listTimeLogs; inputs: workTaskId, workerName, logDate, status, page, pageSize; writes ui.projectDetailWorkspace.data.listTimeLogs; status ui.projectDetailWorkspace.action.listTimeLogs.status */
+    loadListTimeLogs(): Promise<void>;
+    /** handler for action listTimeLogs — bind UI events here */
+    handleListTimeLogsClick(_e?: Event): void;
+    /** action listMaterialUsages (query) — route buildFlowFsm.projectDetailWorkspace.listMaterialUsages; inputs: projectId, status, page, pageSize; writes ui.projectDetailWorkspace.data.listMaterialUsages; status ui.projectDetailWorkspace.action.listMaterialUsages.status */
+    loadListMaterialUsages(): Promise<void>;
+    /** handler for action listMaterialUsages — bind UI events here */
+    handleListMaterialUsagesClick(_e?: Event): void;
+    /** action triggerDelayRiskSuggestions (command) — route buildFlowFsm.projectDetailWorkspace.triggerDelayRiskSuggestions; inputs: statusReportId; writes ui.projectDetailWorkspace.output.triggerDelayRiskSuggestions; status ui.projectDetailWorkspace.action.triggerDelayRiskSuggestions.status; feedback keys action.triggerDelayRiskSuggestions.success / action.triggerDelayRiskSuggestions.error */
+    triggerDelayRiskSuggestions(): Promise<void>;
+    /** handler for action triggerDelayRiskSuggestions — bind UI events here */
+    handleTriggerDelayRiskSuggestionsClick(_e?: Event): void;
+    /** action listDelayRiskSuggestions (query) — route buildFlowFsm.projectDetailWorkspace.listDelayRiskSuggestions; inputs: statusReportId, acknowledged; writes ui.projectDetailWorkspace.data.listDelayRiskSuggestions; status ui.projectDetailWorkspace.action.listDelayRiskSuggestions.status */
+    loadListDelayRiskSuggestions(): Promise<void>;
+    /** handler for action listDelayRiskSuggestions — bind UI events here */
+    handleListDelayRiskSuggestionsClick(_e?: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.getProjectDetail.projectId */
+    setGetProjectDetailProjectId(value: string): void;
+    /** handler for action set.getProjectDetailProjectId — bind UI events here */
+    handleGetProjectDetailProjectIdChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listWorkTasks.projectId */
+    setListWorkTasksProjectId(value: string): void;
+    /** handler for action set.listWorkTasksProjectId — bind UI events here */
+    handleListWorkTasksProjectIdChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listWorkTasks.status */
+    setListWorkTasksStatus(value: string): void;
+    /** handler for action set.listWorkTasksStatus — bind UI events here */
+    handleListWorkTasksStatusChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listWorkTasks.assignedWorkerId */
+    setListWorkTasksAssignedWorkerId(value: string): void;
+    /** handler for action set.listWorkTasksAssignedWorkerId — bind UI events here */
+    handleListWorkTasksAssignedWorkerIdChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listWorkTasks.page */
+    setListWorkTasksPage(value: string): void;
+    /** handler for action set.listWorkTasksPage — bind UI events here */
+    handleListWorkTasksPageChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listWorkTasks.pageSize */
+    setListWorkTasksPageSize(value: string): void;
+    /** handler for action set.listWorkTasksPageSize — bind UI events here */
+    handleListWorkTasksPageSizeChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listChangeOrders.projectId */
+    setListChangeOrdersProjectId(value: string): void;
+    /** handler for action set.listChangeOrdersProjectId — bind UI events here */
+    handleListChangeOrdersProjectIdChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listChangeOrders.status */
+    setListChangeOrdersStatus(value: string): void;
+    /** handler for action set.listChangeOrdersStatus — bind UI events here */
+    handleListChangeOrdersStatusChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listChangeOrders.impactType */
+    setListChangeOrdersImpactType(value: string): void;
+    /** handler for action set.listChangeOrdersImpactType — bind UI events here */
+    handleListChangeOrdersImpactTypeChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listChangeOrders.page */
+    setListChangeOrdersPage(value: string): void;
+    /** handler for action set.listChangeOrdersPage — bind UI events here */
+    handleListChangeOrdersPageChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listChangeOrders.pageSize */
+    setListChangeOrdersPageSize(value: string): void;
+    /** handler for action set.listChangeOrdersPageSize — bind UI events here */
+    handleListChangeOrdersPageSizeChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.getChangeOrderDetail.changeOrderId */
+    setGetChangeOrderDetailChangeOrderId(value: string): void;
+    /** handler for action set.getChangeOrderDetailChangeOrderId — bind UI events here */
+    handleGetChangeOrderDetailChangeOrderIdChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listTimeLogs.workTaskId */
+    setListTimeLogsWorkTaskId(value: string): void;
+    /** handler for action set.listTimeLogsWorkTaskId — bind UI events here */
+    handleListTimeLogsWorkTaskIdChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listTimeLogs.workerName */
+    setListTimeLogsWorkerName(value: string): void;
+    /** handler for action set.listTimeLogsWorkerName — bind UI events here */
+    handleListTimeLogsWorkerNameChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listTimeLogs.logDate */
+    setListTimeLogsLogDate(value: string): void;
+    /** handler for action set.listTimeLogsLogDate — bind UI events here */
+    handleListTimeLogsLogDateChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listTimeLogs.status */
+    setListTimeLogsStatus(value: string): void;
+    /** handler for action set.listTimeLogsStatus — bind UI events here */
+    handleListTimeLogsStatusChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listTimeLogs.page */
+    setListTimeLogsPage(value: string): void;
+    /** handler for action set.listTimeLogsPage — bind UI events here */
+    handleListTimeLogsPageChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listTimeLogs.pageSize */
+    setListTimeLogsPageSize(value: string): void;
+    /** handler for action set.listTimeLogsPageSize — bind UI events here */
+    handleListTimeLogsPageSizeChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listMaterialUsages.projectId */
+    setListMaterialUsagesProjectId(value: string): void;
+    /** handler for action set.listMaterialUsagesProjectId — bind UI events here */
+    handleListMaterialUsagesProjectIdChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listMaterialUsages.status */
+    setListMaterialUsagesStatus(value: string): void;
+    /** handler for action set.listMaterialUsagesStatus — bind UI events here */
+    handleListMaterialUsagesStatusChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listMaterialUsages.page */
+    setListMaterialUsagesPage(value: string): void;
+    /** handler for action set.listMaterialUsagesPage — bind UI events here */
+    handleListMaterialUsagesPageChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listMaterialUsages.pageSize */
+    setListMaterialUsagesPageSize(value: string): void;
+    /** handler for action set.listMaterialUsagesPageSize — bind UI events here */
+    handleListMaterialUsagesPageSizeChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.triggerDelayRiskSuggestions.statusReportId */
+    setTriggerDelayRiskSuggestionsStatusReportId(value: string): void;
+    /** handler for action set.triggerDelayRiskSuggestionsStatusReportId — bind UI events here */
+    handleTriggerDelayRiskSuggestionsStatusReportIdChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listDelayRiskSuggestions.statusReportId */
+    setListDelayRiskSuggestionsStatusReportId(value: string): void;
+    /** handler for action set.listDelayRiskSuggestionsStatusReportId — bind UI events here */
+    handleListDelayRiskSuggestionsStatusReportIdChange(e: Event): void;
+    /** setter for state ui.projectDetailWorkspace.input.listDelayRiskSuggestions.acknowledged */
+    setListDelayRiskSuggestionsAcknowledged(value: string): void;
+    /** handler for action set.listDelayRiskSuggestionsAcknowledged — bind UI events here */
+    handleListDelayRiskSuggestionsAcknowledgedChange(e: Event): void;
+}

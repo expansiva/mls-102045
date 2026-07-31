@@ -1,0 +1,392 @@
+{
+  "savedAt": "2026-07-31T04:56:31.786Z",
+  "stepId": "e5-operation-updateChangeOrder",
+  "agentName": "agentNsBehavior",
+  "attempt": 1,
+  "payload": {
+    "artifact": {
+      "operationId": "updateChangeOrder",
+      "title": "Update change order details",
+      "actors": [
+        "projectManager"
+      ],
+      "entity": "ChangeOrder",
+      "kind": "update",
+      "reads": [
+        "ChangeOrder",
+        "Project"
+      ],
+      "writes": [
+        "ChangeOrder"
+      ],
+      "rulesApplied": [
+        "operationsRequireActiveProject",
+        "changeOrderDescriptionRequired"
+      ],
+      "story": {
+        "actor": "projectManager",
+        "goal": "Revise the details of an existing change order so the documented scope, cost, and schedule impact stay accurate before review or approval",
+        "steps": [
+          "Open the change order that needs correction",
+          "Edit the title, description, impact type, cost adjustment, and optional schedule adjustment days",
+          "Save the updated change order while it remains editable"
+        ],
+        "outcome": "The change order is stored with the revised details and an updated modification timestamp, still available for review without affecting job costing until approved"
+      },
+      "accessPattern": {
+        "kind": "commandInput",
+        "description": "Form to edit mutable fields of an existing draft change order identified by changeOrderId",
+        "entity": "ChangeOrder",
+        "keyField": "ChangeOrder.changeOrderId",
+        "pagination": "none",
+        "selection": "single",
+        "output": [
+          "ChangeOrder.changeOrderId",
+          "ChangeOrder.projectId",
+          "ChangeOrder.title",
+          "ChangeOrder.description",
+          "ChangeOrder.impactType",
+          "ChangeOrder.costAdjustment",
+          "ChangeOrder.scheduleAdjustmentDays",
+          "ChangeOrder.status",
+          "ChangeOrder.updatedAt"
+        ]
+      },
+      "outputShape": {
+        "kind": "object",
+        "fields": [
+          {
+            "name": "changeOrderId",
+            "type": "string",
+            "required": true,
+            "fieldRef": "ChangeOrder.changeOrderId"
+          },
+          {
+            "name": "projectId",
+            "type": "string",
+            "required": true,
+            "fieldRef": "ChangeOrder.projectId"
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "required": true,
+            "fieldRef": "ChangeOrder.title"
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "required": true,
+            "fieldRef": "ChangeOrder.description"
+          },
+          {
+            "name": "impactType",
+            "type": "string",
+            "required": true,
+            "fieldRef": "ChangeOrder.impactType"
+          },
+          {
+            "name": "costAdjustment",
+            "type": "number",
+            "required": true,
+            "fieldRef": "ChangeOrder.costAdjustment"
+          },
+          {
+            "name": "scheduleAdjustmentDays",
+            "type": "number",
+            "required": false,
+            "fieldRef": "ChangeOrder.scheduleAdjustmentDays"
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "required": true,
+            "fieldRef": "ChangeOrder.status"
+          },
+          {
+            "name": "updatedAt",
+            "type": "string",
+            "required": true,
+            "fieldRef": "ChangeOrder.updatedAt"
+          }
+        ]
+      },
+      "inputs": [
+        {
+          "inputId": "changeOrderId",
+          "fieldRef": "ChangeOrder.changeOrderId",
+          "required": true,
+          "source": "routeParam",
+          "description": "Identifier of the change order being updated"
+        },
+        {
+          "inputId": "title",
+          "fieldRef": "ChangeOrder.title",
+          "required": true,
+          "source": "userInput",
+          "description": "Revised short summary title of the change order"
+        },
+        {
+          "inputId": "description",
+          "fieldRef": "ChangeOrder.description",
+          "required": true,
+          "source": "userInput",
+          "description": "Revised detailed description of the scope, cost, or schedule impact"
+        },
+        {
+          "inputId": "impactType",
+          "fieldRef": "ChangeOrder.impactType",
+          "required": true,
+          "source": "userInput",
+          "description": "Revised primary impact category: scope, cost, or schedule"
+        },
+        {
+          "inputId": "costAdjustment",
+          "fieldRef": "ChangeOrder.costAdjustment",
+          "required": true,
+          "source": "userInput",
+          "description": "Revised monetary cost adjustment amount"
+        },
+        {
+          "inputId": "scheduleAdjustmentDays",
+          "fieldRef": "ChangeOrder.scheduleAdjustmentDays",
+          "required": false,
+          "source": "userInput",
+          "description": "Revised number of days added to or removed from the project schedule"
+        },
+        {
+          "inputId": "updatedAt",
+          "fieldRef": "ChangeOrder.updatedAt",
+          "required": true,
+          "source": "systemDefault",
+          "description": "Server timestamp recorded when the change order is saved"
+        }
+      ],
+      "contextResolution": [
+        {
+          "inputId": "updatedAt",
+          "targetRef": "ChangeOrder.updatedAt",
+          "source": "systemDefault",
+          "originRef": "systemDefault.now",
+          "description": "Backend sets updatedAt to the current server timestamp when the change order is saved"
+        },
+        {
+          "inputId": "changeOrderId",
+          "targetRef": "ChangeOrder.changeOrderId",
+          "source": "routeParam",
+          "originRef": "routeParam.changeOrderId",
+          "description": "Backend resolves the change order from the changeOrderId route parameter"
+        }
+      ],
+      "acceptanceAssertions": [
+        "After confirmation the change order exists with the submitted title, description, impactType, costAdjustment, and scheduleAdjustmentDays values",
+        "After confirmation the change order description is non-empty and describes the scope, cost, or schedule impact",
+        "After confirmation the change order updatedAt is set to the save timestamp",
+        "The update is rejected when the referenced project is not in active status",
+        "The update is rejected when the change order is not in draft status",
+        "The change order status remains unchanged by this operation and does not become approved or affect job costing"
+      ],
+      "pageId": "updateChangeOrder",
+      "commandName": "updateChangeOrder",
+      "bffName": "buildFlowFsm.updateChangeOrder.updateChangeOrder",
+      "capability": {
+        "capabilityId": "updateChangeOrder",
+        "title": "Update change order details",
+        "actor": "projectManager",
+        "priority": "now"
+      },
+      "statusFrontend": "toCreate",
+      "statusBackend": "toCreate"
+    },
+    "gate": {
+      "ok": true,
+      "artifact": {
+        "operationId": "updateChangeOrder",
+        "title": "Update change order details",
+        "actors": [
+          "projectManager"
+        ],
+        "entity": "ChangeOrder",
+        "kind": "update",
+        "reads": [
+          "ChangeOrder",
+          "Project"
+        ],
+        "writes": [
+          "ChangeOrder"
+        ],
+        "rulesApplied": [
+          "operationsRequireActiveProject",
+          "changeOrderDescriptionRequired"
+        ],
+        "story": {
+          "actor": "projectManager",
+          "goal": "Revise the details of an existing change order so the documented scope, cost, and schedule impact stay accurate before review or approval",
+          "steps": [
+            "Open the change order that needs correction",
+            "Edit the title, description, impact type, cost adjustment, and optional schedule adjustment days",
+            "Save the updated change order while it remains editable"
+          ],
+          "outcome": "The change order is stored with the revised details and an updated modification timestamp, still available for review without affecting job costing until approved"
+        },
+        "accessPattern": {
+          "kind": "commandInput",
+          "description": "Form to edit mutable fields of an existing draft change order identified by changeOrderId",
+          "entity": "ChangeOrder",
+          "keyField": "ChangeOrder.changeOrderId",
+          "pagination": "none",
+          "selection": "single",
+          "output": [
+            "ChangeOrder.changeOrderId",
+            "ChangeOrder.projectId",
+            "ChangeOrder.title",
+            "ChangeOrder.description",
+            "ChangeOrder.impactType",
+            "ChangeOrder.costAdjustment",
+            "ChangeOrder.scheduleAdjustmentDays",
+            "ChangeOrder.status",
+            "ChangeOrder.updatedAt"
+          ]
+        },
+        "outputShape": {
+          "kind": "object",
+          "fields": [
+            {
+              "name": "changeOrderId",
+              "type": "string",
+              "required": true,
+              "fieldRef": "ChangeOrder.changeOrderId"
+            },
+            {
+              "name": "projectId",
+              "type": "string",
+              "required": true,
+              "fieldRef": "ChangeOrder.projectId"
+            },
+            {
+              "name": "title",
+              "type": "string",
+              "required": true,
+              "fieldRef": "ChangeOrder.title"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": true,
+              "fieldRef": "ChangeOrder.description"
+            },
+            {
+              "name": "impactType",
+              "type": "string",
+              "required": true,
+              "fieldRef": "ChangeOrder.impactType"
+            },
+            {
+              "name": "costAdjustment",
+              "type": "number",
+              "required": true,
+              "fieldRef": "ChangeOrder.costAdjustment"
+            },
+            {
+              "name": "scheduleAdjustmentDays",
+              "type": "number",
+              "required": false,
+              "fieldRef": "ChangeOrder.scheduleAdjustmentDays"
+            },
+            {
+              "name": "status",
+              "type": "string",
+              "required": true,
+              "fieldRef": "ChangeOrder.status"
+            },
+            {
+              "name": "updatedAt",
+              "type": "string",
+              "required": true,
+              "fieldRef": "ChangeOrder.updatedAt"
+            }
+          ]
+        },
+        "inputs": [
+          {
+            "inputId": "changeOrderId",
+            "fieldRef": "ChangeOrder.changeOrderId",
+            "required": true,
+            "source": "routeParam",
+            "description": "Identifier of the change order being updated"
+          },
+          {
+            "inputId": "title",
+            "fieldRef": "ChangeOrder.title",
+            "required": true,
+            "source": "userInput",
+            "description": "Revised short summary title of the change order"
+          },
+          {
+            "inputId": "description",
+            "fieldRef": "ChangeOrder.description",
+            "required": true,
+            "source": "userInput",
+            "description": "Revised detailed description of the scope, cost, or schedule impact"
+          },
+          {
+            "inputId": "impactType",
+            "fieldRef": "ChangeOrder.impactType",
+            "required": true,
+            "source": "userInput",
+            "description": "Revised primary impact category: scope, cost, or schedule"
+          },
+          {
+            "inputId": "costAdjustment",
+            "fieldRef": "ChangeOrder.costAdjustment",
+            "required": true,
+            "source": "userInput",
+            "description": "Revised monetary cost adjustment amount"
+          },
+          {
+            "inputId": "scheduleAdjustmentDays",
+            "fieldRef": "ChangeOrder.scheduleAdjustmentDays",
+            "required": false,
+            "source": "userInput",
+            "description": "Revised number of days added to or removed from the project schedule"
+          },
+          {
+            "inputId": "updatedAt",
+            "fieldRef": "ChangeOrder.updatedAt",
+            "required": true,
+            "source": "systemDefault",
+            "description": "Server timestamp recorded when the change order is saved"
+          }
+        ],
+        "contextResolution": [
+          {
+            "inputId": "updatedAt",
+            "targetRef": "ChangeOrder.updatedAt",
+            "source": "systemDefault",
+            "originRef": "systemDefault.now",
+            "description": "Backend sets updatedAt to the current server timestamp when the change order is saved"
+          },
+          {
+            "inputId": "changeOrderId",
+            "targetRef": "ChangeOrder.changeOrderId",
+            "source": "routeParam",
+            "originRef": "routeParam.changeOrderId",
+            "description": "Backend resolves the change order from the changeOrderId route parameter"
+          }
+        ],
+        "acceptanceAssertions": [
+          "After confirmation the change order exists with the submitted title, description, impactType, costAdjustment, and scheduleAdjustmentDays values",
+          "After confirmation the change order description is non-empty and describes the scope, cost, or schedule impact",
+          "After confirmation the change order updatedAt is set to the save timestamp",
+          "The update is rejected when the referenced project is not in active status",
+          "The update is rejected when the change order is not in draft status",
+          "The change order status remains unchanged by this operation and does not become approved or affect job costing"
+        ]
+      },
+      "errors": [],
+      "warnings": [],
+      "attempts": 1,
+      "needsHumanInput": false
+    }
+  }
+}

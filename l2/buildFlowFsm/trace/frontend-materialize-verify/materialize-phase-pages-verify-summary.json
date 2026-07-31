@@ -1,0 +1,25 @@
+{
+  "savedAt": "2026-07-31T06:22:58.534Z",
+  "phase": "materialize-phase-pages-verify",
+  "lastRoundPlanId": "materialize-phase-pages-verify-v2",
+  "attempt": 2,
+  "allClear": true,
+  "passedCount": 3,
+  "passed": [
+    {
+      "planId": "materialize-billingsummaryworkspace-l2-page",
+      "typecheck": "passed"
+    },
+    {
+      "planId": "materialize-billingsummaryworkspace-page21-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-mytasksworkspace-page31-l2-page",
+      "typecheck": "not-applicable"
+    }
+  ],
+  "brokenCount": 0,
+  "broken": [],
+  "agent": "agentCfeMaterializePhase"
+}

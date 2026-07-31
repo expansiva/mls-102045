@@ -1,0 +1,83 @@
+/// <mls fileReference="_102045_/l2/buildFlowFsm/web/shared/fieldLoggingWorkspace.test.ts" enhancement="_102020_/l2/enhancementAura"/>
+
+import type { BuildFlowFsmFieldLoggingWorkspaceBase } from '/_102045_/l2/buildFlowFsm/web/shared/fieldLoggingWorkspace.js';
+import type { SubmitMaterialUsageInput, SubmitMaterialUsageOutput, SubmitTimeLogInput, SubmitTimeLogOutput, SubmitVoidMaterialUsageInput, SubmitVoidMaterialUsageOutput, SubmitVoidTimeLogInput, SubmitVoidTimeLogOutput } from '/_102045_/l2/buildFlowFsm/web/contracts/fieldLoggingWorkspace.js';
+
+type IsAny<T> = 0 extends (1 & T) ? true : false;
+type Assignable<Actual, Expected> = IsAny<Actual> extends true ? false : [Actual] extends [Expected] ? true : false;
+type Assert<T extends true> = T;
+
+declare const page: BuildFlowFsmFieldLoggingWorkspaceBase;
+
+// This file is generated from .defs.ts. Add narrower state/action assertions here as materialization rules evolve.
+type _State_status = Assert<Assignable<typeof page.status, string>>;
+type _State_submitTimeLogState = Assert<Assignable<typeof page.submitTimeLogState, "idle" | "loading" | "success" | "error">>;
+type _State_submitTimeLogWorkTaskId = Assert<Assignable<typeof page.submitTimeLogWorkTaskId, string | SubmitTimeLogInput["workTaskId"]>>;
+type _State_submitTimeLogLogDate = Assert<Assignable<typeof page.submitTimeLogLogDate, string | SubmitTimeLogInput["logDate"]>>;
+type _State_submitTimeLogHoursWorked = Assert<Assignable<typeof page.submitTimeLogHoursWorked, string | SubmitTimeLogInput["hoursWorked"]>>;
+type _State_submitTimeLogWorkerName = Assert<Assignable<typeof page.submitTimeLogWorkerName, string | SubmitTimeLogInput["workerName"]>>;
+type _State_submitTimeLogOutput = Assert<Assignable<typeof page.submitTimeLogOutput, SubmitTimeLogOutput | null>>;
+type _State_submitTimeLogError = Assert<Assignable<typeof page.submitTimeLogError, string>>;
+type _State_submitVoidTimeLogState = Assert<Assignable<typeof page.submitVoidTimeLogState, "idle" | "loading" | "success" | "error">>;
+type _State_submitVoidTimeLogTimeLogId = Assert<Assignable<typeof page.submitVoidTimeLogTimeLogId, string | SubmitVoidTimeLogInput["timeLogId"]>>;
+type _State_submitVoidTimeLogVoidReason = Assert<Assignable<typeof page.submitVoidTimeLogVoidReason, string | SubmitVoidTimeLogInput["voidReason"]>>;
+type _State_submitVoidTimeLogOutput = Assert<Assignable<typeof page.submitVoidTimeLogOutput, SubmitVoidTimeLogOutput | null>>;
+type _State_submitVoidTimeLogError = Assert<Assignable<typeof page.submitVoidTimeLogError, string>>;
+type _State_submitMaterialUsageState = Assert<Assignable<typeof page.submitMaterialUsageState, "idle" | "loading" | "success" | "error">>;
+type _State_submitMaterialUsageProjectId = Assert<Assignable<typeof page.submitMaterialUsageProjectId, string | SubmitMaterialUsageInput["projectId"]>>;
+type _State_submitMaterialUsageMaterialName = Assert<Assignable<typeof page.submitMaterialUsageMaterialName, string | SubmitMaterialUsageInput["materialName"]>>;
+type _State_submitMaterialUsageQuantity = Assert<Assignable<typeof page.submitMaterialUsageQuantity, string | SubmitMaterialUsageInput["quantity"]>>;
+type _State_submitMaterialUsageUnit = Assert<Assignable<typeof page.submitMaterialUsageUnit, string | SubmitMaterialUsageInput["unit"]>>;
+type _State_submitMaterialUsageUnitCost = Assert<Assignable<typeof page.submitMaterialUsageUnitCost, string | SubmitMaterialUsageInput["unitCost"]>>;
+type _State_submitMaterialUsageCostCode = Assert<Assignable<typeof page.submitMaterialUsageCostCode, string | SubmitMaterialUsageInput["costCode"]>>;
+type _State_submitMaterialUsageUsageDate = Assert<Assignable<typeof page.submitMaterialUsageUsageDate, string | SubmitMaterialUsageInput["usageDate"]>>;
+type _State_submitMaterialUsageRecordedBy = Assert<Assignable<typeof page.submitMaterialUsageRecordedBy, string | SubmitMaterialUsageInput["recordedBy"]>>;
+type _State_submitMaterialUsageOutput = Assert<Assignable<typeof page.submitMaterialUsageOutput, SubmitMaterialUsageOutput | null>>;
+type _State_submitMaterialUsageError = Assert<Assignable<typeof page.submitMaterialUsageError, string>>;
+type _State_submitVoidMaterialUsageState = Assert<Assignable<typeof page.submitVoidMaterialUsageState, "idle" | "loading" | "success" | "error">>;
+type _State_submitVoidMaterialUsageMaterialUsageId = Assert<Assignable<typeof page.submitVoidMaterialUsageMaterialUsageId, string | SubmitVoidMaterialUsageInput["materialUsageId"]>>;
+type _State_submitVoidMaterialUsageVoidedReason = Assert<Assignable<typeof page.submitVoidMaterialUsageVoidedReason, string | SubmitVoidMaterialUsageInput["voidedReason"]>>;
+type _State_submitVoidMaterialUsageOutput = Assert<Assignable<typeof page.submitVoidMaterialUsageOutput, SubmitVoidMaterialUsageOutput | null>>;
+type _State_submitVoidMaterialUsageError = Assert<Assignable<typeof page.submitVoidMaterialUsageError, string>>;
+type _Action_submitTimeLog = Assert<Assignable<typeof page.submitTimeLog, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitTimeLogClick = Assert<Assignable<typeof page.handleSubmitTimeLogClick, (...args: any[]) => unknown>>;
+type _Action_submitVoidTimeLog = Assert<Assignable<typeof page.submitVoidTimeLog, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitVoidTimeLogClick = Assert<Assignable<typeof page.handleSubmitVoidTimeLogClick, (...args: any[]) => unknown>>;
+type _Action_submitMaterialUsage = Assert<Assignable<typeof page.submitMaterialUsage, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitMaterialUsageClick = Assert<Assignable<typeof page.handleSubmitMaterialUsageClick, (...args: any[]) => unknown>>;
+type _Action_submitVoidMaterialUsage = Assert<Assignable<typeof page.submitVoidMaterialUsage, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitVoidMaterialUsageClick = Assert<Assignable<typeof page.handleSubmitVoidMaterialUsageClick, (...args: any[]) => unknown>>;
+type _Action_setSubmitTimeLogWorkTaskId = Assert<Assignable<typeof page.setSubmitTimeLogWorkTaskId, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitTimeLogWorkTaskIdChange = Assert<Assignable<typeof page.handleSubmitTimeLogWorkTaskIdChange, (...args: any[]) => unknown>>;
+type _Action_setSubmitTimeLogLogDate = Assert<Assignable<typeof page.setSubmitTimeLogLogDate, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitTimeLogLogDateChange = Assert<Assignable<typeof page.handleSubmitTimeLogLogDateChange, (...args: any[]) => unknown>>;
+type _Action_setSubmitTimeLogHoursWorked = Assert<Assignable<typeof page.setSubmitTimeLogHoursWorked, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitTimeLogHoursWorkedChange = Assert<Assignable<typeof page.handleSubmitTimeLogHoursWorkedChange, (...args: any[]) => unknown>>;
+type _Action_setSubmitTimeLogWorkerName = Assert<Assignable<typeof page.setSubmitTimeLogWorkerName, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitTimeLogWorkerNameChange = Assert<Assignable<typeof page.handleSubmitTimeLogWorkerNameChange, (...args: any[]) => unknown>>;
+type _Action_setSubmitVoidTimeLogTimeLogId = Assert<Assignable<typeof page.setSubmitVoidTimeLogTimeLogId, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitVoidTimeLogTimeLogIdChange = Assert<Assignable<typeof page.handleSubmitVoidTimeLogTimeLogIdChange, (...args: any[]) => unknown>>;
+type _Action_setSubmitVoidTimeLogVoidReason = Assert<Assignable<typeof page.setSubmitVoidTimeLogVoidReason, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitVoidTimeLogVoidReasonChange = Assert<Assignable<typeof page.handleSubmitVoidTimeLogVoidReasonChange, (...args: any[]) => unknown>>;
+type _Action_setSubmitMaterialUsageProjectId = Assert<Assignable<typeof page.setSubmitMaterialUsageProjectId, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitMaterialUsageProjectIdChange = Assert<Assignable<typeof page.handleSubmitMaterialUsageProjectIdChange, (...args: any[]) => unknown>>;
+type _Action_setSubmitMaterialUsageMaterialName = Assert<Assignable<typeof page.setSubmitMaterialUsageMaterialName, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitMaterialUsageMaterialNameChange = Assert<Assignable<typeof page.handleSubmitMaterialUsageMaterialNameChange, (...args: any[]) => unknown>>;
+type _Action_setSubmitMaterialUsageQuantity = Assert<Assignable<typeof page.setSubmitMaterialUsageQuantity, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitMaterialUsageQuantityChange = Assert<Assignable<typeof page.handleSubmitMaterialUsageQuantityChange, (...args: any[]) => unknown>>;
+type _Action_setSubmitMaterialUsageUnit = Assert<Assignable<typeof page.setSubmitMaterialUsageUnit, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitMaterialUsageUnitChange = Assert<Assignable<typeof page.handleSubmitMaterialUsageUnitChange, (...args: any[]) => unknown>>;
+type _Action_setSubmitMaterialUsageUnitCost = Assert<Assignable<typeof page.setSubmitMaterialUsageUnitCost, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitMaterialUsageUnitCostChange = Assert<Assignable<typeof page.handleSubmitMaterialUsageUnitCostChange, (...args: any[]) => unknown>>;
+type _Action_setSubmitMaterialUsageCostCode = Assert<Assignable<typeof page.setSubmitMaterialUsageCostCode, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitMaterialUsageCostCodeChange = Assert<Assignable<typeof page.handleSubmitMaterialUsageCostCodeChange, (...args: any[]) => unknown>>;
+type _Action_setSubmitMaterialUsageUsageDate = Assert<Assignable<typeof page.setSubmitMaterialUsageUsageDate, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitMaterialUsageUsageDateChange = Assert<Assignable<typeof page.handleSubmitMaterialUsageUsageDateChange, (...args: any[]) => unknown>>;
+type _Action_setSubmitMaterialUsageRecordedBy = Assert<Assignable<typeof page.setSubmitMaterialUsageRecordedBy, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitMaterialUsageRecordedByChange = Assert<Assignable<typeof page.handleSubmitMaterialUsageRecordedByChange, (...args: any[]) => unknown>>;
+type _Action_setSubmitVoidMaterialUsageMaterialUsageId = Assert<Assignable<typeof page.setSubmitVoidMaterialUsageMaterialUsageId, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitVoidMaterialUsageMaterialUsageIdChange = Assert<Assignable<typeof page.handleSubmitVoidMaterialUsageMaterialUsageIdChange, (...args: any[]) => unknown>>;
+type _Action_setSubmitVoidMaterialUsageVoidedReason = Assert<Assignable<typeof page.setSubmitVoidMaterialUsageVoidedReason, (...args: any[]) => unknown>>;
+type _Handler_handleSubmitVoidMaterialUsageVoidedReasonChange = Assert<Assignable<typeof page.handleSubmitVoidMaterialUsageVoidedReasonChange, (...args: any[]) => unknown>>;
+
+export {};

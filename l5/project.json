@@ -12,5 +12,97 @@
       "name": "English",
       "path": "/"
     }
+  ],
+  "masters": {
+    "frontend": {
+      "masterProject": 102020,
+      "agentFolder": "agentChangeFrontend",
+      "runtimeProject": 102033
+    },
+    "backend": {
+      "masterProject": 102021,
+      "agentFolder": "agentChangeBackend",
+      "runtimeProject": 102034
+    }
+  },
+  "layouts": {
+    "1": {
+      "name": "Default"
+    },
+    "2": {
+      "name": "Ux 2"
+    },
+    "3": {
+      "name": "Ux 3"
+    }
+  },
+  "modules": [
+    {
+      "moduleName": "buildFlowFsm",
+      "backend": {
+        "backendControllers": "./_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers",
+        "persistence": {
+          "tableDefsDir": "./_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence"
+        },
+        "routeKeys": [
+          "buildFlowFsm.billingSummaryWorkspace.createBillingSummaryCmd",
+          "buildFlowFsm.billingSummaryWorkspace.listBillingSummaries",
+          "buildFlowFsm.billingSummaryWorkspace.shareBillingSummaryCmd",
+          "buildFlowFsm.changeOrderWorkspace.cmdCreateChangeOrder",
+          "buildFlowFsm.changeOrderWorkspace.cmdUpdateChangeOrder",
+          "buildFlowFsm.changeOrderWorkspace.cmdUpdateChangeOrderStatus",
+          "buildFlowFsm.clientBillingWorkspace.getBillingSummary",
+          "buildFlowFsm.clientBillingWorkspace.getInvoice",
+          "buildFlowFsm.clientManagementWorkspace.createClientCmd",
+          "buildFlowFsm.clientManagementWorkspace.deleteClientCmd",
+          "buildFlowFsm.clientManagementWorkspace.listClients",
+          "buildFlowFsm.clientManagementWorkspace.updateClientCmd",
+          "buildFlowFsm.clientStatusWorkspace.viewStatusReport",
+          "buildFlowFsm.dashboardWorkspace.getDashboardSummary",
+          "buildFlowFsm.dashboardWorkspace.getProjectList",
+          "buildFlowFsm.fieldLoggingWorkspace.submitMaterialUsage",
+          "buildFlowFsm.fieldLoggingWorkspace.submitTimeLog",
+          "buildFlowFsm.fieldLoggingWorkspace.submitVoidMaterialUsage",
+          "buildFlowFsm.fieldLoggingWorkspace.submitVoidTimeLog",
+          "buildFlowFsm.invoiceWorkspace.createInvoiceCmd",
+          "buildFlowFsm.invoiceWorkspace.listInvoices",
+          "buildFlowFsm.invoiceWorkspace.sendInvoiceCmd",
+          "buildFlowFsm.jobCostWorkspace.viewJobCostSummary",
+          "buildFlowFsm.myTasksWorkspace.getWorkTaskDetail",
+          "buildFlowFsm.myTasksWorkspace.listMyWorkTasks",
+          "buildFlowFsm.projectDetailWorkspace.getChangeOrderDetail",
+          "buildFlowFsm.projectDetailWorkspace.getProjectDetail",
+          "buildFlowFsm.projectDetailWorkspace.listChangeOrders",
+          "buildFlowFsm.projectDetailWorkspace.listDelayRiskSuggestions",
+          "buildFlowFsm.projectDetailWorkspace.listMaterialUsages",
+          "buildFlowFsm.projectDetailWorkspace.listTimeLogs",
+          "buildFlowFsm.projectDetailWorkspace.listWorkTasks",
+          "buildFlowFsm.projectDetailWorkspace.triggerDelayRiskSuggestions",
+          "buildFlowFsm.projectLifecycleWorkspace.createProjectCmd",
+          "buildFlowFsm.projectLifecycleWorkspace.updateProjectCmd",
+          "buildFlowFsm.projectLifecycleWorkspace.updateProjectStatusCmd",
+          "buildFlowFsm.statusReportWorkspace.generateReport",
+          "buildFlowFsm.statusReportWorkspace.updateReportContent",
+          "buildFlowFsm.statusReportWorkspace.updateReportStatus",
+          "buildFlowFsm.taskBoardWorkspace.cmdCreateWorkTask",
+          "buildFlowFsm.taskBoardWorkspace.cmdUpdateWorkTask",
+          "buildFlowFsm.taskBoardWorkspace.cmdUpdateWorkTaskStatus"
+        ],
+        "seedCoverage": {
+          "skippedTables": [
+            "BillingSummary",
+            "ChangeOrder",
+            "Invoice",
+            "MaterialUsage",
+            "Project",
+            "StatusReport",
+            "TimeLog",
+            "WorkTask"
+          ],
+          "skippedMdmEntities": [],
+          "reason": "seed wave 3 did not converge after 2/2 attempts: localTables.Project.project-acme-renovation.endDate: date must fall within 2026-07-01..2026-07-08; localTables.Project.project-northwind-build.endDate: date must fall within 2026-07-01..2026-07-08; localTables.Project.project-riverside-remodel.endDate: date must fall within 2026-07-01..2026-07-08"
+        }
+      }
+    }
   ]
 }

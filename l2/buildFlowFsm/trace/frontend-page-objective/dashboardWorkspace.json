@@ -1,0 +1,42 @@
+{
+  "savedAt": "2026-07-31T06:05:50.522Z",
+  "pageId": "dashboardWorkspace",
+  "genome": "page21",
+  "objective": {
+    "actor": "Project Manager",
+    "jobToBeDone": "Get an at-a-glance view of all active projects' budget drift, actual cost, task urgency, and overall status so they can quickly identify where attention is needed.",
+    "primaryDecision": "Which projects require immediate attention based on budget variance and task urgency?",
+    "decisiveInfo": [
+      "projects (name, status, budget, actual cost, variance)",
+      "total active/on-hold project count",
+      "overdue and upcoming task counts per project",
+      "project schedule (startDate, endDate)",
+      "client and site context (clientId, siteAddress)"
+    ],
+    "usageFrequency": "Daily / continuous — the project manager opens this as their home screen each morning and returns throughout the day to monitor progress.",
+    "criticalActions": [
+      {
+        "action": "View dashboard KPI summary filtered by status",
+        "presentation": "summary-first with inline status filter chip bar"
+      },
+      {
+        "action": "Browse and filter project list by status",
+        "presentation": "filterable paginated table with status filter control folded into the surface"
+      }
+    ],
+    "informationHierarchy": [
+      "1. KPI summary cards — budget drift, actual cost, task urgency counts across all projects",
+      "2. Status filter for dashboard summary",
+      "3. Paginated project list with name, client, site, budget, schedule, status",
+      "4. Status filter and pagination controls for project list"
+    ],
+    "successCriteria": "The manager can identify at-risk projects and their key metrics within 10 seconds of landing on the page, without navigating away or typing any IDs.",
+    "antiPatterns": [
+      "Separate full-width form for status filtering",
+      "Manually typed project or client IDs",
+      "Status edited via free <select> over all enum values",
+      "Raw CRUD stack as the primary experience",
+      "Hiding KPI metrics below the fold"
+    ]
+  }
+}

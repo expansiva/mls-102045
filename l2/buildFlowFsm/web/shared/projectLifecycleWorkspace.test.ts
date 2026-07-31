@@ -1,0 +1,81 @@
+/// <mls fileReference="_102045_/l2/buildFlowFsm/web/shared/projectLifecycleWorkspace.test.ts" enhancement="_102020_/l2/enhancementAura"/>
+
+import type { BuildFlowFsmProjectLifecycleWorkspaceBase } from '/_102045_/l2/buildFlowFsm/web/shared/projectLifecycleWorkspace.js';
+import type { CreateProjectCmdInput, CreateProjectCmdOutput, UpdateProjectCmdInput, UpdateProjectCmdOutput, UpdateProjectStatusCmdInput, UpdateProjectStatusCmdOutput } from '/_102045_/l2/buildFlowFsm/web/contracts/projectLifecycleWorkspace.js';
+
+type IsAny<T> = 0 extends (1 & T) ? true : false;
+type Assignable<Actual, Expected> = IsAny<Actual> extends true ? false : [Actual] extends [Expected] ? true : false;
+type Assert<T extends true> = T;
+
+declare const page: BuildFlowFsmProjectLifecycleWorkspaceBase;
+
+// This file is generated from .defs.ts. Add narrower state/action assertions here as materialization rules evolve.
+type _State_status = Assert<Assignable<typeof page.status, string>>;
+type _State_createProjectCmdState = Assert<Assignable<typeof page.createProjectCmdState, "idle" | "loading" | "success" | "error">>;
+type _State_createProjectCmdName = Assert<Assignable<typeof page.createProjectCmdName, string | CreateProjectCmdInput["name"]>>;
+type _State_createProjectCmdClientId = Assert<Assignable<typeof page.createProjectCmdClientId, string | CreateProjectCmdInput["clientId"]>>;
+type _State_createProjectCmdSiteAddress = Assert<Assignable<typeof page.createProjectCmdSiteAddress, string | CreateProjectCmdInput["siteAddress"]>>;
+type _State_createProjectCmdBudget = Assert<Assignable<typeof page.createProjectCmdBudget, string | CreateProjectCmdInput["budget"]>>;
+type _State_createProjectCmdStartDate = Assert<Assignable<typeof page.createProjectCmdStartDate, string | CreateProjectCmdInput["startDate"]>>;
+type _State_createProjectCmdEndDate = Assert<Assignable<typeof page.createProjectCmdEndDate, string | CreateProjectCmdInput["endDate"]>>;
+type _State_createProjectCmdOutput = Assert<Assignable<typeof page.createProjectCmdOutput, CreateProjectCmdOutput | null>>;
+type _State_createProjectCmdError = Assert<Assignable<typeof page.createProjectCmdError, string>>;
+type _State_updateProjectCmdState = Assert<Assignable<typeof page.updateProjectCmdState, "idle" | "loading" | "success" | "error">>;
+type _State_updateProjectCmdProjectId = Assert<Assignable<typeof page.updateProjectCmdProjectId, string | UpdateProjectCmdInput["projectId"]>>;
+type _State_updateProjectCmdName = Assert<Assignable<typeof page.updateProjectCmdName, string | UpdateProjectCmdInput["name"]>>;
+type _State_updateProjectCmdClientId = Assert<Assignable<typeof page.updateProjectCmdClientId, string | UpdateProjectCmdInput["clientId"]>>;
+type _State_updateProjectCmdSiteAddress = Assert<Assignable<typeof page.updateProjectCmdSiteAddress, string | UpdateProjectCmdInput["siteAddress"]>>;
+type _State_updateProjectCmdBudget = Assert<Assignable<typeof page.updateProjectCmdBudget, string | UpdateProjectCmdInput["budget"]>>;
+type _State_updateProjectCmdStartDate = Assert<Assignable<typeof page.updateProjectCmdStartDate, string | UpdateProjectCmdInput["startDate"]>>;
+type _State_updateProjectCmdEndDate = Assert<Assignable<typeof page.updateProjectCmdEndDate, string | UpdateProjectCmdInput["endDate"]>>;
+type _State_updateProjectCmdOutput = Assert<Assignable<typeof page.updateProjectCmdOutput, UpdateProjectCmdOutput | null>>;
+type _State_updateProjectCmdError = Assert<Assignable<typeof page.updateProjectCmdError, string>>;
+type _State_updateProjectStatusCmdState = Assert<Assignable<typeof page.updateProjectStatusCmdState, "idle" | "loading" | "success" | "error">>;
+type _State_updateProjectStatusCmdProjectId = Assert<Assignable<typeof page.updateProjectStatusCmdProjectId, string | UpdateProjectStatusCmdInput["projectId"]>>;
+type _State_updateProjectStatusCmdStatus = Assert<Assignable<typeof page.updateProjectStatusCmdStatus, string | UpdateProjectStatusCmdInput["status"]>>;
+type _State_updateProjectStatusCmdHoldReason = Assert<Assignable<typeof page.updateProjectStatusCmdHoldReason, string | UpdateProjectStatusCmdInput["holdReason"]>>;
+type _State_updateProjectStatusCmdCancellationReason = Assert<Assignable<typeof page.updateProjectStatusCmdCancellationReason, string | UpdateProjectStatusCmdInput["cancellationReason"]>>;
+type _State_updateProjectStatusCmdOutput = Assert<Assignable<typeof page.updateProjectStatusCmdOutput, UpdateProjectStatusCmdOutput | null>>;
+type _State_updateProjectStatusCmdError = Assert<Assignable<typeof page.updateProjectStatusCmdError, string>>;
+type _Action_createProjectCmd = Assert<Assignable<typeof page.createProjectCmd, (...args: any[]) => unknown>>;
+type _Handler_handleCreateProjectCmdClick = Assert<Assignable<typeof page.handleCreateProjectCmdClick, (...args: any[]) => unknown>>;
+type _Action_updateProjectCmd = Assert<Assignable<typeof page.updateProjectCmd, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProjectCmdClick = Assert<Assignable<typeof page.handleUpdateProjectCmdClick, (...args: any[]) => unknown>>;
+type _Action_updateProjectStatusCmd = Assert<Assignable<typeof page.updateProjectStatusCmd, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProjectStatusCmdClick = Assert<Assignable<typeof page.handleUpdateProjectStatusCmdClick, (...args: any[]) => unknown>>;
+type _Action_setCreateProjectCmdName = Assert<Assignable<typeof page.setCreateProjectCmdName, (...args: any[]) => unknown>>;
+type _Handler_handleCreateProjectCmdNameChange = Assert<Assignable<typeof page.handleCreateProjectCmdNameChange, (...args: any[]) => unknown>>;
+type _Action_setCreateProjectCmdClientId = Assert<Assignable<typeof page.setCreateProjectCmdClientId, (...args: any[]) => unknown>>;
+type _Handler_handleCreateProjectCmdClientIdChange = Assert<Assignable<typeof page.handleCreateProjectCmdClientIdChange, (...args: any[]) => unknown>>;
+type _Action_setCreateProjectCmdSiteAddress = Assert<Assignable<typeof page.setCreateProjectCmdSiteAddress, (...args: any[]) => unknown>>;
+type _Handler_handleCreateProjectCmdSiteAddressChange = Assert<Assignable<typeof page.handleCreateProjectCmdSiteAddressChange, (...args: any[]) => unknown>>;
+type _Action_setCreateProjectCmdBudget = Assert<Assignable<typeof page.setCreateProjectCmdBudget, (...args: any[]) => unknown>>;
+type _Handler_handleCreateProjectCmdBudgetChange = Assert<Assignable<typeof page.handleCreateProjectCmdBudgetChange, (...args: any[]) => unknown>>;
+type _Action_setCreateProjectCmdStartDate = Assert<Assignable<typeof page.setCreateProjectCmdStartDate, (...args: any[]) => unknown>>;
+type _Handler_handleCreateProjectCmdStartDateChange = Assert<Assignable<typeof page.handleCreateProjectCmdStartDateChange, (...args: any[]) => unknown>>;
+type _Action_setCreateProjectCmdEndDate = Assert<Assignable<typeof page.setCreateProjectCmdEndDate, (...args: any[]) => unknown>>;
+type _Handler_handleCreateProjectCmdEndDateChange = Assert<Assignable<typeof page.handleCreateProjectCmdEndDateChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProjectCmdProjectId = Assert<Assignable<typeof page.setUpdateProjectCmdProjectId, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProjectCmdProjectIdChange = Assert<Assignable<typeof page.handleUpdateProjectCmdProjectIdChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProjectCmdName = Assert<Assignable<typeof page.setUpdateProjectCmdName, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProjectCmdNameChange = Assert<Assignable<typeof page.handleUpdateProjectCmdNameChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProjectCmdClientId = Assert<Assignable<typeof page.setUpdateProjectCmdClientId, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProjectCmdClientIdChange = Assert<Assignable<typeof page.handleUpdateProjectCmdClientIdChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProjectCmdSiteAddress = Assert<Assignable<typeof page.setUpdateProjectCmdSiteAddress, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProjectCmdSiteAddressChange = Assert<Assignable<typeof page.handleUpdateProjectCmdSiteAddressChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProjectCmdBudget = Assert<Assignable<typeof page.setUpdateProjectCmdBudget, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProjectCmdBudgetChange = Assert<Assignable<typeof page.handleUpdateProjectCmdBudgetChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProjectCmdStartDate = Assert<Assignable<typeof page.setUpdateProjectCmdStartDate, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProjectCmdStartDateChange = Assert<Assignable<typeof page.handleUpdateProjectCmdStartDateChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProjectCmdEndDate = Assert<Assignable<typeof page.setUpdateProjectCmdEndDate, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProjectCmdEndDateChange = Assert<Assignable<typeof page.handleUpdateProjectCmdEndDateChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProjectStatusCmdProjectId = Assert<Assignable<typeof page.setUpdateProjectStatusCmdProjectId, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProjectStatusCmdProjectIdChange = Assert<Assignable<typeof page.handleUpdateProjectStatusCmdProjectIdChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProjectStatusCmdStatus = Assert<Assignable<typeof page.setUpdateProjectStatusCmdStatus, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProjectStatusCmdStatusChange = Assert<Assignable<typeof page.handleUpdateProjectStatusCmdStatusChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProjectStatusCmdHoldReason = Assert<Assignable<typeof page.setUpdateProjectStatusCmdHoldReason, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProjectStatusCmdHoldReasonChange = Assert<Assignable<typeof page.handleUpdateProjectStatusCmdHoldReasonChange, (...args: any[]) => unknown>>;
+type _Action_setUpdateProjectStatusCmdCancellationReason = Assert<Assignable<typeof page.setUpdateProjectStatusCmdCancellationReason, (...args: any[]) => unknown>>;
+type _Handler_handleUpdateProjectStatusCmdCancellationReasonChange = Assert<Assignable<typeof page.handleUpdateProjectStatusCmdCancellationReasonChange, (...args: any[]) => unknown>>;
+
+export {};

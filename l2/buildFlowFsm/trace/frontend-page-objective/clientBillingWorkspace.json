@@ -1,0 +1,50 @@
+{
+  "savedAt": "2026-07-31T06:05:17.437Z",
+  "pageId": "clientBillingWorkspace",
+  "genome": "page21",
+  "objective": {
+    "actor": "Client (project owner reviewing charges)",
+    "jobToBeDone": "Review the billing summary and invoice shared by billing staff so the client can confirm charges and understand what they owe before handling payment externally.",
+    "primaryDecision": "Understand and confirm the total cost breakdown in the billing summary, then cross-reference the corresponding invoice details.",
+    "decisiveInfo": [
+      "totalCost",
+      "laborCost",
+      "materialCost",
+      "changeOrderCost",
+      "periodStart",
+      "periodEnd",
+      "projectName",
+      "status (BillingSummary)",
+      "invoiceNumber",
+      "totalAmount",
+      "status (Invoice)",
+      "sentAt"
+    ],
+    "usageFrequency": "Occasional — client opens this page when billing staff shares a billing summary or invoice for a project milestone.",
+    "criticalActions": [
+      {
+        "action": "Load and display billing summary",
+        "presentation": "summary-first — lead with total cost and period, then expand cost breakdown (labor, material, change orders)"
+      },
+      {
+        "action": "Load and display invoice detail",
+        "presentation": "master-detail — billing summary is the primary surface; invoice detail panel appears alongside or below, driven by the same project context"
+      }
+    ],
+    "informationHierarchy": [
+      "1. Billing summary header: project name, billing period, overall status",
+      "2. Cost breakdown: labor, material, change-order, total",
+      "3. Invoice detail: invoice number, status, total amount, sent date",
+      "4. Read-only context: projectId, clientId, billingSummaryId, invoiceId (never shown as inputs)"
+    ],
+    "successCriteria": "The client can land on the page, immediately see the billing period and total cost, then confirm the matching invoice number and amount — all without typing any identifier or navigating away.",
+    "antiPatterns": [
+      "Exposing billingSummaryId or invoiceId as manual text inputs",
+      "Exposing clientId as a visible form field",
+      "Showing status as an editable select",
+      "Splitting billing summary and invoice into completely separate pages requiring navigation",
+      "Rendering a CRUD form instead of a read-only summary view",
+      "Adding persuasion or urgency framing on this operational read-only screen"
+    ]
+  }
+}

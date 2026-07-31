@@ -1,0 +1,407 @@
+{
+  "defaultProjectId": "102045",
+  "shellTemplates": {
+    "spa": "./_102033_/l2/shared/spa/index.html",
+    "pwa": "./_102033_/l2/shared/pwa/index.html"
+  },
+  "publication": {
+    "defaultTarget": "web",
+    "targets": {
+      "web": {
+        "assetBaseUrl": "",
+        "serveStaticFromServer": true,
+        "minify": false,
+        "sourcemap": true
+      }
+    }
+  },
+  "clientShell": {
+    "mode": "spa",
+    "activeProfile": "production",
+    "regions": {
+      "aside": {
+        "activeProfile": "defaultAura",
+        "profiles": {
+          "defaultAura": {
+            "renderer": {
+              "entrypoint": "/_102033_/l2/shared/layout/aura-aside.js",
+              "source": "../mls-102033/l2/shared/layout/aura-aside.ts",
+              "tag": "collab-aura-aside"
+            },
+            "widthPx": 280
+          }
+        }
+      }
+    }
+  },
+  "projects": {
+    "102029": {
+      "root": "../mls-102029",
+      "type": "lib"
+    },
+    "102033": {
+      "root": "../mls-102033",
+      "type": "master frontend"
+    },
+    "102034": {
+      "root": "../mls-102034",
+      "type": "master backend"
+    },
+    "102045": {
+      "root": ".",
+      "type": "client",
+      "runtime": {
+        "projectId": "102045"
+      },
+      "modules": [
+        {
+          "moduleId": "buildFlowFsm",
+          "basePath": "/buildFlowFsm",
+          "shellMode": "spa",
+          "backendControllers": "./_102045_/l1/buildFlowFsm/layer_1_external/adapters/http/controllers",
+          "languages": [
+            "en",
+            "pt-br",
+            "es"
+          ],
+          "navigation": [
+            {
+              "id": "billingSummaryWorkspace",
+              "label": "Billing Summaries",
+              "href": "/buildFlowFsm/billingSummaryWorkspace",
+              "description": "Billing Summaries"
+            },
+            {
+              "id": "changeOrderWorkspace",
+              "label": "Change Orders",
+              "href": "/buildFlowFsm/changeOrderWorkspace",
+              "description": "Change Orders"
+            },
+            {
+              "id": "clientBillingWorkspace",
+              "label": "My Billing",
+              "href": "/buildFlowFsm/clientBillingWorkspace",
+              "description": "My Billing"
+            },
+            {
+              "id": "clientManagementWorkspace",
+              "label": "Client Directory",
+              "href": "/buildFlowFsm/clientManagementWorkspace",
+              "description": "Client Directory"
+            },
+            {
+              "id": "clientStatusWorkspace",
+              "label": "Project Status",
+              "href": "/buildFlowFsm/clientStatusWorkspace",
+              "description": "Project Status"
+            },
+            {
+              "id": "dashboardWorkspace",
+              "label": "Operational Dashboard",
+              "href": "/buildFlowFsm/dashboardWorkspace",
+              "description": "Operational Dashboard"
+            },
+            {
+              "id": "fieldLoggingWorkspace",
+              "label": "Log Time & Materials",
+              "href": "/buildFlowFsm/fieldLoggingWorkspace",
+              "description": "Log Time & Materials"
+            },
+            {
+              "id": "invoiceWorkspace",
+              "label": "Invoices",
+              "href": "/buildFlowFsm/invoiceWorkspace",
+              "description": "Invoices"
+            },
+            {
+              "id": "jobCostWorkspace",
+              "label": "Job Cost Summary",
+              "href": "/buildFlowFsm/jobCostWorkspace",
+              "description": "Job Cost Summary"
+            },
+            {
+              "id": "myTasksWorkspace",
+              "label": "My Tasks",
+              "href": "/buildFlowFsm/myTasksWorkspace",
+              "description": "My Tasks"
+            },
+            {
+              "id": "projectDetailWorkspace",
+              "label": "Project Detail & Timeline",
+              "href": "/buildFlowFsm/projectDetailWorkspace",
+              "description": "Project Detail & Timeline"
+            },
+            {
+              "id": "projectLifecycleWorkspace",
+              "label": "Manage Projects",
+              "href": "/buildFlowFsm/projectLifecycleWorkspace",
+              "description": "Manage Projects"
+            },
+            {
+              "id": "statusReportWorkspace",
+              "label": "Status Reports",
+              "href": "/buildFlowFsm/statusReportWorkspace",
+              "description": "Status Reports"
+            },
+            {
+              "id": "taskBoardWorkspace",
+              "label": "Task Board",
+              "href": "/buildFlowFsm/taskBoardWorkspace",
+              "description": "Task Board"
+            }
+          ],
+          "frontend": {
+            "layer": "l2",
+            "pages": [
+              {
+                "pageId": "billingSummaryWorkspace",
+                "route": "/buildFlowFsm/billingSummaryWorkspace/:projectId?/:billingSummaryId?",
+                "source": "l2/buildFlowFsm/web/desktop/page11/billingSummaryWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page11/billingSummaryWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page11--billing-summary-workspace-102045",
+                "title": "Billing Summaries"
+              },
+              {
+                "pageId": "billingSummaryWorkspace-page21",
+                "route": "/buildFlowFsm/billingSummaryWorkspace-page21/:projectId?/:billingSummaryId?",
+                "source": "l2/buildFlowFsm/web/desktop/page21/billingSummaryWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page21/billingSummaryWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page21--billing-summary-workspace-102045",
+                "title": "Billing Summaries - PAGE21"
+              },
+              {
+                "pageId": "changeOrderWorkspace",
+                "route": "/buildFlowFsm/changeOrderWorkspace/:changeOrderId?",
+                "source": "l2/buildFlowFsm/web/desktop/page11/changeOrderWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page11/changeOrderWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page11--change-order-workspace-102045",
+                "title": "Change Orders"
+              },
+              {
+                "pageId": "changeOrderWorkspace-page21",
+                "route": "/buildFlowFsm/changeOrderWorkspace-page21/:changeOrderId?",
+                "source": "l2/buildFlowFsm/web/desktop/page21/changeOrderWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page21/changeOrderWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page21--change-order-workspace-102045",
+                "title": "Change Orders - PAGE21"
+              },
+              {
+                "pageId": "clientBillingWorkspace",
+                "route": "/buildFlowFsm/clientBillingWorkspace/:billingSummaryId?/:invoiceId?",
+                "source": "l2/buildFlowFsm/web/desktop/page11/clientBillingWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page11/clientBillingWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page11--client-billing-workspace-102045",
+                "title": "My Billing"
+              },
+              {
+                "pageId": "clientBillingWorkspace-page21",
+                "route": "/buildFlowFsm/clientBillingWorkspace-page21/:billingSummaryId?/:invoiceId?",
+                "source": "l2/buildFlowFsm/web/desktop/page21/clientBillingWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page21/clientBillingWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page21--client-billing-workspace-102045",
+                "title": "My Billing - PAGE21"
+              },
+              {
+                "pageId": "clientManagementWorkspace",
+                "route": "/buildFlowFsm/clientManagementWorkspace/:clientId?",
+                "source": "l2/buildFlowFsm/web/desktop/page11/clientManagementWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page11/clientManagementWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page11--client-management-workspace-102045",
+                "title": "Client Directory"
+              },
+              {
+                "pageId": "clientManagementWorkspace-page21",
+                "route": "/buildFlowFsm/clientManagementWorkspace-page21/:clientId?",
+                "source": "l2/buildFlowFsm/web/desktop/page21/clientManagementWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page21/clientManagementWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page21--client-management-workspace-102045",
+                "title": "Client Directory - PAGE21"
+              },
+              {
+                "pageId": "clientStatusWorkspace",
+                "route": "/buildFlowFsm/clientStatusWorkspace/:statusReportId?",
+                "source": "l2/buildFlowFsm/web/desktop/page11/clientStatusWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page11/clientStatusWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page11--client-status-workspace-102045",
+                "title": "Project Status"
+              },
+              {
+                "pageId": "clientStatusWorkspace-page21",
+                "route": "/buildFlowFsm/clientStatusWorkspace-page21/:statusReportId?",
+                "source": "l2/buildFlowFsm/web/desktop/page21/clientStatusWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page21/clientStatusWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page21--client-status-workspace-102045",
+                "title": "Project Status - PAGE21"
+              },
+              {
+                "pageId": "dashboardWorkspace",
+                "route": "/buildFlowFsm/dashboardWorkspace",
+                "source": "l2/buildFlowFsm/web/desktop/page11/dashboardWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page11/dashboardWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page11--dashboard-workspace-102045",
+                "title": "Operational Dashboard"
+              },
+              {
+                "pageId": "dashboardWorkspace-page21",
+                "route": "/buildFlowFsm/dashboardWorkspace-page21",
+                "source": "l2/buildFlowFsm/web/desktop/page21/dashboardWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page21/dashboardWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page21--dashboard-workspace-102045",
+                "title": "Operational Dashboard - PAGE21"
+              },
+              {
+                "pageId": "fieldLoggingWorkspace",
+                "route": "/buildFlowFsm/fieldLoggingWorkspace",
+                "source": "l2/buildFlowFsm/web/desktop/page11/fieldLoggingWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page11/fieldLoggingWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page11--field-logging-workspace-102045",
+                "title": "Log Time & Materials"
+              },
+              {
+                "pageId": "fieldLoggingWorkspace-page21",
+                "route": "/buildFlowFsm/fieldLoggingWorkspace-page21",
+                "source": "l2/buildFlowFsm/web/desktop/page21/fieldLoggingWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page21/fieldLoggingWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page21--field-logging-workspace-102045",
+                "title": "Log Time & Materials - PAGE21"
+              },
+              {
+                "pageId": "invoiceWorkspace",
+                "route": "/buildFlowFsm/invoiceWorkspace",
+                "source": "l2/buildFlowFsm/web/desktop/page11/invoiceWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page11/invoiceWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page11--invoice-workspace-102045",
+                "title": "Invoices"
+              },
+              {
+                "pageId": "invoiceWorkspace-page21",
+                "route": "/buildFlowFsm/invoiceWorkspace-page21",
+                "source": "l2/buildFlowFsm/web/desktop/page21/invoiceWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page21/invoiceWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page21--invoice-workspace-102045",
+                "title": "Invoices - PAGE21"
+              },
+              {
+                "pageId": "jobCostWorkspace",
+                "route": "/buildFlowFsm/jobCostWorkspace/:projectId?",
+                "source": "l2/buildFlowFsm/web/desktop/page11/jobCostWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page11/jobCostWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page11--job-cost-workspace-102045",
+                "title": "Job Cost Summary"
+              },
+              {
+                "pageId": "jobCostWorkspace-page21",
+                "route": "/buildFlowFsm/jobCostWorkspace-page21/:projectId?",
+                "source": "l2/buildFlowFsm/web/desktop/page21/jobCostWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page21/jobCostWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page21--job-cost-workspace-102045",
+                "title": "Job Cost Summary - PAGE21"
+              },
+              {
+                "pageId": "myTasksWorkspace",
+                "route": "/buildFlowFsm/myTasksWorkspace/:workTaskId?",
+                "source": "l2/buildFlowFsm/web/desktop/page11/myTasksWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page11/myTasksWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page11--my-tasks-workspace-102045",
+                "title": "My Tasks"
+              },
+              {
+                "pageId": "myTasksWorkspace-page21",
+                "route": "/buildFlowFsm/myTasksWorkspace-page21/:workTaskId?",
+                "source": "l2/buildFlowFsm/web/desktop/page21/myTasksWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page21/myTasksWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page21--my-tasks-workspace-102045",
+                "title": "My Tasks - PAGE21"
+              },
+              {
+                "pageId": "projectDetailWorkspace",
+                "route": "/buildFlowFsm/projectDetailWorkspace/:projectId?/:changeOrderId?",
+                "source": "l2/buildFlowFsm/web/desktop/page11/projectDetailWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page11/projectDetailWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page11--project-detail-workspace-102045",
+                "title": "Project Detail & Timeline"
+              },
+              {
+                "pageId": "projectDetailWorkspace-page21",
+                "route": "/buildFlowFsm/projectDetailWorkspace-page21/:projectId?/:changeOrderId?",
+                "source": "l2/buildFlowFsm/web/desktop/page21/projectDetailWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page21/projectDetailWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page21--project-detail-workspace-102045",
+                "title": "Project Detail & Timeline - PAGE21"
+              },
+              {
+                "pageId": "projectLifecycleWorkspace",
+                "route": "/buildFlowFsm/projectLifecycleWorkspace/:projectId?",
+                "source": "l2/buildFlowFsm/web/desktop/page11/projectLifecycleWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page11/projectLifecycleWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page11--project-lifecycle-workspace-102045",
+                "title": "Manage Projects"
+              },
+              {
+                "pageId": "projectLifecycleWorkspace-page21",
+                "route": "/buildFlowFsm/projectLifecycleWorkspace-page21/:projectId?",
+                "source": "l2/buildFlowFsm/web/desktop/page21/projectLifecycleWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page21/projectLifecycleWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page21--project-lifecycle-workspace-102045",
+                "title": "Manage Projects - PAGE21"
+              },
+              {
+                "pageId": "statusReportWorkspace",
+                "route": "/buildFlowFsm/statusReportWorkspace/:statusReportId?",
+                "source": "l2/buildFlowFsm/web/desktop/page11/statusReportWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page11/statusReportWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page11--status-report-workspace-102045",
+                "title": "Status Reports"
+              },
+              {
+                "pageId": "statusReportWorkspace-page21",
+                "route": "/buildFlowFsm/statusReportWorkspace-page21/:statusReportId?",
+                "source": "l2/buildFlowFsm/web/desktop/page21/statusReportWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page21/statusReportWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page21--status-report-workspace-102045",
+                "title": "Status Reports - PAGE21"
+              },
+              {
+                "pageId": "taskBoardWorkspace",
+                "route": "/buildFlowFsm/taskBoardWorkspace/:workTaskId?",
+                "source": "l2/buildFlowFsm/web/desktop/page11/taskBoardWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page11/taskBoardWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page11--task-board-workspace-102045",
+                "title": "Task Board"
+              },
+              {
+                "pageId": "taskBoardWorkspace-page21",
+                "route": "/buildFlowFsm/taskBoardWorkspace-page21/:workTaskId?",
+                "source": "l2/buildFlowFsm/web/desktop/page21/taskBoardWorkspace.ts",
+                "definition": "l2/buildFlowFsm/web/desktop/page21/taskBoardWorkspace.defs.ts",
+                "componentTag": "build-flow-fsm--web--desktop--page21--task-board-workspace-102045",
+                "title": "Task Board - PAGE21"
+              }
+            ],
+            "pageTests": [
+              "_102045_/l2/buildFlowFsm/web/desktop/page11/billingSummaryWorkspace.test.js",
+              "_102045_/l2/buildFlowFsm/web/desktop/page11/changeOrderWorkspace.test.js",
+              "_102045_/l2/buildFlowFsm/web/desktop/page11/clientBillingWorkspace.test.js",
+              "_102045_/l2/buildFlowFsm/web/desktop/page11/clientManagementWorkspace.test.js",
+              "_102045_/l2/buildFlowFsm/web/desktop/page11/dashboardWorkspace.test.js",
+              "_102045_/l2/buildFlowFsm/web/desktop/page11/fieldLoggingWorkspace.test.js",
+              "_102045_/l2/buildFlowFsm/web/desktop/page11/invoiceWorkspace.test.js",
+              "_102045_/l2/buildFlowFsm/web/desktop/page11/jobCostWorkspace.test.js",
+              "_102045_/l2/buildFlowFsm/web/desktop/page11/myTasksWorkspace.test.js",
+              "_102045_/l2/buildFlowFsm/web/desktop/page11/projectDetailWorkspace.test.js",
+              "_102045_/l2/buildFlowFsm/web/desktop/page11/projectLifecycleWorkspace.test.js",
+              "_102045_/l2/buildFlowFsm/web/desktop/page11/statusReportWorkspace.test.js",
+              "_102045_/l2/buildFlowFsm/web/desktop/page11/taskBoardWorkspace.test.js"
+            ]
+          }
+        }
+      ],
+      "persistenceModules": [
+        {
+          "moduleId": "buildFlowFsm",
+          "tableDefsDir": "./_102045_/l1/buildFlowFsm/layer_1_external/adapters/persistence"
+        }
+      ]
+    }
+  }
+}

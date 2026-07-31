@@ -1,0 +1,232 @@
+/// <mls fileReference="_102045_/l4/buildFlowFsm/rules/buildFlowFsmRules.defs.ts" enhancement="_blank"/>
+
+export const buildFlowFsmRules = {
+  "ruleSetId": "buildFlowFsmRules",
+  "rules": [
+    {
+      "ruleId": "projectActivationRequiresCoreFields",
+      "title": "Project activation requires core fields",
+      "description": "A project must have a name, client, and site address before it can be activated; activation is forbidden when any of these fields is missing.",
+      "appliesTo": [
+        "Project"
+      ],
+      "layer": "domain"
+    },
+    {
+      "ruleId": "jobCostingRequiresBudgetAndSchedule",
+      "title": "Job costing requires budget and schedule dates",
+      "description": "Budget and schedule dates must be present on a project before job costing tracking can begin; without them, cost aggregation is not permitted.",
+      "appliesTo": [
+        "Project"
+      ],
+      "layer": "domain"
+    },
+    {
+      "ruleId": "operationsRequireActiveProject",
+      "title": "Field entries, tasks, and change orders require an active project",
+      "description": "A project must be in active status before field entries can be recorded, tasks can be created, or change orders can be issued; inactive projects block all three operations.",
+      "appliesTo": [
+        "Project",
+        "WorkTask",
+        "ChangeOrder"
+      ],
+      "layer": "domain"
+    },
+    {
+      "ruleId": "singleTaskAssignment",
+      "title": "A task is assigned to one field worker at a time",
+      "description": "A work task can only be assigned to a single field worker at any given time; concurrent multiple assignments are forbidden.",
+      "appliesTo": [
+        "WorkTask"
+      ],
+      "layer": "domain"
+    },
+    {
+      "ruleId": "taskDueDateWithinSchedule",
+      "title": "Task due dates must fall within the project schedule window",
+      "description": "A work task due date must fall within the project's schedule start and end dates; due dates outside the schedule window are not permitted.",
+      "appliesTo": [
+        "WorkTask"
+      ],
+      "layer": "domain"
+    },
+    {
+      "ruleId": "dashboardShowsActiveProjects",
+      "title": "Dashboard defaults to active projects only",
+      "description": "The operational dashboard must show only active projects by default; inactive or completed projects are excluded from the default view.",
+      "appliesTo": [
+        "Project"
+      ],
+      "layer": "application"
+    },
+    {
+      "ruleId": "jobCostDerivation",
+      "title": "Job costs and budget-vs-actual are derived from time logs, material usage, and approved change orders",
+      "description": "Budget-vs-actual figures and job cost totals must be derived exclusively from labor time logs, material usage entries, and approved change orders; no other sources contribute to these calculations.",
+      "appliesTo": [
+        "TimeLog",
+        "MaterialUsage",
+        "ChangeOrder"
+      ],
+      "layer": "domain"
+    },
+    {
+      "ruleId": "overdueTaskHighlighting",
+      "title": "Overdue tasks are highlighted by due date comparison",
+      "description": "Work tasks whose due date has passed must be highlighted as overdue on the dashboard, based on a comparison of the task due date against the current date.",
+      "appliesTo": [
+        "WorkTask"
+      ],
+      "layer": "application"
+    },
+    {
+      "ruleId": "changeOrderDescriptionRequired",
+      "title": "Change order must describe scope, cost, or schedule impact",
+      "description": "A change order must include a description of its scope, cost, or schedule impact; a change order without any of these descriptions cannot be created.",
+      "appliesTo": [
+        "ChangeOrder"
+      ],
+      "layer": "domain"
+    },
+    {
+      "ruleId": "onlyApprovedChangeOrdersAffectCosting",
+      "title": "Only approved change orders affect job costing, billing, and invoicing",
+      "description": "Only change orders in approved status may influence job costing totals, be included in billing summaries, or appear as line items on invoices; pending or rejected change orders are excluded from all three.",
+      "appliesTo": [
+        "ChangeOrder",
+        "BillingSummary",
+        "Invoice"
+      ],
+      "layer": "domain"
+    },
+    {
+      "ruleId": "statusReportGenerationSource",
+      "title": "Status report content is generated from live project data via the LLM proxy",
+      "description": "Status report content must be generated from live project tasks, time logs, and material usage data through the platform LLM proxy; stale or manually authored content is not the generation source.",
+      "appliesTo": [
+        "StatusReport"
+      ],
+      "layer": "application"
+    },
+    {
+      "ruleId": "delayRiskSuggestionsAdvisory",
+      "title": "Delay-risk suggestions are advisory only",
+      "description": "Delay-risk suggestions generated by the AI are advisory and must not automatically change any task status; they require human action to take effect.",
+      "appliesTo": [
+        "DelayRiskSuggestion"
+      ],
+      "layer": "domain"
+    },
+    {
+      "ruleId": "pmControlsStatusReportLifecycle",
+      "title": "Project manager controls status report generation, review, and sharing",
+      "description": "Status reports are generated and shared by the project manager, who can review and edit the report content before sharing it with the client; no other actor may share reports directly.",
+      "appliesTo": [
+        "StatusReport"
+      ],
+      "layer": "application"
+    },
+    {
+      "ruleId": "fieldWorkerTaskVisibility",
+      "title": "Field workers see only their assigned tasks",
+      "description": "A field worker may only view work tasks that are assigned to them; tasks assigned to other workers are hidden from their view.",
+      "appliesTo": [
+        "WorkTask"
+      ],
+      "layer": "application"
+    },
+    {
+      "ruleId": "taskSortingByDueDate",
+      "title": "Tasks are sorted by due date for urgency surfacing",
+      "description": "Work tasks displayed to field workers must be sorted by due date so that the most urgent work appears first in the list.",
+      "appliesTo": [
+        "WorkTask"
+      ],
+      "layer": "application"
+    },
+    {
+      "ruleId": "mobileFieldUsability",
+      "title": "Mobile experience must be usable without desktop access",
+      "description": "The field worker experience must be fully usable on a mobile device in the field without requiring desktop access; all core task and logging operations must work on mobile.",
+      "appliesTo": [
+        "WorkTask"
+      ],
+      "layer": "application"
+    },
+    {
+      "ruleId": "timeLogLinkingRequired",
+      "title": "Time logs must be linked to a task and worker",
+      "description": "Every time log must be linked to a specific work task and a specific worker; unlinked time logs are not permitted in the system.",
+      "appliesTo": [
+        "TimeLog"
+      ],
+      "layer": "domain"
+    },
+    {
+      "ruleId": "materialUsageIsProjectLevel",
+      "title": "Material usage is recorded per project for job costing",
+      "description": "Material usage entries are recorded at the project level for job costing purposes and must not be treated as warehouse stock management; inventory tracking is out of scope.",
+      "appliesTo": [
+        "MaterialUsage"
+      ],
+      "layer": "domain"
+    },
+    {
+      "ruleId": "taskStatusUpdateAuthorization",
+      "title": "Task status can only be updated by assigned worker or project manager",
+      "description": "A work task status can only be updated by the field worker assigned to that task or by the project manager; all other actors are forbidden from changing task status.",
+      "appliesTo": [
+        "WorkTask"
+      ],
+      "layer": "application"
+    },
+    {
+      "ruleId": "billingSummaryClientFacing",
+      "title": "Billing summaries are client-facing and exclude internal cost codes",
+      "description": "Billing summaries presented to clients must exclude internal cost-code detail; only client-appropriate cost and change-order information is shown.",
+      "appliesTo": [
+        "BillingSummary"
+      ],
+      "layer": "domain"
+    },
+    {
+      "ruleId": "invoiceScopeExternalPayment",
+      "title": "Invoices are billing documents; payment and accounting are external",
+      "description": "Invoices serve as billing documents for construction job costing only; payment capture and full accounting are handled outside the system and are not module responsibilities.",
+      "appliesTo": [
+        "Invoice"
+      ],
+      "layer": "domain"
+    },
+    {
+      "ruleId": "invoiceMustReferenceProjectAndClient",
+      "title": "An invoice must reference the project and client",
+      "description": "Every invoice must reference both the project it belongs to and the client receiving the billing; invoices without these references cannot be created.",
+      "appliesTo": [
+        "Invoice"
+      ],
+      "layer": "domain"
+    },
+    {
+      "ruleId": "clientAccessLimited",
+      "title": "Client access is limited to status and billing surfaces",
+      "description": "Clients receive shared status reports and have visibility limited to status and billing communication surfaces only; they do not have full internal project editing access.",
+      "appliesTo": [
+        "Project"
+      ],
+      "layer": "application"
+    },
+    {
+      "ruleId": "clientBillingAccess",
+      "title": "Clients can view but not edit billing documents",
+      "description": "Clients may see billing summaries and invoices shared by billing staff, but they cannot edit or create billing documents; all billing document authorship remains with billing staff.",
+      "appliesTo": [
+        "BillingSummary",
+        "Invoice"
+      ],
+      "layer": "application"
+    }
+  ]
+} as const;
+
+export default buildFlowFsmRules;

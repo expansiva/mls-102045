@@ -1,0 +1,196 @@
+/// <mls fileReference="_102045_/l4/buildFlowFsm/operations/viewDashboard.defs.ts" enhancement="_blank"/>
+
+export const operationViewDashboard = {
+  "operationId": "viewDashboard",
+  "title": "View operational dashboard",
+  "actors": [
+    "projectManager"
+  ],
+  "entity": "Project",
+  "kind": "view",
+  "reads": [
+    "Project",
+    "Client",
+    "WorkTask",
+    "TimeLog",
+    "MaterialUsage",
+    "ChangeOrder"
+  ],
+  "writes": [],
+  "rulesApplied": [
+    "dashboardShowsActiveProjects",
+    "jobCostingRequiresBudgetAndSchedule"
+  ],
+  "story": {
+    "actor": "projectManager",
+    "goal": "See all active projects with budget-versus-actual and task risk signals at a glance",
+    "steps": [
+      "Open the operational dashboard",
+      "Review active projects with budget, actual cost, and variance",
+      "Scan upcoming and overdue task counts across projects to spot where attention is needed"
+    ],
+    "outcome": "The project manager knows which jobs are drifting over budget or at task risk and can prioritize follow-up"
+  },
+  "accessPattern": {
+    "kind": "list",
+    "description": "Lists projects for the operational dashboard with job-costing and task signals; defaults to active projects only",
+    "entity": "Project",
+    "keyField": "Project.projectId",
+    "filters": [
+      "Project.status"
+    ],
+    "sort": [
+      "Project.name"
+    ],
+    "pagination": "optional",
+    "selection": "none",
+    "output": [
+      "Project.projectId",
+      "Project.name",
+      "Project.clientId",
+      "Project.budget",
+      "Project.startDate",
+      "Project.endDate",
+      "Project.status"
+    ]
+  },
+  "outputShape": {
+    "kind": "paginated",
+    "fields": [
+      {
+        "name": "projects",
+        "type": "array",
+        "required": true,
+        "item": {
+          "fields": [
+            {
+              "name": "projectId",
+              "type": "string",
+              "required": true,
+              "fieldRef": "Project.projectId"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "required": true,
+              "fieldRef": "Project.name"
+            },
+            {
+              "name": "clientId",
+              "type": "string",
+              "required": true,
+              "fieldRef": "Project.clientId"
+            },
+            {
+              "name": "clientName",
+              "type": "string",
+              "required": true,
+              "fieldRef": "Client.name"
+            },
+            {
+              "name": "budget",
+              "type": "number",
+              "required": true,
+              "fieldRef": "Project.budget"
+            },
+            {
+              "name": "startDate",
+              "type": "string",
+              "required": true,
+              "fieldRef": "Project.startDate"
+            },
+            {
+              "name": "endDate",
+              "type": "string",
+              "required": true,
+              "fieldRef": "Project.endDate"
+            },
+            {
+              "name": "status",
+              "type": "string",
+              "required": true,
+              "fieldRef": "Project.status"
+            },
+            {
+              "name": "actualCost",
+              "type": "number",
+              "required": true
+            },
+            {
+              "name": "budgetVariance",
+              "type": "number",
+              "required": true
+            },
+            {
+              "name": "upcomingTaskCount",
+              "type": "number",
+              "required": true
+            },
+            {
+              "name": "overdueTaskCount",
+              "type": "number",
+              "required": true
+            }
+          ]
+        }
+      },
+      {
+        "name": "total",
+        "type": "number",
+        "required": true
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "inputId": "status",
+      "fieldRef": "Project.status",
+      "required": false,
+      "source": "userInput",
+      "description": "Optional project status filter; when omitted the dashboard defaults to active projects only"
+    },
+    {
+      "inputId": "page",
+      "type": "number",
+      "required": false,
+      "source": "userInput",
+      "description": "Optional page number for paginated dashboard results"
+    },
+    {
+      "inputId": "pageSize",
+      "type": "number",
+      "required": false,
+      "source": "userInput",
+      "description": "Optional page size for paginated dashboard results"
+    }
+  ],
+  "contextResolution": [
+    {
+      "inputId": "actorId",
+      "targetRef": "actorSession.actorId",
+      "source": "actorSession",
+      "originRef": "actorSession.actorId",
+      "description": "Resolves the authenticated project manager identity from the current session to authorize dashboard access"
+    }
+  ],
+  "acceptanceAssertions": [
+    "Dashboard returns only projects with status active by default when no status filter is provided",
+    "Each project row includes budget, computed actualCost (labor + materials + approved change orders), and budgetVariance",
+    "Each project row includes upcomingTaskCount and overdueTaskCount derived from related WorkTask records",
+    "Projects without budget and schedule dates are excluded from job-costing signals per job costing rules",
+    "Response is paginated with a projects collection and a total count"
+  ],
+  "pageId": "viewDashboard",
+  "commandName": "viewDashboard",
+  "bffName": "buildFlowFsm.viewDashboard.viewDashboard",
+  "capability": {
+    "capabilityId": "viewDashboard",
+    "title": "View operational dashboard",
+    "actor": "projectManager",
+    "priority": "now"
+  },
+  "statusFrontend": "toCreate",
+  "statusBackend": "toCreate"
+} as const;
+
+export default operationViewDashboard;

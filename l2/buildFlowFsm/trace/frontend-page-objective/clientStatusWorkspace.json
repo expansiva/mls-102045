@@ -1,0 +1,49 @@
+{
+  "savedAt": "2026-07-31T06:05:28.817Z",
+  "pageId": "clientStatusWorkspace",
+  "genome": "page21",
+  "objective": {
+    "actor": "Client (project owner/stakeholder)",
+    "jobToBeDone": "Review the shared project status report to stay informed on progress, budget, risks, and PM notes for the current reporting period.",
+    "primaryDecision": "Absorb and understand the full status report — there is no mutation; the client reads and comprehends.",
+    "decisiveInfo": [
+      "projectName",
+      "status",
+      "reportPeriodStart",
+      "reportPeriodEnd",
+      "summary",
+      "tasksOverview",
+      "timeLogsOverview",
+      "materialsOverview",
+      "delayRiskAssessment",
+      "pmNotes",
+      "generatedAt",
+      "sharedAt"
+    ],
+    "usageFrequency": "Occasional — client opens this page when notified that a new status report has been shared; read-only, single-session review.",
+    "criticalActions": [
+      {
+        "action": "viewStatusReport",
+        "presentation": "summary-first — auto-load on page entry using route param; display as a structured read-only detail panel with clearly labelled sections"
+      }
+    ],
+    "informationHierarchy": [
+      "1. Project identity and report period (projectName, reportPeriodStart, reportPeriodEnd, status)",
+      "2. Executive summary (summary)",
+      "3. Tasks overview (tasksOverview)",
+      "4. Time logs overview (timeLogsOverview)",
+      "5. Materials overview (materialsOverview)",
+      "6. Delay risk assessment (delayRiskAssessment)",
+      "7. PM notes (pmNotes)",
+      "8. Report metadata (generatedAt, sharedAt)"
+    ],
+    "successCriteria": "The client can open the page and immediately read a clear, structured status report without any manual input, confusion about the reporting period, or need to navigate elsewhere.",
+    "antiPatterns": [
+      "Exposing statusReportId or clientId as manual text inputs — both are context-derived (route param and session)",
+      "Rendering a form or edit controls — this is a read-only view",
+      "Splitting each section (tasks, time, materials) into separate page sections — they belong together in one cohesive report",
+      "Showing a list/table of reports — the client arrives at a specific shared report via route",
+      "Status <select> or transition buttons — the client has no lifecycle authority over the report"
+    ]
+  }
+}
