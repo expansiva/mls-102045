@@ -1,0 +1,116 @@
+import { CollabLitElement } from '/_102029_/l2/collabLitElement.js';
+import type { GenerateReportOutput, UpdateReportContentOutput, UpdateReportStatusOutput } from '/_102045_/l2/buildFlowFsm/web/contracts/statusReportWorkspace.js';
+export type { GenerateReportInput, GenerateReportOutput, UpdateReportContentInput, UpdateReportContentOutput, UpdateReportStatusInput, UpdateReportStatusOutput, } from '/_102045_/l2/buildFlowFsm/web/contracts/statusReportWorkspace.js';
+export declare class BuildFlowFsmStatusReportWorkspaceBase extends CollabLitElement {
+    /** state status — pageStatus */
+    status: string;
+    /** state generateReportState — actionStatus, values: idle|loading|success|error */
+    generateReportState: 'idle' | 'loading' | 'success' | 'error';
+    /** state generateReportProjectId — input */
+    generateReportProjectId: string;
+    /** state generateReportReportPeriodStart — input */
+    generateReportReportPeriodStart: string;
+    /** state generateReportReportPeriodEnd — input */
+    generateReportReportPeriodEnd: string;
+    /** state generateReportOutput — commandOutput */
+    generateReportOutput: GenerateReportOutput | null;
+    /** state generateReportError — actionError */
+    generateReportError: string;
+    /** state updateReportContentState — actionStatus, values: idle|loading|success|error */
+    updateReportContentState: 'idle' | 'loading' | 'success' | 'error';
+    /** state updateReportContentStatusReportId — input */
+    updateReportContentStatusReportId: string;
+    /** state updateReportContentSummary — input */
+    updateReportContentSummary: string;
+    /** state updateReportContentTasksOverview — input */
+    updateReportContentTasksOverview: string;
+    /** state updateReportContentTimeLogsOverview — input */
+    updateReportContentTimeLogsOverview: string;
+    /** state updateReportContentMaterialsOverview — input */
+    updateReportContentMaterialsOverview: string;
+    /** state updateReportContentDelayRiskAssessment — input */
+    updateReportContentDelayRiskAssessment: string;
+    /** state updateReportContentPmNotes — input */
+    updateReportContentPmNotes: string;
+    /** state updateReportContentOutput — commandOutput */
+    updateReportContentOutput: UpdateReportContentOutput | null;
+    /** state updateReportContentError — actionError */
+    updateReportContentError: string;
+    /** state updateReportStatusState — actionStatus, values: idle|loading|success|error */
+    updateReportStatusState: 'idle' | 'loading' | 'success' | 'error';
+    /** state updateReportStatusStatusReportId — input */
+    updateReportStatusStatusReportId: string;
+    /** state updateReportStatusStatus — input */
+    updateReportStatusStatus: string;
+    /** state updateReportStatusOutput — commandOutput */
+    updateReportStatusOutput: UpdateReportStatusOutput | null;
+    /** state updateReportStatusError — actionError */
+    updateReportStatusError: string;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    /** handleIcaStateChange — collabState notify contract; maps state keys onto class fields */
+    handleIcaStateChange(key: string, value: unknown): void;
+    private initStateValue;
+    private syncRouteParams;
+    private readErrorMessage;
+    /** action generateReport (command) — route buildFlowFsm.statusReportWorkspace.generateReport; inputs: projectId, reportPeriodStart, reportPeriodEnd; writes ui.statusReportWorkspace.output.generateReport; status ui.statusReportWorkspace.action.generateReport.status; feedback keys action.generateReport.success / action.generateReport.error */
+    generateReport(): Promise<void>;
+    /** handler for action generateReport — bind UI events here */
+    handleGenerateReportClick(event?: Event): void;
+    /** action updateReportContent (command) — route buildFlowFsm.statusReportWorkspace.updateReportContent; inputs: statusReportId, summary, tasksOverview, timeLogsOverview, materialsOverview, delayRiskAssessment, pmNotes; writes ui.statusReportWorkspace.output.updateReportContent; status ui.statusReportWorkspace.action.updateReportContent.status; feedback keys action.updateReportContent.success / action.updateReportContent.error */
+    updateReportContent(): Promise<void>;
+    /** handler for action updateReportContent — bind UI events here */
+    handleUpdateReportContentClick(event?: Event): void;
+    /** action updateReportStatus (command) — route buildFlowFsm.statusReportWorkspace.updateReportStatus; inputs: statusReportId, status; writes ui.statusReportWorkspace.output.updateReportStatus; status ui.statusReportWorkspace.action.updateReportStatus.status; feedback keys action.updateReportStatus.success / action.updateReportStatus.error */
+    updateReportStatus(): Promise<void>;
+    /** handler for action updateReportStatus — bind UI events here */
+    handleUpdateReportStatusClick(event?: Event): void;
+    /** setter for state ui.statusReportWorkspace.input.generateReport.projectId */
+    setGenerateReportProjectId(value: string): void;
+    /** handler for action set.generateReportProjectId — bind UI events here */
+    handleGenerateReportProjectIdChange(event: Event): void;
+    /** setter for state ui.statusReportWorkspace.input.generateReport.reportPeriodStart */
+    setGenerateReportReportPeriodStart(value: string): void;
+    /** handler for action set.generateReportReportPeriodStart — bind UI events here */
+    handleGenerateReportReportPeriodStartChange(event: Event): void;
+    /** setter for state ui.statusReportWorkspace.input.generateReport.reportPeriodEnd */
+    setGenerateReportReportPeriodEnd(value: string): void;
+    /** handler for action set.generateReportReportPeriodEnd — bind UI events here */
+    handleGenerateReportReportPeriodEndChange(event: Event): void;
+    /** setter for state ui.statusReportWorkspace.input.updateReportContent.statusReportId */
+    setUpdateReportContentStatusReportId(value: string): void;
+    /** handler for action set.updateReportContentStatusReportId — bind UI events here */
+    handleUpdateReportContentStatusReportIdChange(event: Event): void;
+    /** setter for state ui.statusReportWorkspace.input.updateReportContent.summary */
+    setUpdateReportContentSummary(value: string): void;
+    /** handler for action set.updateReportContentSummary — bind UI events here */
+    handleUpdateReportContentSummaryChange(event: Event): void;
+    /** setter for state ui.statusReportWorkspace.input.updateReportContent.tasksOverview */
+    setUpdateReportContentTasksOverview(value: string): void;
+    /** handler for action set.updateReportContentTasksOverview — bind UI events here */
+    handleUpdateReportContentTasksOverviewChange(event: Event): void;
+    /** setter for state ui.statusReportWorkspace.input.updateReportContent.timeLogsOverview */
+    setUpdateReportContentTimeLogsOverview(value: string): void;
+    /** handler for action set.updateReportContentTimeLogsOverview — bind UI events here */
+    handleUpdateReportContentTimeLogsOverviewChange(event: Event): void;
+    /** setter for state ui.statusReportWorkspace.input.updateReportContent.materialsOverview */
+    setUpdateReportContentMaterialsOverview(value: string): void;
+    /** handler for action set.updateReportContentMaterialsOverview — bind UI events here */
+    handleUpdateReportContentMaterialsOverviewChange(event: Event): void;
+    /** setter for state ui.statusReportWorkspace.input.updateReportContent.delayRiskAssessment */
+    setUpdateReportContentDelayRiskAssessment(value: string): void;
+    /** handler for action set.updateReportContentDelayRiskAssessment — bind UI events here */
+    handleUpdateReportContentDelayRiskAssessmentChange(event: Event): void;
+    /** setter for state ui.statusReportWorkspace.input.updateReportContent.pmNotes */
+    setUpdateReportContentPmNotes(value: string): void;
+    /** handler for action set.updateReportContentPmNotes — bind UI events here */
+    handleUpdateReportContentPmNotesChange(event: Event): void;
+    /** setter for state ui.statusReportWorkspace.input.updateReportStatus.statusReportId */
+    setUpdateReportStatusStatusReportId(value: string): void;
+    /** handler for action set.updateReportStatusStatusReportId — bind UI events here */
+    handleUpdateReportStatusStatusReportIdChange(event: Event): void;
+    /** setter for state ui.statusReportWorkspace.input.updateReportStatus.status */
+    setUpdateReportStatusStatus(value: string): void;
+    /** handler for action set.updateReportStatusStatus — bind UI events here */
+    handleUpdateReportStatusStatusChange(event: Event): void;
+}

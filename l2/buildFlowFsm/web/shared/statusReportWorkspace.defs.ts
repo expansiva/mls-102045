@@ -591,8 +591,14 @@ export const definition = {
     "intent.statusReportWorkspace.updateReportStatus.form.title": "Update status report status",
     "intent.statusReportWorkspace.updateReportStatus.form.action.updateReportStatus": "Update status report status",
     "intent.statusReportWorkspace.updateReportStatus.form.field.status.label": "Status",
+    "action.generateReport.success": "Generate status report: OK",
+    "action.generateReport.error": "Generate status report: falhou",
+    "action.updateReportContent.success": "Edit status report content: OK",
+    "action.updateReportContent.error": "Edit status report content: falhou",
+    "action.updateReportStatus.success": "Update status report status: OK",
+    "action.updateReportStatus.error": "Update status report status: falhou",
     "section.statusReportWorkspace.sec-generate.title": "Generate Report",
-    "section.statusReportWorkspace.sec-review-share.title": "Review & Share Report"
+    "section.statusReportWorkspace.sec-review-edit.title": "Review & Edit Report"
   },
   "automation": {
     "statePrefix": "ui.statusReportWorkspace",

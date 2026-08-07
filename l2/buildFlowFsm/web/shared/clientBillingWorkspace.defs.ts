@@ -73,7 +73,7 @@ export const definition = {
   },
   "layoutRef": {
     "defPath": "_102045_/l2/buildFlowFsm/web/desktop/page11/clientBillingWorkspace.defs.ts",
-    "layoutId": "cfe-20260731060448.1000"
+    "layoutId": "cfe-20260731185234.1000"
   },
   "states": [
     {
@@ -304,7 +304,7 @@ export const definition = {
     "intent.clientBillingWorkspace.getInvoice.list.column.createdAt.label": "Created At",
     "intent.clientBillingWorkspace.getInvoice.list.filter.clientId.label": "Client Id",
     "section.clientBillingWorkspace.billing-summary-section.title": "Billing Summary",
-    "section.clientBillingWorkspace.invoice-section.title": "Invoice Detail"
+    "section.clientBillingWorkspace.invoice-section.title": "Invoice"
   },
   "automation": {
     "statePrefix": "ui.clientBillingWorkspace",

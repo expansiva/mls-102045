@@ -75,7 +75,7 @@ export const definition = {
   },
   "layoutRef": {
     "defPath": "_102045_/l2/buildFlowFsm/web/desktop/page11/myTasksWorkspace.defs.ts",
-    "layoutId": "cfe-20260731060448.1000"
+    "layoutId": "status_overview"
   },
   "states": [
     {
@@ -320,8 +320,6 @@ export const definition = {
   },
   "i18n": {
     "section.myTasksWorkspace.taskListSection.title": "My Tasks",
-    "organism.myTasksWorkspace.summary-first10.title": "Summary first",
-    "intent.myTasksWorkspace.summary-first10.content.title": "Summary first",
     "organism.myTasksWorkspace.listMyWorkTasks.title": "Browse my assigned tasks",
     "intent.myTasksWorkspace.listMyWorkTasks.list.title": "Browse my assigned tasks",
     "intent.myTasksWorkspace.listMyWorkTasks.list.empty": "Nenhum registro encontrado",
@@ -350,7 +348,9 @@ export const definition = {
     "intent.myTasksWorkspace.getWorkTaskDetail.list.column.updatedAt.label": "Updated At",
     "intent.myTasksWorkspace.getWorkTaskDetail.list.filter.actorId.label": "Actor Id",
     "organism.myTasksWorkspace.inline-row-command20.title": "Inline row command",
-    "intent.myTasksWorkspace.inline-row-command20.content.title": "Inline row command"
+    "intent.myTasksWorkspace.inline-row-command20.content.title": "Inline row command",
+    "organism.myTasksWorkspace.contextual-transition-actions20.title": "Contextual transition actions",
+    "intent.myTasksWorkspace.contextual-transition-actions20.content.title": "Contextual transition actions"
   },
   "automation": {
     "statePrefix": "ui.myTasksWorkspace",

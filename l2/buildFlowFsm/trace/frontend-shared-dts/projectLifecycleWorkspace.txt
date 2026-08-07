@@ -1,0 +1,146 @@
+import { CollabLitElement } from '/_102029_/l2/collabLitElement.js';
+import type { CreateProjectCmdOutput, UpdateProjectCmdOutput, UpdateProjectStatusCmdOutput } from '/_102045_/l2/buildFlowFsm/web/contracts/projectLifecycleWorkspace.js';
+export type { CreateProjectCmdInput, CreateProjectCmdOutput, UpdateProjectCmdInput, UpdateProjectCmdOutput, UpdateProjectStatusCmdInput, UpdateProjectStatusCmdOutput, } from '/_102045_/l2/buildFlowFsm/web/contracts/projectLifecycleWorkspace.js';
+export declare class BuildFlowFsmProjectLifecycleWorkspaceBase extends CollabLitElement {
+    /** state status — pageStatus */
+    status: string;
+    /** state createProjectCmdState — actionStatus, values: idle|loading|success|error */
+    createProjectCmdState: 'idle' | 'loading' | 'success' | 'error';
+    /** state createProjectCmdName — input */
+    createProjectCmdName: string;
+    /** state createProjectCmdClientId — input */
+    createProjectCmdClientId: string;
+    /** state createProjectCmdSiteAddress — input */
+    createProjectCmdSiteAddress: string;
+    /** state createProjectCmdBudget — input */
+    createProjectCmdBudget: string;
+    /** state createProjectCmdStartDate — input */
+    createProjectCmdStartDate: string;
+    /** state createProjectCmdEndDate — input */
+    createProjectCmdEndDate: string;
+    /** state createProjectCmdOutput — commandOutput */
+    createProjectCmdOutput: CreateProjectCmdOutput | null;
+    /** state createProjectCmdError — actionError */
+    createProjectCmdError: string;
+    /** state updateProjectCmdState — actionStatus, values: idle|loading|success|error */
+    updateProjectCmdState: 'idle' | 'loading' | 'success' | 'error';
+    /** state updateProjectCmdProjectId — input */
+    updateProjectCmdProjectId: string;
+    /** state updateProjectCmdName — input */
+    updateProjectCmdName: string;
+    /** state updateProjectCmdClientId — input */
+    updateProjectCmdClientId: string;
+    /** state updateProjectCmdSiteAddress — input */
+    updateProjectCmdSiteAddress: string;
+    /** state updateProjectCmdBudget — input */
+    updateProjectCmdBudget: string;
+    /** state updateProjectCmdStartDate — input */
+    updateProjectCmdStartDate: string;
+    /** state updateProjectCmdEndDate — input */
+    updateProjectCmdEndDate: string;
+    /** state updateProjectCmdOutput — commandOutput */
+    updateProjectCmdOutput: UpdateProjectCmdOutput | null;
+    /** state updateProjectCmdError — actionError */
+    updateProjectCmdError: string;
+    /** state updateProjectStatusCmdState — actionStatus, values: idle|loading|success|error */
+    updateProjectStatusCmdState: 'idle' | 'loading' | 'success' | 'error';
+    /** state updateProjectStatusCmdProjectId — input */
+    updateProjectStatusCmdProjectId: string;
+    /** state updateProjectStatusCmdStatus — input */
+    updateProjectStatusCmdStatus: string;
+    /** state updateProjectStatusCmdHoldReason — input */
+    updateProjectStatusCmdHoldReason: string;
+    /** state updateProjectStatusCmdCancellationReason — input */
+    updateProjectStatusCmdCancellationReason: string;
+    /** state updateProjectStatusCmdOutput — commandOutput */
+    updateProjectStatusCmdOutput: UpdateProjectStatusCmdOutput | null;
+    /** state updateProjectStatusCmdError — actionError */
+    updateProjectStatusCmdError: string;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    /** handleIcaStateChange — collabState notify contract; maps state keys onto class fields */
+    handleIcaStateChange(key: string, value: unknown): void;
+    private initStateValue;
+    private syncRouteParams;
+    private readErrorMessage;
+    /** action createProjectCmd (command) — route buildFlowFsm.projectLifecycleWorkspace.createProjectCmd; inputs: name, clientId, siteAddress, budget, startDate, endDate; writes ui.projectLifecycleWorkspace.output.createProjectCmd; status ui.projectLifecycleWorkspace.action.createProjectCmd.status; feedback keys action.createProjectCmd.success / action.createProjectCmd.error */
+    createProjectCmd(): Promise<void>;
+    /** handler for action createProjectCmd — bind UI events here */
+    handleCreateProjectCmdClick(event?: Event): void;
+    /** action updateProjectCmd (command) — route buildFlowFsm.projectLifecycleWorkspace.updateProjectCmd; inputs: projectId, name, clientId, siteAddress, budget, startDate, endDate; writes ui.projectLifecycleWorkspace.output.updateProjectCmd; status ui.projectLifecycleWorkspace.action.updateProjectCmd.status; feedback keys action.updateProjectCmd.success / action.updateProjectCmd.error */
+    updateProjectCmd(): Promise<void>;
+    /** handler for action updateProjectCmd — bind UI events here */
+    handleUpdateProjectCmdClick(event?: Event): void;
+    /** action updateProjectStatusCmd (command) — route buildFlowFsm.projectLifecycleWorkspace.updateProjectStatusCmd; inputs: projectId, status, holdReason, cancellationReason; writes ui.projectLifecycleWorkspace.output.updateProjectStatusCmd; status ui.projectLifecycleWorkspace.action.updateProjectStatusCmd.status; feedback keys action.updateProjectStatusCmd.success / action.updateProjectStatusCmd.error */
+    updateProjectStatusCmd(): Promise<void>;
+    /** handler for action updateProjectStatusCmd — bind UI events here */
+    handleUpdateProjectStatusCmdClick(event?: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.createProjectCmd.name */
+    setCreateProjectCmdName(value: string): void;
+    /** handler for action set.createProjectCmdName — bind UI events here */
+    handleCreateProjectCmdNameChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.createProjectCmd.clientId */
+    setCreateProjectCmdClientId(value: string): void;
+    /** handler for action set.createProjectCmdClientId — bind UI events here */
+    handleCreateProjectCmdClientIdChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.createProjectCmd.siteAddress */
+    setCreateProjectCmdSiteAddress(value: string): void;
+    /** handler for action set.createProjectCmdSiteAddress — bind UI events here */
+    handleCreateProjectCmdSiteAddressChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.createProjectCmd.budget */
+    setCreateProjectCmdBudget(value: string): void;
+    /** handler for action set.createProjectCmdBudget — bind UI events here */
+    handleCreateProjectCmdBudgetChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.createProjectCmd.startDate */
+    setCreateProjectCmdStartDate(value: string): void;
+    /** handler for action set.createProjectCmdStartDate — bind UI events here */
+    handleCreateProjectCmdStartDateChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.createProjectCmd.endDate */
+    setCreateProjectCmdEndDate(value: string): void;
+    /** handler for action set.createProjectCmdEndDate — bind UI events here */
+    handleCreateProjectCmdEndDateChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.updateProjectCmd.projectId */
+    setUpdateProjectCmdProjectId(value: string): void;
+    /** handler for action set.updateProjectCmdProjectId — bind UI events here */
+    handleUpdateProjectCmdProjectIdChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.updateProjectCmd.name */
+    setUpdateProjectCmdName(value: string): void;
+    /** handler for action set.updateProjectCmdName — bind UI events here */
+    handleUpdateProjectCmdNameChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.updateProjectCmd.clientId */
+    setUpdateProjectCmdClientId(value: string): void;
+    /** handler for action set.updateProjectCmdClientId — bind UI events here */
+    handleUpdateProjectCmdClientIdChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.updateProjectCmd.siteAddress */
+    setUpdateProjectCmdSiteAddress(value: string): void;
+    /** handler for action set.updateProjectCmdSiteAddress — bind UI events here */
+    handleUpdateProjectCmdSiteAddressChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.updateProjectCmd.budget */
+    setUpdateProjectCmdBudget(value: string): void;
+    /** handler for action set.updateProjectCmdBudget — bind UI events here */
+    handleUpdateProjectCmdBudgetChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.updateProjectCmd.startDate */
+    setUpdateProjectCmdStartDate(value: string): void;
+    /** handler for action set.updateProjectCmdStartDate — bind UI events here */
+    handleUpdateProjectCmdStartDateChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.updateProjectCmd.endDate */
+    setUpdateProjectCmdEndDate(value: string): void;
+    /** handler for action set.updateProjectCmdEndDate — bind UI events here */
+    handleUpdateProjectCmdEndDateChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.updateProjectStatusCmd.projectId */
+    setUpdateProjectStatusCmdProjectId(value: string): void;
+    /** handler for action set.updateProjectStatusCmdProjectId — bind UI events here */
+    handleUpdateProjectStatusCmdProjectIdChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.updateProjectStatusCmd.status */
+    setUpdateProjectStatusCmdStatus(value: string): void;
+    /** handler for action set.updateProjectStatusCmdStatus — bind UI events here */
+    handleUpdateProjectStatusCmdStatusChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.updateProjectStatusCmd.holdReason */
+    setUpdateProjectStatusCmdHoldReason(value: string): void;
+    /** handler for action set.updateProjectStatusCmdHoldReason — bind UI events here */
+    handleUpdateProjectStatusCmdHoldReasonChange(event: Event): void;
+    /** setter for state ui.projectLifecycleWorkspace.input.updateProjectStatusCmd.cancellationReason */
+    setUpdateProjectStatusCmdCancellationReason(value: string): void;
+    /** handler for action set.updateProjectStatusCmdCancellationReason — bind UI events here */
+    handleUpdateProjectStatusCmdCancellationReasonChange(event: Event): void;
+}

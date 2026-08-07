@@ -1,0 +1,53 @@
+import { CollabLitElement } from '/_102029_/l2/collabLitElement.js';
+import type { GetBillingSummaryOutput, GetInvoiceOutput } from '/_102045_/l2/buildFlowFsm/web/contracts/clientBillingWorkspace.js';
+export type { GetBillingSummaryInput, GetBillingSummaryOutput, GetInvoiceInput, GetInvoiceOutput, } from '/_102045_/l2/buildFlowFsm/web/contracts/clientBillingWorkspace.js';
+export declare class BuildFlowFsmClientBillingWorkspaceBase extends CollabLitElement {
+    /** state status — pageStatus */
+    status: string;
+    /** state getBillingSummaryState — actionStatus, values: idle|loading|success|error */
+    getBillingSummaryState: 'idle' | 'loading' | 'success' | 'error';
+    /** state getBillingSummaryBillingSummaryId — input */
+    getBillingSummaryBillingSummaryId: string;
+    /** state getBillingSummaryClientId — input */
+    getBillingSummaryClientId: string;
+    /** state getBillingSummaryData — queryResult, outputShape: object */
+    getBillingSummaryData: GetBillingSummaryOutput | null;
+    /** state getInvoiceState — actionStatus, values: idle|loading|success|error */
+    getInvoiceState: 'idle' | 'loading' | 'success' | 'error';
+    /** state getInvoiceInvoiceId — input */
+    getInvoiceInvoiceId: string;
+    /** state getInvoiceClientId — input */
+    getInvoiceClientId: string;
+    /** state getInvoiceData — queryResult, outputShape: object */
+    getInvoiceData: GetInvoiceOutput | null;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    /** handleIcaStateChange — collabState notify contract; maps state keys onto class fields */
+    handleIcaStateChange(key: string, value: unknown): void;
+    private initStateValue;
+    private syncRouteParams;
+    /** action getBillingSummary (query) — route buildFlowFsm.clientBillingWorkspace.getBillingSummary; inputs: billingSummaryId, clientId; writes ui.clientBillingWorkspace.data.getBillingSummary; status ui.clientBillingWorkspace.action.getBillingSummary.status */
+    loadGetBillingSummary(): Promise<void>;
+    /** handler for action getBillingSummary — bind UI events here */
+    handleGetBillingSummaryClick(event?: Event): void;
+    /** action getInvoice (query) — route buildFlowFsm.clientBillingWorkspace.getInvoice; inputs: invoiceId, clientId; writes ui.clientBillingWorkspace.data.getInvoice; status ui.clientBillingWorkspace.action.getInvoice.status */
+    loadGetInvoice(): Promise<void>;
+    /** handler for action getInvoice — bind UI events here */
+    handleGetInvoiceClick(event?: Event): void;
+    /** setter for state ui.clientBillingWorkspace.input.getBillingSummary.billingSummaryId */
+    setGetBillingSummaryBillingSummaryId(value: string): void;
+    /** handler for action set.getBillingSummaryBillingSummaryId — bind UI events here */
+    handleGetBillingSummaryBillingSummaryIdChange(event: Event): void;
+    /** setter for state ui.clientBillingWorkspace.input.getBillingSummary.clientId */
+    setGetBillingSummaryClientId(value: string): void;
+    /** handler for action set.getBillingSummaryClientId — bind UI events here */
+    handleGetBillingSummaryClientIdChange(event: Event): void;
+    /** setter for state ui.clientBillingWorkspace.input.getInvoice.invoiceId */
+    setGetInvoiceInvoiceId(value: string): void;
+    /** handler for action set.getInvoiceInvoiceId — bind UI events here */
+    handleGetInvoiceInvoiceIdChange(event: Event): void;
+    /** setter for state ui.clientBillingWorkspace.input.getInvoice.clientId */
+    setGetInvoiceClientId(value: string): void;
+    /** handler for action set.getInvoiceClientId — bind UI events here */
+    handleGetInvoiceClientIdChange(event: Event): void;
+}

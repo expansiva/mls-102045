@@ -1,0 +1,33 @@
+# materializeL2 run
+time:   2026-08-02T02:55:24.098Z
+module: 102045/buildFlowFsm
+only:   page21/dashboardWorkspace    force: true
+model:  codehigh
+items:  1
+
+=== 2026-08-02T02:57:23.358Z | dashboardWorkspace__page21__l2_page (l2_page) ===
+output: _102045_/l2/buildFlowFsm/web/desktop/page21/dashboardWorkspace.ts
+model:  codehigh    status: ok
+bytes:  23156
+skills: OK  _102020_/l2/agentChangeFrontend/skills/genCfePage21RenderTs.ts | OK  _102020_/l4/collabux/templates/analyticalList/page21.md
+deps:   OK  _102045_/l2/buildFlowFsm/web/shared/dashboardWorkspace.ts | OK  _102045_/l2/designSystem.ts
+usage:  {"prompt_tokens":13090,"completion_tokens":9180,"total_tokens":22270,"cost":0.0810424,"is_byok":false,"prompt_tokens_details":{"cached_tokens":128,"cache_write_tokens":0,"audio_tokens":0,"video_tokens":0},"cost_details":{"upstream_inference_cost":0.0810424,"upstream_inference_prompt_cost":0.0259624,"upstream_inference_completions_cost":0.05508},"completion_tokens_details":{"reasoning_tokens":2511,"image_tokens":0,"audio_tokens":0},"cost_provider":0.085499732,"cost_charged":0.10259967839999999,"requested_alias":"codehigh","alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","model_id":"x-ai/grok-4.5","fallback_used":false,"attempts":[{"alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","stage":"primary","status":"success","ttfbMs":473,"totalMs":117927,"inputTokens":13090,"outputTokens":9180,"costProvider":0.085499732,"costCharged":0.10259967839999999}],"ensure_json_success":true,"tool_strict":"ajv"}
+
+=== 2026-08-02T02:57:23.360Z | dashboardWorkspace__page21__l2_page (l2_page) ===
+output: _102045_/l2/buildFlowFsm/web/desktop/page21/dashboardWorkspace.ts
+model:  codehigh    status: error(0)
+error: template hygiene: module-level function 'asProjectRows' is not allowed in a page: class methods are render functions only (render()/render<Name>()), pure helpers go in a `const` INSIDE a render function, and an empty branch uses the Lit sentinel `nothing` (imported from 'lit') or `null`; module-level function 'toNumber' is not allowed in a page: class methods are render functions only (render()/render<Name>()), pure helpers go in a `const` INSIDE a render function, and an empty branch uses the Lit sentinel `nothing` (imported from 'lit') or `null`; module-level function 'formatMoney' is not allowed in a page: class methods are render functions only (render()/render<Name>()), pure helpers go in a `const` INSIDE a render function, and an empty branch uses the Lit sentinel `nothing` (imported from 'lit') or `null`; module-level function 'formatDate' is not allowed in a page: class methods are render functions only (render()/render<Name>()), pure helpers go in a `const` INSIDE a render function, and an empty branch uses the Lit sentinel `nothing` (imported from 'lit') or `null`; module-level function 'projectLabel' is not allowed in a page: class methods are render functions only (render()/render<Name>()), pure helpers go in a `const` INSIDE a render function, and an empty branch uses the Lit sentinel `nothing` (imported from 'lit') or `null`; module-level function 'statusLabelKey' is not allowed in a page: class methods are render functions only (render()/render<Name>()), pure helpers go in a `const` INSIDE a render function, and an empty branch uses the Lit sentinel `nothing` (imported from 'lit') or `null`
+skills: OK  _102020_/l2/agentChangeFrontend/skills/genCfePage21RenderTs.ts | OK  _102020_/l4/collabux/templates/analyticalList/page21.md
+deps:   OK  _102045_/l2/buildFlowFsm/web/shared/dashboardWorkspace.ts | OK  _102045_/l2/designSystem.ts
+usage:  (none)
+--- raw (capped) ---
+
+
+=== 2026-08-02T02:58:52.527Z | dashboardWorkspace__page21__l2_page (l2_page) [repair] ===
+output: _102045_/l2/buildFlowFsm/web/desktop/page21/dashboardWorkspace.ts
+model:  codehigh    status: ok
+bytes:  25559
+skills: OK  _102020_/l2/agentChangeFrontend/skills/genCfePage21RenderTs.ts | OK  _102020_/l4/collabux/templates/analyticalList/page21.md
+deps:   OK  _102045_/l2/buildFlowFsm/web/shared/dashboardWorkspace.ts | OK  _102045_/l2/designSystem.ts
+usage:  {"prompt_tokens":13547,"completion_tokens":8146,"total_tokens":21693,"cost":0.0757524,"is_byok":false,"prompt_tokens_details":{"cached_tokens":128,"cache_write_tokens":0,"audio_tokens":0,"video_tokens":0},"cost_details":{"upstream_inference_cost":0.0757524,"upstream_inference_prompt_cost":0.0268764,"upstream_inference_completions_cost":0.048876},"completion_tokens_details":{"reasoning_tokens":763,"image_tokens":0,"audio_tokens":0},"cost_provider":0.079918782,"cost_charged":0.09590253839999999,"requested_alias":"codehigh","alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","model_id":"x-ai/grok-4.5","fallback_used":false,"attempts":[{"alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","stage":"primary","status":"success","ttfbMs":355,"totalMs":88534,"inputTokens":13547,"outputTokens":8146,"costProvider":0.079918782,"costCharged":0.09590253839999999}],"ensure_json_success":true,"tool_strict":"ajv"}
+

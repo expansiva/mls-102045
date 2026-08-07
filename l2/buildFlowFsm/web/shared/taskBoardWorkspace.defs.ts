@@ -108,7 +108,7 @@ export const definition = {
   },
   "layoutRef": {
     "defPath": "_102045_/l2/buildFlowFsm/web/desktop/page11/taskBoardWorkspace.defs.ts",
-    "layoutId": "cfe-20260731060448.1000"
+    "layoutId": "cfe-20260731185234.1000"
   },
   "states": [
     {
@@ -707,13 +707,20 @@ export const definition = {
     "intent.taskBoardWorkspace.cmdUpdateWorkTaskStatus.form.field.cancellationReason.label": "Cancellation Reason",
     "intent.taskBoardWorkspace.cmdUpdateWorkTaskStatus.form.field.completedAt.label": "Completed At",
     "intent.taskBoardWorkspace.cmdUpdateWorkTaskStatus.form.field.actorId.label": "Actor Id",
+    "action.cmdCreateWorkTask.success": "Create work task: OK",
+    "action.cmdCreateWorkTask.error": "Create work task: falhou",
+    "action.cmdUpdateWorkTask.success": "Update work task assignment and details: OK",
+    "action.cmdUpdateWorkTask.error": "Update work task assignment and details: falhou",
+    "action.cmdUpdateWorkTaskStatus.success": "Update work task status: OK",
+    "action.cmdUpdateWorkTaskStatus.error": "Update work task status: falhou",
     "section.taskBoardWorkspace.sec-task-board.title": "Task Board",
     "organism.taskBoardWorkspace.card-board10.title": "Card board",
     "intent.taskBoardWorkspace.card-board10.content.title": "Card board",
-    "section.taskBoardWorkspace.sec-task-detail.title": "Task Detail & Edit",
+    "section.taskBoardWorkspace.sec-task-detail.title": "Task Detail Panel",
     "organism.taskBoardWorkspace.summary-first10.title": "Summary first",
     "intent.taskBoardWorkspace.summary-first10.content.title": "Summary first",
-    "section.taskBoardWorkspace.sec-create-task.title": "Create New Task"
+    "section.taskBoardWorkspace.sec-create-task.title": "Create New Task",
+    "section.taskBoardWorkspace.sec-board-toolbar.title": "Board Toolbar"
   },
   "automation": {
     "statePrefix": "ui.taskBoardWorkspace",

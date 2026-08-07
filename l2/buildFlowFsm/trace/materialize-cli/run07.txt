@@ -1,0 +1,15 @@
+# materializeL2 run
+time:   2026-08-01T19:46:09.894Z
+module: 102045/buildFlowFsm
+only:   page31/changeOrderWorkspace    force: true
+model:  codehigh
+items:  1
+
+=== 2026-08-01T19:48:30.610Z | changeOrderWorkspace__page31__l2_page (l2_page) ===
+output: _102045_/l2/buildFlowFsm/web/desktop/page31/changeOrderWorkspace.ts
+model:  codehigh    status: ok
+bytes:  45005
+skills: OK  _102020_/l2/agentChangeFrontend/skills/genCfePage21RenderTs.ts | OK  _102020_/l4/collabux/templates/entityRecordManagement/page31.md
+deps:   OK  _102045_/l2/buildFlowFsm/web/shared/changeOrderWorkspace.ts | OK  _102045_/l2/designSystem.ts
+usage:  {"prompt_tokens":21893,"completion_tokens":12772,"total_tokens":34665,"cost":0.1199828,"is_byok":false,"prompt_tokens_details":{"cached_tokens":256,"cache_write_tokens":0,"audio_tokens":0,"video_tokens":0},"cost_details":{"upstream_inference_cost":0.1199828,"upstream_inference_prompt_cost":0.0433508,"upstream_inference_completions_cost":0.076632},"completion_tokens_details":{"reasoning_tokens":761,"image_tokens":0,"audio_tokens":0},"cost_provider":0.126581854,"cost_charged":0.15189822479999998,"requested_alias":"codehigh","alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","model_id":"x-ai/grok-4.5","fallback_used":false,"attempts":[{"alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","stage":"primary","status":"success","ttfbMs":296,"totalMs":139465,"inputTokens":21893,"outputTokens":12772,"costProvider":0.126581854,"costCharged":0.15189822479999998}],"ensure_json_success":true,"tool_strict":"ajv"}
+

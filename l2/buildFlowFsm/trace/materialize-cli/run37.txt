@@ -1,0 +1,63 @@
+# materializeL2 run
+time:   2026-08-02T02:13:12.863Z
+module: 102045/buildFlowFsm
+only:   page11/projectDetailWorkspace    force: true
+model:  codehigh
+items:  7
+
+=== 2026-08-02T02:13:45.533Z | projectDetailWorkspace__l2_page__O1 (l2_page_organism) ===
+output: _102045_/l2/buildFlowFsm/web/desktop/page11/projectDetailWorkspace_O1.ts
+model:  codehigh    status: ok
+bytes:  9701
+skills: OK  _102020_/l2/agentChangeFrontend/skills/genCfePage11RenderTs.ts
+deps:   OK  _102045_/l2/buildFlowFsm/web/shared/projectDetailWorkspace.ts | OK  _102045_/l2/designSystem.ts
+usage:  {"prompt_tokens":33571,"completion_tokens":3004,"total_tokens":36575,"cost":0.0849484,"is_byok":false,"prompt_tokens_details":{"cached_tokens":128,"cache_write_tokens":0,"audio_tokens":0,"video_tokens":0},"cost_details":{"upstream_inference_cost":0.0849484,"upstream_inference_prompt_cost":0.0669244,"upstream_inference_completions_cost":0.018024},"completion_tokens_details":{"reasoning_tokens":260,"image_tokens":0,"audio_tokens":0},"cost_provider":0.08962056199999999,"cost_charged":0.10754467439999998,"requested_alias":"codehigh","alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","model_id":"x-ai/grok-4.5","fallback_used":false,"attempts":[{"alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","stage":"primary","status":"success","ttfbMs":372,"totalMs":30125,"inputTokens":33571,"outputTokens":3004,"costProvider":0.08962056199999999,"costCharged":0.10754467439999998}],"ensure_json_success":true,"tool_strict":"ajv"}
+
+=== 2026-08-02T02:14:43.599Z | projectDetailWorkspace__l2_page__O2 (l2_page_organism) ===
+output: _102045_/l2/buildFlowFsm/web/desktop/page11/projectDetailWorkspace_O2.ts
+model:  codehigh    status: ok
+bytes:  13331
+skills: OK  _102020_/l2/agentChangeFrontend/skills/genCfePage11RenderTs.ts
+deps:   OK  _102045_/l2/buildFlowFsm/web/shared/projectDetailWorkspace.ts | OK  _102045_/l2/designSystem.ts
+usage:  {"prompt_tokens":33571,"completion_tokens":5170,"total_tokens":38741,"cost":0.0979444,"is_byok":false,"prompt_tokens_details":{"cached_tokens":128,"cache_write_tokens":0,"audio_tokens":0,"video_tokens":0},"cost_details":{"upstream_inference_cost":0.0979444,"upstream_inference_prompt_cost":0.0669244,"upstream_inference_completions_cost":0.03102},"completion_tokens_details":{"reasoning_tokens":1320,"image_tokens":0,"audio_tokens":0},"cost_provider":0.10333134199999999,"cost_charged":0.12399761039999999,"requested_alias":"codehigh","alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","model_id":"x-ai/grok-4.5","fallback_used":false,"attempts":[{"alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","stage":"primary","status":"success","ttfbMs":372,"totalMs":57020,"inputTokens":33571,"outputTokens":5170,"costProvider":0.10333134199999999,"costCharged":0.12399761039999999}],"ensure_json_success":true,"tool_strict":"ajv"}
+
+=== 2026-08-02T02:15:55.944Z | projectDetailWorkspace__l2_page__O3 (l2_page_organism) ===
+output: _102045_/l2/buildFlowFsm/web/desktop/page11/projectDetailWorkspace_O3.ts
+model:  codehigh    status: ok
+bytes:  17786
+skills: OK  _102020_/l2/agentChangeFrontend/skills/genCfePage11RenderTs.ts
+deps:   OK  _102045_/l2/buildFlowFsm/web/shared/projectDetailWorkspace.ts | OK  _102045_/l2/designSystem.ts
+usage:  {"prompt_tokens":33578,"completion_tokens":7327,"total_tokens":40905,"cost":0.1109004,"is_byok":false,"prompt_tokens_details":{"cached_tokens":128,"cache_write_tokens":0,"audio_tokens":0,"video_tokens":0},"cost_details":{"upstream_inference_cost":0.1109004,"upstream_inference_prompt_cost":0.0669384,"upstream_inference_completions_cost":0.043962},"completion_tokens_details":{"reasoning_tokens":2437,"image_tokens":0,"audio_tokens":0},"cost_provider":0.11699992199999999,"cost_charged":0.1403999064,"requested_alias":"codehigh","alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","model_id":"x-ai/grok-4.5","fallback_used":false,"attempts":[{"alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","stage":"primary","status":"success","ttfbMs":380,"totalMs":70585,"inputTokens":33578,"outputTokens":7327,"costProvider":0.11699992199999999,"costCharged":0.1403999064}],"ensure_json_success":true,"tool_strict":"ajv"}
+
+=== 2026-08-02T02:17:24.228Z | projectDetailWorkspace__l2_page__O4 (l2_page_organism) ===
+output: _102045_/l2/buildFlowFsm/web/desktop/page11/projectDetailWorkspace_O4.ts
+model:  codehigh    status: ok
+bytes:  22059
+skills: OK  _102020_/l2/agentChangeFrontend/skills/genCfePage11RenderTs.ts
+deps:   OK  _102045_/l2/buildFlowFsm/web/shared/projectDetailWorkspace.ts | OK  _102045_/l2/designSystem.ts
+usage:  {"prompt_tokens":33576,"completion_tokens":8329,"total_tokens":41905,"cost":0.1169084,"is_byok":false,"prompt_tokens_details":{"cached_tokens":128,"cache_write_tokens":0,"audio_tokens":0,"video_tokens":0},"cost_details":{"upstream_inference_cost":0.1169084,"upstream_inference_prompt_cost":0.0669344,"upstream_inference_completions_cost":0.049974},"completion_tokens_details":{"reasoning_tokens":2074,"image_tokens":0,"audio_tokens":0},"cost_provider":0.12333836199999999,"cost_charged":0.14800603439999999,"requested_alias":"codehigh","alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","model_id":"x-ai/grok-4.5","fallback_used":false,"attempts":[{"alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","stage":"primary","status":"success","ttfbMs":319,"totalMs":85865,"inputTokens":33576,"outputTokens":8329,"costProvider":0.12333836199999999,"costCharged":0.14800603439999999}],"ensure_json_success":true,"tool_strict":"ajv"}
+
+=== 2026-08-02T02:18:32.757Z | projectDetailWorkspace__l2_page__O5 (l2_page_organism) ===
+output: _102045_/l2/buildFlowFsm/web/desktop/page11/projectDetailWorkspace_O5.ts
+model:  codehigh    status: ok
+bytes:  13359
+skills: OK  _102020_/l2/agentChangeFrontend/skills/genCfePage11RenderTs.ts
+deps:   OK  _102045_/l2/buildFlowFsm/web/shared/projectDetailWorkspace.ts | OK  _102045_/l2/designSystem.ts
+usage:  {"prompt_tokens":33574,"completion_tokens":6291,"total_tokens":39865,"cost":0.1046764,"is_byok":false,"prompt_tokens_details":{"cached_tokens":128,"cache_write_tokens":0,"audio_tokens":0,"video_tokens":0},"cost_details":{"upstream_inference_cost":0.1046764,"upstream_inference_prompt_cost":0.0669304,"upstream_inference_completions_cost":0.037746},"completion_tokens_details":{"reasoning_tokens":2658,"image_tokens":0,"audio_tokens":0},"cost_provider":0.11043360199999999,"cost_charged":0.13252032239999997,"requested_alias":"codehigh","alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","model_id":"x-ai/grok-4.5","fallback_used":false,"attempts":[{"alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","stage":"primary","status":"success","ttfbMs":482,"totalMs":67510,"inputTokens":33574,"outputTokens":6291,"costProvider":0.11043360199999999,"costCharged":0.13252032239999997}],"ensure_json_success":true,"tool_strict":"ajv"}
+
+=== 2026-08-02T02:19:14.954Z | projectDetailWorkspace__l2_page__O6 (l2_page_organism) ===
+output: _102045_/l2/buildFlowFsm/web/desktop/page11/projectDetailWorkspace_O6.ts
+model:  codehigh    status: ok
+bytes:  14830
+skills: OK  _102020_/l2/agentChangeFrontend/skills/genCfePage11RenderTs.ts
+deps:   OK  _102045_/l2/buildFlowFsm/web/shared/projectDetailWorkspace.ts | OK  _102045_/l2/designSystem.ts
+usage:  {"prompt_tokens":33579,"completion_tokens":4559,"total_tokens":38138,"cost":0.0942944,"is_byok":false,"prompt_tokens_details":{"cached_tokens":128,"cache_write_tokens":0,"audio_tokens":0,"video_tokens":0},"cost_details":{"upstream_inference_cost":0.0942944,"upstream_inference_prompt_cost":0.0669404,"upstream_inference_completions_cost":0.027354},"completion_tokens_details":{"reasoning_tokens":517,"image_tokens":0,"audio_tokens":0},"cost_provider":0.09948059199999999,"cost_charged":0.11937671039999999,"requested_alias":"codehigh","alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","model_id":"x-ai/grok-4.5","fallback_used":false,"attempts":[{"alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","stage":"primary","status":"success","ttfbMs":957,"totalMs":41573,"inputTokens":33579,"outputTokens":4559,"costProvider":0.09948059199999999,"costCharged":0.11937671039999999}],"ensure_json_success":true,"tool_strict":"ajv"}
+
+=== 2026-08-02T02:19:39.455Z | projectDetailWorkspace__l2_page (l2_page) ===
+output: _102045_/l2/buildFlowFsm/web/desktop/page11/projectDetailWorkspace.ts
+model:  codehigh    status: ok
+bytes:  6771
+skills: OK  _102020_/l2/agentChangeFrontend/skills/genCfePage11RenderTs.ts
+deps:   OK  _102045_/l2/buildFlowFsm/web/shared/projectDetailWorkspace.ts | OK  _102045_/l2/designSystem.ts
+usage:  {"prompt_tokens":29309,"completion_tokens":2388,"total_tokens":31697,"cost":0.0727284,"is_byok":false,"prompt_tokens_details":{"cached_tokens":128,"cache_write_tokens":0,"audio_tokens":0,"video_tokens":0},"cost_details":{"upstream_inference_cost":0.0727284,"upstream_inference_prompt_cost":0.0584004,"upstream_inference_completions_cost":0.014328},"completion_tokens_details":{"reasoning_tokens":465,"image_tokens":0,"audio_tokens":0},"cost_provider":0.076728462,"cost_charged":0.0920741544,"requested_alias":"codehigh","alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","model_id":"x-ai/grok-4.5","fallback_used":false,"attempts":[{"alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","stage":"primary","status":"success","ttfbMs":1562,"totalMs":24102,"inputTokens":29309,"outputTokens":2388,"costProvider":0.076728462,"costCharged":0.0920741544}],"ensure_json_success":true,"tool_strict":"ajv"}
+

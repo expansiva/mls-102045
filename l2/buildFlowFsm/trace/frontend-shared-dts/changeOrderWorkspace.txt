@@ -1,0 +1,134 @@
+import { CollabLitElement } from '/_102029_/l2/collabLitElement.js';
+import type { CmdCreateChangeOrderOutput, CmdUpdateChangeOrderOutput, CmdUpdateChangeOrderStatusOutput } from '/_102045_/l2/buildFlowFsm/web/contracts/changeOrderWorkspace.js';
+export type { CmdCreateChangeOrderInput, CmdCreateChangeOrderOutput, CmdUpdateChangeOrderInput, CmdUpdateChangeOrderOutput, CmdUpdateChangeOrderStatusInput, CmdUpdateChangeOrderStatusOutput, } from '/_102045_/l2/buildFlowFsm/web/contracts/changeOrderWorkspace.js';
+export declare class BuildFlowFsmChangeOrderWorkspaceBase extends CollabLitElement {
+    /** state status — pageStatus */
+    status: string;
+    /** state cmdCreateChangeOrderState — actionStatus, values: idle|loading|success|error */
+    cmdCreateChangeOrderState: 'idle' | 'loading' | 'success' | 'error';
+    /** state cmdCreateChangeOrderProjectId — input */
+    cmdCreateChangeOrderProjectId: string;
+    /** state cmdCreateChangeOrderTitle — input */
+    cmdCreateChangeOrderTitle: string;
+    /** state cmdCreateChangeOrderDescription — input */
+    cmdCreateChangeOrderDescription: string;
+    /** state cmdCreateChangeOrderImpactType — input */
+    cmdCreateChangeOrderImpactType: string;
+    /** state cmdCreateChangeOrderCostAdjustment — input */
+    cmdCreateChangeOrderCostAdjustment: string;
+    /** state cmdCreateChangeOrderScheduleAdjustmentDays — input */
+    cmdCreateChangeOrderScheduleAdjustmentDays: string;
+    /** state cmdCreateChangeOrderOutput — commandOutput */
+    cmdCreateChangeOrderOutput: CmdCreateChangeOrderOutput | null;
+    /** state cmdCreateChangeOrderError — actionError */
+    cmdCreateChangeOrderError: string;
+    /** state cmdUpdateChangeOrderState — actionStatus, values: idle|loading|success|error */
+    cmdUpdateChangeOrderState: 'idle' | 'loading' | 'success' | 'error';
+    /** state cmdUpdateChangeOrderChangeOrderId — input */
+    cmdUpdateChangeOrderChangeOrderId: string;
+    /** state cmdUpdateChangeOrderTitle — input */
+    cmdUpdateChangeOrderTitle: string;
+    /** state cmdUpdateChangeOrderDescription — input */
+    cmdUpdateChangeOrderDescription: string;
+    /** state cmdUpdateChangeOrderImpactType — input */
+    cmdUpdateChangeOrderImpactType: string;
+    /** state cmdUpdateChangeOrderCostAdjustment — input */
+    cmdUpdateChangeOrderCostAdjustment: string;
+    /** state cmdUpdateChangeOrderScheduleAdjustmentDays — input */
+    cmdUpdateChangeOrderScheduleAdjustmentDays: string;
+    /** state cmdUpdateChangeOrderOutput — commandOutput */
+    cmdUpdateChangeOrderOutput: CmdUpdateChangeOrderOutput | null;
+    /** state cmdUpdateChangeOrderError — actionError */
+    cmdUpdateChangeOrderError: string;
+    /** state cmdUpdateChangeOrderStatusState — actionStatus, values: idle|loading|success|error */
+    cmdUpdateChangeOrderStatusState: 'idle' | 'loading' | 'success' | 'error';
+    /** state cmdUpdateChangeOrderStatusChangeOrderId — input */
+    cmdUpdateChangeOrderStatusChangeOrderId: string;
+    /** state cmdUpdateChangeOrderStatusStatus — input */
+    cmdUpdateChangeOrderStatusStatus: string;
+    /** state cmdUpdateChangeOrderStatusRejectionReason — input */
+    cmdUpdateChangeOrderStatusRejectionReason: string;
+    /** state cmdUpdateChangeOrderStatusOutput — commandOutput */
+    cmdUpdateChangeOrderStatusOutput: CmdUpdateChangeOrderStatusOutput | null;
+    /** state cmdUpdateChangeOrderStatusError — actionError */
+    cmdUpdateChangeOrderStatusError: string;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    /** handleIcaStateChange — collabState notify contract; maps state keys onto class fields */
+    handleIcaStateChange(key: string, value: unknown): void;
+    private initStateValue;
+    private syncRouteParams;
+    private readErrorMessage;
+    /** action cmdCreateChangeOrder (command) — route buildFlowFsm.changeOrderWorkspace.cmdCreateChangeOrder; inputs: projectId, title, description, impactType, costAdjustment, scheduleAdjustmentDays; writes ui.changeOrderWorkspace.output.cmdCreateChangeOrder; status ui.changeOrderWorkspace.action.cmdCreateChangeOrder.status; feedback keys action.cmdCreateChangeOrder.success / action.cmdCreateChangeOrder.error */
+    cmdCreateChangeOrder(): Promise<void>;
+    /** handler for action cmdCreateChangeOrder — bind UI events here */
+    handleCmdCreateChangeOrderClick(event?: Event): void;
+    /** action cmdUpdateChangeOrder (command) — route buildFlowFsm.changeOrderWorkspace.cmdUpdateChangeOrder; inputs: changeOrderId, title, description, impactType, costAdjustment, scheduleAdjustmentDays; writes ui.changeOrderWorkspace.output.cmdUpdateChangeOrder; status ui.changeOrderWorkspace.action.cmdUpdateChangeOrder.status; feedback keys action.cmdUpdateChangeOrder.success / action.cmdUpdateChangeOrder.error */
+    cmdUpdateChangeOrder(): Promise<void>;
+    /** handler for action cmdUpdateChangeOrder — bind UI events here */
+    handleCmdUpdateChangeOrderClick(event?: Event): void;
+    /** action cmdUpdateChangeOrderStatus (command) — route buildFlowFsm.changeOrderWorkspace.cmdUpdateChangeOrderStatus; inputs: changeOrderId, status, rejectionReason; writes ui.changeOrderWorkspace.output.cmdUpdateChangeOrderStatus; status ui.changeOrderWorkspace.action.cmdUpdateChangeOrderStatus.status; feedback keys action.cmdUpdateChangeOrderStatus.success / action.cmdUpdateChangeOrderStatus.error */
+    cmdUpdateChangeOrderStatus(): Promise<void>;
+    /** handler for action cmdUpdateChangeOrderStatus — bind UI events here */
+    handleCmdUpdateChangeOrderStatusClick(event?: Event): void;
+    /** setter for state ui.changeOrderWorkspace.input.cmdCreateChangeOrder.projectId */
+    setCmdCreateChangeOrderProjectId(value: string): void;
+    /** handler for action set.cmdCreateChangeOrderProjectId — bind UI events here */
+    handleCmdCreateChangeOrderProjectIdChange(event: Event): void;
+    /** setter for state ui.changeOrderWorkspace.input.cmdCreateChangeOrder.title */
+    setCmdCreateChangeOrderTitle(value: string): void;
+    /** handler for action set.cmdCreateChangeOrderTitle — bind UI events here */
+    handleCmdCreateChangeOrderTitleChange(event: Event): void;
+    /** setter for state ui.changeOrderWorkspace.input.cmdCreateChangeOrder.description */
+    setCmdCreateChangeOrderDescription(value: string): void;
+    /** handler for action set.cmdCreateChangeOrderDescription — bind UI events here */
+    handleCmdCreateChangeOrderDescriptionChange(event: Event): void;
+    /** setter for state ui.changeOrderWorkspace.input.cmdCreateChangeOrder.impactType */
+    setCmdCreateChangeOrderImpactType(value: string): void;
+    /** handler for action set.cmdCreateChangeOrderImpactType — bind UI events here */
+    handleCmdCreateChangeOrderImpactTypeChange(event: Event): void;
+    /** setter for state ui.changeOrderWorkspace.input.cmdCreateChangeOrder.costAdjustment */
+    setCmdCreateChangeOrderCostAdjustment(value: string): void;
+    /** handler for action set.cmdCreateChangeOrderCostAdjustment — bind UI events here */
+    handleCmdCreateChangeOrderCostAdjustmentChange(event: Event): void;
+    /** setter for state ui.changeOrderWorkspace.input.cmdCreateChangeOrder.scheduleAdjustmentDays */
+    setCmdCreateChangeOrderScheduleAdjustmentDays(value: string): void;
+    /** handler for action set.cmdCreateChangeOrderScheduleAdjustmentDays — bind UI events here */
+    handleCmdCreateChangeOrderScheduleAdjustmentDaysChange(event: Event): void;
+    /** setter for state ui.changeOrderWorkspace.input.cmdUpdateChangeOrder.changeOrderId */
+    setCmdUpdateChangeOrderChangeOrderId(value: string): void;
+    /** handler for action set.cmdUpdateChangeOrderChangeOrderId — bind UI events here */
+    handleCmdUpdateChangeOrderChangeOrderIdChange(event: Event): void;
+    /** setter for state ui.changeOrderWorkspace.input.cmdUpdateChangeOrder.title */
+    setCmdUpdateChangeOrderTitle(value: string): void;
+    /** handler for action set.cmdUpdateChangeOrderTitle — bind UI events here */
+    handleCmdUpdateChangeOrderTitleChange(event: Event): void;
+    /** setter for state ui.changeOrderWorkspace.input.cmdUpdateChangeOrder.description */
+    setCmdUpdateChangeOrderDescription(value: string): void;
+    /** handler for action set.cmdUpdateChangeOrderDescription — bind UI events here */
+    handleCmdUpdateChangeOrderDescriptionChange(event: Event): void;
+    /** setter for state ui.changeOrderWorkspace.input.cmdUpdateChangeOrder.impactType */
+    setCmdUpdateChangeOrderImpactType(value: string): void;
+    /** handler for action set.cmdUpdateChangeOrderImpactType — bind UI events here */
+    handleCmdUpdateChangeOrderImpactTypeChange(event: Event): void;
+    /** setter for state ui.changeOrderWorkspace.input.cmdUpdateChangeOrder.costAdjustment */
+    setCmdUpdateChangeOrderCostAdjustment(value: string): void;
+    /** handler for action set.cmdUpdateChangeOrderCostAdjustment — bind UI events here */
+    handleCmdUpdateChangeOrderCostAdjustmentChange(event: Event): void;
+    /** setter for state ui.changeOrderWorkspace.input.cmdUpdateChangeOrder.scheduleAdjustmentDays */
+    setCmdUpdateChangeOrderScheduleAdjustmentDays(value: string): void;
+    /** handler for action set.cmdUpdateChangeOrderScheduleAdjustmentDays — bind UI events here */
+    handleCmdUpdateChangeOrderScheduleAdjustmentDaysChange(event: Event): void;
+    /** setter for state ui.changeOrderWorkspace.input.cmdUpdateChangeOrderStatus.changeOrderId */
+    setCmdUpdateChangeOrderStatusChangeOrderId(value: string): void;
+    /** handler for action set.cmdUpdateChangeOrderStatusChangeOrderId — bind UI events here */
+    handleCmdUpdateChangeOrderStatusChangeOrderIdChange(event: Event): void;
+    /** setter for state ui.changeOrderWorkspace.input.cmdUpdateChangeOrderStatus.status */
+    setCmdUpdateChangeOrderStatusStatus(value: string): void;
+    /** handler for action set.cmdUpdateChangeOrderStatusStatus — bind UI events here */
+    handleCmdUpdateChangeOrderStatusStatusChange(event: Event): void;
+    /** setter for state ui.changeOrderWorkspace.input.cmdUpdateChangeOrderStatus.rejectionReason */
+    setCmdUpdateChangeOrderStatusRejectionReason(value: string): void;
+    /** handler for action set.cmdUpdateChangeOrderStatusRejectionReason — bind UI events here */
+    handleCmdUpdateChangeOrderStatusRejectionReasonChange(event: Event): void;
+}

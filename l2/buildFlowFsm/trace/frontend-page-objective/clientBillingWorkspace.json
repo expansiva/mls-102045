@@ -1,50 +1,49 @@
 {
-  "savedAt": "2026-07-31T06:05:17.437Z",
+  "savedAt": "2026-07-31T18:54:34.738Z",
   "pageId": "clientBillingWorkspace",
   "genome": "page21",
   "objective": {
     "actor": "Client (project owner reviewing charges)",
-    "jobToBeDone": "Review the billing summary and invoice shared by billing staff so the client can confirm charges and understand what they owe before handling payment externally.",
-    "primaryDecision": "Understand and confirm the total cost breakdown in the billing summary, then cross-reference the corresponding invoice details.",
+    "jobToBeDone": "Review the billing summary and invoice shared by billing staff so the client can understand project charges and confirm the amounts before external payment.",
+    "primaryDecision": "Understand and verify the billing summary cost breakdown (labor, material, change orders, total) for the project period.",
     "decisiveInfo": [
-      "totalCost",
+      "projectName",
+      "periodStart",
+      "periodEnd",
       "laborCost",
       "materialCost",
       "changeOrderCost",
-      "periodStart",
-      "periodEnd",
-      "projectName",
+      "totalCost",
       "status (BillingSummary)",
       "invoiceNumber",
-      "totalAmount",
+      "totalAmount (Invoice)",
       "status (Invoice)",
       "sentAt"
     ],
-    "usageFrequency": "Occasional — client opens this page when billing staff shares a billing summary or invoice for a project milestone.",
+    "usageFrequency": "Occasional — client opens this page when notified that a billing summary or invoice has been shared; read-only review session.",
     "criticalActions": [
       {
-        "action": "Load and display billing summary",
-        "presentation": "summary-first — lead with total cost and period, then expand cost breakdown (labor, material, change orders)"
+        "action": "View billing summary cost breakdown",
+        "presentation": "summary-first — lead with period and totals, then cost line items below"
       },
       {
-        "action": "Load and display invoice detail",
-        "presentation": "master-detail — billing summary is the primary surface; invoice detail panel appears alongside or below, driven by the same project context"
+        "action": "View invoice details",
+        "presentation": "detail panel — invoice number, status, total amount, sent date as read-only fields"
       }
     ],
     "informationHierarchy": [
       "1. Billing summary header: project name, billing period, overall status",
-      "2. Cost breakdown: labor, material, change-order, total",
-      "3. Invoice detail: invoice number, status, total amount, sent date",
-      "4. Read-only context: projectId, clientId, billingSummaryId, invoiceId (never shown as inputs)"
+      "2. Cost breakdown: labor, material, change-order, total cost",
+      "3. Invoice panel: invoice number, status, total amount, sent date",
+      "4. Contextual note: payment handled externally (informational)"
     ],
-    "successCriteria": "The client can land on the page, immediately see the billing period and total cost, then confirm the matching invoice number and amount — all without typing any identifier or navigating away.",
+    "successCriteria": "The client can immediately see what they are being charged for, the period it covers, and the corresponding invoice details — all without any manual input or navigation away from the page.",
     "antiPatterns": [
-      "Exposing billingSummaryId or invoiceId as manual text inputs",
-      "Exposing clientId as a visible form field",
-      "Showing status as an editable select",
-      "Splitting billing summary and invoice into completely separate pages requiring navigation",
-      "Rendering a CRUD form instead of a read-only summary view",
-      "Adding persuasion or urgency framing on this operational read-only screen"
+      "Exposing billingSummaryId or invoiceId as typed inputs — both are route-param context",
+      "Exposing clientId as a form field — it comes from the actor session",
+      "Rendering status as an editable select — it is a system-owned read-only field",
+      "Splitting billing summary and invoice into completely separate pages requiring extra navigation",
+      "Showing a CRUD form for a read-only review screen"
     ]
   }
 }

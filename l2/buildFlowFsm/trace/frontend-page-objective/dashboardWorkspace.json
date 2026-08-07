@@ -1,42 +1,42 @@
 {
-  "savedAt": "2026-07-31T06:05:50.522Z",
+  "savedAt": "2026-07-31T18:55:13.533Z",
   "pageId": "dashboardWorkspace",
   "genome": "page21",
   "objective": {
     "actor": "Project Manager",
-    "jobToBeDone": "Get an at-a-glance view of all active projects' budget drift, actual cost, task urgency, and overall status so they can quickly identify where attention is needed.",
+    "jobToBeDone": "Get an at-a-glance view of all active projects' budget drift, actual cost, and task urgency, then browse and filter the full project list to decide where attention is needed.",
     "primaryDecision": "Which projects require immediate attention based on budget variance and task urgency?",
     "decisiveInfo": [
-      "projects (name, status, budget, actual cost, variance)",
-      "total active/on-hold project count",
-      "overdue and upcoming task counts per project",
-      "project schedule (startDate, endDate)",
-      "client and site context (clientId, siteAddress)"
+      "projects (budget, actual cost, variance, task counts)",
+      "status (project lifecycle state)",
+      "total (count of matching projects)",
+      "startDate / endDate (schedule health)",
+      "holdReason / cancellationReason (exception context)"
     ],
-    "usageFrequency": "Daily / continuous — the project manager opens this as their home screen each morning and returns throughout the day to monitor progress.",
+    "usageFrequency": "Daily / continuous — opened at the start of each working session to triage the day's priorities.",
     "criticalActions": [
       {
-        "action": "View dashboard KPI summary filtered by status",
-        "presentation": "summary-first with inline status filter chip bar"
+        "action": "Load dashboard KPI summary filtered by status",
+        "presentation": "summary-first metric cards with inline status filter chip bar"
       },
       {
-        "action": "Browse and filter project list by status",
-        "presentation": "filterable paginated table with status filter control folded into the surface"
+        "action": "Browse and filter project list by status with pagination",
+        "presentation": "filterable paginated table with status filter chip and page controls"
       }
     ],
     "informationHierarchy": [
-      "1. KPI summary cards — budget drift, actual cost, task urgency counts across all projects",
-      "2. Status filter for dashboard summary",
-      "3. Paginated project list with name, client, site, budget, schedule, status",
-      "4. Status filter and pagination controls for project list"
+      "1. KPI summary cards — budget drift, actual cost, task urgency counts across all active projects",
+      "2. Status filter for the KPI surface",
+      "3. Project list table — name, client, site, budget, schedule, status",
+      "4. Status filter and pagination for the project list"
     ],
-    "successCriteria": "The manager can identify at-risk projects and their key metrics within 10 seconds of landing on the page, without navigating away or typing any IDs.",
+    "successCriteria": "A project manager can open the dashboard, immediately see which projects are over budget or have overdue tasks, and navigate to the project list filtered by status — all without typing any IDs or navigating away.",
     "antiPatterns": [
-      "Separate full-width form for status filtering",
-      "Manually typed project or client IDs",
-      "Status edited via free <select> over all enum values",
-      "Raw CRUD stack as the primary experience",
-      "Hiding KPI metrics below the fold"
+      "Separate full-width form for status filter (fold into the surface)",
+      "Free <select> over all status enum values instead of chip/button filters",
+      "Manually typed project IDs or pagination values",
+      "Raw CRUD forms as the primary experience",
+      "Stacking every query as its own isolated section with no visual hierarchy"
     ]
   }
 }

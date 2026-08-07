@@ -1,11 +1,11 @@
 {
-  "savedAt": "2026-07-31T06:05:22.666Z",
+  "savedAt": "2026-07-31T18:54:47.361Z",
   "pageId": "clientManagementWorkspace",
   "genome": "page21",
   "objective": {
     "actor": "Project manager",
     "jobToBeDone": "Maintain the client directory by browsing, searching, creating, updating, and removing client records used across projects.",
-    "primaryDecision": "Find the right client or add a new one — then act on it (edit or delete) without leaving the directory.",
+    "primaryDecision": "Which client to act on — select a client from the directory to edit, delete, or use on a project.",
     "decisiveInfo": [
       "name",
       "company",
@@ -13,38 +13,39 @@
       "phone",
       "address"
     ],
-    "usageFrequency": "Occasional / back-office — opened when setting up or auditing projects, not a continuous operational screen.",
+    "usageFrequency": "Occasional / back-office — opened when setting up or editing a project or when client master data needs updating.",
     "criticalActions": [
       {
         "action": "listClients",
-        "presentation": "primary-surface with inline filter bar (name, company, email)"
+        "presentation": "primary-surface — filterable paginated table as the dominant surface"
       },
       {
         "action": "createClientCmd",
-        "presentation": "primary-button in toolbar opening a slide-over / inline panel"
+        "presentation": "primary-button in toolbar — opens inline panel or modal form"
       },
       {
         "action": "updateClientCmd",
-        "presentation": "master-detail — selecting a row populates the detail panel for editing"
+        "presentation": "inline-row-command — edit action on selected row, pre-populates detail panel"
       },
       {
         "action": "deleteClientCmd",
-        "presentation": "inline-row-command with confirmation guard on the selected row"
+        "presentation": "inline-row-command — destructive row action with confirmation, never a form"
       }
     ],
     "informationHierarchy": [
-      "1. Searchable client table (name, company, email, phone) — the dominant surface",
-      "2. Filter controls folded into the table toolbar (name, company, email)",
-      "3. Detail / edit panel for the selected client (all editable fields + save)",
-      "4. Create-client action reachable from the toolbar",
-      "5. Delete confirmation triggered from the row action"
+      "1. Searchable/filterable client list (name, company, email) — the dominant surface",
+      "2. Filter controls folded into the list toolbar (name, company, email)",
+      "3. Create client action in the toolbar",
+      "4. Per-row edit and delete actions on the selected client",
+      "5. Edit detail panel (pre-populated from selected row) for update"
     ],
-    "successCriteria": "A project manager can locate any client in under 5 seconds, create a new one in one step, and edit or delete a selected client without navigating away from the directory.",
+    "successCriteria": "A project manager can find any client in under 5 seconds, create a new client in one step, and edit or delete a client without leaving the directory view.",
     "antiPatterns": [
-      "Separate full-width form sections for create and update below the table",
-      "clientId exposed as a manually typed input",
+      "Separate full-width form sections for update and delete below the list",
+      "clientId exposed as a manually typed input field",
       "Status <select> for lifecycle transitions",
-      "One section per operation (mechanically mirroring every journey step)"
+      "One section per operation (create / update / delete each in their own section)",
+      "Audit timestamps (createdAt, updatedAt) shown as editable fields"
     ]
   }
 }

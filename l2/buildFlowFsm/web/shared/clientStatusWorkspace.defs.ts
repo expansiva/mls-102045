@@ -53,7 +53,7 @@ export const definition = {
   },
   "layoutRef": {
     "defPath": "_102045_/l2/buildFlowFsm/web/desktop/page11/clientStatusWorkspace.defs.ts",
-    "layoutId": "cfe-20260731060448.1000"
+    "layoutId": "cfe-20260731185234.1000"
   },
   "states": [
     {
@@ -187,7 +187,10 @@ export const definition = {
     "intent.clientStatusWorkspace.viewStatusReport.list.column.generatedAt.label": "Generated At",
     "intent.clientStatusWorkspace.viewStatusReport.list.column.sharedAt.label": "Shared At",
     "intent.clientStatusWorkspace.viewStatusReport.list.filter.clientId.label": "Client Id",
-    "section.clientStatusWorkspace.sec-report-header.title": "Report Identity",
+    "section.clientStatusWorkspace.sec-report-header.title": "Report Identity & Period",
+    "section.clientStatusWorkspace.sec-report-summary.title": "Executive Summary",
+    "section.clientStatusWorkspace.sec-report-overviews.title": "Progress Overviews",
+    "section.clientStatusWorkspace.sec-risk-and-notes.title": "Risk & PM Notes",
     "section.clientStatusWorkspace.sec-report-body.title": "Status Report Detail"
   },
   "automation": {

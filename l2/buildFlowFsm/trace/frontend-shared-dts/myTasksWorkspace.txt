@@ -1,0 +1,65 @@
+import { CollabLitElement } from '/_102029_/l2/collabLitElement.js';
+import type { ListMyWorkTasksOutput, GetWorkTaskDetailOutput } from '/_102045_/l2/buildFlowFsm/web/contracts/myTasksWorkspace.js';
+export type { ListMyWorkTasksInput, ListMyWorkTasksOutput, GetWorkTaskDetailInput, GetWorkTaskDetailOutput, } from '/_102045_/l2/buildFlowFsm/web/contracts/myTasksWorkspace.js';
+export declare class BuildFlowFsmMyTasksWorkspaceBase extends CollabLitElement {
+    /** state status — pageStatus */
+    status: string;
+    /** state listMyWorkTasksState — actionStatus, values: idle|loading|success|error */
+    listMyWorkTasksState: 'idle' | 'loading' | 'success' | 'error';
+    /** state listMyWorkTasksAssignedWorkerId — input */
+    listMyWorkTasksAssignedWorkerId: string;
+    /** state listMyWorkTasksStatus — input */
+    listMyWorkTasksStatus: string;
+    /** state listMyWorkTasksPage — input */
+    listMyWorkTasksPage: string;
+    /** state listMyWorkTasksPageSize — input */
+    listMyWorkTasksPageSize: string;
+    /** state listMyWorkTasksData — queryResult, outputShape: paginated */
+    listMyWorkTasksData: ListMyWorkTasksOutput;
+    /** state getWorkTaskDetailState — actionStatus, values: idle|loading|success|error */
+    getWorkTaskDetailState: 'idle' | 'loading' | 'success' | 'error';
+    /** state getWorkTaskDetailWorkTaskId — input */
+    getWorkTaskDetailWorkTaskId: string;
+    /** state getWorkTaskDetailActorId — input */
+    getWorkTaskDetailActorId: string;
+    /** state getWorkTaskDetailData — queryResult, outputShape: object */
+    getWorkTaskDetailData: GetWorkTaskDetailOutput | null;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    /** handleIcaStateChange — collabState notify contract; maps state keys onto class fields */
+    handleIcaStateChange(key: string, value: unknown): void;
+    private initStateValue;
+    private syncRouteParams;
+    /** action listMyWorkTasks (query) — route buildFlowFsm.myTasksWorkspace.listMyWorkTasks; inputs: assignedWorkerId, status, page, pageSize; writes ui.myTasksWorkspace.data.listMyWorkTasks; status ui.myTasksWorkspace.action.listMyWorkTasks.status */
+    loadListMyWorkTasks(): Promise<void>;
+    /** handler for action listMyWorkTasks — bind UI events here */
+    handleListMyWorkTasksClick(event?: Event): void;
+    /** action getWorkTaskDetail (query) — route buildFlowFsm.myTasksWorkspace.getWorkTaskDetail; inputs: workTaskId, actorId; writes ui.myTasksWorkspace.data.getWorkTaskDetail; status ui.myTasksWorkspace.action.getWorkTaskDetail.status */
+    loadGetWorkTaskDetail(): Promise<void>;
+    /** handler for action getWorkTaskDetail — bind UI events here */
+    handleGetWorkTaskDetailClick(event?: Event): void;
+    /** setter for state ui.myTasksWorkspace.input.listMyWorkTasks.assignedWorkerId */
+    setListMyWorkTasksAssignedWorkerId(value: string): void;
+    /** handler for action set.listMyWorkTasksAssignedWorkerId — bind UI events here */
+    handleListMyWorkTasksAssignedWorkerIdChange(event: Event): void;
+    /** setter for state ui.myTasksWorkspace.input.listMyWorkTasks.status */
+    setListMyWorkTasksStatus(value: string): void;
+    /** handler for action set.listMyWorkTasksStatus — bind UI events here */
+    handleListMyWorkTasksStatusChange(event: Event): void;
+    /** setter for state ui.myTasksWorkspace.input.listMyWorkTasks.page */
+    setListMyWorkTasksPage(value: string): void;
+    /** handler for action set.listMyWorkTasksPage — bind UI events here */
+    handleListMyWorkTasksPageChange(event: Event): void;
+    /** setter for state ui.myTasksWorkspace.input.listMyWorkTasks.pageSize */
+    setListMyWorkTasksPageSize(value: string): void;
+    /** handler for action set.listMyWorkTasksPageSize — bind UI events here */
+    handleListMyWorkTasksPageSizeChange(event: Event): void;
+    /** setter for state ui.myTasksWorkspace.input.getWorkTaskDetail.workTaskId */
+    setGetWorkTaskDetailWorkTaskId(value: string): void;
+    /** handler for action set.getWorkTaskDetailWorkTaskId — bind UI events here */
+    handleGetWorkTaskDetailWorkTaskIdChange(event: Event): void;
+    /** setter for state ui.myTasksWorkspace.input.getWorkTaskDetail.actorId */
+    setGetWorkTaskDetailActorId(value: string): void;
+    /** handler for action set.getWorkTaskDetailActorId — bind UI events here */
+    handleGetWorkTaskDetailActorIdChange(event: Event): void;
+}

@@ -2,321 +2,335 @@
 
 import { html, nothing } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { BuildFlowFsmMyTasksWorkspaceBase } from '/_102045_/l2/buildFlowFsm/web/shared/myTasksWorkspace.js';
-import type { GetWorkTaskDetailOutput } from '/_102045_/l2/buildFlowFsm/web/shared/myTasksWorkspace.js';
+import {
+  BuildFlowFsmMyTasksWorkspaceBase,
+  messages,
+  type MessageType,
+  type ListMyWorkTasksOutput,
+  type GetWorkTaskDetailOutput,
+} from '/_102045_/l2/buildFlowFsm/web/shared/myTasksWorkspace.js';
 
-type WorkTaskRow = {
-  workTaskId?: string;
-  projectId?: string;
-  projectName?: string;
-  title?: string;
-  description?: string;
-  assignedWorkerId?: string;
-  status?: string;
-  dueDate?: string;
-  isOverdue?: boolean;
-  completedAt?: string;
-  cancelledAt?: string;
-  cancellationReason?: string;
-};
+type WorkTaskRow = ListMyWorkTasksOutput['workTasks'][number];
 
 @customElement('build-flow-fsm--web--desktop--page21--my-tasks-workspace-102045')
 export class BuildFlowFsmDesktopPage21MyTasksWorkspacePage extends BuildFlowFsmMyTasksWorkspaceBase {
   render() {
-    const listLoading = this.listMyWorkTasksState === 'loading';
-    const listError = this.listMyWorkTasksState === 'error';
-    const detailLoading = this.getWorkTaskDetailState === 'loading';
-    const detailError = this.getWorkTaskDetailState === 'error';
+    const msg: MessageType = messages['en'] ?? messages['pt-br'] ?? messages['es']!;
+    const rows: WorkTaskRow[] = this.listMyWorkTasksData?.workTasks ?? [];
+    const total: number = this.listMyWorkTasksData?.total ?? 0;
+    const listLoading: boolean = this.listMyWorkTasksState === 'loading';
+    const selectedId: string = this.getWorkTaskDetailWorkTaskId || '';
+    const pageNum: number = this.listMyWorkTasksPage !== '' && !Number.isNaN(Number(this.listMyWorkTasksPage))
+      ? Number(this.listMyWorkTasksPage)
+      : 1;
+    const pageSizeNum: number = this.listMyWorkTasksPageSize !== '' && !Number.isNaN(Number(this.listMyWorkTasksPageSize))
+      ? Number(this.listMyWorkTasksPageSize)
+      : 20;
+    const totalPages: number = pageSizeNum > 0 ? Math.max(1, Math.ceil(total / pageSizeNum)) : 1;
 
-    const rawList = this.listMyWorkTasksData as { workTasks?: WorkTaskRow[]; total?: number } | null | undefined;
-    const workTasks: WorkTaskRow[] = Array.isArray(rawList?.workTasks) ? rawList!.workTasks! : [];
-    const totalCount = typeof rawList?.total === 'number' ? rawList.total : workTasks.length;
-
-    const sortedTasks = workTasks.slice().sort((a: WorkTaskRow, b: WorkTaskRow) => {
-      const aOver = a.isOverdue === true ? 0 : 1;
-      const bOver = b.isOverdue === true ? 0 : 1;
-      if (aOver !== bOver) return aOver - bOver;
-      const aDue = a.dueDate ? String(a.dueDate) : '';
-      const bDue = b.dueDate ? String(b.dueDate) : '';
-      return aDue.localeCompare(bDue);
-    });
-
-    const selectedId = this.getWorkTaskDetailWorkTaskId || '';
-    const detail: GetWorkTaskDetailOutput | null = this.getWorkTaskDetailData;
-    const detailRow = detail as GetWorkTaskDetailOutput & WorkTaskRow | null;
-
-    const activeStatus = this.listMyWorkTasksStatus || '';
-    const statusChips: { value: string; label: string }[] = [
-      { value: '', label: 'All' /* TODO: no msg key for all-status chip */ },
-      { value: 'assigned', label: 'assigned' },
-      { value: 'inProgress', label: 'inProgress' },
-      { value: 'completed', label: 'completed' },
-      { value: 'cancelled', label: 'cancelled' },
-    ];
-
-    const statusBadgeClass = (status: string | undefined, isOverdue?: boolean): string => {
-      if (isOverdue === true) {
-        return 'bg-[var(--status-error-bg,#fef2f2)] text-[var(--status-error-text,#991b1b)]';
+    const statusSet: string[] = [];
+    for (const row of rows) {
+      const statusValue = (row as { status?: string }).status;
+      if (statusValue && statusSet.indexOf(statusValue) === -1) {
+        statusSet.push(statusValue);
       }
-      switch (status) {
-        case 'completed':
-          return 'bg-[var(--status-success-bg,#f0fdf4)] text-[var(--status-success-text,#166534)]';
-        case 'inProgress':
-          return 'bg-[var(--status-info-bg,#eff6ff)] text-[var(--status-info-text,#1e40af)]';
-        case 'cancelled':
-          return 'bg-[var(--status-neutral-bg,#f1f5f9)] text-[var(--status-neutral-text,#334155)]';
-        case 'assigned':
-          return 'bg-[var(--status-warning-bg,#fffbeb)] text-[var(--status-warning-text,#92400e)]';
-        default:
-          return 'bg-[var(--status-neutral-bg,#f1f5f9)] text-[var(--status-neutral-text,#334155)]';
-      }
-    };
-
-    const formatDate = (value: string | undefined): string => {
-      if (!value) return '';
-      try {
-        const d = new Date(value);
-        if (Number.isNaN(d.getTime())) return String(value);
-        return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-      } catch {
-        return String(value);
-      }
-    };
+    }
+    if (this.listMyWorkTasksStatus && statusSet.indexOf(this.listMyWorkTasksStatus) === -1) {
+      statusSet.push(this.listMyWorkTasksStatus);
+    }
 
     return html`
       <div class="min-h-full bg-[var(--page-bg,#f8fafc)] text-[var(--text-default,#0f172a)] p-4 md:p-6">
-        <header class="mb-4 md:mb-6">
-          <h1 class="text-2xl font-semibold text-[var(--text-strong,#020617)]">
-            ${this.msg['section.myTasksWorkspace.taskListSection.title']}
-          </h1>
-        </header>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-start">
+          <section class="md:col-span-1 flex flex-col gap-3 rounded-lg border border-[var(--border-default,#e2e8f0)] bg-[var(--surface-bg,#ffffff)] p-3 shadow-[var(--shadow-small,0_1px_2px_rgba(0,0,0,0.05))]">
+            <div class="flex flex-wrap gap-2" role="toolbar" aria-label=${msg['intent.myTasksWorkspace.listMyWorkTasks.list.filter.status.label']}>
+              <button
+                type="button"
+                class=${this.listMyWorkTasksStatus === ''
+                  ? 'px-3 py-1.5 text-sm rounded-full border border-[var(--selected-border,#94a3b8)] bg-[var(--selected-bg,#e2e8f0)] text-[var(--selected-text,#0f172a)]'
+                  : 'px-3 py-1.5 text-sm rounded-full border border-[var(--border-default,#e2e8f0)] bg-[var(--surface-alt-bg,#f1f5f9)] text-[var(--text-muted,#64748b)]'}
+                @click=${() => {
+                  this.setListMyWorkTasksStatus('');
+                  this.setListMyWorkTasksPage('1');
+                  this.handleListMyWorkTasksClick();
+                }}
+              >
+                ${msg['intent.myTasksWorkspace.listMyWorkTasks.list.column.workTasks.label']}
+                <span class="ml-1 text-[var(--text-muted,#64748b)]">${total}</span>
+              </button>
+              ${statusSet.map((statusValue: string) => html`
+                <button
+                  type="button"
+                  class=${this.listMyWorkTasksStatus === statusValue
+                    ? 'px-3 py-1.5 text-sm rounded-full border border-[var(--selected-border,#94a3b8)] bg-[var(--selected-bg,#e2e8f0)] text-[var(--selected-text,#0f172a)]'
+                    : 'px-3 py-1.5 text-sm rounded-full border border-[var(--border-default,#e2e8f0)] bg-[var(--surface-alt-bg,#f1f5f9)] text-[var(--text-muted,#64748b)]'}
+                  @click=${() => {
+                    this.setListMyWorkTasksStatus(statusValue);
+                    this.setListMyWorkTasksPage('1');
+                    this.handleListMyWorkTasksClick();
+                  }}
+                >
+                  ${statusValue}
+                </button>
+              `)}
+            </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6">
-          <!-- Master: task list -->
-          <section class="md:col-span-3 flex flex-col gap-3">
-            <div class="rounded-lg border border-[var(--border-default,#e2e8f0)] bg-[var(--surface-bg,#ffffff)] shadow-sm">
-              <div class="flex flex-wrap items-center justify-between gap-2 px-4 pt-4 pb-2">
-                <h2 class="text-lg font-medium text-[var(--text-strong,#020617)]">
-                  ${this.msg['organism.myTasksWorkspace.listMyWorkTasks.title']}
-                </h2>
-                <span class="text-sm text-[var(--text-muted,#64748b)]">
-                  ${this.msg['intent.myTasksWorkspace.listMyWorkTasks.list.column.total.label']}: ${totalCount}
-                </span>
-              </div>
+            ${listLoading
+              ? html`
+                  <div class="flex flex-col gap-2" aria-busy="true">
+                    <div class="h-16 rounded-lg bg-[var(--surface-alt-bg,#f1f5f9)] animate-pulse"></div>
+                    <div class="h-16 rounded-lg bg-[var(--surface-alt-bg,#f1f5f9)] animate-pulse"></div>
+                    <div class="h-16 rounded-lg bg-[var(--surface-alt-bg,#f1f5f9)] animate-pulse"></div>
+                  </div>
+                `
+              : rows.length === 0
+                ? html`
+                    <p class="text-sm text-[var(--text-muted,#64748b)] py-6 text-center">
+                      ${msg['intent.myTasksWorkspace.listMyWorkTasks.list.empty']}
+                    </p>
+                  `
+                : html`
+                    <ul class="flex flex-col gap-2 max-h-[70vh] overflow-y-auto" role="listbox">
+                      ${rows.map((row: WorkTaskRow) => this.renderQueueRow(row, selectedId, msg))}
+                    </ul>
+                  `}
 
-              <!-- Status filter chips -->
-              <div class="px-4 pb-3 flex flex-wrap gap-2" role="tablist" aria-label=${this.msg['intent.myTasksWorkspace.listMyWorkTasks.list.filter.status.label']}>
-                ${statusChips.map(
-                  (chip: { value: string; label: string }) => html`
+            ${totalPages > 1
+              ? html`
+                  <div class="flex items-center justify-between gap-2 pt-2 border-t border-[var(--border-subtle,#e2e8f0)]">
                     <button
                       type="button"
-                      role="tab"
-                      aria-selected=${activeStatus === chip.value ? 'true' : 'false'}
-                      class=${activeStatus === chip.value
-                        ? 'min-h-11 px-4 py-2 rounded-full text-sm font-medium border border-[var(--selected-border,#3b82f6)] bg-[var(--selected-bg,#eff6ff)] text-[var(--selected-text,#1e40af)]'
-                        : 'min-h-11 px-4 py-2 rounded-full text-sm font-medium border border-[var(--border-default,#e2e8f0)] bg-[var(--surface-alt-bg,#f8fafc)] text-[var(--text-default,#0f172a)]'}
-                      ?disabled=${listLoading}
+                      class="px-3 py-1.5 text-sm rounded-lg border border-[var(--button-secondary-border,#e2e8f0)] bg-[var(--button-secondary-bg,#ffffff)] text-[var(--button-secondary-text,#0f172a)] disabled:opacity-50"
+                      ?disabled=${pageNum <= 1 || listLoading}
                       @click=${() => {
-                        this.setListMyWorkTasksStatus(chip.value);
+                        this.setListMyWorkTasksPage(String(Math.max(1, pageNum - 1)));
                         this.handleListMyWorkTasksClick();
                       }}
                     >
-                      ${chip.label}
+                      ‹
                     </button>
-                  `,
-                )}
-              </div>
-
-              ${listError
-                ? html`
-                    <div class="mx-4 mb-4 rounded-lg px-3 py-2 bg-[var(--status-error-bg,#fef2f2)] text-[var(--status-error-text,#991b1b)] text-sm">
-                      ${this.msg['intent.myTasksWorkspace.listMyWorkTasks.list.title']} — error
-                    </div>
-                  `
-                : nothing}
-
-              ${listLoading
-                ? html`
-                    <div class="px-4 pb-4 space-y-3" aria-busy="true">
-                      <div class="h-20 rounded-lg bg-[var(--surface-alt-bg,#f1f5f9)] animate-pulse"></div>
-                      <div class="h-20 rounded-lg bg-[var(--surface-alt-bg,#f1f5f9)] animate-pulse"></div>
-                      <div class="h-20 rounded-lg bg-[var(--surface-alt-bg,#f1f5f9)] animate-pulse"></div>
-                    </div>
-                  `
-                : sortedTasks.length === 0
-                  ? html`
-                      <p class="px-4 pb-6 text-sm text-[var(--text-muted,#64748b)]">
-                        ${this.msg['intent.myTasksWorkspace.listMyWorkTasks.list.empty']}
-                      </p>
-                    `
-                  : html`
-                      <ul class="px-3 pb-4 flex flex-col gap-2 max-h-[70vh] overflow-y-auto" role="listbox">
-                        ${sortedTasks.map((task: WorkTaskRow) => {
-                          const id = task.workTaskId ? String(task.workTaskId) : '';
-                          const isSelected = id !== '' && id === selectedId;
-                          const overdue = task.isOverdue === true;
-                          return html`
-                            <li>
-                              <button
-                                type="button"
-                                role="option"
-                                aria-selected=${isSelected ? 'true' : 'false'}
-                                class=${isSelected
-                                  ? 'w-full text-left min-h-16 p-3 rounded-lg border-2 border-[var(--selected-border,#3b82f6)] bg-[var(--selected-bg,#eff6ff)] text-[var(--selected-text,#1e40af)]'
-                                  : overdue
-                                    ? 'w-full text-left min-h-16 p-3 rounded-lg border border-[var(--status-error-bg,#fecaca)] bg-[var(--surface-bg,#ffffff)] hover:bg-[var(--surface-alt-bg,#f8fafc)]'
-                                    : 'w-full text-left min-h-16 p-3 rounded-lg border border-[var(--border-subtle,#e2e8f0)] bg-[var(--surface-bg,#ffffff)] hover:bg-[var(--surface-alt-bg,#f8fafc)]'}
-                                @click=${() => {
-                                  if (!id) return;
-                                  this.setGetWorkTaskDetailWorkTaskId(id);
-                                  this.handleGetWorkTaskDetailClick();
-                                }}
-                              >
-                                <div class="flex items-start justify-between gap-2">
-                                  <div class="min-w-0 flex-1">
-                                    <div class="font-medium text-[var(--text-strong,#020617)] truncate">
-                                      ${task.title ?? '—'}
-                                    </div>
-                                    <div class="mt-1 text-sm text-[var(--text-muted,#64748b)] truncate">
-                                      ${task.projectName ?? ''}
-                                    </div>
-                                  </div>
-                                  <span class=${`shrink-0 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${statusBadgeClass(task.status, overdue)}`}>
-                                    ${overdue ? 'overdue' : (task.status ?? '')}
-                                  </span>
-                                </div>
-                                <div class="mt-2 flex flex-wrap items-center gap-2 text-xs text-[var(--text-muted,#64748b)]">
-                                  <span>${this.msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.dueDate.label']}: ${formatDate(task.dueDate)}</span>
-                                </div>
-                              </button>
-                            </li>
-                          `;
-                        })}
-                      </ul>
-                    `}
-            </div>
+                    <span class="text-xs text-[var(--text-muted,#64748b)]">${pageNum} / ${totalPages}</span>
+                    <button
+                      type="button"
+                      class="px-3 py-1.5 text-sm rounded-lg border border-[var(--button-secondary-border,#e2e8f0)] bg-[var(--button-secondary-bg,#ffffff)] text-[var(--button-secondary-text,#0f172a)] disabled:opacity-50"
+                      ?disabled=${pageNum >= totalPages || listLoading}
+                      @click=${() => {
+                        this.setListMyWorkTasksPage(String(pageNum + 1));
+                        this.handleListMyWorkTasksClick();
+                      }}
+                    >
+                      ›
+                    </button>
+                  </div>
+                `
+              : nothing}
           </section>
 
-          <!-- Detail panel -->
-          <aside class="md:col-span-2">
-            <div class="rounded-lg border border-[var(--border-default,#e2e8f0)] bg-[var(--surface-bg,#ffffff)] shadow-sm sticky top-4">
-              <div class="px-4 pt-4 pb-2 border-b border-[var(--border-subtle,#e2e8f0)]">
-                <h2 class="text-lg font-medium text-[var(--text-strong,#020617)]">
-                  ${this.msg['organism.myTasksWorkspace.getWorkTaskDetail.title']}
-                </h2>
-              </div>
+          <section class="md:col-span-2 rounded-lg border border-[var(--border-default,#e2e8f0)] bg-[var(--surface-bg,#ffffff)] p-4 shadow-[var(--shadow-small,0_1px_2px_rgba(0,0,0,0.05))] min-h-[20rem]">
+            ${this.renderDetailPanel(msg)}
+          </section>
+        </div>
+      </div>
+    `;
+  }
 
-              ${detailError
-                ? html`
-                    <div class="m-4 rounded-lg px-3 py-2 bg-[var(--status-error-bg,#fef2f2)] text-[var(--status-error-text,#991b1b)] text-sm">
-                      ${this.msg['intent.myTasksWorkspace.getWorkTaskDetail.list.title']} — error
-                    </div>
-                  `
-                : nothing}
+  renderQueueRow(row: WorkTaskRow, selectedId: string, msg: MessageType) {
+    const task = row as {
+      workTaskId?: string;
+      title?: string;
+      status?: string;
+      dueDate?: string;
+      isOverdue?: boolean;
+      projectName?: string;
+    };
+    const rowId: string = task.workTaskId ?? '';
+    const isSelected: boolean = rowId !== '' && rowId === selectedId;
+    const isOverdue: boolean = Boolean(task.isOverdue);
 
-              ${detailLoading
-                ? html`
-                    <div class="p-4 space-y-3" aria-busy="true">
-                      <div class="h-6 w-2/3 rounded bg-[var(--surface-alt-bg,#f1f5f9)] animate-pulse"></div>
-                      <div class="h-4 w-full rounded bg-[var(--surface-alt-bg,#f1f5f9)] animate-pulse"></div>
-                      <div class="h-4 w-5/6 rounded bg-[var(--surface-alt-bg,#f1f5f9)] animate-pulse"></div>
-                      <div class="h-24 w-full rounded bg-[var(--surface-alt-bg,#f1f5f9)] animate-pulse"></div>
-                    </div>
-                  `
-                : !selectedId || !detailRow
-                  ? html`
-                      <p class="p-4 text-sm text-[var(--text-muted,#64748b)]">
-                        ${this.msg['intent.myTasksWorkspace.getWorkTaskDetail.list.empty']}
-                      </p>
-                    `
-                  : html`
-                      <div class="p-4 flex flex-col gap-4">
-                        <div class="flex flex-wrap items-start justify-between gap-2">
-                          <h3 class="text-xl font-semibold text-[var(--text-strong,#020617)]">
-                            ${detailRow.title ?? '—'}
-                          </h3>
-                          <span class=${`inline-flex items-center px-2.5 py-1 rounded text-xs font-medium ${statusBadgeClass(detailRow.status, detailRow.isOverdue === true)}`}>
-                            ${detailRow.isOverdue === true ? 'overdue' : (detailRow.status ?? '')}
-                          </span>
-                        </div>
+    return html`
+      <li role="option" aria-selected=${isSelected ? 'true' : 'false'}>
+        <button
+          type="button"
+          class=${isSelected
+            ? 'w-full text-left rounded-lg border border-[var(--selected-border,#94a3b8)] bg-[var(--selected-bg,#e2e8f0)] text-[var(--selected-text,#0f172a)] p-3 flex flex-col gap-1'
+            : 'w-full text-left rounded-lg border border-[var(--border-default,#e2e8f0)] bg-[var(--surface-bg,#ffffff)] hover:bg-[var(--surface-alt-bg,#f1f5f9)] p-3 flex flex-col gap-1'}
+          @click=${() => {
+            if (!rowId) {
+              return;
+            }
+            this.setGetWorkTaskDetailWorkTaskId(rowId);
+            this.handleGetWorkTaskDetailClick();
+          }}
+        >
+          <div class="flex items-start justify-between gap-2">
+            <span class="font-medium text-sm text-[var(--text-strong,#020617)] truncate">
+              ${task.title ?? msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.title.label']}
+            </span>
+            <span
+              class=${isOverdue
+                ? 'shrink-0 text-xs px-2 py-0.5 rounded-full bg-[var(--status-error-bg,#fee2e2)] text-[var(--status-error-text,#991b1b)]'
+                : 'shrink-0 text-xs px-2 py-0.5 rounded-full bg-[var(--status-neutral-bg,#f1f5f9)] text-[var(--status-neutral-text,#334155)]'}
+            >
+              ${task.status ?? ''}
+            </span>
+          </div>
+          <div class="flex items-center justify-between gap-2 text-xs text-[var(--text-muted,#64748b)]">
+            <span class="truncate">${task.projectName ?? ''}</span>
+            <span class=${isOverdue ? 'text-[var(--status-error-text,#991b1b)] font-medium' : ''}>
+              ${task.dueDate ?? ''}
+            </span>
+          </div>
+        </button>
+      </li>
+    `;
+  }
 
-                        <div class="grid grid-cols-1 gap-3 text-sm">
-                          <div>
-                            <div class="text-xs uppercase tracking-wide text-[var(--text-muted,#64748b)]">
-                              ${this.msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.projectName.label']}
-                            </div>
-                            <div class="mt-0.5 text-[var(--text-default,#0f172a)]">${detailRow.projectName ?? '—'}</div>
-                          </div>
+  renderDetailPanel(msg: MessageType) {
+    const detailLoading: boolean = this.getWorkTaskDetailState === 'loading';
+    const detailError: boolean = this.getWorkTaskDetailState === 'error';
+    const selectedId: string = this.getWorkTaskDetailWorkTaskId || '';
+    const detail: GetWorkTaskDetailOutput | null = this.getWorkTaskDetailData;
 
-                          <div>
-                            <div class="text-xs uppercase tracking-wide text-[var(--text-muted,#64748b)]">
-                              ${this.msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.dueDate.label']}
-                            </div>
-                            <div class=${detailRow.isOverdue === true
-                              ? 'mt-0.5 font-medium text-[var(--status-error-text,#991b1b)]'
-                              : 'mt-0.5 text-[var(--text-default,#0f172a)]'}>
-                              ${formatDate(detailRow.dueDate)}
-                              ${detailRow.isOverdue === true
-                                ? html`<span class="ml-2 text-xs">(${this.msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.isOverdue.label']})</span>`
-                                : nothing}
-                            </div>
-                          </div>
+    if (!selectedId) {
+      return html`
+        <p class="text-sm text-[var(--text-muted,#64748b)] py-10 text-center">
+          ${msg['intent.myTasksWorkspace.getWorkTaskDetail.list.empty']}
+        </p>
+      `;
+    }
 
-                          <div>
-                            <div class="text-xs uppercase tracking-wide text-[var(--text-muted,#64748b)]">
-                              ${this.msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.status.label']}
-                            </div>
-                            <div class="mt-0.5 text-[var(--text-default,#0f172a)]">${detailRow.status ?? '—'}</div>
-                          </div>
+    if (detailLoading) {
+      return html`
+        <div class="flex flex-col gap-3" aria-busy="true">
+          <div class="h-6 w-1/2 rounded bg-[var(--surface-alt-bg,#f1f5f9)] animate-pulse"></div>
+          <div class="h-4 w-1/3 rounded bg-[var(--surface-alt-bg,#f1f5f9)] animate-pulse"></div>
+          <div class="h-24 w-full rounded bg-[var(--surface-alt-bg,#f1f5f9)] animate-pulse"></div>
+          <div class="h-4 w-2/3 rounded bg-[var(--surface-alt-bg,#f1f5f9)] animate-pulse"></div>
+        </div>
+      `;
+    }
 
-                          <div>
-                            <div class="text-xs uppercase tracking-wide text-[var(--text-muted,#64748b)]">
-                              ${this.msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.description.label']}
-                            </div>
-                            <p class="mt-0.5 text-[var(--text-default,#0f172a)] whitespace-pre-wrap">
-                              ${detailRow.description ?? '—'}
-                            </p>
-                          </div>
+    if (detailError) {
+      return html`
+        <div class="flex flex-col gap-3">
+          <p class="text-sm text-[var(--status-error-text,#991b1b)]">
+            ${msg['intent.myTasksWorkspace.getWorkTaskDetail.list.empty']}
+          </p>
+          <button
+            type="button"
+            class="self-start px-4 py-2 text-sm rounded-lg bg-[var(--button-primary-bg,#2563eb)] text-[var(--button-primary-text,#ffffff)]"
+            @click=${(event: Event) => this.handleGetWorkTaskDetailClick(event)}
+          >
+            ${msg['organism.myTasksWorkspace.getWorkTaskDetail.title']}
+          </button>
+        </div>
+      `;
+    }
 
-                          ${detailRow.completedAt
-                            ? html`
-                                <div>
-                                  <div class="text-xs uppercase tracking-wide text-[var(--text-muted,#64748b)]">
-                                    ${this.msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.completedAt.label']}
-                                  </div>
-                                  <div class="mt-0.5 text-[var(--text-default,#0f172a)]">${formatDate(detailRow.completedAt)}</div>
-                                </div>
-                              `
-                            : nothing}
+    if (!detail) {
+      return html`
+        <p class="text-sm text-[var(--text-muted,#64748b)] py-10 text-center">
+          ${msg['intent.myTasksWorkspace.getWorkTaskDetail.list.empty']}
+        </p>
+      `;
+    }
 
-                          ${detailRow.cancelledAt
-                            ? html`
-                                <div>
-                                  <div class="text-xs uppercase tracking-wide text-[var(--text-muted,#64748b)]">
-                                    ${this.msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.cancelledAt.label']}
-                                  </div>
-                                  <div class="mt-0.5 text-[var(--text-default,#0f172a)]">${formatDate(detailRow.cancelledAt)}</div>
-                                </div>
-                              `
-                            : nothing}
+    const d = detail as {
+      workTaskId?: string;
+      projectId?: string;
+      projectName?: string;
+      title?: string;
+      description?: string;
+      assignedWorkerId?: string;
+      status?: string;
+      dueDate?: string;
+      isOverdue?: boolean;
+      completedAt?: string;
+      cancelledAt?: string;
+      cancellationReason?: string;
+      createdAt?: string;
+      updatedAt?: string;
+    };
+    const isOverdue: boolean = Boolean(d.isOverdue);
 
-                          ${detailRow.cancellationReason
-                            ? html`
-                                <div>
-                                  <div class="text-xs uppercase tracking-wide text-[var(--text-muted,#64748b)]">
-                                    ${this.msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.cancellationReason.label']}
-                                  </div>
-                                  <p class="mt-0.5 text-[var(--text-default,#0f172a)] whitespace-pre-wrap">
-                                    ${detailRow.cancellationReason}
-                                  </p>
-                                </div>
-                              `
-                            : nothing}
-                        </div>
-                      </div>
-                    `}
-            </div>
-          </aside>
+    return html`
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div class="flex flex-col gap-1 min-w-0">
+            <h2 class="text-lg font-semibold text-[var(--text-strong,#020617)] truncate">
+              ${d.title ?? msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.title.label']}
+            </h2>
+            <p class="text-sm text-[var(--text-muted,#64748b)]">
+              ${d.projectName ?? ''}
+            </p>
+          </div>
+          <span
+            class=${isOverdue
+              ? 'shrink-0 text-xs px-2.5 py-1 rounded-full bg-[var(--status-error-bg,#fee2e2)] text-[var(--status-error-text,#991b1b)]'
+              : 'shrink-0 text-xs px-2.5 py-1 rounded-full bg-[var(--status-neutral-bg,#f1f5f9)] text-[var(--status-neutral-text,#334155)]'}
+          >
+            ${d.status ?? ''}
+          </span>
+        </div>
+
+        <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-sm">
+          <div class="flex flex-col gap-0.5">
+            <dt class="text-xs text-[var(--text-muted,#64748b)]">${msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.dueDate.label']}</dt>
+            <dd class=${isOverdue ? 'text-[var(--status-error-text,#991b1b)] font-medium' : 'text-[var(--text-default,#0f172a)]'}>
+              ${d.dueDate ?? '—'}
+            </dd>
+          </div>
+          <div class="flex flex-col gap-0.5">
+            <dt class="text-xs text-[var(--text-muted,#64748b)]">${msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.isOverdue.label']}</dt>
+            <dd class="text-[var(--text-default,#0f172a)]">${d.isOverdue ? '✓' : '—'}</dd>
+          </div>
+          <div class="flex flex-col gap-0.5">
+            <dt class="text-xs text-[var(--text-muted,#64748b)]">${msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.projectName.label']}</dt>
+            <dd class="text-[var(--text-default,#0f172a)]">${d.projectName ?? '—'}</dd>
+          </div>
+          <div class="flex flex-col gap-0.5">
+            <dt class="text-xs text-[var(--text-muted,#64748b)]">${msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.status.label']}</dt>
+            <dd class="text-[var(--text-default,#0f172a)]">${d.status ?? '—'}</dd>
+          </div>
+          <div class="flex flex-col gap-0.5">
+            <dt class="text-xs text-[var(--text-muted,#64748b)]">${msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.createdAt.label']}</dt>
+            <dd class="text-[var(--text-default,#0f172a)]">${d.createdAt ?? '—'}</dd>
+          </div>
+          <div class="flex flex-col gap-0.5">
+            <dt class="text-xs text-[var(--text-muted,#64748b)]">${msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.updatedAt.label']}</dt>
+            <dd class="text-[var(--text-default,#0f172a)]">${d.updatedAt ?? '—'}</dd>
+          </div>
+          ${d.completedAt
+            ? html`
+                <div class="flex flex-col gap-0.5">
+                  <dt class="text-xs text-[var(--text-muted,#64748b)]">${msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.completedAt.label']}</dt>
+                  <dd class="text-[var(--text-default,#0f172a)]">${d.completedAt}</dd>
+                </div>
+              `
+            : nothing}
+          ${d.cancelledAt
+            ? html`
+                <div class="flex flex-col gap-0.5">
+                  <dt class="text-xs text-[var(--text-muted,#64748b)]">${msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.cancelledAt.label']}</dt>
+                  <dd class="text-[var(--text-default,#0f172a)]">${d.cancelledAt}</dd>
+                </div>
+              `
+            : nothing}
+          ${d.cancellationReason
+            ? html`
+                <div class="flex flex-col gap-0.5 sm:col-span-2">
+                  <dt class="text-xs text-[var(--text-muted,#64748b)]">${msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.cancellationReason.label']}</dt>
+                  <dd class="text-[var(--text-default,#0f172a)]">${d.cancellationReason}</dd>
+                </div>
+              `
+            : nothing}
+        </dl>
+
+        <div class="flex flex-col gap-1 pt-2 border-t border-[var(--border-subtle,#e2e8f0)]">
+          <span class="text-xs text-[var(--text-muted,#64748b)]">${msg['intent.myTasksWorkspace.getWorkTaskDetail.list.column.description.label']}</span>
+          <p class="text-sm text-[var(--text-default,#0f172a)] whitespace-pre-wrap">
+            ${d.description ?? '—'}
+          </p>
         </div>
       </div>
     `;

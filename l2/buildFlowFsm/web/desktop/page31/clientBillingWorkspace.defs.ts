@@ -1,26 +1,85 @@
 /// <mls fileReference="_102045_/l2/buildFlowFsm/web/desktop/page31/clientBillingWorkspace.defs.ts" enhancement="_blank"/>
 
-// TESTE (31/jul): defs REDUZIDO + skill de experiência no pipeline.
-// A UX desta página vem inteira do skill `readOnlyDetailPortal/page31.md`; este defs carrega só o
-// contrato: identidade + amarração. Comparar com page21/clientBillingWorkspace.defs.ts (defs completo + page21.md).
-
 export const definition = {
   "pageId": "clientBillingWorkspace",
   "pageName": "My Billing",
   "baseClassName": "BuildFlowFsmClientBillingWorkspaceBase",
   "actor": "client",
   "purpose": "Client reviews billing summaries and invoices shared by billing staff.",
-
+  "presentation": {
+    "categoryRef": "readOnlyDetailPortal"
+  },
+  "pageObjective": {
+    "actor": "Client (project owner reviewing shared billing documents)",
+    "jobToBeDone": "Review the billing summary and invoice shared by billing staff to understand project charges and confirm the total amount owed.",
+    "primaryDecision": "Understand and verify the billing summary cost breakdown and the corresponding invoice total before handling payment externally.",
+    "decisiveInfo": [
+      "projectName",
+      "periodStart",
+      "periodEnd",
+      "laborCost",
+      "materialCost",
+      "changeOrderCost",
+      "totalCost",
+      "status (BillingSummary)",
+      "invoiceNumber",
+      "totalAmount",
+      "status (Invoice)",
+      "sentAt"
+    ],
+    "usageFrequency": "Occasional — client opens this page when notified that a billing summary or invoice has been shared; read-only review session.",
+    "criticalActions": [
+      {
+        "action": "View billing summary cost breakdown",
+        "presentation": "summary-first panel showing period, cost line items and total"
+      },
+      {
+        "action": "View invoice details",
+        "presentation": "detail panel showing invoice number, status, total amount and sent date"
+      }
+    ],
+    "informationHierarchy": [
+      "1. Billing summary header — project name, period, status",
+      "2. Cost breakdown — labor, material, change-order costs and total",
+      "3. Invoice header — invoice number, status, sent date",
+      "4. Invoice financial detail — total amount, project and client references"
+    ],
+    "successCriteria": "The client can immediately see the project billing period, all cost components, the grand total, and the matching invoice details without any manual data entry or navigation confusion.",
+    "antiPatterns": [
+      "Exposing billingSummaryId or invoiceId as typed inputs — both are route-param context",
+      "Exposing clientId as a form field — it comes from the actor session",
+      "Rendering status as an editable select — it is a read-only system-owned field",
+      "Stacking two independent full-width query forms instead of a cohesive summary-then-detail layout",
+      "Adding any write/mutation actions — this page is read-only for the client"
+    ]
+  },
   "dataBindings": [
     {
       "id": "binding.clientBillingWorkspace.getBillingSummary",
       "source": "bff.getBillingSummary",
       "command": "getBillingSummary",
       "description": "View billing summary",
+      "kind": "query",
       "stateKey": "ui.clientBillingWorkspace.data.getBillingSummary",
       "inputStateKeys": [
         "ui.clientBillingWorkspace.input.getBillingSummary.billingSummaryId",
         "ui.clientBillingWorkspace.input.getBillingSummary.clientId"
+      ],
+      "inputs": [
+        {
+          "name": "billingSummaryId",
+          "stateKey": "ui.clientBillingWorkspace.input.getBillingSummary.billingSummaryId",
+          "source": "routeParam",
+          "required": true,
+          "presentation": "route"
+        },
+        {
+          "name": "clientId",
+          "stateKey": "ui.clientBillingWorkspace.input.getBillingSummary.clientId",
+          "source": "actorSession",
+          "required": true,
+          "presentation": "form"
+        }
       ]
     },
     {
@@ -28,10 +87,27 @@ export const definition = {
       "source": "bff.getInvoice",
       "command": "getInvoice",
       "description": "View invoice",
+      "kind": "query",
       "stateKey": "ui.clientBillingWorkspace.data.getInvoice",
       "inputStateKeys": [
         "ui.clientBillingWorkspace.input.getInvoice.invoiceId",
         "ui.clientBillingWorkspace.input.getInvoice.clientId"
+      ],
+      "inputs": [
+        {
+          "name": "invoiceId",
+          "stateKey": "ui.clientBillingWorkspace.input.getInvoice.invoiceId",
+          "source": "routeParam",
+          "required": true,
+          "presentation": "route"
+        },
+        {
+          "name": "clientId",
+          "stateKey": "ui.clientBillingWorkspace.input.getInvoice.clientId",
+          "source": "actorSession",
+          "required": true,
+          "presentation": "form"
+        }
       ]
     }
   ]

@@ -5,604 +5,47 @@ export const definition = {
   "pageName": "Job Cost Summary",
   "baseClassName": "BuildFlowFsmJobCostWorkspaceBase",
   "actor": "billingStaff",
-  "purpose": "Executar Job Cost Summary.",
-  "capabilities": [
-    "viewJobCostSummary"
-  ],
-  "flowRefs": {
-    "experienceFlows": [],
-    "entityLifecycles": [],
-    "taskWorkflows": [],
-    "automations": []
+  "purpose": "Billing staff reviews accumulated job costs per project before preparing billing documents.",
+  "presentation": {
+    "categoryRef": "readOnlyDetailPortal"
   },
-  "pluginRefs": [],
-  "mdmRefs": [],
-  "origin": {
-    "source": "l4-journey",
-    "workspaceId": "jobCostWorkspace",
-    "workspaceKind": "operation",
-    "actor": "billingStaff",
-    "entity": "Project",
-    "owners": [
-      {
-        "kind": "operation",
-        "id": "viewJobCostSummary",
-        "defPath": "_102045_/l4/buildFlowFsm/operations/viewJobCostSummary.defs.ts"
-      }
-    ],
-    "microUserFlow": {
-      "source": "l4/story.steps",
-      "workflowSteps": [],
-      "operations": [
-        {
-          "operationId": "viewJobCostSummary",
-          "commandName": "viewJobCostSummary",
-          "steps": [
-            "Open the job cost summary for a selected project",
-            "See project identity, budget, and lifecycle status",
-            "Review aggregated labor cost from non-voided time logs",
-            "Review aggregated material cost from non-voided material usage",
-            "Review aggregated cost from approved change orders",
-            "Compare total actual cost to the project budget"
-          ]
-        }
-      ]
-    }
-  },
-  "pageInputs": [],
-  "navigationRefs": [],
-  "sections": [
-    {
-      "id": "section.jobCostWorkspace.sec-project-header",
-      "type": "section",
-      "sectionName": "Project Identity",
-      "titleKey": "section.jobCostWorkspace.sec-project-header.title",
-      "mode": "view",
-      "order": 10,
-      "organisms": [
-        {
-          "id": "org-project-identity-header",
-          "type": "queryResult",
-          "organismName": "ProjectIdentityHeader",
-          "titleKey": "organism.jobCostWorkspace.viewJobCostSummary.title",
-          "purpose": "Displays the project name, client name, lifecycle status, and date range so billing staff immediately knows which project they are reviewing and its current state.",
-          "userActions": [
-            "viewJobCostSummary"
-          ],
-          "requiredEntities": [],
-          "readsFields": [],
-          "writesFields": [],
-          "rulesApplied": [
-            "jobCostingRequiresBudgetAndSchedule"
-          ],
-          "order": 10,
-          "intentionRefs": [
-            {
-              "id": "intent.jobCostWorkspace.viewJobCostSummary.list",
-              "intent": "queryList",
-              "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary",
-              "action": "viewJobCostSummary",
-              "order": 10
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "section.jobCostWorkspace.sec-cost-summary",
-      "type": "section",
-      "sectionName": "Cost Summary",
-      "titleKey": "section.jobCostWorkspace.sec-cost-summary.title",
-      "mode": "view",
-      "order": 20,
-      "organisms": [
-        {
-          "id": "org-budget-variance-hero",
-          "type": "queryResult",
-          "organismName": "BudgetVarianceHero",
-          "titleKey": "organism.jobCostWorkspace.viewJobCostSummary.title",
-          "purpose": "Leads with the budget amount, total actual cost, and budget variance as prominent metric cards — the decisive numbers billing staff need to determine billing readiness at a glance.",
-          "userActions": [
-            "viewJobCostSummary"
-          ],
-          "requiredEntities": [],
-          "readsFields": [],
-          "writesFields": [],
-          "rulesApplied": [
-            "jobCostingRequiresBudgetAndSchedule"
-          ],
-          "order": 10,
-          "intentionRefs": [
-            {
-              "id": "intent.jobCostWorkspace.viewJobCostSummary.list2",
-              "intent": "queryList",
-              "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary",
-              "action": "viewJobCostSummary",
-              "order": 10
-            }
-          ]
-        },
-        {
-          "id": "org-cost-breakdown-panel",
-          "type": "queryResult",
-          "organismName": "CostBreakdownPanel",
-          "titleKey": "organism.jobCostWorkspace.viewJobCostSummary.title",
-          "purpose": "Shows the three cost components — laborCost, materialCost, and changeOrderCost — as a structured breakdown so billing staff can identify which category is driving the total.",
-          "userActions": [
-            "viewJobCostSummary"
-          ],
-          "requiredEntities": [],
-          "readsFields": [],
-          "writesFields": [],
-          "rulesApplied": [
-            "jobCostingRequiresBudgetAndSchedule"
-          ],
-          "order": 20,
-          "intentionRefs": [
-            {
-              "id": "intent.jobCostWorkspace.viewJobCostSummary.list3",
-              "intent": "queryList",
-              "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary",
-              "action": "viewJobCostSummary",
-              "order": 10
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "templateId": "goal_first",
-  "visualStyle": "Desktop-first for PM and billing staff with mobile-optimized field entry; dashboard-driven, status-aware, touch-friendly UI with Gantt-ish timeline views.",
   "pageObjective": {
     "actor": "Billing staff",
-    "jobToBeDone": "Review the complete accumulated job cost breakdown for a specific project — labor, materials, and change orders — against the approved budget before preparing billing documents.",
-    "primaryDecision": "Is the project's total actual cost within budget, and are the cost components (labor, material, change orders) accurate enough to proceed with billing?",
+    "jobToBeDone": "Review the full accumulated cost picture for a project — labor, materials, change orders, and budget variance — so they can prepare accurate billing documents without switching screens.",
+    "primaryDecision": "Is the total actual cost within budget, and are the cost components (labor, materials, change orders) correct before billing?",
     "decisiveInfo": [
-      "name",
-      "clientName",
-      "status",
       "budget",
+      "totalCost",
+      "budgetVariance",
       "laborCost",
       "materialCost",
       "changeOrderCost",
-      "totalCost",
-      "budgetVariance",
+      "status",
+      "name",
+      "clientName",
       "startDate",
       "endDate"
     ],
-    "usageFrequency": "Occasional / back-office — triggered per billing cycle for a specific project, navigated to via route param (projectId).",
+    "usageFrequency": "Occasional / back-office — triggered when billing staff prepares invoices or billing documents for a specific project.",
     "criticalActions": [
       {
-        "action": "viewJobCostSummary",
-        "presentation": "summary-first — auto-loads on page entry via route param; cost figures displayed as prominent metric cards with budget variance highlighted; no manual trigger needed"
+        "action": "Load job cost summary for the project",
+        "presentation": "Auto-triggered on page load via route param; no manual input required"
       }
     ],
     "informationHierarchy": [
-      "1. Project identity header: name, client, status, date range",
-      "2. Budget vs. total cost variance — the decisive number (prominent, visually flagged if over budget)",
-      "3. Cost breakdown: labor cost, material cost, change order cost",
-      "4. Supporting context: budget amount, project lifecycle status"
+      "Project identity and lifecycle status (name, client, status, dates)",
+      "Budget vs. total actual cost and variance (the decisive numbers)",
+      "Cost breakdown: labor, materials, change orders",
+      "Supporting context: project ID, client ID (read-only)"
     ],
-    "successCriteria": "Billing staff can immediately see whether the project is over or under budget and understand which cost category is driving the variance, without navigating away or performing any manual input.",
+    "successCriteria": "Billing staff can immediately see whether the project is over or under budget and understand which cost category drives the variance, all on a single screen without any manual data entry.",
     "antiPatterns": [
-      "Exposing projectId as a typed input — it is a route param, always context-derived",
-      "Rendering cost fields as editable inputs — all costs are computed outputs",
-      "Showing status as a <select> — it is a read-only lifecycle output",
-      "Splitting the summary into multiple separate form sections",
-      "Hiding the budget variance — it is the most decisive number and must lead"
-    ]
-  },
-  "layout": {
-    "id": "jobCostWorkspace-page21-goal-first",
-    "type": "page",
-    "sections": [
-      {
-        "id": "section.jobCostWorkspace.sec-project-header",
-        "type": "section",
-        "sectionName": "Project Identity",
-        "titleKey": "section.jobCostWorkspace.sec-project-header.title",
-        "mode": "view",
-        "order": 10,
-        "organisms": [
-          {
-            "id": "org-project-identity-header",
-            "type": "queryResult",
-            "organismName": "ProjectIdentityHeader",
-            "titleKey": "organism.jobCostWorkspace.viewJobCostSummary.title",
-            "purpose": "Displays the project name, client name, lifecycle status, and date range so billing staff immediately knows which project they are reviewing and its current state.",
-            "userActions": [
-              "viewJobCostSummary"
-            ],
-            "requiredEntities": [],
-            "readsFields": [],
-            "writesFields": [],
-            "rulesApplied": [
-              "jobCostingRequiresBudgetAndSchedule"
-            ],
-            "order": 10,
-            "intentions": [
-              {
-                "id": "intent.jobCostWorkspace.viewJobCostSummary.list",
-                "intent": "queryList",
-                "order": 10,
-                "titleKey": "intent.jobCostWorkspace.viewJobCostSummary.list.title",
-                "source": "bff.viewJobCostSummary",
-                "binding": "binding.jobCostWorkspace.viewJobCostSummary",
-                "action": "viewJobCostSummary",
-                "emptyKey": "intent.jobCostWorkspace.viewJobCostSummary.list.empty",
-                "fields": [],
-                "columns": [
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.projectId",
-                    "field": "projectId",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.projectId.label",
-                    "order": 10,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.name",
-                    "field": "name",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.name.label",
-                    "order": 20,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.clientId",
-                    "field": "clientId",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.clientId.label",
-                    "order": 30,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.clientName",
-                    "field": "clientName",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.clientName.label",
-                    "order": 40,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.budget",
-                    "field": "budget",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.budget.label",
-                    "order": 50,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.status",
-                    "field": "status",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.status.label",
-                    "order": 60,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.startDate",
-                    "field": "startDate",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.startDate.label",
-                    "order": 70,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.endDate",
-                    "field": "endDate",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.endDate.label",
-                    "order": 80,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.laborCost",
-                    "field": "laborCost",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.laborCost.label",
-                    "order": 90,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.materialCost",
-                    "field": "materialCost",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.materialCost.label",
-                    "order": 100,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.changeOrderCost",
-                    "field": "changeOrderCost",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.changeOrderCost.label",
-                    "order": 110,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.totalCost",
-                    "field": "totalCost",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.totalCost.label",
-                    "order": 120,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.budgetVariance",
-                    "field": "budgetVariance",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.budgetVariance.label",
-                    "order": 130,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  }
-                ],
-                "filters": [],
-                "toolbar": [],
-                "rowActions": [],
-                "actions": [],
-                "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-              }
-            ],
-            "displayHint": "summary-first"
-          }
-        ]
-      },
-      {
-        "id": "section.jobCostWorkspace.sec-cost-summary",
-        "type": "section",
-        "sectionName": "Cost Summary",
-        "titleKey": "section.jobCostWorkspace.sec-cost-summary.title",
-        "mode": "view",
-        "order": 20,
-        "organisms": [
-          {
-            "id": "org-budget-variance-hero",
-            "type": "queryResult",
-            "organismName": "BudgetVarianceHero",
-            "titleKey": "organism.jobCostWorkspace.viewJobCostSummary.title",
-            "purpose": "Leads with the budget amount, total actual cost, and budget variance as prominent metric cards — the decisive numbers billing staff need to determine billing readiness at a glance.",
-            "userActions": [
-              "viewJobCostSummary"
-            ],
-            "requiredEntities": [],
-            "readsFields": [],
-            "writesFields": [],
-            "rulesApplied": [
-              "jobCostingRequiresBudgetAndSchedule"
-            ],
-            "order": 10,
-            "intentions": [
-              {
-                "id": "intent.jobCostWorkspace.viewJobCostSummary.list2",
-                "intent": "queryList",
-                "order": 10,
-                "titleKey": "intent.jobCostWorkspace.viewJobCostSummary.list.title",
-                "source": "bff.viewJobCostSummary",
-                "binding": "binding.jobCostWorkspace.viewJobCostSummary",
-                "action": "viewJobCostSummary",
-                "emptyKey": "intent.jobCostWorkspace.viewJobCostSummary.list.empty",
-                "fields": [],
-                "columns": [
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.projectId",
-                    "field": "projectId",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.projectId.label",
-                    "order": 10,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.name",
-                    "field": "name",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.name.label",
-                    "order": 20,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.clientId",
-                    "field": "clientId",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.clientId.label",
-                    "order": 30,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.clientName",
-                    "field": "clientName",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.clientName.label",
-                    "order": 40,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.budget",
-                    "field": "budget",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.budget.label",
-                    "order": 50,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.status",
-                    "field": "status",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.status.label",
-                    "order": 60,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.startDate",
-                    "field": "startDate",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.startDate.label",
-                    "order": 70,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.endDate",
-                    "field": "endDate",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.endDate.label",
-                    "order": 80,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.laborCost",
-                    "field": "laborCost",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.laborCost.label",
-                    "order": 90,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.materialCost",
-                    "field": "materialCost",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.materialCost.label",
-                    "order": 100,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.changeOrderCost",
-                    "field": "changeOrderCost",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.changeOrderCost.label",
-                    "order": 110,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.totalCost",
-                    "field": "totalCost",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.totalCost.label",
-                    "order": 120,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.budgetVariance",
-                    "field": "budgetVariance",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.budgetVariance.label",
-                    "order": 130,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  }
-                ],
-                "filters": [],
-                "toolbar": [],
-                "rowActions": [],
-                "actions": [],
-                "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-              }
-            ],
-            "displayHint": "summary-first"
-          },
-          {
-            "id": "org-cost-breakdown-panel",
-            "type": "queryResult",
-            "organismName": "CostBreakdownPanel",
-            "titleKey": "organism.jobCostWorkspace.viewJobCostSummary.title",
-            "purpose": "Shows the three cost components — laborCost, materialCost, and changeOrderCost — as a structured breakdown so billing staff can identify which category is driving the total.",
-            "userActions": [
-              "viewJobCostSummary"
-            ],
-            "requiredEntities": [],
-            "readsFields": [],
-            "writesFields": [],
-            "rulesApplied": [
-              "jobCostingRequiresBudgetAndSchedule"
-            ],
-            "order": 20,
-            "intentions": [
-              {
-                "id": "intent.jobCostWorkspace.viewJobCostSummary.list3",
-                "intent": "queryList",
-                "order": 10,
-                "titleKey": "intent.jobCostWorkspace.viewJobCostSummary.list.title",
-                "source": "bff.viewJobCostSummary",
-                "binding": "binding.jobCostWorkspace.viewJobCostSummary",
-                "action": "viewJobCostSummary",
-                "emptyKey": "intent.jobCostWorkspace.viewJobCostSummary.list.empty",
-                "fields": [],
-                "columns": [
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.projectId",
-                    "field": "projectId",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.projectId.label",
-                    "order": 10,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.name",
-                    "field": "name",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.name.label",
-                    "order": 20,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.clientId",
-                    "field": "clientId",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.clientId.label",
-                    "order": 30,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.clientName",
-                    "field": "clientName",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.clientName.label",
-                    "order": 40,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.budget",
-                    "field": "budget",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.budget.label",
-                    "order": 50,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.status",
-                    "field": "status",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.status.label",
-                    "order": 60,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.startDate",
-                    "field": "startDate",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.startDate.label",
-                    "order": 70,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.endDate",
-                    "field": "endDate",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.endDate.label",
-                    "order": 80,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.laborCost",
-                    "field": "laborCost",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.laborCost.label",
-                    "order": 90,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.materialCost",
-                    "field": "materialCost",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.materialCost.label",
-                    "order": 100,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.changeOrderCost",
-                    "field": "changeOrderCost",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.changeOrderCost.label",
-                    "order": 110,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.totalCost",
-                    "field": "totalCost",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.totalCost.label",
-                    "order": 120,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  },
-                  {
-                    "id": "intent.jobCostWorkspace.viewJobCostSummary.list.column.budgetVariance",
-                    "field": "budgetVariance",
-                    "labelKey": "intent.jobCostWorkspace.viewJobCostSummary.list.column.budgetVariance.label",
-                    "order": 130,
-                    "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-                  }
-                ],
-                "filters": [],
-                "toolbar": [],
-                "rowActions": [],
-                "actions": [],
-                "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary"
-              }
-            ],
-            "displayHint": "summary-first"
-          }
-        ]
-      }
+      "Manually typed projectId input — it must come from the route param",
+      "Separate form section for the query trigger",
+      "Status rendered as a free <select> — it is a read-only lifecycle output",
+      "Hiding the budget variance behind a drill-down when it is the decisive number",
+      "Splitting cost components across multiple sections that require scrolling to compare"
     ]
   },
   "dataBindings": [
@@ -611,9 +54,19 @@ export const definition = {
       "source": "bff.viewJobCostSummary",
       "command": "viewJobCostSummary",
       "description": "View job cost summary",
+      "kind": "query",
       "stateKey": "ui.jobCostWorkspace.data.viewJobCostSummary",
       "inputStateKeys": [
         "ui.jobCostWorkspace.input.viewJobCostSummary.projectId"
+      ],
+      "inputs": [
+        {
+          "name": "projectId",
+          "stateKey": "ui.jobCostWorkspace.input.viewJobCostSummary.projectId",
+          "source": "routeParam",
+          "required": true,
+          "presentation": "route"
+        }
       ]
     }
   ]
@@ -633,7 +86,8 @@ export const pipeline = [
       "jobCostWorkspace__l2_shared"
     ],
     "skills": [
-      "_102020_/l2/agentChangeFrontend/skills/genCfePage21RenderTs.ts"
+      "_102020_/l2/agentChangeFrontend/skills/genCfePage21RenderTs.ts",
+      "_102020_/l4/collabux/templates/readOnlyDetailPortal/page21.md"
     ],
     "visualStyle": {
       "description": "Desktop-first for PM and billing staff with mobile-optimized field entry; dashboard-driven, status-aware, touch-friendly UI with Gantt-ish timeline views."

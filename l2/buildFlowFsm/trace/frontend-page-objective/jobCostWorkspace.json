@@ -1,44 +1,44 @@
 {
-  "savedAt": "2026-07-31T06:05:50.525Z",
+  "savedAt": "2026-07-31T18:55:35.838Z",
   "pageId": "jobCostWorkspace",
-  "genome": "page21",
+  "genome": "page31",
   "objective": {
     "actor": "Billing staff",
-    "jobToBeDone": "Review the complete accumulated job cost breakdown for a specific project — labor, materials, and change orders — against the approved budget before preparing billing documents.",
-    "primaryDecision": "Is the project's total actual cost within budget, and are the cost components (labor, material, change orders) accurate enough to proceed with billing?",
+    "jobToBeDone": "Review the full accumulated cost picture for a project — identity, budget, labor, materials, change orders, and variance — before preparing billing documents.",
+    "primaryDecision": "Is the total actual cost within budget, and are the cost components (labor, materials, change orders) accurate enough to proceed with billing?",
     "decisiveInfo": [
       "name",
       "clientName",
       "status",
       "budget",
+      "totalCost",
+      "budgetVariance",
       "laborCost",
       "materialCost",
       "changeOrderCost",
-      "totalCost",
-      "budgetVariance",
       "startDate",
       "endDate"
     ],
-    "usageFrequency": "Occasional / back-office — triggered per billing cycle for a specific project, navigated to via route param (projectId).",
+    "usageFrequency": "Occasional / back-office — triggered when billing staff prepares invoices or billing documents for a specific project.",
     "criticalActions": [
       {
         "action": "viewJobCostSummary",
-        "presentation": "summary-first — auto-loads on page entry via route param; cost figures displayed as prominent metric cards with budget variance highlighted; no manual trigger needed"
+        "presentation": "summary-first — load automatically from route param; display as a structured cost summary panel with headline KPIs (budget, totalCost, budgetVariance) at the top and a cost breakdown below"
       }
     ],
     "informationHierarchy": [
-      "1. Project identity header: name, client, status, date range",
-      "2. Budget vs. total cost variance — the decisive number (prominent, visually flagged if over budget)",
-      "3. Cost breakdown: labor cost, material cost, change order cost",
-      "4. Supporting context: budget amount, project lifecycle status"
+      "Project identity: name, clientName, status, startDate, endDate",
+      "Budget headline: budget vs totalCost vs budgetVariance (over/under)",
+      "Cost breakdown: laborCost, materialCost, changeOrderCost",
+      "Supporting context: projectId (read-only reference)"
     ],
-    "successCriteria": "Billing staff can immediately see whether the project is over or under budget and understand which cost category is driving the variance, without navigating away or performing any manual input.",
+    "successCriteria": "Billing staff can immediately see whether the project is over or under budget and understand which cost category drives the variance, without navigating away or performing any manual input.",
     "antiPatterns": [
       "Exposing projectId as a typed input — it is a route param, always context-derived",
-      "Rendering cost fields as editable inputs — all costs are computed outputs",
-      "Showing status as a <select> — it is a read-only lifecycle output",
-      "Splitting the summary into multiple separate form sections",
-      "Hiding the budget variance — it is the most decisive number and must lead"
+      "Rendering a status <select> — status is system-owned and read-only here",
+      "Splitting cost categories into separate sections or tabs that require navigation",
+      "Showing raw entity lists (time logs, material usage rows) instead of aggregated totals",
+      "Placing the budget variance below the fold where it is not immediately visible"
     ]
   }
 }

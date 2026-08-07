@@ -1,0 +1,64 @@
+import { CollabLitElement } from '/_102029_/l2/collabLitElement.js';
+import type { GetDashboardSummaryOutput, GetProjectListOutput } from '/_102045_/l2/buildFlowFsm/web/contracts/dashboardWorkspace.js';
+export type { GetDashboardSummaryInput, GetDashboardSummaryOutput, GetProjectListInput, GetProjectListOutput, } from '/_102045_/l2/buildFlowFsm/web/contracts/dashboardWorkspace.js';
+export declare class BuildFlowFsmDashboardWorkspaceBase extends CollabLitElement {
+    /** state status — pageStatus */
+    status: string;
+    /** state getDashboardSummaryState — actionStatus, values: idle|loading|success|error */
+    getDashboardSummaryState: 'idle' | 'loading' | 'success' | 'error';
+    /** state getDashboardSummaryStatus — input */
+    getDashboardSummaryStatus: string;
+    /** state getDashboardSummaryPage — input */
+    getDashboardSummaryPage: string;
+    /** state getDashboardSummaryPageSize — input */
+    getDashboardSummaryPageSize: string;
+    /** state getDashboardSummaryData — queryResult, outputShape: paginated */
+    getDashboardSummaryData: GetDashboardSummaryOutput;
+    /** state getProjectListState — actionStatus, values: idle|loading|success|error */
+    getProjectListState: 'idle' | 'loading' | 'success' | 'error';
+    /** state getProjectListStatus — input */
+    getProjectListStatus: string;
+    /** state getProjectListPage — input */
+    getProjectListPage: string;
+    /** state getProjectListPageSize — input */
+    getProjectListPageSize: string;
+    /** state getProjectListData — queryResult, outputShape: paginated */
+    getProjectListData: GetProjectListOutput;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    /** handleIcaStateChange — collabState notify contract; maps state keys onto class fields */
+    handleIcaStateChange(key: string, value: unknown): void;
+    private initStateValue;
+    /** action getDashboardSummary (query) — route buildFlowFsm.dashboardWorkspace.getDashboardSummary; inputs: status, page, pageSize; writes ui.dashboardWorkspace.data.getDashboardSummary; status ui.dashboardWorkspace.action.getDashboardSummary.status */
+    loadGetDashboardSummary(): Promise<void>;
+    /** handler for action getDashboardSummary — bind UI events here */
+    handleGetDashboardSummaryClick(event?: Event): void;
+    /** action getProjectList (query) — route buildFlowFsm.dashboardWorkspace.getProjectList; inputs: status, page, pageSize; writes ui.dashboardWorkspace.data.getProjectList; status ui.dashboardWorkspace.action.getProjectList.status */
+    loadGetProjectList(): Promise<void>;
+    /** handler for action getProjectList — bind UI events here */
+    handleGetProjectListClick(event?: Event): void;
+    /** setter for state ui.dashboardWorkspace.input.getDashboardSummary.status */
+    setGetDashboardSummaryStatus(value: string): void;
+    /** handler for action set.getDashboardSummaryStatus — bind UI events here */
+    handleGetDashboardSummaryStatusChange(event: Event): void;
+    /** setter for state ui.dashboardWorkspace.input.getDashboardSummary.page */
+    setGetDashboardSummaryPage(value: string): void;
+    /** handler for action set.getDashboardSummaryPage — bind UI events here */
+    handleGetDashboardSummaryPageChange(event: Event): void;
+    /** setter for state ui.dashboardWorkspace.input.getDashboardSummary.pageSize */
+    setGetDashboardSummaryPageSize(value: string): void;
+    /** handler for action set.getDashboardSummaryPageSize — bind UI events here */
+    handleGetDashboardSummaryPageSizeChange(event: Event): void;
+    /** setter for state ui.dashboardWorkspace.input.getProjectList.status */
+    setGetProjectListStatus(value: string): void;
+    /** handler for action set.getProjectListStatus — bind UI events here */
+    handleGetProjectListStatusChange(event: Event): void;
+    /** setter for state ui.dashboardWorkspace.input.getProjectList.page */
+    setGetProjectListPage(value: string): void;
+    /** handler for action set.getProjectListPage — bind UI events here */
+    handleGetProjectListPageChange(event: Event): void;
+    /** setter for state ui.dashboardWorkspace.input.getProjectList.pageSize */
+    setGetProjectListPageSize(value: string): void;
+    /** handler for action set.getProjectListPageSize — bind UI events here */
+    handleGetProjectListPageSizeChange(event: Event): void;
+}

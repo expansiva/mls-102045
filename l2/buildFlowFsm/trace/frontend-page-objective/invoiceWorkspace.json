@@ -1,47 +1,48 @@
 {
-  "savedAt": "2026-07-31T06:06:06.584Z",
+  "savedAt": "2026-07-31T18:55:39.668Z",
   "pageId": "invoiceWorkspace",
-  "genome": "page21",
+  "genome": "page31",
   "objective": {
     "actor": "Billing staff",
-    "jobToBeDone": "Generate draft invoices from approved project costs and send them to clients, with full visibility into invoice status across all projects.",
-    "primaryDecision": "Which invoice to send to the client (or whether to create a new one from a project's approved costs).",
+    "jobToBeDone": "Generate draft invoices from approved project costs and send them to clients, while being able to browse and filter all invoices by status, project, or client.",
+    "primaryDecision": "Which invoice to act on next — create a new draft or send an existing draft to the client.",
     "decisiveInfo": [
       "invoiceNumber",
-      "status (draft vs sent)",
-      "clientId / client name",
-      "projectId / project name",
+      "status (draft/sent)",
       "totalAmount",
-      "sentAt / createdAt"
+      "clientId",
+      "projectId",
+      "sentAt",
+      "createdAt"
     ],
-    "usageFrequency": "Occasional / back-office — billing staff opens this workspace at billing cycle milestones to generate and dispatch invoices.",
+    "usageFrequency": "Occasional / back-office — billing staff visits this page per billing cycle to generate and dispatch invoices.",
     "criticalActions": [
       {
-        "action": "sendInvoiceCmd",
-        "presentation": "contextual-transition-actions — a 'Send to Client' button rendered inline on each draft invoice row; never a free status select or a manually typed invoiceId."
+        "action": "createInvoiceCmd",
+        "presentation": "primary-button opening an inline creation form with project picker, client picker (context-derived), and invoice number input"
       },
       {
-        "action": "createInvoiceCmd",
-        "presentation": "primary-button opening a compact form panel (project picker, client picker derived from project, invoice number input); projectId and clientId are selections, never typed ids."
+        "action": "sendInvoiceCmd",
+        "presentation": "contextual-transition-actions — a single 'Send to Client' button rendered inline on each draft-status row; never a free select or manually typed id"
       },
       {
         "action": "listInvoices",
-        "presentation": "master-detail paginated table with filter bar folded into the surface header."
+        "presentation": "master-detail paginated table as the dominant surface, with filter controls folded into the toolbar"
       }
     ],
     "informationHierarchy": [
-      "1. Invoice list with status badges, client, project, total amount, and dates — the primary scan surface.",
-      "2. Filter controls (status, project, client) folded into the list header — narrow before acting.",
-      "3. Contextual 'Send' action on each draft row — the most frequent next step.",
-      "4. Create Invoice panel — secondary, triggered from a toolbar button above the list."
+      "Invoice list with status, invoice number, client, project, total amount, and dates — the primary scan surface",
+      "Filter controls (status, project, client) folded into the list toolbar for quick narrowing",
+      "Contextual 'Send to Client' action on each draft row — visible only when status = draft",
+      "Create Invoice form — accessible via a prominent primary button, collects only true user decisions (project, client, invoice number)"
     ],
-    "successCriteria": "Billing staff can scan all invoices, filter to drafts, send a draft to a client in two clicks, and create a new invoice without leaving the workspace or typing any identifier manually.",
+    "successCriteria": "Billing staff can scan all invoices at a glance, filter to the relevant subset, create a new draft in under 30 seconds, and send a draft to the client with a single contextual action — without typing any system-owned id.",
     "antiPatterns": [
-      "Separate full-page form for sending an invoice — it is a one-decision transition.",
-      "Free <select> over all status enum values for the send transition.",
-      "Manually typed invoiceId, projectId, or clientId in any input.",
-      "Stacking the create form below the list as a permanently visible section.",
-      "Showing system-owned fields (createdAt, updatedAt, sentAt) as editable inputs."
+      "Separate full-page form for sendInvoiceCmd — it must be an inline row action",
+      "Free <select> over all invoice status enum values for the send transition",
+      "Manually typed invoiceId or projectId as form inputs",
+      "Separate section per query — filters must fold into the list surface",
+      "Showing system-owned fields (invoiceId, createdAt, updatedAt) as editable inputs"
     ]
   }
 }

@@ -1,0 +1,15 @@
+# materializeL2 run
+time:   2026-08-01T20:29:44.807Z
+module: 102045/buildFlowFsm
+only:   shared/projectDetailWorkspace    force: true
+model:  codehigh
+items:  1
+
+=== 2026-08-01T20:29:44.812Z | projectDetailWorkspace__l2_shared (l2_shared) ===
+output: _102045_/l2/buildFlowFsm/web/shared/projectDetailWorkspace.ts
+model:  deterministic    status: ok
+bytes:  98295
+skills: OK  _102020_/l2/agentChangeFrontend/skills/genCfeSharedTs.ts
+deps:   OK  _102045_/l2/buildFlowFsm/web/contracts/projectDetailWorkspace.ts | OK  _102029_.d.ts -> _102029_/l2/collabLitElement.ts | OK  _102029_.d.ts -> _102029_/l2/bffClient.ts | OK  _102029_.d.ts -> _102029_/l2/collabState.ts | OK  _102029_.d.ts -> _102029_/l2/interactionRuntime.ts
+usage:  (none)
+

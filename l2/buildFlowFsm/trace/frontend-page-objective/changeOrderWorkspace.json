@@ -1,11 +1,11 @@
 {
-  "savedAt": "2026-07-31T06:05:25.158Z",
+  "savedAt": "2026-07-31T18:54:35.826Z",
   "pageId": "changeOrderWorkspace",
-  "genome": "page21",
+  "genome": "page31",
   "objective": {
     "actor": "Project Manager",
     "jobToBeDone": "Create, edit, and approve or reject change orders so that cost and schedule impacts are accurately recorded against the active project.",
-    "primaryDecision": "Approve or reject a change order after reviewing its cost and schedule impact against the project budget.",
+    "primaryDecision": "Approve or reject a change order after reviewing its cost and schedule impact — the status transition is the highest-stakes action on this page.",
     "decisiveInfo": [
       "title",
       "description",
@@ -15,34 +15,33 @@
       "status",
       "rejectionReason"
     ],
-    "usageFrequency": "Occasional — triggered when a project scope change arises; back-office workflow used by project managers.",
+    "usageFrequency": "Occasional / back-office — triggered when a project scope change arises; not a high-frequency POS-style interaction.",
     "criticalActions": [
       {
         "action": "cmdUpdateChangeOrderStatus",
-        "presentation": "contextual-transition-actions — render Approve and Reject as explicit buttons on the selected change order; Reject reveals a rejectionReason input inline; never a free status <select>."
+        "presentation": "contextual-transition-actions — render Approve and Reject as explicit buttons on the selected change order; Reject conditionally reveals a rejection-reason input; never a free <select>."
       },
       {
         "action": "cmdCreateChangeOrder",
-        "presentation": "primary-button opening an inline form panel; projectId is context-derived (hidden), not typed."
+        "presentation": "primary-button opening an inline form panel; projectId is context-derived (hidden), never typed."
       },
       {
         "action": "cmdUpdateChangeOrder",
-        "presentation": "inline-row-command or edit panel pre-populated from the selected change order; changeOrderId is route-derived, never typed."
+        "presentation": "inline-row-command / edit panel pre-populated from the selected change order; changeOrderId is route-derived (hidden)."
       }
     ],
     "informationHierarchy": [
-      "1. Change order list with current status — lets the PM scan what needs attention",
-      "2. Selected change order detail — title, description, impactType, costAdjustment, scheduleAdjustmentDays, status",
-      "3. Status transition actions (Approve / Reject) with optional rejection reason — the primary decision",
-      "4. Edit panel for correcting details of a draft/editable change order",
-      "5. Create new change order form — least frequent, lowest in hierarchy"
+      "1. Change order list with current status badges — lets the PM scan what needs attention",
+      "2. Detail / edit panel for the selected change order (title, description, impactType, costAdjustment, scheduleAdjustmentDays)",
+      "3. Status transition actions (Approve / Reject) with rejection-reason field shown conditionally",
+      "4. Create new change order form (secondary, triggered by explicit action)"
     ],
-    "successCriteria": "The PM can review a change order's full impact, approve or reject it in two clicks, and create or correct a change order without leaving the workspace or manually typing any system-owned id.",
+    "successCriteria": "The PM can review all change orders for a project at a glance, open one to inspect or edit its details, and approve or reject it in two clicks — without ever typing an id or selecting a status from a dropdown.",
     "antiPatterns": [
       "Free <select> over all status enum values for status transitions",
       "Manually typed changeOrderId or projectId inputs",
-      "Separate page or modal for status update",
-      "Stacking three independent full-page forms without a master list",
+      "Separate full-page form for status update",
+      "Stacking three independent form sections without a master-detail relationship",
       "Showing system-owned fields (createdAt, updatedAt, approvedAt, rejectedAt) as editable inputs"
     ]
   }

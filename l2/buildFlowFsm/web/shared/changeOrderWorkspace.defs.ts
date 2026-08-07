@@ -107,7 +107,7 @@ export const definition = {
   },
   "layoutRef": {
     "defPath": "_102045_/l2/buildFlowFsm/web/desktop/page11/changeOrderWorkspace.defs.ts",
-    "layoutId": "wizard_flow"
+    "layoutId": "cfe-20260731185234.1000"
   },
   "states": [
     {
@@ -635,7 +635,7 @@ export const definition = {
     ]
   },
   "i18n": {
-    "section.changeOrderWorkspace.createChangeOrderSection.title": "Create Change Order",
+    "section.changeOrderWorkspace.sec-create-change-order.title": "Create Change Order",
     "organism.changeOrderWorkspace.cmdCreateChangeOrder.title": "Create change order",
     "intent.changeOrderWorkspace.cmdCreateChangeOrder.form.title": "Create change order",
     "intent.changeOrderWorkspace.cmdCreateChangeOrder.form.action.cmdCreateChangeOrder": "Create change order",
@@ -644,7 +644,7 @@ export const definition = {
     "intent.changeOrderWorkspace.cmdCreateChangeOrder.form.field.impactType.label": "Impact Type",
     "intent.changeOrderWorkspace.cmdCreateChangeOrder.form.field.costAdjustment.label": "Cost Adjustment",
     "intent.changeOrderWorkspace.cmdCreateChangeOrder.form.field.scheduleAdjustmentDays.label": "Schedule Adjustment Days",
-    "section.changeOrderWorkspace.editChangeOrderSection.title": "Edit Change Order",
+    "section.changeOrderWorkspace.sec-edit-change-order.title": "Edit Change Order Details",
     "organism.changeOrderWorkspace.cmdUpdateChangeOrder.title": "Update change order details",
     "intent.changeOrderWorkspace.cmdUpdateChangeOrder.form.title": "Update change order details",
     "intent.changeOrderWorkspace.cmdUpdateChangeOrder.form.action.cmdUpdateChangeOrder": "Update change order details",
@@ -653,7 +653,7 @@ export const definition = {
     "intent.changeOrderWorkspace.cmdUpdateChangeOrder.form.field.impactType.label": "Impact Type",
     "intent.changeOrderWorkspace.cmdUpdateChangeOrder.form.field.costAdjustment.label": "Cost Adjustment",
     "intent.changeOrderWorkspace.cmdUpdateChangeOrder.form.field.scheduleAdjustmentDays.label": "Schedule Adjustment Days",
-    "section.changeOrderWorkspace.reviewChangeOrderSection.title": "Review & Approve Change Order",
+    "section.changeOrderWorkspace.sec-review-change-order.title": "Review & Approve Change Order",
     "organism.changeOrderWorkspace.detail10.title": "Detail",
     "intent.changeOrderWorkspace.detail10.content.title": "Detail",
     "organism.changeOrderWorkspace.cmdUpdateChangeOrderStatus.title": "Update change order status",
@@ -661,14 +661,18 @@ export const definition = {
     "intent.changeOrderWorkspace.cmdUpdateChangeOrderStatus.form.action.cmdUpdateChangeOrderStatus": "Update change order status",
     "intent.changeOrderWorkspace.cmdUpdateChangeOrderStatus.form.field.status.label": "Status",
     "intent.changeOrderWorkspace.cmdUpdateChangeOrderStatus.form.field.rejectionReason.label": "Rejection Reason",
-    "section.changeOrderWorkspace.sec-change-order-master.title": "Change Order List & Review",
+    "action.cmdCreateChangeOrder.success": "Create change order: OK",
+    "action.cmdCreateChangeOrder.error": "Create change order: falhou",
+    "action.cmdUpdateChangeOrder.success": "Update change order details: OK",
+    "action.cmdUpdateChangeOrder.error": "Update change order details: falhou",
+    "action.cmdUpdateChangeOrderStatus.success": "Update change order status: OK",
+    "action.cmdUpdateChangeOrderStatus.error": "Update change order status: falhou",
+    "section.changeOrderWorkspace.sec-review-approve.title": "Review & Approve Change Order",
+    "organism.changeOrderWorkspace.summary-first10.title": "Summary first",
+    "intent.changeOrderWorkspace.summary-first10.content.title": "Summary first",
+    "section.changeOrderWorkspace.sec-change-order-master-detail.title": "Change Order Master-Detail",
     "organism.changeOrderWorkspace.master-detail10.title": "Master detail",
-    "intent.changeOrderWorkspace.master-detail10.content.title": "Master detail",
-    "organism.changeOrderWorkspace.summary-first20.title": "Summary first",
-    "intent.changeOrderWorkspace.summary-first20.content.title": "Summary first",
-    "section.changeOrderWorkspace.sec-status-transition.title": "Approve or Reject",
-    "section.changeOrderWorkspace.sec-edit-change-order.title": "Edit Change Order",
-    "section.changeOrderWorkspace.sec-create-change-order.title": "New Change Order"
+    "intent.changeOrderWorkspace.master-detail10.content.title": "Master detail"
   },
   "automation": {
     "statePrefix": "ui.changeOrderWorkspace",

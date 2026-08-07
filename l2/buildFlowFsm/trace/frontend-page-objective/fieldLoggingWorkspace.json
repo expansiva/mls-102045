@@ -1,20 +1,18 @@
 {
-  "savedAt": "2026-07-31T06:06:06.579Z",
+  "savedAt": "2026-07-31T18:55:27.569Z",
   "pageId": "fieldLoggingWorkspace",
-  "genome": "page21",
+  "genome": "page31",
   "objective": {
-    "actor": "Field worker on an active job site",
-    "jobToBeDone": "Quickly post time and material usage records against active work tasks and projects so job costing stays accurate without leaving the field.",
-    "primaryDecision": "Submit a time log entry (select task → enter date + hours → confirm) or a material usage entry (enter material details → confirm) — and void either if posted in error.",
+    "actor": "Field worker on an active construction or service project",
+    "jobToBeDone": "Quickly post time and material usage records against active work tasks and projects so that job costing stays accurate without leaving the field.",
+    "primaryDecision": "Submit a time log entry (select task → enter date & hours → confirm) or a material usage entry (enter material details → confirm) — and void either if posted in error.",
     "decisiveInfo": [
-      "workTaskId (task selection — context-derived, never typed)",
-      "logDate (date of work)",
-      "hoursWorked (hours to post)",
-      "materialName, quantity, unit, unitCost, usageDate (material details)",
-      "costCode (optional cost allocation)",
-      "voidReason / voidedReason (required only on void)"
+      "workTaskId (which task the hours apply to)",
+      "logDate and hoursWorked (the time entry itself)",
+      "materialName, quantity, unit, unitCost, usageDate (the material entry)",
+      "voidReason / voidedReason (correction justification)"
     ],
-    "usageFrequency": "Daily / continuous — field workers log at end of shift or after each task; speed and low friction are critical; screen may be used on a mobile device.",
+    "usageFrequency": "Daily / continuous — field workers log time and materials multiple times per shift, often on mobile, hands may be busy.",
     "criticalActions": [
       {
         "action": "submitTimeLog",
@@ -22,7 +20,7 @@
       },
       {
         "action": "submitVoidTimeLog",
-        "presentation": "contextual-transition-actions — a Void button appearing on the selected posted time log row, opening a minimal reason input inline"
+        "presentation": "contextual-transition-actions — a Void button appearing on the selected posted time log row, opening a minimal reason input before confirm"
       },
       {
         "action": "submitMaterialUsage",
@@ -30,23 +28,22 @@
       },
       {
         "action": "submitVoidMaterialUsage",
-        "presentation": "contextual-transition-actions — a Void button appearing on the selected posted material usage row, opening a minimal reason input inline"
+        "presentation": "contextual-transition-actions — a Void button appearing on the selected posted material usage row, opening a minimal reason input before confirm"
       }
     ],
     "informationHierarchy": [
-      "1. Time logging panel — task selector + date + hours form with submit action (most frequent daily action)",
-      "2. Posted time logs list — shows today's entries; void action contextual on each posted row",
-      "3. Material usage logging panel — material details form with submit action",
-      "4. Posted material usage list — shows today's entries; void action contextual on each posted row"
+      "1. Time logging panel — task selector, date, hours, submit (most frequent action)",
+      "2. Posted time log list with inline void action (read-before-write; confirm what was posted)",
+      "3. Material logging panel — material details, submit",
+      "4. Posted material usage list with inline void action"
     ],
-    "successCriteria": "A field worker can post a time log or material usage record in under 60 seconds, with session-derived defaults pre-filled, and can void an erroneous entry inline without navigating away.",
+    "successCriteria": "A field worker can post a time entry or material record in under 60 seconds, see it appear in the posted list immediately, and void a mistaken entry with a single tap and a reason — all without navigating away or typing any system-owned identifier.",
     "antiPatterns": [
-      "Manually typed workTaskId or projectId — must be a picker/selector",
-      "Free <select> over all status enum values for voiding — use explicit Void button per row",
-      "Separate full-page form for void — keep inline with reason input",
-      "Exposing workerName or recordedBy as editable inputs — pre-fill from session",
-      "Separate navigation step to reach the void action — must be contextual on the record row",
-      "Showing all historical records — scope to today's session by default to reduce noise"
+      "Exposing timeLogId or materialUsageId as typed inputs — these are system-generated and must be derived from selection",
+      "Free <select> over all status enum values for voiding — use explicit Void action button on posted rows only",
+      "Separate full-page form for void — keep it inline or in a contextual panel",
+      "Showing workerName or recordedBy as editable fields — pre-fill from session",
+      "Requiring the worker to navigate to a different page to see what was already posted"
     ]
   }
 }

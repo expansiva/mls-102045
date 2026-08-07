@@ -1,0 +1,146 @@
+import { CollabLitElement } from '/_102029_/l2/collabLitElement.js';
+import type { CmdCreateWorkTaskOutput, CmdUpdateWorkTaskOutput, CmdUpdateWorkTaskStatusOutput } from '/_102045_/l2/buildFlowFsm/web/contracts/taskBoardWorkspace.js';
+export type { CmdCreateWorkTaskInput, CmdCreateWorkTaskOutput, CmdUpdateWorkTaskInput, CmdUpdateWorkTaskOutput, CmdUpdateWorkTaskStatusInput, CmdUpdateWorkTaskStatusOutput, } from '/_102045_/l2/buildFlowFsm/web/contracts/taskBoardWorkspace.js';
+export declare class BuildFlowFsmTaskBoardWorkspaceBase extends CollabLitElement {
+    /** state status — pageStatus */
+    status: string;
+    /** state cmdCreateWorkTaskState — actionStatus, values: idle|loading|success|error */
+    cmdCreateWorkTaskState: 'idle' | 'loading' | 'success' | 'error';
+    /** state cmdCreateWorkTaskProjectId — input */
+    cmdCreateWorkTaskProjectId: string;
+    /** state cmdCreateWorkTaskTitle — input */
+    cmdCreateWorkTaskTitle: string;
+    /** state cmdCreateWorkTaskDescription — input */
+    cmdCreateWorkTaskDescription: string;
+    /** state cmdCreateWorkTaskAssignedWorkerId — input */
+    cmdCreateWorkTaskAssignedWorkerId: string;
+    /** state cmdCreateWorkTaskDueDate — input */
+    cmdCreateWorkTaskDueDate: string;
+    /** state cmdCreateWorkTaskOutput — commandOutput */
+    cmdCreateWorkTaskOutput: CmdCreateWorkTaskOutput | null;
+    /** state cmdCreateWorkTaskError — actionError */
+    cmdCreateWorkTaskError: string;
+    /** state cmdUpdateWorkTaskState — actionStatus, values: idle|loading|success|error */
+    cmdUpdateWorkTaskState: 'idle' | 'loading' | 'success' | 'error';
+    /** state cmdUpdateWorkTaskWorkTaskId — input */
+    cmdUpdateWorkTaskWorkTaskId: string;
+    /** state cmdUpdateWorkTaskTitle — input */
+    cmdUpdateWorkTaskTitle: string;
+    /** state cmdUpdateWorkTaskDescription — input */
+    cmdUpdateWorkTaskDescription: string;
+    /** state cmdUpdateWorkTaskAssignedWorkerId — input */
+    cmdUpdateWorkTaskAssignedWorkerId: string;
+    /** state cmdUpdateWorkTaskDueDate — input */
+    cmdUpdateWorkTaskDueDate: string;
+    /** state cmdUpdateWorkTaskStatusValue — input */
+    cmdUpdateWorkTaskStatusValue: string;
+    /** state cmdUpdateWorkTaskCancellationReason — input */
+    cmdUpdateWorkTaskCancellationReason: string;
+    /** state cmdUpdateWorkTaskOutput — commandOutput */
+    cmdUpdateWorkTaskOutput: CmdUpdateWorkTaskOutput | null;
+    /** state cmdUpdateWorkTaskError — actionError */
+    cmdUpdateWorkTaskError: string;
+    /** state cmdUpdateWorkTaskStatusState — actionStatus, values: idle|loading|success|error */
+    cmdUpdateWorkTaskStatusState: 'idle' | 'loading' | 'success' | 'error';
+    /** state cmdUpdateWorkTaskStatusWorkTaskId — input */
+    cmdUpdateWorkTaskStatusWorkTaskId: string;
+    /** state cmdUpdateWorkTaskStatusStatus — input */
+    cmdUpdateWorkTaskStatusStatus: string;
+    /** state cmdUpdateWorkTaskStatusCancellationReason — input */
+    cmdUpdateWorkTaskStatusCancellationReason: string;
+    /** state cmdUpdateWorkTaskStatusCompletedAt — input */
+    cmdUpdateWorkTaskStatusCompletedAt: string;
+    /** state cmdUpdateWorkTaskStatusActorId — input */
+    cmdUpdateWorkTaskStatusActorId: string;
+    /** state cmdUpdateWorkTaskStatusOutput — commandOutput */
+    cmdUpdateWorkTaskStatusOutput: CmdUpdateWorkTaskStatusOutput | null;
+    /** state cmdUpdateWorkTaskStatusError — actionError */
+    cmdUpdateWorkTaskStatusError: string;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    /** handleIcaStateChange — collabState notify contract; maps state keys onto class fields */
+    handleIcaStateChange(key: string, value: unknown): void;
+    private initStateValue;
+    private syncRouteParams;
+    private readErrorMessage;
+    /** action cmdCreateWorkTask (command) — route buildFlowFsm.taskBoardWorkspace.cmdCreateWorkTask; inputs: projectId, title, description, assignedWorkerId, dueDate; writes ui.taskBoardWorkspace.output.cmdCreateWorkTask; status ui.taskBoardWorkspace.action.cmdCreateWorkTask.status; feedback keys action.cmdCreateWorkTask.success / action.cmdCreateWorkTask.error */
+    cmdCreateWorkTask(): Promise<void>;
+    /** handler for action cmdCreateWorkTask — bind UI events here */
+    handleCmdCreateWorkTaskClick(event?: Event): void;
+    /** action cmdUpdateWorkTask (command) — route buildFlowFsm.taskBoardWorkspace.cmdUpdateWorkTask; inputs: workTaskId, title, description, assignedWorkerId, dueDate, status, cancellationReason; writes ui.taskBoardWorkspace.output.cmdUpdateWorkTask; status ui.taskBoardWorkspace.action.cmdUpdateWorkTask.status; feedback keys action.cmdUpdateWorkTask.success / action.cmdUpdateWorkTask.error */
+    cmdUpdateWorkTask(): Promise<void>;
+    /** handler for action cmdUpdateWorkTask — bind UI events here */
+    handleCmdUpdateWorkTaskClick(event?: Event): void;
+    /** action cmdUpdateWorkTaskStatus (command) — route buildFlowFsm.taskBoardWorkspace.cmdUpdateWorkTaskStatus; inputs: workTaskId, status, cancellationReason, completedAt, actorId; writes ui.taskBoardWorkspace.output.cmdUpdateWorkTaskStatus; status ui.taskBoardWorkspace.action.cmdUpdateWorkTaskStatus.status; feedback keys action.cmdUpdateWorkTaskStatus.success / action.cmdUpdateWorkTaskStatus.error */
+    cmdUpdateWorkTaskStatus(): Promise<void>;
+    /** handler for action cmdUpdateWorkTaskStatus — bind UI events here */
+    handleCmdUpdateWorkTaskStatusClick(event?: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdCreateWorkTask.projectId */
+    setCmdCreateWorkTaskProjectId(value: string): void;
+    /** handler for action set.cmdCreateWorkTaskProjectId — bind UI events here */
+    handleCmdCreateWorkTaskProjectIdChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdCreateWorkTask.title */
+    setCmdCreateWorkTaskTitle(value: string): void;
+    /** handler for action set.cmdCreateWorkTaskTitle — bind UI events here */
+    handleCmdCreateWorkTaskTitleChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdCreateWorkTask.description */
+    setCmdCreateWorkTaskDescription(value: string): void;
+    /** handler for action set.cmdCreateWorkTaskDescription — bind UI events here */
+    handleCmdCreateWorkTaskDescriptionChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdCreateWorkTask.assignedWorkerId */
+    setCmdCreateWorkTaskAssignedWorkerId(value: string): void;
+    /** handler for action set.cmdCreateWorkTaskAssignedWorkerId — bind UI events here */
+    handleCmdCreateWorkTaskAssignedWorkerIdChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdCreateWorkTask.dueDate */
+    setCmdCreateWorkTaskDueDate(value: string): void;
+    /** handler for action set.cmdCreateWorkTaskDueDate — bind UI events here */
+    handleCmdCreateWorkTaskDueDateChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdUpdateWorkTask.workTaskId */
+    setCmdUpdateWorkTaskWorkTaskId(value: string): void;
+    /** handler for action set.cmdUpdateWorkTaskWorkTaskId — bind UI events here */
+    handleCmdUpdateWorkTaskWorkTaskIdChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdUpdateWorkTask.title */
+    setCmdUpdateWorkTaskTitle(value: string): void;
+    /** handler for action set.cmdUpdateWorkTaskTitle — bind UI events here */
+    handleCmdUpdateWorkTaskTitleChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdUpdateWorkTask.description */
+    setCmdUpdateWorkTaskDescription(value: string): void;
+    /** handler for action set.cmdUpdateWorkTaskDescription — bind UI events here */
+    handleCmdUpdateWorkTaskDescriptionChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdUpdateWorkTask.assignedWorkerId */
+    setCmdUpdateWorkTaskAssignedWorkerId(value: string): void;
+    /** handler for action set.cmdUpdateWorkTaskAssignedWorkerId — bind UI events here */
+    handleCmdUpdateWorkTaskAssignedWorkerIdChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdUpdateWorkTask.dueDate */
+    setCmdUpdateWorkTaskDueDate(value: string): void;
+    /** handler for action set.cmdUpdateWorkTaskDueDate — bind UI events here */
+    handleCmdUpdateWorkTaskDueDateChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdUpdateWorkTask.status */
+    setCmdUpdateWorkTaskStatusValue(value: string): void;
+    /** handler for action set.cmdUpdateWorkTaskStatusValue — bind UI events here */
+    handleCmdUpdateWorkTaskStatusValueChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdUpdateWorkTask.cancellationReason */
+    setCmdUpdateWorkTaskCancellationReason(value: string): void;
+    /** handler for action set.cmdUpdateWorkTaskCancellationReason — bind UI events here */
+    handleCmdUpdateWorkTaskCancellationReasonChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdUpdateWorkTaskStatus.workTaskId */
+    setCmdUpdateWorkTaskStatusWorkTaskId(value: string): void;
+    /** handler for action set.cmdUpdateWorkTaskStatusWorkTaskId — bind UI events here */
+    handleCmdUpdateWorkTaskStatusWorkTaskIdChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdUpdateWorkTaskStatus.status */
+    setCmdUpdateWorkTaskStatusStatus(value: string): void;
+    /** handler for action set.cmdUpdateWorkTaskStatusStatus — bind UI events here */
+    handleCmdUpdateWorkTaskStatusStatusChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdUpdateWorkTaskStatus.cancellationReason */
+    setCmdUpdateWorkTaskStatusCancellationReason(value: string): void;
+    /** handler for action set.cmdUpdateWorkTaskStatusCancellationReason — bind UI events here */
+    handleCmdUpdateWorkTaskStatusCancellationReasonChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdUpdateWorkTaskStatus.completedAt */
+    setCmdUpdateWorkTaskStatusCompletedAt(value: string): void;
+    /** handler for action set.cmdUpdateWorkTaskStatusCompletedAt — bind UI events here */
+    handleCmdUpdateWorkTaskStatusCompletedAtChange(event: Event): void;
+    /** setter for state ui.taskBoardWorkspace.input.cmdUpdateWorkTaskStatus.actorId */
+    setCmdUpdateWorkTaskStatusActorId(value: string): void;
+    /** handler for action set.cmdUpdateWorkTaskStatusActorId — bind UI events here */
+    handleCmdUpdateWorkTaskStatusActorIdChange(event: Event): void;
+}

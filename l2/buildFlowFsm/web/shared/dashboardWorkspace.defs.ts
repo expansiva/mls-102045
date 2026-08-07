@@ -74,7 +74,7 @@ export const definition = {
   },
   "layoutRef": {
     "defPath": "_102045_/l2/buildFlowFsm/web/desktop/page11/dashboardWorkspace.defs.ts",
-    "layoutId": "cfe-20260731060448.1000"
+    "layoutId": "cfe-20260731185234.1000"
   },
   "states": [
     {
@@ -348,10 +348,8 @@ export const definition = {
     "intent.dashboardWorkspace.getProjectList.list.filter.status.label": "Status",
     "intent.dashboardWorkspace.getProjectList.list.filter.page.label": "Page",
     "intent.dashboardWorkspace.getProjectList.list.filter.pageSize.label": "Page Size",
-    "section.dashboardWorkspace.kpi-budget-section.title": "KPI & Budget Overview",
-    "organism.dashboardWorkspace.summary-first10.title": "Summary first",
-    "intent.dashboardWorkspace.summary-first10.content.title": "Summary first",
-    "section.dashboardWorkspace.project-list-section.title": "Project List"
+    "section.dashboardWorkspace.sec-kpi.title": "KPI & Budget Overview",
+    "section.dashboardWorkspace.sec-project-list.title": "Project List"
   },
   "automation": {
     "statePrefix": "ui.dashboardWorkspace",

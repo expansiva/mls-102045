@@ -56,7 +56,7 @@ export const definition = {
   },
   "layoutRef": {
     "defPath": "_102045_/l2/buildFlowFsm/web/desktop/page11/jobCostWorkspace.defs.ts",
-    "layoutId": "cfe-20260731060448.1000"
+    "layoutId": "cfe-20260731185234.1000"
   },
   "states": [
     {
@@ -168,7 +168,9 @@ export const definition = {
     "intent.jobCostWorkspace.viewJobCostSummary.list.column.totalCost.label": "Total Cost",
     "intent.jobCostWorkspace.viewJobCostSummary.list.column.budgetVariance.label": "Budget Variance",
     "section.jobCostWorkspace.sec-project-header.title": "Project Identity",
-    "section.jobCostWorkspace.sec-cost-summary.title": "Cost Summary"
+    "section.jobCostWorkspace.sec-cost-summary.title": "Budget & Cost Summary",
+    "section.jobCostWorkspace.sec-cost-kpis.title": "Budget vs Actual",
+    "section.jobCostWorkspace.sec-cost-breakdown.title": "Cost Breakdown"
   },
   "automation": {
     "statePrefix": "ui.jobCostWorkspace",

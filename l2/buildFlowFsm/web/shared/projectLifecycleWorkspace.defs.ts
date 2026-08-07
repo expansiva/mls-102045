@@ -108,7 +108,7 @@ export const definition = {
   },
   "layoutRef": {
     "defPath": "_102045_/l2/buildFlowFsm/web/desktop/page11/projectLifecycleWorkspace.defs.ts",
-    "layoutId": "cfe-20260731060448.1000"
+    "layoutId": "cfe-20260731185234.1000"
   },
   "states": [
     {
@@ -705,10 +705,20 @@ export const definition = {
     "intent.projectLifecycleWorkspace.updateProjectStatusCmd.form.field.status.label": "Status",
     "intent.projectLifecycleWorkspace.updateProjectStatusCmd.form.field.holdReason.label": "Hold Reason",
     "intent.projectLifecycleWorkspace.updateProjectStatusCmd.form.field.cancellationReason.label": "Cancellation Reason",
-    "section.projectLifecycleWorkspace.sec-project-workspace.title": "Project Workspace",
-    "organism.projectLifecycleWorkspace.master-detail10.title": "Master detail",
-    "intent.projectLifecycleWorkspace.master-detail10.content.title": "Master detail",
-    "section.projectLifecycleWorkspace.sec-create-project.title": "Create New Project"
+    "action.createProjectCmd.success": "Create project: OK",
+    "action.createProjectCmd.error": "Create project: falhou",
+    "action.updateProjectCmd.success": "Update project details: OK",
+    "action.updateProjectCmd.error": "Update project details: falhou",
+    "action.updateProjectStatusCmd.success": "Update project status: OK",
+    "action.updateProjectStatusCmd.error": "Update project status: falhou",
+    "section.projectLifecycleWorkspace.sec-project-board.title": "Project Board",
+    "organism.projectLifecycleWorkspace.card-board10.title": "Card board",
+    "intent.projectLifecycleWorkspace.card-board10.content.title": "Card board",
+    "section.projectLifecycleWorkspace.sec-project-detail.title": "Project Detail & Lifecycle",
+    "organism.projectLifecycleWorkspace.summary-first10.title": "Summary first",
+    "intent.projectLifecycleWorkspace.summary-first10.content.title": "Summary first",
+    "section.projectLifecycleWorkspace.sec-create-project.title": "Create New Project",
+    "section.projectLifecycleWorkspace.sec-edit-project.title": "Edit Project Details"
   },
   "automation": {
     "statePrefix": "ui.projectLifecycleWorkspace",

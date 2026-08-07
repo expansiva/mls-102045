@@ -1235,11 +1235,13 @@ export const definition = {
     "intent.projectDetailWorkspace.listDelayRiskSuggestions.list.column.acknowledged.label": "Acknowledged",
     "intent.projectDetailWorkspace.listDelayRiskSuggestions.list.column.createdAt.label": "Created At",
     "intent.projectDetailWorkspace.listDelayRiskSuggestions.list.filter.acknowledged.label": "Acknowledged",
+    "action.triggerDelayRiskSuggestions.success": "Generate delay-risk suggestions: OK",
+    "action.triggerDelayRiskSuggestions.error": "Generate delay-risk suggestions: falhou",
     "section.projectDetailWorkspace.sec-project-header.title": "Project Header",
     "section.projectDetailWorkspace.sec-task-timeline.title": "Work Task Timeline",
     "section.projectDetailWorkspace.sec-change-orders.title": "Change Orders",
     "section.projectDetailWorkspace.sec-cost-tracking.title": "Cost Tracking",
-    "section.projectDetailWorkspace.sec-delay-risk-insights.title": "Delay-Risk Insights"
+    "section.projectDetailWorkspace.sec-delay-risk-insights.title": "Delay Risk Insights"
   },
   "automation": {
     "statePrefix": "ui.projectDetailWorkspace",

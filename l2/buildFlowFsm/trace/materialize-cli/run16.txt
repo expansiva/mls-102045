@@ -1,0 +1,25 @@
+# materializeL2 run
+time:   2026-08-01T20:15:09.189Z
+module: 102045/buildFlowFsm
+only:   shared/clientStatusWorkspace    force: true
+model:  codehigh
+items:  1
+
+=== 2026-08-01T20:15:09.193Z | clientStatusWorkspace__l2_shared (l2_shared) ===
+output: _102045_/l2/buildFlowFsm/web/shared/clientStatusWorkspace.ts
+model:  deterministic    status: error(0)
+error: scaffold bail: contract field ViewStatusReportOutput.tasksOverview has unsupported type: Record<string, unknown>
+skills: OK  _102020_/l2/agentChangeFrontend/skills/genCfeSharedTs.ts
+deps:   OK  _102045_/l2/buildFlowFsm/web/contracts/clientStatusWorkspace.ts | OK  _102029_.d.ts -> _102029_/l2/collabLitElement.ts | OK  _102029_.d.ts -> _102029_/l2/bffClient.ts | OK  _102029_.d.ts -> _102029_/l2/collabState.ts | OK  _102029_.d.ts -> _102029_/l2/interactionRuntime.ts
+usage:  (none)
+--- raw (capped) ---
+
+
+=== 2026-08-01T20:15:54.063Z | clientStatusWorkspace__l2_shared (l2_shared) ===
+output: _102045_/l2/buildFlowFsm/web/shared/clientStatusWorkspace.ts
+model:  codehigh    status: ok
+bytes:  14947
+skills: OK  _102020_/l2/agentChangeFrontend/skills/genCfeSharedTs.ts
+deps:   OK  _102045_/l2/buildFlowFsm/web/contracts/clientStatusWorkspace.ts | OK  _102029_.d.ts -> _102029_/l2/collabLitElement.ts | OK  _102029_.d.ts -> _102029_/l2/bffClient.ts | OK  _102029_.d.ts -> _102029_/l2/collabState.ts | OK  _102029_.d.ts -> _102029_/l2/interactionRuntime.ts
+usage:  {"prompt_tokens":15423,"completion_tokens":4008,"total_tokens":19431,"cost":0.0544588,"is_byok":false,"prompt_tokens_details":{"cached_tokens":256,"cache_write_tokens":0,"audio_tokens":0,"video_tokens":0},"cost_details":{"upstream_inference_cost":0.0544588,"upstream_inference_prompt_cost":0.0304108,"upstream_inference_completions_cost":0.024048},"completion_tokens_details":{"reasoning_tokens":144,"image_tokens":0,"audio_tokens":0},"cost_provider":0.057454034,"cost_charged":0.0689448408,"requested_alias":"codehigh","alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","model_id":"x-ai/grok-4.5","fallback_used":false,"attempts":[{"alias":"codehigh","provider":"openrouter","model":"x-ai/grok-4.5","stage":"primary","status":"success","ttfbMs":497,"totalMs":43779,"inputTokens":15423,"outputTokens":4008,"costProvider":0.057454034,"costCharged":0.0689448408}],"ensure_json_success":true,"tool_strict":"ajv"}
+

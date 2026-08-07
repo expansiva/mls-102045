@@ -115,7 +115,7 @@ export const definition = {
   },
   "layoutRef": {
     "defPath": "_102045_/l2/buildFlowFsm/web/desktop/page11/clientManagementWorkspace.defs.ts",
-    "layoutId": "cfe-20260731060448.1000"
+    "layoutId": "tabular_classic"
   },
   "states": [
     {
@@ -770,7 +770,12 @@ export const definition = {
     "organism.clientManagementWorkspace.deleteClientCmd.title": "Delete client",
     "intent.clientManagementWorkspace.deleteClientCmd.form.title": "Delete client",
     "intent.clientManagementWorkspace.deleteClientCmd.form.action.deleteClientCmd": "Delete client",
-    "section.clientManagementWorkspace.clientDirectorySection.title": "Client Directory"
+    "action.createClientCmd.success": "Create client: OK",
+    "action.createClientCmd.error": "Create client: falhou",
+    "action.updateClientCmd.success": "Update client: OK",
+    "action.updateClientCmd.error": "Update client: falhou",
+    "action.deleteClientCmd.success": "Delete client: OK",
+    "action.deleteClientCmd.error": "Delete client: falhou"
   },
   "automation": {
     "statePrefix": "ui.clientManagementWorkspace",

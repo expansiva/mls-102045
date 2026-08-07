@@ -497,7 +497,9 @@ export const definition = {
     ]
   },
   "i18n": {
-    "section.billingSummaryWorkspace.sec-billing-board.title": "Billing Summary Pipeline",
+    "section.billingSummaryWorkspace.sec-billing-summary-list.title": "Billing Summaries Pipeline",
+    "organism.billingSummaryWorkspace.inline-row-command10.title": "Inline row command",
+    "intent.billingSummaryWorkspace.inline-row-command10.content.title": "Inline row command",
     "organism.billingSummaryWorkspace.listBillingSummaries.title": "Browse billing summaries",
     "intent.billingSummaryWorkspace.listBillingSummaries.list.title": "Browse billing summaries",
     "intent.billingSummaryWorkspace.listBillingSummaries.list.empty": "Nenhum registro encontrado",
@@ -516,7 +518,13 @@ export const definition = {
     "intent.billingSummaryWorkspace.shareBillingSummaryCmd.form.title": "Share billing summary with client",
     "intent.billingSummaryWorkspace.shareBillingSummaryCmd.form.action.shareBillingSummaryCmd": "Share billing summary with client",
     "intent.billingSummaryWorkspace.shareBillingSummaryCmd.form.field.status.label": "Status",
-    "section.billingSummaryWorkspace.sec-billing-workspace.title": "Billing Summaries Workspace"
+    "action.createBillingSummaryCmd.success": "Create billing summary: OK",
+    "action.createBillingSummaryCmd.error": "Create billing summary: falhou",
+    "action.shareBillingSummaryCmd.success": "Share billing summary with client: OK",
+    "action.shareBillingSummaryCmd.error": "Share billing summary with client: falhou",
+    "section.billingSummaryWorkspace.sec-billing-list.title": "Billing Summaries",
+    "section.billingSummaryWorkspace.sec-create-billing.title": "Create Billing Summary",
+    "section.billingSummaryWorkspace.sec-billing-summary-workspace.title": "Billing Summary Workspace"
   },
   "automation": {
     "statePrefix": "ui.billingSummaryWorkspace",

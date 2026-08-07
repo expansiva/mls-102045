@@ -1,49 +1,50 @@
 {
-  "savedAt": "2026-07-31T06:06:34.716Z",
+  "savedAt": "2026-07-31T18:56:25.629Z",
   "pageId": "projectDetailWorkspace",
   "genome": "page21",
   "objective": {
     "actor": "Project Manager",
     "jobToBeDone": "Review the full project record, track task and cost progress, inspect change orders, and generate or review AI delay-risk suggestions — all from a single workspace anchored to the project.",
-    "primaryDecision": "Is this project on track? — assessed by reading project status + schedule, scanning overdue tasks, reviewing cost exposure from time logs and materials, and acting on delay-risk suggestions.",
+    "primaryDecision": "Is this project on track? — assessed by reading project status/schedule, scanning overdue tasks, evaluating change-order cost impact, and acting on delay-risk suggestions.",
     "decisiveInfo": [
-      "name, status, budget, startDate, endDate, siteAddress, clientName (getProjectDetail)",
-      "workTasks: title, assignee, status, dueDate (listWorkTasks)",
-      "changeOrders: title, costAdjustment, scheduleAdjustmentDays, status, impactType (listChangeOrders)",
-      "changeOrderDetail: costAdjustment vs projectBudget, approvalStatus (getChangeOrderDetail)",
-      "timeLogs: hoursWorked, laborCost, workerName, logDate, status (listTimeLogs)",
-      "materialUsages: materialName, quantity, unitCost, status (listMaterialUsages)",
-      "delayRiskSuggestions: riskLevel, reason, workTaskTitle, suggestedAction (listDelayRiskSuggestions)"
+      "name, status, budget, startDate, endDate, holdReason (project anchor)",
+      "workTasks: title, assignedWorkerId, status, dueDate (task health)",
+      "changeOrders: title, costAdjustment, scheduleAdjustmentDays, status (financial risk)",
+      "changeOrderDetail: costAdjustment vs projectBudget, impactType, approvedAt (cost impact)",
+      "timeLogs: hoursWorked, laborCost, status (labor cost burn)",
+      "materialUsages: materialName, quantity, unitCost, status (material cost burn)",
+      "delayRiskSuggestions: riskLevel, reason, workTaskTitle, suggestedAction (AI advisory)"
     ],
-    "usageFrequency": "Frequent / daily — PM opens this page at the start of each work session to assess project health and act on risks.",
+    "usageFrequency": "Occasional to frequent — project managers open this workspace during planning, status-report cycles, and when reviewing flagged risks.",
     "criticalActions": [
       {
         "action": "triggerDelayRiskSuggestions",
-        "presentation": "primary-button within the delay-risk panel, contextual to the selected status report"
-      },
-      {
-        "action": "listDelayRiskSuggestions",
-        "presentation": "inline list with acknowledged filter toggle, rendered after trigger completes"
+        "presentation": "contextual-transition-actions — a prominent 'Generate Risk Analysis' button scoped to the selected status report, placed inline with the delay-risk panel"
       },
       {
         "action": "getChangeOrderDetail",
-        "presentation": "master-detail — selecting a change order row opens the detail panel inline"
+        "presentation": "master-detail — selecting a change order row opens the cost-impact detail panel inline without navigation"
+      },
+      {
+        "action": "listWorkTasks",
+        "presentation": "summary-first filterable table with status and due-date columns surfacing overdue flags"
       }
     ],
     "informationHierarchy": [
-      "1. Project header — identity, status, schedule, budget (anchor for all analysis)",
-      "2. Work task timeline — filterable list of tasks with status and due-date signals",
+      "1. Project header — client, site, schedule, budget, status (anchor for all analysis)",
+      "2. Task timeline — filterable work-task list showing assignee, status, due date, overdue flag",
       "3. Change orders — filterable list + inline detail panel for cost/schedule impact",
-      "4. Cost tracking — time logs (labor) and material usages (materials) side by side",
-      "5. Delay-risk insights — AI suggestions triggered per status report, reviewed inline"
+      "4. Cost tracking — time logs (labor) and material usages (materials) in a tabbed or stacked cost view",
+      "5. Delay-risk insights — AI suggestions panel with trigger action and acknowledgement filter"
     ],
-    "successCriteria": "PM can assess project health, spot overdue tasks, understand cost exposure from change orders and actuals, and generate + review delay-risk suggestions without leaving the page.",
+    "successCriteria": "A PM can assess project health, identify at-risk tasks, understand cost impact of change orders, and generate/review delay-risk suggestions without leaving the page or navigating to separate screens.",
     "antiPatterns": [
-      "Separate full-page form for triggering delay-risk suggestions",
-      "Status fields rendered as free <select> inputs",
-      "Manually typed projectId, changeOrderId, or statusReportId fields",
-      "One independent section per query with no grouping by analytical theme",
-      "Hiding the change order detail behind a navigation away from the list"
+      "Separate full-page form for change order detail — use inline master-detail",
+      "Status <select> for lifecycle transitions — show allowed next-state buttons only",
+      "Manually typed projectId, changeOrderId, or statusReportId — all are context-derived",
+      "One independent section per query — fold filters into their surface organism",
+      "Showing all enum values for status filter — default to most useful subset",
+      "Persuasion mechanics or urgency framing on this operational screen"
     ]
   }
 }

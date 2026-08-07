@@ -1,10 +1,10 @@
 {
-  "savedAt": "2026-07-31T06:06:34.712Z",
+  "savedAt": "2026-07-31T18:56:17.018Z",
   "pageId": "projectLifecycleWorkspace",
-  "genome": "page21",
+  "genome": "page31",
   "objective": {
     "actor": "Project Manager",
-    "jobToBeDone": "Create new projects and manage their full lifecycle — from registration through activation, hold, closure, or cancellation — from a single workspace.",
+    "jobToBeDone": "Create new projects and manage their full lifecycle — from registration through activation, hold, closure, and cancellation — from a single workspace.",
     "primaryDecision": "Which lifecycle action to take on a project right now: create a new one, edit its details, or transition its status.",
     "decisiveInfo": [
       "name",
@@ -17,33 +17,33 @@
       "holdReason",
       "cancellationReason"
     ],
-    "usageFrequency": "Occasional / back-office — used by project managers when onboarding new projects or responding to lifecycle events (activation, hold, closure).",
+    "usageFrequency": "Occasional / back-office — used when onboarding a new project or responding to a lifecycle event (activation, hold, closure).",
     "criticalActions": [
       {
         "action": "createProjectCmd",
-        "presentation": "primary-button on a dedicated creation form panel"
+        "presentation": "primary-button submitting a grouped creation form (name, client, site, budget, dates)"
       },
       {
         "action": "updateProjectCmd",
-        "presentation": "inline-row-command / edit panel pre-populated from selected project"
+        "presentation": "inline edit form pre-populated from selected project, save as primary-button"
       },
       {
         "action": "updateProjectStatusCmd",
-        "presentation": "contextual-transition-actions — one button per valid next status on the selected project, never a free select"
+        "presentation": "contextual-transition-actions — one button per valid next status on the selected project; conditional reason field appears only when status requires it"
       }
     ],
     "informationHierarchy": [
-      "1. Current project status and key identifiers (name, client, status badge) — read before write",
-      "2. Allowed lifecycle transitions for the selected project (contextual action buttons)",
-      "3. Edit form for project details (name, client, site address, budget, dates)",
-      "4. Create new project form (collapsed / secondary until explicitly triggered)"
+      "1. Current project status and key identifiers (name, client, status badge) — read-before-write anchor",
+      "2. Status transition actions — the most time-sensitive decision",
+      "3. Edit project details form — secondary, opened on demand",
+      "4. Create new project form — available but not dominant; new projects are less frequent than status changes"
     ],
-    "successCriteria": "A project manager can register a new project, edit its details, and advance or revert its lifecycle status in the fewest possible steps, with the current state always visible before any mutation is confirmed.",
+    "successCriteria": "A project manager can register a new project, edit its details, and advance or revert its lifecycle status without navigating away, without typing IDs, and without ambiguity about the current state.",
     "antiPatterns": [
-      "Free <select> over all status enum values for lifecycle transitions",
+      "Free <select> over all status enum values — use contextual transition buttons instead",
       "Manually typed projectId or clientId fields",
-      "Separate page or route for each lifecycle operation",
-      "Stacking three independent forms with no shared project context",
+      "Separate page or modal for status transitions",
+      "Stacking three independent full-page forms with no project context anchor",
       "Showing system-owned fields (createdAt, updatedAt, closedAt, cancelledAt) as editable inputs"
     ]
   }

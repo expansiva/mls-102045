@@ -1,0 +1,27 @@
+import { CollabLitElement } from '/_102029_/l2/collabLitElement.js';
+import type { ViewJobCostSummaryOutput } from '/_102045_/l2/buildFlowFsm/web/contracts/jobCostWorkspace.js';
+export type { ViewJobCostSummaryInput, ViewJobCostSummaryOutput, } from '/_102045_/l2/buildFlowFsm/web/contracts/jobCostWorkspace.js';
+export declare class BuildFlowFsmJobCostWorkspaceBase extends CollabLitElement {
+    /** state status — pageStatus */
+    status: string;
+    /** state viewJobCostSummaryState — actionStatus, values: idle|loading|success|error */
+    viewJobCostSummaryState: 'idle' | 'loading' | 'success' | 'error';
+    /** state viewJobCostSummaryProjectId — input */
+    viewJobCostSummaryProjectId: string;
+    /** state viewJobCostSummaryData — queryResult, outputShape: object */
+    viewJobCostSummaryData: ViewJobCostSummaryOutput | null;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    /** handleIcaStateChange — collabState notify contract; maps state keys onto class fields */
+    handleIcaStateChange(key: string, value: unknown): void;
+    private initStateValue;
+    private syncRouteParams;
+    /** action viewJobCostSummary (query) — route buildFlowFsm.jobCostWorkspace.viewJobCostSummary; inputs: projectId; writes ui.jobCostWorkspace.data.viewJobCostSummary; status ui.jobCostWorkspace.action.viewJobCostSummary.status */
+    loadViewJobCostSummary(): Promise<void>;
+    /** handler for action viewJobCostSummary — bind UI events here */
+    handleViewJobCostSummaryClick(event?: Event): void;
+    /** setter for state ui.jobCostWorkspace.input.viewJobCostSummary.projectId */
+    setViewJobCostSummaryProjectId(value: string): void;
+    /** handler for action set.viewJobCostSummaryProjectId — bind UI events here */
+    handleViewJobCostSummaryProjectIdChange(event: Event): void;
+}

@@ -1,0 +1,154 @@
+import { CollabLitElement } from '/_102029_/l2/collabLitElement.js';
+import type { ListClientsOutput, CreateClientCmdOutput, UpdateClientCmdOutput, DeleteClientCmdOutput } from '/_102045_/l2/buildFlowFsm/web/contracts/clientManagementWorkspace.js';
+export type { ListClientsInput, ListClientsOutput, CreateClientCmdInput, CreateClientCmdOutput, UpdateClientCmdInput, UpdateClientCmdOutput, DeleteClientCmdInput, DeleteClientCmdOutput, } from '/_102045_/l2/buildFlowFsm/web/contracts/clientManagementWorkspace.js';
+export declare class BuildFlowFsmClientManagementWorkspaceBase extends CollabLitElement {
+    /** state status — pageStatus */
+    status: string;
+    /** state listClientsState — actionStatus, values: idle|loading|success|error */
+    listClientsState: 'idle' | 'loading' | 'success' | 'error';
+    /** state listClientsName — input */
+    listClientsName: string;
+    /** state listClientsCompany — input */
+    listClientsCompany: string;
+    /** state listClientsEmail — input */
+    listClientsEmail: string;
+    /** state listClientsPage — input */
+    listClientsPage: string;
+    /** state listClientsPageSize — input */
+    listClientsPageSize: string;
+    /** state listClientsData — queryResult, outputShape: paginated */
+    listClientsData: ListClientsOutput;
+    /** state createClientCmdState — actionStatus, values: idle|loading|success|error */
+    createClientCmdState: 'idle' | 'loading' | 'success' | 'error';
+    /** state createClientCmdName — input */
+    createClientCmdName: string;
+    /** state createClientCmdEmail — input */
+    createClientCmdEmail: string;
+    /** state createClientCmdCompany — input */
+    createClientCmdCompany: string;
+    /** state createClientCmdPhone — input */
+    createClientCmdPhone: string;
+    /** state createClientCmdAddress — input */
+    createClientCmdAddress: string;
+    /** state createClientCmdOutput — commandOutput */
+    createClientCmdOutput: CreateClientCmdOutput | null;
+    /** state createClientCmdError — actionError */
+    createClientCmdError: string;
+    /** state updateClientCmdState — actionStatus, values: idle|loading|success|error */
+    updateClientCmdState: 'idle' | 'loading' | 'success' | 'error';
+    /** state updateClientCmdClientId — input */
+    updateClientCmdClientId: string;
+    /** state updateClientCmdName — input */
+    updateClientCmdName: string;
+    /** state updateClientCmdCompany — input */
+    updateClientCmdCompany: string;
+    /** state updateClientCmdEmail — input */
+    updateClientCmdEmail: string;
+    /** state updateClientCmdPhone — input */
+    updateClientCmdPhone: string;
+    /** state updateClientCmdAddress — input */
+    updateClientCmdAddress: string;
+    /** state updateClientCmdOutput — commandOutput */
+    updateClientCmdOutput: UpdateClientCmdOutput | null;
+    /** state updateClientCmdError — actionError */
+    updateClientCmdError: string;
+    /** state deleteClientCmdState — actionStatus, values: idle|loading|success|error */
+    deleteClientCmdState: 'idle' | 'loading' | 'success' | 'error';
+    /** state deleteClientCmdClientId — input */
+    deleteClientCmdClientId: string;
+    /** state deleteClientCmdOutput — commandOutput */
+    deleteClientCmdOutput: DeleteClientCmdOutput | null;
+    /** state deleteClientCmdError — actionError */
+    deleteClientCmdError: string;
+    connectedCallback(): void;
+    disconnectedCallback(): void;
+    /** handleIcaStateChange — collabState notify contract; maps state keys onto class fields */
+    handleIcaStateChange(key: string, value: unknown): void;
+    private initStateValue;
+    private syncRouteParams;
+    private readErrorMessage;
+    /** action listClients (query) — route buildFlowFsm.clientManagementWorkspace.listClients; inputs: name, company, email, page, pageSize; writes ui.clientManagementWorkspace.data.listClients; status ui.clientManagementWorkspace.action.listClients.status */
+    loadListClients(): Promise<void>;
+    /** handler for action listClients — bind UI events here */
+    handleListClientsClick(event?: Event): void;
+    /** action createClientCmd (command) — route buildFlowFsm.clientManagementWorkspace.createClientCmd; inputs: name, email, company, phone, address; writes ui.clientManagementWorkspace.output.createClientCmd; status ui.clientManagementWorkspace.action.createClientCmd.status; feedback keys action.createClientCmd.success / action.createClientCmd.error */
+    createClientCmd(): Promise<void>;
+    /** handler for action createClientCmd — bind UI events here */
+    handleCreateClientCmdClick(event?: Event): void;
+    /** action updateClientCmd (command) — route buildFlowFsm.clientManagementWorkspace.updateClientCmd; inputs: clientId, name, company, email, phone, address; writes ui.clientManagementWorkspace.output.updateClientCmd; status ui.clientManagementWorkspace.action.updateClientCmd.status; feedback keys action.updateClientCmd.success / action.updateClientCmd.error */
+    updateClientCmd(): Promise<void>;
+    /** handler for action updateClientCmd — bind UI events here */
+    handleUpdateClientCmdClick(event?: Event): void;
+    /** action deleteClientCmd (command) — route buildFlowFsm.clientManagementWorkspace.deleteClientCmd; inputs: clientId; writes ui.clientManagementWorkspace.output.deleteClientCmd; status ui.clientManagementWorkspace.action.deleteClientCmd.status; feedback keys action.deleteClientCmd.success / action.deleteClientCmd.error */
+    deleteClientCmd(): Promise<void>;
+    /** handler for action deleteClientCmd — bind UI events here */
+    handleDeleteClientCmdClick(event?: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.listClients.name */
+    setListClientsName(value: string): void;
+    /** handler for action set.listClientsName — bind UI events here */
+    handleListClientsNameChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.listClients.company */
+    setListClientsCompany(value: string): void;
+    /** handler for action set.listClientsCompany — bind UI events here */
+    handleListClientsCompanyChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.listClients.email */
+    setListClientsEmail(value: string): void;
+    /** handler for action set.listClientsEmail — bind UI events here */
+    handleListClientsEmailChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.listClients.page */
+    setListClientsPage(value: string): void;
+    /** handler for action set.listClientsPage — bind UI events here */
+    handleListClientsPageChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.listClients.pageSize */
+    setListClientsPageSize(value: string): void;
+    /** handler for action set.listClientsPageSize — bind UI events here */
+    handleListClientsPageSizeChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.createClientCmd.name */
+    setCreateClientCmdName(value: string): void;
+    /** handler for action set.createClientCmdName — bind UI events here */
+    handleCreateClientCmdNameChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.createClientCmd.email */
+    setCreateClientCmdEmail(value: string): void;
+    /** handler for action set.createClientCmdEmail — bind UI events here */
+    handleCreateClientCmdEmailChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.createClientCmd.company */
+    setCreateClientCmdCompany(value: string): void;
+    /** handler for action set.createClientCmdCompany — bind UI events here */
+    handleCreateClientCmdCompanyChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.createClientCmd.phone */
+    setCreateClientCmdPhone(value: string): void;
+    /** handler for action set.createClientCmdPhone — bind UI events here */
+    handleCreateClientCmdPhoneChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.createClientCmd.address */
+    setCreateClientCmdAddress(value: string): void;
+    /** handler for action set.createClientCmdAddress — bind UI events here */
+    handleCreateClientCmdAddressChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.updateClientCmd.clientId */
+    setUpdateClientCmdClientId(value: string): void;
+    /** handler for action set.updateClientCmdClientId — bind UI events here */
+    handleUpdateClientCmdClientIdChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.updateClientCmd.name */
+    setUpdateClientCmdName(value: string): void;
+    /** handler for action set.updateClientCmdName — bind UI events here */
+    handleUpdateClientCmdNameChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.updateClientCmd.company */
+    setUpdateClientCmdCompany(value: string): void;
+    /** handler for action set.updateClientCmdCompany — bind UI events here */
+    handleUpdateClientCmdCompanyChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.updateClientCmd.email */
+    setUpdateClientCmdEmail(value: string): void;
+    /** handler for action set.updateClientCmdEmail — bind UI events here */
+    handleUpdateClientCmdEmailChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.updateClientCmd.phone */
+    setUpdateClientCmdPhone(value: string): void;
+    /** handler for action set.updateClientCmdPhone — bind UI events here */
+    handleUpdateClientCmdPhoneChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.updateClientCmd.address */
+    setUpdateClientCmdAddress(value: string): void;
+    /** handler for action set.updateClientCmdAddress — bind UI events here */
+    handleUpdateClientCmdAddressChange(event: Event): void;
+    /** setter for state ui.clientManagementWorkspace.input.deleteClientCmd.clientId */
+    setDeleteClientCmdClientId(value: string): void;
+    /** handler for action set.deleteClientCmdClientId — bind UI events here */
+    handleDeleteClientCmdClientIdChange(event: Event): void;
+}

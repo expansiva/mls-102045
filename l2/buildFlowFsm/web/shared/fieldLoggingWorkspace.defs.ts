@@ -115,7 +115,7 @@ export const definition = {
   },
   "layoutRef": {
     "defPath": "_102045_/l2/buildFlowFsm/web/desktop/page11/fieldLoggingWorkspace.defs.ts",
-    "layoutId": "cfe-20260731060448.1000"
+    "layoutId": "cfe-20260731185234.1000"
   },
   "states": [
     {
@@ -734,7 +734,7 @@ export const definition = {
     "intent.fieldLoggingWorkspace.submitVoidTimeLog.form.title": "Void time log",
     "intent.fieldLoggingWorkspace.submitVoidTimeLog.form.action.submitVoidTimeLog": "Void time log",
     "intent.fieldLoggingWorkspace.submitVoidTimeLog.form.field.voidReason.label": "Void Reason",
-    "section.fieldLoggingWorkspace.sec-material-logging.title": "Material Usage Logging",
+    "section.fieldLoggingWorkspace.sec-material-logging.title": "Material Logging",
     "organism.fieldLoggingWorkspace.submitMaterialUsage.title": "Log materials used",
     "intent.fieldLoggingWorkspace.submitMaterialUsage.form.title": "Log materials used",
     "intent.fieldLoggingWorkspace.submitMaterialUsage.form.action.submitMaterialUsage": "Log materials used",
@@ -748,7 +748,15 @@ export const definition = {
     "organism.fieldLoggingWorkspace.submitVoidMaterialUsage.title": "Void material usage",
     "intent.fieldLoggingWorkspace.submitVoidMaterialUsage.form.title": "Void material usage",
     "intent.fieldLoggingWorkspace.submitVoidMaterialUsage.form.action.submitVoidMaterialUsage": "Void material usage",
-    "intent.fieldLoggingWorkspace.submitVoidMaterialUsage.form.field.voidedReason.label": "Voided Reason"
+    "intent.fieldLoggingWorkspace.submitVoidMaterialUsage.form.field.voidedReason.label": "Voided Reason",
+    "action.submitTimeLog.success": "Log hours worked: OK",
+    "action.submitTimeLog.error": "Log hours worked: falhou",
+    "action.submitVoidTimeLog.success": "Void time log: OK",
+    "action.submitVoidTimeLog.error": "Void time log: falhou",
+    "action.submitMaterialUsage.success": "Log materials used: OK",
+    "action.submitMaterialUsage.error": "Log materials used: falhou",
+    "action.submitVoidMaterialUsage.success": "Void material usage: OK",
+    "action.submitVoidMaterialUsage.error": "Void material usage: falhou"
   },
   "automation": {
     "statePrefix": "ui.fieldLoggingWorkspace",

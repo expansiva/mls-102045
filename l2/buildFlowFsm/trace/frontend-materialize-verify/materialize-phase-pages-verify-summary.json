@@ -1,13 +1,57 @@
 {
-  "savedAt": "2026-07-31T06:22:58.534Z",
+  "savedAt": "2026-07-31T19:21:09.866Z",
   "phase": "materialize-phase-pages-verify",
-  "lastRoundPlanId": "materialize-phase-pages-verify-v2",
-  "attempt": 2,
-  "allClear": true,
-  "passedCount": 3,
+  "lastRoundPlanId": "materialize-phase-pages-verify",
+  "attempt": 1,
+  "allClear": false,
+  "passedCount": 33,
   "passed": [
     {
       "planId": "materialize-billingsummaryworkspace-l2-page",
+      "typecheck": "passed"
+    },
+    {
+      "planId": "materialize-changeorderworkspace-l2-page",
+      "typecheck": "passed"
+    },
+    {
+      "planId": "materialize-clientbillingworkspace-l2-page",
+      "typecheck": "passed"
+    },
+    {
+      "planId": "materialize-clientmanagementworkspace-l2-page",
+      "typecheck": "passed"
+    },
+    {
+      "planId": "materialize-clientstatusworkspace-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-dashboardworkspace-l2-page",
+      "typecheck": "passed"
+    },
+    {
+      "planId": "materialize-fieldloggingworkspace-l2-page",
+      "typecheck": "passed"
+    },
+    {
+      "planId": "materialize-invoiceworkspace-l2-page",
+      "typecheck": "passed"
+    },
+    {
+      "planId": "materialize-jobcostworkspace-l2-page",
+      "typecheck": "passed"
+    },
+    {
+      "planId": "materialize-mytasksworkspace-l2-page",
+      "typecheck": "passed"
+    },
+    {
+      "planId": "materialize-projectlifecycleworkspace-l2-page",
+      "typecheck": "passed"
+    },
+    {
+      "planId": "materialize-taskboardworkspace-l2-page",
       "typecheck": "passed"
     },
     {
@@ -15,11 +59,151 @@
       "typecheck": "not-applicable"
     },
     {
+      "planId": "materialize-changeorderworkspace-page21-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-clientbillingworkspace-page21-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-clientmanagementworkspace-page21-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-clientstatusworkspace-page21-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-dashboardworkspace-page21-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-fieldloggingworkspace-page21-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-mytasksworkspace-page21-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-projectdetailworkspace-page21-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-projectlifecycleworkspace-page21-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-taskboardworkspace-page21-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-billingsummaryworkspace-page31-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-clientbillingworkspace-page31-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-clientmanagementworkspace-page31-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-clientstatusworkspace-page31-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-dashboardworkspace-page31-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-fieldloggingworkspace-page31-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-jobcostworkspace-page31-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
       "planId": "materialize-mytasksworkspace-page31-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-statusreportworkspace-page31-l2-page",
+      "typecheck": "not-applicable"
+    },
+    {
+      "planId": "materialize-taskboardworkspace-page31-l2-page",
       "typecheck": "not-applicable"
     }
   ],
-  "brokenCount": 0,
-  "broken": [],
+  "brokenCount": 9,
+  "broken": [
+    {
+      "planId": "materialize-projectdetailworkspace-l2-page",
+      "outputPath": "_102045_/l2/buildFlowFsm/web/desktop/page11/projectDetailWorkspace.ts",
+      "errorCount": 8,
+      "warningCount": 0,
+      "firstError": "file://server/_102045_/l2/buildFlowFsm/web/desktop/page11/projectDetailWorkspace.ts - TS2367 - This comparison appears to be unintentional because the types '\"idle\" | \"success\" | \"error\"' and '\"loading\"' have no overlap."
+    },
+    {
+      "planId": "materialize-statusreportworkspace-l2-page",
+      "outputPath": "_102045_/l2/buildFlowFsm/web/desktop/page11/statusReportWorkspace.ts",
+      "errorCount": 2,
+      "warningCount": 3,
+      "firstError": "generateReport.projectId is a technical id with source 'selectedentity' but is bound to an editable control: feed it by selecting a row instead of rendering a field"
+    },
+    {
+      "planId": "materialize-invoiceworkspace-page21-l2-page",
+      "outputPath": "_102045_/l2/buildFlowFsm/web/desktop/page21/invoiceWorkspace.ts",
+      "errorCount": 2,
+      "warningCount": 2,
+      "firstError": "createInvoiceCmd.projectId is a technical id with source 'selectedentity' but is bound to an editable control: feed it by selecting a row instead of rendering a field"
+    },
+    {
+      "planId": "materialize-jobcostworkspace-page21-l2-page",
+      "outputPath": "_102045_/l2/buildFlowFsm/web/desktop/page21/jobCostWorkspace.ts",
+      "errorCount": 1,
+      "warningCount": 0,
+      "firstError": "file://server/_102045_/l2/buildFlowFsm/web/desktop/page21/jobCostWorkspace.ts - TS2322 - Type 'TemplateResult<1>' is not assignable to type 'symbol'."
+    },
+    {
+      "planId": "materialize-statusreportworkspace-page21-l2-page",
+      "outputPath": "_102045_/l2/buildFlowFsm/web/desktop/page21/statusReportWorkspace.ts",
+      "errorCount": 7,
+      "warningCount": 0,
+      "firstError": "file://server/_102045_/l2/buildFlowFsm/web/desktop/page21/statusReportWorkspace.ts - TS2339 - Property 'msg' does not exist on type 'BuildFlowFsmDesktopPage21StatusReportWorkspacePage'."
+    },
+    {
+      "planId": "materialize-changeorderworkspace-page31-l2-page",
+      "outputPath": "_102045_/l2/buildFlowFsm/web/desktop/page31/changeOrderWorkspace.ts",
+      "errorCount": 8,
+      "warningCount": 0,
+      "firstError": "file://server/_102045_/l2/buildFlowFsm/web/desktop/page31/changeOrderWorkspace.ts - TS2339 - Property 'msg' does not exist on type 'BuildFlowFsmDesktopPage31ChangeOrderWorkspacePage'."
+    },
+    {
+      "planId": "materialize-invoiceworkspace-page31-l2-page",
+      "outputPath": "_102045_/l2/buildFlowFsm/web/desktop/page31/invoiceWorkspace.ts",
+      "errorCount": 2,
+      "warningCount": 2,
+      "firstError": "createInvoiceCmd.projectId is a technical id with source 'selectedentity' but is bound to an editable control: feed it by selecting a row instead of rendering a field"
+    },
+    {
+      "planId": "materialize-projectdetailworkspace-page31-l2-page",
+      "outputPath": "_102045_/l2/buildFlowFsm/web/desktop/page31/projectDetailWorkspace.ts",
+      "errorCount": 8,
+      "warningCount": 0,
+      "firstError": "file://server/_102045_/l2/buildFlowFsm/web/desktop/page31/projectDetailWorkspace.ts - TS2367 - This comparison appears to be unintentional because the types '\"idle\" | \"success\" | \"error\"' and '\"loading\"' have no overlap."
+    },
+    {
+      "planId": "materialize-projectlifecycleworkspace-page31-l2-page",
+      "outputPath": "_102045_/l2/buildFlowFsm/web/desktop/page31/projectLifecycleWorkspace.ts",
+      "errorCount": 6,
+      "warningCount": 0,
+      "firstError": "file://server/_102045_/l2/buildFlowFsm/web/desktop/page31/projectLifecycleWorkspace.ts - TS2339 - Property 'msg' does not exist on type 'BuildFlowFsmDesktopPage31ProjectLifecycleWorkspacePage'."
+    }
+  ],
   "agent": "agentCfeMaterializePhase"
 }

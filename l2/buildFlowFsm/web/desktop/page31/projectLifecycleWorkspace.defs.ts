@@ -1,22 +1,66 @@
 /// <mls fileReference="_102045_/l2/buildFlowFsm/web/desktop/page31/projectLifecycleWorkspace.defs.ts" enhancement="_blank"/>
 
-// TESTE (31/jul): defs REDUZIDO + skill de experiência no pipeline.
-// A UX desta página vem inteira do skill `entityRecordManagement/page31.md`; este defs carrega só o
-// contrato: identidade + amarração. Comparar com page21/projectLifecycleWorkspace.defs.ts (defs completo + page21.md).
-
 export const definition = {
   "pageId": "projectLifecycleWorkspace",
   "pageName": "Manage Projects",
   "baseClassName": "BuildFlowFsmProjectLifecycleWorkspaceBase",
   "actor": "projectManager",
   "purpose": "Project manager creates and maintains projects through their full lifecycle.",
-
+  "presentation": {
+    "categoryRef": "entityRecordManagement"
+  },
+  "pageObjective": {
+    "actor": "Project Manager",
+    "jobToBeDone": "Create new projects and manage their full lifecycle — from registration through activation, hold, closure, and cancellation — from a single workspace.",
+    "primaryDecision": "Which lifecycle action to take on a project right now: create a new one, edit its details, or transition its status.",
+    "decisiveInfo": [
+      "name",
+      "clientId",
+      "siteAddress",
+      "budget",
+      "startDate",
+      "endDate",
+      "status",
+      "holdReason",
+      "cancellationReason"
+    ],
+    "usageFrequency": "Occasional / back-office — used when onboarding a new project or responding to a lifecycle event (activation, hold, closure).",
+    "criticalActions": [
+      {
+        "action": "createProjectCmd",
+        "presentation": "primary-button submitting a grouped creation form (name, client, site, budget, dates)"
+      },
+      {
+        "action": "updateProjectCmd",
+        "presentation": "inline edit form pre-populated from selected project, save as primary-button"
+      },
+      {
+        "action": "updateProjectStatusCmd",
+        "presentation": "contextual-transition-actions — one button per valid next status on the selected project; conditional reason field appears only when status requires it"
+      }
+    ],
+    "informationHierarchy": [
+      "1. Current project status and key identifiers (name, client, status badge) — read-before-write anchor",
+      "2. Status transition actions — the most time-sensitive decision",
+      "3. Edit project details form — secondary, opened on demand",
+      "4. Create new project form — available but not dominant; new projects are less frequent than status changes"
+    ],
+    "successCriteria": "A project manager can register a new project, edit its details, and advance or revert its lifecycle status without navigating away, without typing IDs, and without ambiguity about the current state.",
+    "antiPatterns": [
+      "Free <select> over all status enum values — use contextual transition buttons instead",
+      "Manually typed projectId or clientId fields",
+      "Separate page or modal for status transitions",
+      "Stacking three independent full-page forms with no project context anchor",
+      "Showing system-owned fields (createdAt, updatedAt, closedAt, cancelledAt) as editable inputs"
+    ]
+  },
   "dataBindings": [
     {
       "id": "binding.projectLifecycleWorkspace.createProjectCmd",
       "source": "bff.createProjectCmd",
       "command": "createProjectCmd",
       "description": "Create project",
+      "kind": "command",
       "stateKey": "ui.projectLifecycleWorkspace.output.createProjectCmd",
       "inputStateKeys": [
         "ui.projectLifecycleWorkspace.input.createProjectCmd.name",
@@ -25,6 +69,50 @@ export const definition = {
         "ui.projectLifecycleWorkspace.input.createProjectCmd.budget",
         "ui.projectLifecycleWorkspace.input.createProjectCmd.startDate",
         "ui.projectLifecycleWorkspace.input.createProjectCmd.endDate"
+      ],
+      "inputs": [
+        {
+          "name": "name",
+          "stateKey": "ui.projectLifecycleWorkspace.input.createProjectCmd.name",
+          "source": "userInput",
+          "required": true,
+          "presentation": "form"
+        },
+        {
+          "name": "clientId",
+          "stateKey": "ui.projectLifecycleWorkspace.input.createProjectCmd.clientId",
+          "source": "userInput",
+          "required": true,
+          "presentation": "form"
+        },
+        {
+          "name": "siteAddress",
+          "stateKey": "ui.projectLifecycleWorkspace.input.createProjectCmd.siteAddress",
+          "source": "userInput",
+          "required": true,
+          "presentation": "form"
+        },
+        {
+          "name": "budget",
+          "stateKey": "ui.projectLifecycleWorkspace.input.createProjectCmd.budget",
+          "source": "userInput",
+          "required": true,
+          "presentation": "form"
+        },
+        {
+          "name": "startDate",
+          "stateKey": "ui.projectLifecycleWorkspace.input.createProjectCmd.startDate",
+          "source": "userInput",
+          "required": true,
+          "presentation": "form"
+        },
+        {
+          "name": "endDate",
+          "stateKey": "ui.projectLifecycleWorkspace.input.createProjectCmd.endDate",
+          "source": "userInput",
+          "required": true,
+          "presentation": "form"
+        }
       ]
     },
     {
@@ -32,6 +120,7 @@ export const definition = {
       "source": "bff.updateProjectCmd",
       "command": "updateProjectCmd",
       "description": "Update project details",
+      "kind": "command",
       "stateKey": "ui.projectLifecycleWorkspace.output.updateProjectCmd",
       "inputStateKeys": [
         "ui.projectLifecycleWorkspace.input.updateProjectCmd.projectId",
@@ -41,6 +130,57 @@ export const definition = {
         "ui.projectLifecycleWorkspace.input.updateProjectCmd.budget",
         "ui.projectLifecycleWorkspace.input.updateProjectCmd.startDate",
         "ui.projectLifecycleWorkspace.input.updateProjectCmd.endDate"
+      ],
+      "inputs": [
+        {
+          "name": "projectId",
+          "stateKey": "ui.projectLifecycleWorkspace.input.updateProjectCmd.projectId",
+          "source": "routeParam",
+          "required": true,
+          "presentation": "route"
+        },
+        {
+          "name": "name",
+          "stateKey": "ui.projectLifecycleWorkspace.input.updateProjectCmd.name",
+          "source": "userInput",
+          "required": true,
+          "presentation": "form"
+        },
+        {
+          "name": "clientId",
+          "stateKey": "ui.projectLifecycleWorkspace.input.updateProjectCmd.clientId",
+          "source": "userInput",
+          "required": true,
+          "presentation": "form"
+        },
+        {
+          "name": "siteAddress",
+          "stateKey": "ui.projectLifecycleWorkspace.input.updateProjectCmd.siteAddress",
+          "source": "userInput",
+          "required": true,
+          "presentation": "form"
+        },
+        {
+          "name": "budget",
+          "stateKey": "ui.projectLifecycleWorkspace.input.updateProjectCmd.budget",
+          "source": "userInput",
+          "required": true,
+          "presentation": "form"
+        },
+        {
+          "name": "startDate",
+          "stateKey": "ui.projectLifecycleWorkspace.input.updateProjectCmd.startDate",
+          "source": "userInput",
+          "required": true,
+          "presentation": "form"
+        },
+        {
+          "name": "endDate",
+          "stateKey": "ui.projectLifecycleWorkspace.input.updateProjectCmd.endDate",
+          "source": "userInput",
+          "required": true,
+          "presentation": "form"
+        }
       ]
     },
     {
@@ -48,12 +188,43 @@ export const definition = {
       "source": "bff.updateProjectStatusCmd",
       "command": "updateProjectStatusCmd",
       "description": "Update project status",
+      "kind": "command",
       "stateKey": "ui.projectLifecycleWorkspace.output.updateProjectStatusCmd",
       "inputStateKeys": [
         "ui.projectLifecycleWorkspace.input.updateProjectStatusCmd.projectId",
         "ui.projectLifecycleWorkspace.input.updateProjectStatusCmd.status",
         "ui.projectLifecycleWorkspace.input.updateProjectStatusCmd.holdReason",
         "ui.projectLifecycleWorkspace.input.updateProjectStatusCmd.cancellationReason"
+      ],
+      "inputs": [
+        {
+          "name": "projectId",
+          "stateKey": "ui.projectLifecycleWorkspace.input.updateProjectStatusCmd.projectId",
+          "source": "routeParam",
+          "required": true,
+          "presentation": "route"
+        },
+        {
+          "name": "status",
+          "stateKey": "ui.projectLifecycleWorkspace.input.updateProjectStatusCmd.status",
+          "source": "userInput",
+          "required": true,
+          "presentation": "form"
+        },
+        {
+          "name": "holdReason",
+          "stateKey": "ui.projectLifecycleWorkspace.input.updateProjectStatusCmd.holdReason",
+          "source": "userInput",
+          "required": false,
+          "presentation": "form"
+        },
+        {
+          "name": "cancellationReason",
+          "stateKey": "ui.projectLifecycleWorkspace.input.updateProjectStatusCmd.cancellationReason",
+          "source": "userInput",
+          "required": false,
+          "presentation": "form"
+        }
       ]
     }
   ]
