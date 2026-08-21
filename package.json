@@ -12,6 +12,7 @@
   "license": "ISC",
   "actionDependencies": {
     "mls-102020": "git+https://github.com/expansiva/mls-102020.git",
-    "mls-102027": "git+https://github.com/expansiva/mls-102027.git"
+    "mls-102027": "git+https://github.com/expansiva/mls-102027.git",
+    "mls-102025": "git+https://github.com/expansiva/mls-102025.git"
   }
 }
