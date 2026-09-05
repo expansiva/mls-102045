@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "publish": "node ../scripts/runPublishMlsBase.mjs 102045 remote --sites --ssh-host=ubuntu@54.210.148.116 --remote-base=/data/mls-base",
-    "publish:local": "node ../scripts/runPublishMlsBase.mjs 102045  local",
+    "publish": "node ../scripts/publishGit.mjs 102045 remote --git-url=https://102045.collabcodes.com",
+    "publish:git": "node ../scripts/publishGit.mjs 102045 local",
+    "publish:remote": "node ../scripts/publishGit.mjs 102045 remote --git-url=https://102045.collabcodes.com",
     
     "buildCI": "node ../scripts/buildCI/buildCI.mjs 102045"
   },
