@@ -14,7 +14,7 @@ exist but are empty apart from `project.ts` / `designSystem.ts`; the
 
 | side | master (generation) | agent | runtime |
 |---|---|---|---|
-| frontend | `102020` | `agentChangeFrontend` | `102033` |
+| frontend | `102020` | `agentMaterializeL2` | `102033` |
 | backend | `102021` | `agentChangeBackend` | `102034` |
 
 Last activity: 2026-08-21.
